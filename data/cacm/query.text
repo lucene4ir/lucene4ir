@@ -1,0 +1,519 @@
+.I 1
+.W
+ What articles exist which deal with TSS (Time Sharing System), an
+operating system for IBM computers?
+.N
+ 1. Richard Alexander, Comp Serv, Langmuir Lab (TSS)
+ 
+.I 2
+.W
+ I am interested in articles written either by Prieve or Udo Pooch
+.A
+Prieve, B.
+Pooch, U.
+.N
+ 2. Richard Alexander, Comp Serv, Langmuir Lab (author = Pooch or Prieve)
+ 
+.I 3
+.W
+ Intermediate languages used in construction of multi-targeted compilers; TCOLL
+.N
+ 3. Donna Bergmark, Comp Serv, Uris Hall (intermed lang)
+ 
+.I 4
+.W
+ I'm interested in mechanisms for communicating between disjoint processes,
+possibly, but not exclusively, in a distributed environment.  I would
+rather see descriptions of complete mechanisms, with or without implementations,
+as opposed to theoretical work on the abstract problem.  Remote procedure
+calls and message-passing are examples of my interests.
+.N
+ 4. Pavel Curtis (comm mech for disjoint processes)
+
+.I 5
+.W
+ I'd like papers on design and implementation of editing interfaces,
+window-managers, command interpreters, etc.  The essential issues are
+human interface design, with views on improvements to user efficiency,
+effectiveness and satisfaction.
+.N
+ 5. Pavel Curtis (editing interfaces)
+
+ 
+.I 6
+.W
+ Interested in articles on robotics, motion planning particularly the
+geometric and combinatorial aspects.  We are not interested in the
+dynamics of arm motion.
+.N
+ 6. John Hopcroft (robotics)
+ 
+.I 7
+.W
+ I am interested in distributed algorithms - concurrent programs in
+which processes communicate and synchronize by using message passing.
+Areas of particular interest include fault-tolerance and techniques
+for understanding the correctness of these algorithms.
+.N
+ 7. Fred Schneider (dist algorithms)
+ 
+.I 8
+.W
+ Addressing schemes for resources in networks; resource addressing in
+network operating systems
+.N
+ 8. Alison Brown (addr in networks)
+ 
+.I 9
+.W
+ Security considerations in local networks, network operating systems,
+and distributed systems.
+.N
+ 9. Alison Brown (security in networks)
+ 
+.I 10
+.W
+ Parallel languages; languages for parallel computation
+.N
+ 10. Alec Grimison, Comp Serv, Uris Hall (parallel lang)
+ 
+.I 11
+.W
+ SETL, Very High Level Languages
+.N
+ 11. Alec Grimison (SETL; very high level lang)
+
+ 
+.I 12
+.W
+ portable operating systems
+.N
+ 12. Ralph Johnson (portable op sys)
+ 
+.I 13
+.W
+ code optimization for space efficiency
+.N
+ 13. Ralph Johnson (code opt for space)
+ 
+.I 14
+.W
+ find all discussions of optimal implementations of sort algorithms for
+database management applications
+.N
+ 14. Kenneth Wilson, Physics, Newman Lab (sort for database)
+ 
+.I 15
+.W
+ Find all discussions of horizontal microcode optimization with special
+emphasis on optimization of loops and global optimization.
+.N
+ 15. Kenneth Wilson (horizontal microcode opt)
+ 
+.I 16
+.W
+ find all descriptions of file handling in operating systems based on
+multiple processes and message passing.
+.N
+ 16. Kenneth Wilson (file handling in dist sys)
+ 
+.I 17
+.W
+ Optimization of intermediate and machine code
+.N
+ 17. Donna Bergmark (opt of intermediate code)
+ 
+.I 18
+.W
+ Languages and compilers for parallel processors, especially highly
+horizontal microcoded machines; code compaction
+.N
+ 18. Donna Bergmark (lang for parallel proc)
+ 
+.I 19
+.W
+ Parallel algorithms
+.N
+ 19. Chanderjit Bajaj (parallel algorithms)
+
+ 
+.I 20
+.W
+ Graph theoretic algorithms applicable to sparse matrices
+.N
+ 20. Chanderjit Bajaj (graph alg for sparce matrices)
+ 
+.I 21
+.W
+ computational complexity, intractability, class-complete reductions,
+algorithms and efficiency
+.N
+ 21. Jim Mildrew (5 sep queries? comp complex, intract, c-c red, alg & eff)
+ 
+.I 22
+.W
+ I am interested in hidden-line and hidden-surface algorithms for
+cylinders, toroids, spheres, and cones.  This is a rather specialized
+topic in computer graphics.
+.N
+ 22. Wally Dietrich (hidden line and surf alg)
+ 
+.I 23
+.W
+ Distributed computing structures and algorithms
+.N
+ 23. Ozalp Babaoglu (dist comp struct & alg)
+ 
+.I 24
+.W
+ Applied stochastic processes
+.N
+ 24. Ozalp Babaoglu (appl stochastic proc)
+ 
+.I 25
+.W
+ Performance evaluation and modelling of computer systems
+.N
+ 25. Ozalp Babaoglu (perf eval)
+ 
+.I 26
+.W
+ Concurrency control mechanisms in operating systems
+.N
+ 26. Ozalp Babaoglu (concurrency control)
+  
+.I 27
+.W
+ Memory management aspects of operating systems
+.N
+ 27. Ozalp Babaoglu (memory management)
+ 
+.I 28
+.W
+ Any information on packet radio networks.  Of particular interest are
+algorithms for packet routing, and for dealing with changes in
+network topography.  I am not interested in the hardware used in the
+network.
+.N
+ 28. Dean Jagels (packet radio nets)
+ 
+.I 29
+.W
+ Number-theoretic algorithms, especially involving prime number series,
+sieves, and Chinese Remainder theorem.
+.N
+ 29. Paul Pritchard (num-theoretic alg)
+ 
+.I 30
+.W
+ Articles on text formatting systems, including "what you see is what you
+get" systems.  Examples: t/nroff, scribe, bravo.
+.N
+ 30. Dean Krafft (text formatters)
+ 
+.I 31
+.W
+ I'd like to find articles describing the use of singular value decomposition
+in digital image processing.  Applications include finding approximations
+to the original image and restoring images that are subject to noise. An
+article on the subject is H.C. Andrews and C.L. Patterson "Outer product
+expansions and their uses in digital image processing", American Mathematical
+Monthly, vol. 82.
+.A
+Andrews, H.C.
+Patterson, C.L.
+.N
+ 31. Bengt Aspvall (sing value decomp)
+ 
+.I 32
+.W
+ I'd like to find articles describing graph algorithms that are based on
+the eigenvalue decomposition (or singular value decomposition) of the
+ajacency matrix for the graph.  I'm especially interested in any heuristic
+algorithms for graph coloring and graph isomorphism using this method.
+.N
+ 32. Bengt Aspvall (graph alg / eigenvalue decomp)
+ 
+.I 33
+.W
+ Articles about the sensitivity of the eigenvalue decomposition of real
+matrices, in particular, zero-one matrices.  I'm especially interested in
+the separation of eigenspaces corresponding to distinct eigenvalues.
+Articles on the subject:
+C. Davis and W.M. Kahn, "The rotation of eigenvectors by a permutation:,
+SIAM J. Numerical Analysis, vol. 7, no. 1 (1970); G.W. Stewart, "Error
+bounds for approximate invariant subspaces of closed linear operators",
+SIAM J. Numerical Analysis., Vol. 8, no. 4 (1971).
+.A
+Davis, C.
+Kahn, W.M.
+Stewart, G.W.
+.N
+ 33. Bengt Aspvall (sens of eigenval decomp of real matrices)
+ 
+.I 34
+.W
+ Currently interested in isolation of root of polynomial; there is an old
+article by Heindel, L.E. in J. ACM, Vol. 18, 533-548.  I would like to find
+more recent material.
+.A
+Heindel, L.E.
+.N
+ 34. Gaby Bracha (isolation of root polynomial)
+ 
+.I 35
+.W
+ Probabilistic algorithms especially those dealing with algebraic and
+symbolic manipulation.  Some examples:
+Rabiin, "Probabilistic algorithm on finite field", SIAM
+Waztch, "Probabilistic testing of polynomial identities", SIAM
+.A
+Rabin,M.
+.N
+ 35. Gaby Bracha (prob alg)
+ 
+.I 36
+.W
+ Fast algorithm for context-free language recognition or parsing
+.N
+ 36. Juris Hartmanis (fast alg for lang recog/parsing)
+
+.I 37
+.W
+ Articles describing the relationship between data types and concurrency
+(e.g. what is the type of a process?  when is a synchronization attempt 
+between two processes "type correct"?  in a message-passing system is there
+any notion of the types of messages?--i.e. any way to check that the sender
+of the message and the receiver are both treating the bit stream as some
+particular type)
+.N
+ 37. Hal Perkins, Comp Sci, Cornell
+
+.I 38
+.W
+ What is the type of a module?	(I don't want the entire literature on
+Abstract Data Types here, but I'm not sure how to phrase this to avoid it.
+I'm interested in questions about how one can check that a module "matches"
+contexts in which it is used.)
+.N
+ 38. Hal Perkins
+
+.I 39
+.W
+ What does type compatibility mean in languages that allow programmer
+defined types?  (You might want to restrict this to "extensible" languages
+that allow definition of abstract data types or programmer-supplied
+definitions of operators like *, +.)
+.N
+ 39. Hal Perkins
+
+.I 40
+.W
+ List all articles dealing with data types in the following languages:
+Pascal, CLU, Alphard, Russell, Ada, ALGOL 68, EL1.  List any other languages
+that are referenced frequently in papers on the above languages (e.g. catch
+any languages with interesting type structures that I might have missed).
+.N
+ 40. Hal Perkins
+
+.I 41
+.W
+ Theory of distributed systems and databases.  Subtopics of special
+interest include reliability and fault-tolerance in distributed systems,
+atomicity, distributed transactions, synchronization algorithms, 
+resource allocation; lower bounds and models for asynchronous parallel
+systems.  Also theory of communicating processes and protocols.   
+.N
+ 41. Michael J. Fischer, Computer Sci., Yale Univ., 10 Hillhouse Ave.,
+     P.O. Box 2158 Yale Station, New Haven, Conn.  06520
+
+.I 42
+.W
+ Computer performance evaluation techniques using pattern recognition
+and clustering.
+.N
+ 42. George R. Cross, Lousiana State Univ., Comp Sci Dept, Baton Rouge.,
+     LA    70803
+
+.I 43
+.W
+ Analysis and perception of shape by humans and computers.  Shape
+descriptions, shape recognition by computer.  Two-dimensional shapes.
+Measures of circularity.  Shape matching.
+.N
+ 43. George R. Cross
+
+.I 44
+.W
+ Texture analysis by computer.	Digitized texture analysis.  Texture
+synthesis. Perception of texture.
+.N
+ 44. George R. Cross
+
+.I 45
+.W
+ The use of operations research models to optimize information system
+performance.  This includes fine tuning decisions such as secondary index
+selection, file reorganization, and distributed databases.
+.N
+ 45. Donald Kraft, Louisiano State Univ., Comp Sci
+
+.I 46
+.W
+ The application of fuzzy subset theory to clustering and information
+retrieval problems.  This includes performance evaluation and automatic
+indexing considerations.
+.N
+ 46. Donald Kraft
+
+.I 47
+.W
+ The use of Bayesian decision models to optimize information retrieval
+system performance.  This includes stopping rules to determine when a
+user should cease scanning the output of a retrieval search.
+.N
+ 47. Donald Kraft
+
+.I 48
+.W
+ The use of computer science principles (e.g. data structures, 
+numerical methods) in generating optimization (e.g. linear programming)
+algorithms.  This includes issues of the Khachian (Russian, ellipsoidal)
+algorithm and complexity of such algorithms.
+.N
+ 48. Donald Kraft
+
+.I 49
+.W
+ The role of information retrieval in knowledge based systems
+(i.e., expert systems).
+.N
+ 49. Donald H. Kraft
+
+.I 50
+.W
+ Parallel processors in information retrieval
+.N
+ 50. Walter Rudd, Louisiana State Univ., Comp Sci
+
+.I 51
+.W
+ Parallel processors and paging algorithms
+.N
+ 51. Walter Rudd
+
+.I 52
+.W
+ Modelling and simulation in agricultural ecosystems.
+.N
+ 52. Walter Rudd
+
+.I 53
+.W
+ mathematical induction, group theory, integers modulo m,
+probability, binomial coefficients, binomial theorem, homomorphism,
+morphism, transitivity, relations, relation matrix.
+.N
+ 53. H. F. Mattson, Jr., School of Computer and Information Science,
+     Syracuse University, 313 Link Hall, Syracuse, N.Y. 13210
+
+.I 54
+.W
+ Semantics of programming languages, including abstract specifications
+of data types, denotational semantics, and proofs of correctness.
+.A
+Hoare, A.
+Dijkstra, E.
+.N
+ 54. Michael A. Arbib, Dept. Of Computer And Information Science,
+ University of Massachusetts, Amherst, MA 01003
+
+.I 55
+.W
+ Anything dealing with star height of regular languages or regular
+expressions or regular events.
+.N
+ 55. Maura Flatley, Comp Sci, Cornell
+
+.I 56
+.W
+ Articles relation the algebraic theory of semigroups and monoids
+to the study of automata and regular languages.
+.N
+ 56. Maura Flatley
+
+.I 57
+.W
+ Abstracts of articles:
+    J. Backus, "Can programming be liberated from the Von Neumann style?
+               A functional style and its algebra of programs", CACM 21
+               (1978), 613-641.
+    R.A.De Millo, R.J. Lipton, A.J. Perlis, letter to ACM Forum, CACM 22
+	       (1979), 629-630
+.A
+Backus, J.
+De Millo, R.A.
+Lipton, R.J.
+Perlis, A.J.
+.N
+ 57. Maura Flatley, Comp Sci Cornell
+
+.I 58
+.W
+ Algorithms or statistical packages for ANOVA, regression using least
+squares or generalized linear models.  System design, capabilities,
+statistical formula are of interest.  Student's t test, Wilcoxon and
+sign tests, multivariate and univariate components can be included.
+.N
+ 58. Ed Fox
+
+.I 59
+.W
+ Dictionary construction and accessing methods for fast retrieval
+of words or lexical items or morphologically related information.
+Hashing or indexing methods are usually applied to English spelling or
+natural language problems.
+.N
+ 59. Ed Fox
+
+.I 60
+.W
+ Hardware and software relating to database management systems.
+Database packages, back end computers, special associative hardware
+with microcomputers attached to disk heads or things like RAP, 
+relational or network (CODASYL) or hierarchical models, systems
+like SYSTEM R, IMS, ADABAS, TOTAL, etc.
+.N
+ 60. Ed Fox
+
+.I 61
+.W
+ Information retrieval articles by Gerard Salton or others about clustering,
+bibliographic coupling, use of citations or co-citations, the vector
+space model, Boolean search methods using inverted files, feedback, etc.
+.A
+Salton, G.
+.N
+ 61. Ed Fox
+
+.I 62
+.W
+ Results relating parallel complexity theory (both for PRAM's and
+uniform circuits).
+.N
+ 62. Mark W. Krentel, Comp Sci Cornell 
+
+.I 63
+.W
+ Algorithms for parallel computation, and especially comparisons
+between parallel and sequential algorithms.
+.N
+ 63. Mark W. Krentel
+
+.I 64
+.W
+ List all articles on EL1 and ECL (EL1 may be given as EL/1; I don't
+remember how they did it.
+.N
+ 64. Hal Perkins, Comp Sci, Cornell
+
