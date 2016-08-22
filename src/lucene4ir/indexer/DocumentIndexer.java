@@ -81,6 +81,16 @@ public class DocumentIndexer {
         /* to be implemented in sub classess*/
     };
 
+    public void finished(){
+        try {
+            if (writer != null){
+                writer.close();
+            }
+        } catch (IOException e){
+            System.out.println(" caught a " + e.getClass() +
+                    "\n with message: " + e.getMessage());
+        }
+    }
 
 
 }

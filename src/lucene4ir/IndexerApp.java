@@ -106,6 +106,7 @@ public class IndexerApp {
             System.out.println(" caught a " + e.getClass() +
                     "\n with message: " + e.getMessage());
         }
+        cdi.finished();
         System.out.println("Done building Index");
     }
 
