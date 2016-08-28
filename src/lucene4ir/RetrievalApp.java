@@ -76,14 +76,12 @@ public class RetrievalApp {
                 break;
 
             case PL2:
-                System.out.println("DFR Similarity Function");
+                System.out.println("PL2 Similarity Function (?)");
                 BasicModel bm = new BasicModelP();
                 AfterEffect ae = new AfterEffectL();
                 Normalization nn = new NormalizationH2(p.c);
                 simfn = new DFRSimilarity(bm,ae,nn);
-
                 break;
-
 
             default:
                 System.out.println("Default Similarity Function");
@@ -96,6 +94,15 @@ public class RetrievalApp {
 
 
     public void readParamsFromFile(String paramFile){
+        /*
+        Reads in the xml formatting parameter file
+        Maybe this code should go into the RetrievalParams class.
+
+        Actually, it would probably be neater to create a ParameterFile class
+        which these apps can inherit from - and customize accordinging.
+         */
+
+
         try {
             p = JAXB.unmarshal(new File(paramFile), RetrievalParams.class);
         } catch (Exception e){
@@ -165,7 +172,7 @@ public class RetrievalApp {
                     for(int i=0; i<n; i++){
                         Document doc = searcher.doc(scored[i].doc);
                         String docno = doc.get("docnum");
-                        fw.write(qno + " QO " + docno + " " + i + " " + scored[i].score + " " + p.runTag);
+                        fw.write(qno + " QO " + docno + " " + (i+1) + " " + scored[i].score + " " + p.runTag);
                         fw.write(System.lineSeparator());
                     }
 
@@ -256,9 +263,7 @@ public class RetrievalApp {
         RetrievalApp retriever = new RetrievalApp(retrievalParamFile);
         retriever.processQueryFile();
 
-
     }
-
 
 }
 
