@@ -60,7 +60,7 @@ public class RetrievalApp {
         switch(sim){
             case BM25:
                 System.out.println("BM25 Similarity Function");
-                simfn = new BM25Similarity(p.b,p.k);
+                simfn = new BM25Similarity(p.k,p.b);
                 break;
 
             case LMD:

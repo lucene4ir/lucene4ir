@@ -2,6 +2,8 @@
 <indexParams>
     <indexName>index</indexName>
     <queryFile>data/cacm/title.query</queryFile>
-    <maxResults>10</maxResults>
-    <model>lmd</model>
+    <maxResults>100</maxResults>
+    <model>bm25</model>
+    <resultFile>data/cacm/bm25_results.res</resultFile>
+
 </indexParams>
