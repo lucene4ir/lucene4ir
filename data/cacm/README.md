@@ -1,3 +1,15 @@
+
+The original CACM files are described below. 
+
+Two additional files have been created.
+title.query - which contains a key word representation of the original information
+needs described in query.text. 
+
+cacm.qrels - which is a TREC formatted relevance file denoting which documents
+are relevant - the format is compatiable with trec_eval
+
+
+
 Files in this directory with sizes:
           0 Jun 19 21:01 README
 

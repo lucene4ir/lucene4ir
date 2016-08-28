@@ -1,12 +1,12 @@
-1 Time sharing system IBM
-2 Prieve Pooch
-3 Intermediate languages compilers
-4 communicating mechanisms disjoint processes
-5 design of editing interfaces
-6 motion planning in robotics
-7 distributed algorithms and concurrent programs
-8 addressing schemes for resources in networks
-9 security in local networks and operating systems
+01 Time sharing system IBM
+02 Prieve Pooch
+03 Intermediate languages compilers
+04 communicating mechanisms disjoint processes
+05 design of editing interfaces
+06 motion planning in robotics
+07 distributed algorithms and concurrent programs
+08 addressing schemes for resources in networks
+09 security in local networks and operating systems
 10 parrallel languages for computation
 11 SETL, very high level languages
 12 portablre operating systems
