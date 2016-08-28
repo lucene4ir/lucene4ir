@@ -31,6 +31,8 @@ In ~/lucene4ir/data, there are a number of folders contain different data sets (
 
 In ~/lucene4ir/src/, there are a currently three apps, an Indexing Application (IndexerApp), a Retrieval Application (RetrievalApp) and an application that pulls out various statistics (ExampleStatsApp). Each of these apps are configured based on XML parameter files (see ~/lucene4ir/params for examples).
 
+The code is based on examples developed by https://github.com/isoboroff/trec-demo and https://github.com/lintool/Anserini
+
 
 ### Run Configuration Setups
 
