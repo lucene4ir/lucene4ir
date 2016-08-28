@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<indexParams>
+    <indexName>index</indexName>
+    <queryFile>data/cacm/title.query</queryFile>
+
+    <maxResults>10</maxResults>
+    <model>lmd</model>
+
+</indexParams>
