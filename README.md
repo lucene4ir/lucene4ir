@@ -37,9 +37,21 @@ In ~/lucene4ir/src/, there are a currently three apps, an Indexing Application (
 Again assuming that you are using the IntelliJ IDE, create the following run configurations.
 Go to the Run menu, and select Edit Configurations. In the top left hand side of the Run/Debug Configurations window, click the add button (+) to add a new configuration, and select Application. Repeat and set up for the following apps.
 
-- Name: IndexerApp, Main Class: lucene4ir.IndexerApp, Program Arguments, params/index_params.xml, Working Directory ~/lucene4ir
-- Name: RetrievalApp, Main Class: lucene4ir.RetrievalApp, Program Arguments, params/retrieval_params.xml, Working Directory ~/lucene4ir
-- Name: ExampleStatsApp, Main Class: lucene4ir.ExampleStatsApp, Program Arguments, params/example_stats_params.xml, Working Directory ~/lucene4ir
+- IndexerApp
+	- Name: IndexerApp
+	- Main Class: lucene4ir.IndexerApp
+	- Program Arguments: params/index_params.xml
+	- Working Directory: ~/lucene4ir
+- RetrievalApp
+	- Name: RetrievalApp
+	- Main Class: lucene4ir.RetrievalApp
+	- Program Arguments: params/retrieval_params.xml
+	- Working Directory ~/lucene4ir
+- ExampleStatsApp
+	- Name: ExampleStatsApp
+	- Main Class: lucene4ir.ExampleStatsApp
+	- Program Arguments: params/example_stats_params.xml
+	- Working Directory ~/lucene4ir
 
 
 Now that you have these applications set up, you can try them out. First, run the IndexerApp, which given index_params.xml, will index the CACM collection. It will take about 30 seconds.
@@ -80,6 +92,43 @@ P500           	all	0.0104
 P1000          	all	0.0052
 ```
 
+
+## Apps
+
+### RetrievalApp
+
+The Retrieval Application lets you specify the collection/index, the queries and the retrieval model, along with how it is parameterized.
+
+Below is an example of the retrieval parameters.
+
+```
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<indexParams>
+    <indexName>path/to/the/index</indexName>
+    <queryFile>data/cacm/title.query</queryFile>
+    <maxResults>100</maxResults>
+    <model>bm25</model>
+    <resultFile>data/cacm/bm25_results.res</resultFile>
+    <b>0.75</b>
+    <k>1.2</k>
+</indexParams>
+```
+
+where:
+
+- indexName: the path to the index (the application currently assumes that the indexer creates documents with a content field)
+- queryFile: the name of the file that contains the list of queries to issue (format: query_num query_text, one per line)
+- maxResults: the maximum number of results to output per query
+- model: the retrieval algorithm to use (called similarity function in Lucene)
+	  - bm25 - best match 25 (b,k)
+	  - lmj - language model with jelinek mercer smoothing (lam)
+	  - lmd - language model with dirichlet prior smoothing (mu)
+	  - pl2 - divergence from randomness model (c)
+	  - default - bm25 b=0.75 and k=0.75
+- resultFile: the name of the file to output the results to
+- parameters: b, c, k, mu, beta, lam, values for the retrieval algorithm selected.
+
+If no model is given, the default model is selected. If no parameters are provided, default values are used. If no resultsfile is provided, a result file name is auto generated from the model name.
 
 
 
