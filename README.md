@@ -46,7 +46,7 @@ Go to the Run menu, and select Edit Configurations. In the top left hand side of
 	- **Working Directory**: ~/lucene4ir
 - **RetrievalApp**
 	- **Name**: RetrievalApp
-	-** Main Class**: lucene4ir.RetrievalApp
+	- **Main Class**: lucene4ir.RetrievalApp
 	- **Program Arguments**: params/retrieval_params.xml
 	- **Working Directory**: ~/lucene4ir
 - **ExampleStatsApp**
