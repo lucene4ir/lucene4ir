@@ -15,20 +15,77 @@ import lucene4ir.indexer.*;
 
 public class IndexerApp {
 
-    public String fileList="";
-    public String indexName="";
-    public String indexType="";
+    public IndexParams p;
+
+    public DocumentIndexer di;
+
+
+    private enum DocumentModel {
+        CACM, CLUEWEB, TRECNEWS
+    }
+
+    private DocumentModel docModel;
+
 
     public IndexerApp(){
         System.out.println("Indexer");
     }
 
+    private void setDocParser(String val){
+        try {
+            docModel = DocumentModel.valueOf(p.indexType.toUpperCase());
+        } catch (Exception e){
+            System.out.println("Document Parser Not Recognized - Setting to Default");
+            System.out.println("Possible Document Parsers are:");
+            for(DocumentModel value: DocumentModel.values()){
+                System.out.println("<indexType>"+value.name()+"</indexType>");
+            }
+            docModel = DocumentModel.CACM;
 
-    public static ArrayList<String> readFileListFromFile(String filename){
+        }
+    }
+
+
+
+
+    public void selectDocumentParser(DocumentModel dm){
+        docModel = dm;
+        di = null;
+        switch(dm){
+            case CACM:
+                System.out.println("CACM Document Parser");
+                di = new CACMDocumentIndexer(p.indexName);
+                break;
+
+            case CLUEWEB:
+                System.out.println("CLUEWEB Document Parser");
+                // TBA
+
+                // di = new CLUEWEBDocumentIndexer(p.indexName);
+                break;
+
+            case TRECNEWS:
+                System.out.println("TRECNEWS");
+
+                break;
+
+            default:
+                System.out.println("Default Document Parser");
+
+                break;
+        }
+    }
+
+
+
+
+    public ArrayList<String> readFileListFromFile(){
         /*
             Takes the name of a file (filename), which contains a list of files.
             Returns an array of the filenames (to be indexed)
          */
+
+        String filename = p.fileList;
 
         ArrayList<String> files = new ArrayList<String>();
 
@@ -53,17 +110,32 @@ public class IndexerApp {
 
     public void readIndexParamsFromFile(String indexParamFile){
         try {
-            IndexParams p = JAXB.unmarshal(new File(indexParamFile), IndexParams.class);
-            indexName = p.indexName;
-            fileList = p.fileList;
-            indexType = p.indexType;
+            p = JAXB.unmarshal(new File(indexParamFile), IndexParams.class);
         } catch (Exception e){
             System.out.println(" caught a " + e.getClass() +
                     "\n with message: " + e.getMessage());
             System.exit(1);
         }
 
+        System.out.println("Path to index: " + p.indexName);
+        System.out.println("File List: " + p.fileList);
+        System.out.println("Index Type: " + p.indexType);
 
+    }
+
+    public IndexerApp(String indexParamFile){
+        System.out.println("Indexer App");
+        readIndexParamsFromFile(indexParamFile);
+        setDocParser(p.indexType);
+        selectDocumentParser(docModel);
+    }
+
+    public void indexDocumentsFromFile(String filename){
+        di.indexDocumentsFromFile(filename);
+    }
+
+    public void finished(){
+        di.finished();
     }
 
 
@@ -81,32 +153,19 @@ public class IndexerApp {
             System.exit(1);
         }
 
-        IndexerApp indexer = new IndexerApp();
+        IndexerApp indexer = new IndexerApp(indexParamFile);
 
-        indexer.readIndexParamsFromFile(indexParamFile);
-
-        System.out.println("Path to index: " + indexer.indexName);
-        System.out.println("Files to index contained in;" + indexer.fileList);
-        System.out.println("File format: " + indexer.indexType);
-
-
-        // At the moment the IndexerApp only indexs CACM documents..
-        // Need to add in some conditions to control how the index is created
-        // And to select the document format / type
-
-
-        CACMDocumentIndexer cdi = new CACMDocumentIndexer(indexer.indexName);
         try {
-            ArrayList<String> files = indexer.readFileListFromFile(indexer.fileList);
+            ArrayList<String> files = indexer.readFileListFromFile();
             for (String f : files) {
                 System.out.println("About to Index Files in: " +  f);
-                cdi.indexDocumentsFromFile(f);
+                indexer.indexDocumentsFromFile(f);
             }
         } catch (Exception e){
             System.out.println(" caught a " + e.getClass() +
                     "\n with message: " + e.getMessage());
         }
-        cdi.finished();
+        indexer.finished();
         System.out.println("Done building Index");
     }
 

@@ -54,7 +54,7 @@ public class CACMDocumentIndexer extends DocumentIndexer {
                 String line = br.readLine();
                 while (line != null){
 
-                    if (line.contains(".I")){
+                    if (line.startsWith(".I")){
                         // if there is an existing document, create doc, and add to index
                         if (fields[0] != ""){
                             Document doc = createCacmDocument(fields[0],fields[1],fields[2],fields[3],fields[4]);
@@ -79,27 +79,27 @@ public class CACMDocumentIndexer extends DocumentIndexer {
                         fieldno = 0;
                     }
 
-                    if (line.contains(".T")){
+                    if (line.startsWith(".T")){
                         // set field to title, capture title text
                         fieldno = 1;
                     }
 
-                    if (line.contains(".A")){
+                    if (line.startsWith(".A")){
                         // set field to author
                         fieldno = 2;
                     }
 
-                    if (line.contains(".W")){
+                    if (line.startsWith(".W")){
                         // set field to content
                         fieldno = 3;
                     }
 
-                    if (line.contains(".B")){
+                    if (line.startsWith(".B")){
                         // set field to pub date
                         fieldno = 4;
                     }
 
-                    if ((line.contains(".X")) || (line.contains(".N")) ){
+                    if ((line.startsWith(".X")) || (line.startsWith(".N")) ){
                         // set field to title, capture title text
                         fieldno = 6;
                     }
