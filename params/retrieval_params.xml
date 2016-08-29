@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<indexParams>
+<retrievalParams>
     <indexName>index</indexName>
     <queryFile>data/cacm/title.query</queryFile>
     <maxResults>100</maxResults>
     <model>bm25</model>
     <resultFile>data/cacm/bm25_results.res</resultFile>
 
-</indexParams>
+</retrievalParams>
