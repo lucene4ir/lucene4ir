@@ -2,7 +2,22 @@
 
 Lucene for Information Retrieval Research and Evaluation
 
-## Setup
+
+
+## Code and Data
+In ~/lucene4ir/data, there are a number of folders contain different data sets (or part there of).
+
+- In ~/lucene4ir/data/cacm, there is a very small collection, called, CACM, which is about 3000 abstracts from the ACM library along with queries and relevance judgements.
+- TBA, sample TREC data for various collections
+
+
+In ~/lucene4ir/src/, there are a currently three apps, an Indexing Application (IndexerApp), a Retrieval Application (RetrievalApp) and an application that pulls out various statistics (ExampleStatsApp). Each of these apps are configured based on XML parameter files (see ~/lucene4ir/params for examples).
+
+The code is based on examples developed by https://github.com/isoboroff/trec-demo and https://github.com/lintool/Anserini
+
+## Setups
+
+### IntelliJ Setup
 We are using IntelliJ by JetBrains (https://www.jetbrains.com/idea/download/),
 so once you clone the repo you'll need to see up a few things so that you can run and compile
 the apps.
@@ -21,21 +36,7 @@ Also, +Add Content Root, to be ~/lucene4ir/
 
 Then, go to the SDKs tab, and add in the jars in ~/lucene4ir/jars. We are using Lucene 6.2 for this demo code.
 
-
-## Code and Data
-In ~/lucene4ir/data, there are a number of folders contain different data sets (or part there of).
-
-- In ~/lucene4ir/data/cacm, there is a very small collection, called, CACM, which is about 3000 abstracts from the ACM library along with queries and relevance judgements.
-- TBA, sample TREC data for various collections
-
-
-In ~/lucene4ir/src/, there are a currently three apps, an Indexing Application (IndexerApp), a Retrieval Application (RetrievalApp) and an application that pulls out various statistics (ExampleStatsApp). Each of these apps are configured based on XML parameter files (see ~/lucene4ir/params for examples).
-
-The code is based on examples developed by https://github.com/isoboroff/trec-demo and https://github.com/lintool/Anserini
-
-
-### Run Configuration Setups
-
+#### Run Configuration Setups
 Again assuming that you are using the IntelliJ IDE, create the following run configurations.
 Go to the Run menu, and select Edit Configurations. In the top left hand side of the Run/Debug Configurations window, click the add button (+) to add a new configuration, and select Application. Repeat and set up for the following apps.
 
@@ -55,6 +56,14 @@ Go to the Run menu, and select Edit Configurations. In the top left hand side of
 	- **Program Arguments**: params/example_stats_params.xml
 	- **Working Directory**: ~/lucene4ir
 
+### Eclipse Setup
+TBA
+
+### Console Setup
+TBA
+
+
+## Try out the Apps
 
 Now that you have these applications set up, you can try them out. First, run the IndexerApp, which given index_params.xml, will index the CACM collection. It will take about 30 seconds.
 
@@ -97,6 +106,11 @@ P1000          	all	0.0052
 
 ## Apps
 
+### IndexerApp
+
+TBA
+
+
 ### RetrievalApp
 
 The Retrieval Application lets you specify the collection/index, the queries and the retrieval model, along with how it is parameterized.
@@ -133,7 +147,9 @@ where:
 If no model is given, the default model is selected. If no parameters are provided, default values are used. If no resultsfile is provided, a result file name is auto generated from the model name.
 
 
+### ExampleStatsApp
 
+TBA
 
 
 
