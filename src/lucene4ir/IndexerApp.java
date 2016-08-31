@@ -47,7 +47,6 @@ public class IndexerApp {
 
 
 
-
     public void selectDocumentParser(DocumentModel dm){
         docModel = dm;
         di = null;
@@ -66,7 +65,7 @@ public class IndexerApp {
 
             case TRECNEWS:
                 System.out.println("TRECNEWS");
-
+                di = new TRECNEWSDocumentIndexer(p.indexName);
                 break;
 
             default:
