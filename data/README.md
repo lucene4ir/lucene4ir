@@ -1,7 +1,7 @@
 # Data and Collections
 
 
-This directory contains sample files for a few (TREC)[http://trec.nist.gov]
+This directory contains sample files for a few [TREC](http://trec.nist.gov)
 Collections along with the full collection for CACM.
 
 The samples are provided to test out the indexers and to play around
