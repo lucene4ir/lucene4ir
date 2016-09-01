@@ -4,22 +4,24 @@ import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.StringField;
 import org.apache.lucene.document.TextField;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Element;
+import org.xml.sax.*;
+import java.io.*;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathFactory;
 
 /**
  * Created by leif on 30/08/2016.
+ * Modified by Yashar on 31/08/2016
  */
 public class TRECNEWSDocumentIndexer extends DocumentIndexer {
     public TRECNEWSDocumentIndexer(String indexPath){
         writer = null;
         createWriter(indexPath);
     }
-
 
     public static Document createTrecNewsDocument(String docid, String title, String content, String author, String pubdate){
         Document doc = new Document();
@@ -36,48 +38,43 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
         return doc;
     }
 
-
     public void indexDocumentsFromFile(String filename){
+
+        String line = "";
+        java.lang.StringBuilder text = new StringBuilder();
 
         try {
             BufferedReader br = new BufferedReader(new FileReader(filename));
             try {
 
-                String text = "";
-
-
-                String line = br.readLine();
+                line = br.readLine();
                 while (line != null){
 
                     if (line.startsWith("<DOC>")) {
-                        text = line;
+                        text = new StringBuilder();
                     }
-                    else {
-                        text = text + " " + line;
-                    }
-
-                    if (line.startsWith("<DOCNO>")){
-                    //    System.out.println(line);
-                    }
+                    text.append("\n" + line);
 
                     if (line.startsWith("</DOC>")){
                         System.out.println("end of doc");
-                       // System.out.println(text);
-                        org.jsoup.nodes.Document jdoc = Jsoup.parse(text);
-                        
-                        Element docno = jdoc.getElementById("DOCNO");
-                        if (docno != null){
-                            System.out.println("doc no is null");
-                        } else {
-                            System.out.println(docno.text());
-                        }
 
+                        DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
+                        DocumentBuilder builder =  builderFactory.newDocumentBuilder();
+                        org.w3c.dom.Document xmlDocument = builder.parse(new InputSource(new StringReader(text.toString())));
+                        XPath xPath =  XPathFactory.newInstance().newXPath();
 
+                        System.out.println("*************************");
+                        //
+                        //this is the line you need change to get the text
+                        // String expression = "/DOC/TEXT";
+                        //
+                        String expression = "/DOC/DOCNO";
+                        System.out.println(expression);
+                        String email = xPath.compile(expression).evaluate(xmlDocument);
+                        System.out.println(email);
                     }
-
                     line = br.readLine();
                 }
-
 
             } finally {
                 br.close();
@@ -86,11 +83,5 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
             System.out.println(" caught a " + e.getClass() +
                     "\n with message: " + e.getMessage());
         }
-
-
-
     };
-
-
-
 }
