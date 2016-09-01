@@ -34,7 +34,7 @@ Next, go to the Modules tab and mark the following directories as follows.
 
 Also, +Add Content Root, to be ~/lucene4ir/
 
-Then, go to the SDKs tab, and add in the jars in ~/lucene4ir/jars. We are using Lucene 6.2 for this demo code.
+Then, go to the SDKs tab, and add in the jars in ~/lucene4ir/jars. We are using Lucene 6.2 for this demo code and JSoup 1.6.2.
 
 #### Run Configuration Setups
 Again assuming that you are using the IntelliJ IDE, create the following run configurations.
