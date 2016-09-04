@@ -187,7 +187,7 @@ public class ExampleStatsApp {
         statsApp.termStats("programs");
         statsApp.termStats("system");
         statsApp.termStats("systems");
-        statsApp.termStats("bloomington");
+        statsApp.termStats("Evacuation");
         statsApp.iterateThroughDocTermVector(0);
 
 

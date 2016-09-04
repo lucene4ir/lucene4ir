@@ -55,7 +55,7 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
 
                         expression = "/DOC/HEAD";
                         String title = xPath.compile(expression).evaluate(xmlDocument).trim();
-                        Field titleField = new StringField("title", title, Field.Store.YES);
+                        Field titleField = new TextField("title", title, Field.Store.YES);
                         doc.add(titleField);
 
                         expression = "/DOC/TEXT";
