@@ -29,8 +29,6 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
         java.lang.StringBuilder text = new StringBuilder();
         Document doc = new Document();
 
-
-
         try {
             BufferedReader br = new BufferedReader(new FileReader(filename));
             try {
@@ -41,7 +39,7 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
                     if (line.startsWith("<DOC>")) {
                         text = new StringBuilder();
                     }
-                    text.append("\n" + line);
+                    text.append(line + "\n");
 
                     if (line.startsWith("</DOC>")){
 
@@ -49,7 +47,7 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
                         DocumentBuilder builder =  builderFactory.newDocumentBuilder();
                         org.w3c.dom.Document xmlDocument = builder.parse(new InputSource(new StringReader(text.toString())));
                         XPath xPath =  XPathFactory.newInstance().newXPath();
-                        
+
                         String expression = "/DOC/DOCNO";
                         String docid = xPath.compile(expression).evaluate(xmlDocument).trim();
                         Field docnumField = new StringField("docnum", docid, Field.Store.YES);
