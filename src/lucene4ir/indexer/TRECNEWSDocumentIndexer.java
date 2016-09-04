@@ -70,7 +70,7 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
                         for(int i = 0; i < fields.length; i++) {
                             String expression = "/DOC/" + fields[i];
                             String content = xPath.compile(expression).evaluate(xmlDocument).trim();
-                            doc.add(new StringField(headers[i], content, Field.Store.YES));
+                            doc.add(new TextField(headers[i], content, Field.Store.YES));
                         }
 
                         addDocumentToIndex(doc);
