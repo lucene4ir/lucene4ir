@@ -42,6 +42,9 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
 
         String line = "";
         java.lang.StringBuilder text = new StringBuilder();
+        Document doc = new Document();
+
+
 
         try {
             BufferedReader br = new BufferedReader(new FileReader(filename));
@@ -63,15 +66,18 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
                         org.w3c.dom.Document xmlDocument = builder.parse(new InputSource(new StringReader(text.toString())));
                         XPath xPath =  XPathFactory.newInstance().newXPath();
 
-                        System.out.println("*************************");
-                        //
-                        //this is the line you need change to get the text
-                        // String expression = "/DOC/TEXT";
-                        //
-                        String expression = "/DOC/DOCNO";
-                        System.out.println(expression);
-                        String email = xPath.compile(expression).evaluate(xmlDocument);
-                        System.out.println(email);
+                        String[] headers = {"docnum", "author", "title", "content"};
+                        String[] fields = {"DOCNO", "BYLINE", "HEAD", "TEXT"};
+                        for(int i = 0; i < fields.length; i++) {
+                            String expression = "/DOC/" + fields[i];
+                            String content = xPath.compile(expression).evaluate(xmlDocument).trim();
+                            doc.add(new StringField(headers[i], content, Field.Store.YES));
+                        }
+
+                        addDocumentToIndex(doc);
+
+                        text = new StringBuilder();
+                        doc = new Document();
                     }
                     line = br.readLine();
                 }
@@ -83,5 +89,5 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
             System.out.println(" caught a " + e.getClass() +
                     "\n with message: " + e.getMessage());
         }
-    };
+    }
 }
