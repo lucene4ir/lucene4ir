@@ -59,7 +59,6 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
                     text.append("\n" + line);
 
                     if (line.startsWith("</DOC>")){
-                        System.out.println("end of doc");
 
                         DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
                         DocumentBuilder builder =  builderFactory.newDocumentBuilder();

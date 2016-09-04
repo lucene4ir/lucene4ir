@@ -82,12 +82,16 @@ public class ExampleStatsApp {
 
     public void iterateThroughDocList(){
         try {
-
-            for (int i = 0; i < reader.maxDoc(); i++) {
+            int n = reader.maxDoc();
+            if (n>10) {
+                n = 10;
+            }
+            for (int i = 0; i < n; i++) {
                 Document doc = reader.document(i);
                 String docnum = doc.get("docnum");
                 String title = doc.get("title");
                 System.out.println("docnum and title: " + docnum + " " + title);
+                System.out.println(doc.get("content"));
 
                 iterateThroughDocTermVector(i);
 
@@ -183,7 +187,7 @@ public class ExampleStatsApp {
         statsApp.termStats("programs");
         statsApp.termStats("system");
         statsApp.termStats("systems");
-
+        statsApp.termStats("bloomington");
         statsApp.iterateThroughDocTermVector(0);
 
 
