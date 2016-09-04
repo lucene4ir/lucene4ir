@@ -23,21 +23,6 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
         createWriter(indexPath);
     }
 
-    public static Document createTrecNewsDocument(String docid, String title, String content, String author, String pubdate){
-        Document doc = new Document();
-        Field docnumField = new StringField("docnum", docid, Field.Store.YES);
-        doc.add(docnumField);
-        Field titleField = new StringField("title", title, Field.Store.YES);
-        doc.add(titleField);
-        Field textField = new TextField("content", content, Field.Store.YES);
-        doc.add(textField);
-        Field authorField = new TextField("author", author, Field.Store.YES);
-        doc.add(authorField);
-        Field pubdateField = new StringField("pubdate", pubdate, Field.Store.YES);
-        doc.add(pubdateField);
-        return doc;
-    }
-
     public void indexDocumentsFromFile(String filename){
 
         String line = "";
@@ -64,14 +49,26 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
                         DocumentBuilder builder =  builderFactory.newDocumentBuilder();
                         org.w3c.dom.Document xmlDocument = builder.parse(new InputSource(new StringReader(text.toString())));
                         XPath xPath =  XPathFactory.newInstance().newXPath();
+                        
+                        String expression = "/DOC/DOCNO";
+                        String docid = xPath.compile(expression).evaluate(xmlDocument).trim();
+                        Field docnumField = new StringField("docnum", docid, Field.Store.YES);
+                        doc.add(docnumField);
 
-                        String[] headers = {"docnum", "author", "title", "content"};
-                        String[] fields = {"DOCNO", "BYLINE", "HEAD", "TEXT"};
-                        for(int i = 0; i < fields.length; i++) {
-                            String expression = "/DOC/" + fields[i];
-                            String content = xPath.compile(expression).evaluate(xmlDocument).trim();
-                            doc.add(new TextField(headers[i], content, Field.Store.YES));
-                        }
+                        expression = "/DOC/HEAD";
+                        String title = xPath.compile(expression).evaluate(xmlDocument).trim();
+                        Field titleField = new StringField("title", title, Field.Store.YES);
+                        doc.add(titleField);
+
+                        expression = "/DOC/TEXT";
+                        String content = xPath.compile(expression).evaluate(xmlDocument).trim();
+                        Field textField = new TextField("content", content, Field.Store.YES);
+                        doc.add(textField);
+
+                        expression = "/DOC/BYLINE";
+                        String author = xPath.compile(expression).evaluate(xmlDocument).trim();
+                        Field authorField = new TextField("author", author, Field.Store.YES);
+                        doc.add(authorField);
 
                         addDocumentToIndex(doc);
 
