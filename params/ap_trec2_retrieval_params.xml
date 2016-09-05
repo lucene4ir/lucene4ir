@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<retrievalParams>
+    <indexName>apindex</indexName>
+    <queryFile>data/trec123/title.101-150.query</queryFile>
+    <maxResults>1000</maxResults>
+    <model>bm25</model>
+    <b>0.25</b>
+    <resultFile>data/trec123/bm25_trec2_ap.res</resultFile>
+</retrievalParams>
