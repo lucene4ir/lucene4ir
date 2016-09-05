@@ -137,7 +137,7 @@ P1000          	all	0.0052
 
 ### IndexerApp
 
-TBA
+The Indexer Application lets you specific the type of TREC documents to be indexed and location of the index. 
 
 
 ### RetrievalApp
@@ -177,8 +177,16 @@ If no model is given, the default model is selected. If no parameters are provid
 
 
 ### ExampleStatsApp
+This application provides a number of examples on how to access various statistics given the index. It is a work in progress and is designed to show how to read through postings lists, how to access fields, how to get document/field counts, etc.
 
-TBA
+Once you have indexed a collection, simply specify the location of the index.
+
+```
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<exampleStatsParams>
+    <indexName>index</indexName>
+</exampleStatsParams>
+```
 
 
 
