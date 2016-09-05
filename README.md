@@ -73,8 +73,8 @@ Go to the Run menu, and select Edit Configurations. In the top left hand side of
       from lucene4ir/jars/html_parser directory. 
 	
 
-Class Execution
-----------------------
+####Class Execution
+
 Classes with main method can be executed by right clicking on class name, selecting Run As option and selecting Java application.
 If a class needs command line parameters, right click and select Run configuration. Add the parameters in Arguments tab of Run 
 Configurations window. Example parameter arguments for IndexerApp and RetrievalApp are as follows:
@@ -82,8 +82,7 @@ Configurations window. Example parameter arguments for IndexerApp and RetrievalA
 IndexerApp:  params/index_params.xml
 RetrievalApp: params/retrieval_params.xml
 
-JAR creation.
--------------
+####JAR creation.
 To create an executable Jar, right click on the project and select Export -> Java.
 Uncheck the lucene4IR package, select src and jars folders. Choose a suitable 
 PATH_TO_JAR in Jar File option and select Finish. A jar file shall be created at PATH_TO_JAR. 
