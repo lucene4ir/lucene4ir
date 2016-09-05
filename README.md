@@ -151,13 +151,13 @@ Below is an example of the index parameters
 ```
 
 where:
-- **indexName**: the path to the index
-- **fileList**: a file containing a list of files that are to be indexed
-- **indexType**: the format/type of the documents to be indexed
-	- **cacm**: an old sample collection of abstracts from ACM
-	- **trecnews**: TREC 123 Newspaper articles
-	- **trecaquaint**: TREC Aquaint Newspaper collection
-	- **clueweb**: TREC Clueweb
+- *indexName*: the path to the index
+- *fileList*: a file containing a list of files that are to be indexed
+- *indexType*: the format/type of the documents to be indexed
+	- *cacm*: an old sample collection of abstracts from ACM
+	- *trecnews*: TREC 123 Newspaper articles
+	- *trecaquaint*: TREC Aquaint Newspaper collection
+	- *clueweb*: TREC Clueweb
 	 
 In the data directory we have provided some sample files to show how the indexing works.
 
