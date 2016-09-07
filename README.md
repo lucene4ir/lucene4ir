@@ -58,20 +58,9 @@ Go to the Run menu, and select Edit Configurations. In the top left hand side of
 
 ### Eclipse Setup
 #### Project creation and build path configuration
-1. Start a new java project using File->New->Java Project.
+1. Start a new java project using File->Import...->Existing Maven project
 2. Uncheck Use default location option and set Project name to Lucene. 
 3. Set the location option to the path PATH/TO/lucene4IR/ and click Finish.
-4. We would have to add lucene jars to  project buildpath so as to remove compilation errors. 
-   a. Right click on package name in package explorer and select Properties.
-   b. Click on Java Build Path -> Libraries. 
-   c. Click on Add Library->User library->User libraries.
-   d. Create a new library by clicking on New with name lucene. Click on Add External Jars.
-   e. Select all Jars in jar folder provided with lucene4IR package
-      and press OK and Finish and Apply on Java Build path window.
-   f. To parse and index clueweb documents we need Jsoup parser. Also add jsoup-1.9.2.jar to build path.
-      Right click on project and select Java Build Path -> Libraries -> Add External Jars. Add the jsoup jar
-      from lucene4ir/jars/html_parser directory. 
-	
 
 ####Class Execution
 
@@ -83,11 +72,10 @@ IndexerApp:  params/index_params.xml
 RetrievalApp: params/retrieval_params.xml
 
 ####JAR creation.
-To create an executable Jar, right click on the project and select Export -> Java.
-Uncheck the lucene4IR package, select src and jars folders. Choose a suitable 
-PATH_TO_JAR in Jar File option and select Finish. A jar file shall be created at PATH_TO_JAR. 
 
-### Console Setup
+run `mvn package` from the shell, executable jar will be in `target/lucene4ir-0.0.1-SNAPSHOT.jar` 
+
+## Console Setup
 TBA
 
 
