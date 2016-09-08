@@ -1,14 +1,14 @@
 package lucene4ir;
 
-import org.apache.lucene.document.Document;
-import org.apache.lucene.index.*;
-import org.apache.lucene.store.FSDirectory;
-import org.apache.lucene.util.BytesRef;
-
 import javax.xml.bind.JAXB;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
+
+import org.apache.lucene.document.Document;
+import org.apache.lucene.index.*;
+import org.apache.lucene.store.FSDirectory;
+import org.apache.lucene.util.BytesRef;
 
 /**
  * Created by leif on 21/08/2016.
@@ -70,12 +70,58 @@ public class ExampleStatsApp {
 
     }
 
+    // A lucene index consists of a number of immutable segments
+    // The top-level index reader contains a LeafReader for each segment
+    // Fields and Terms are accessed through these LeafReaders
 
-    public void termPostingsList(String termText){
-    /*
-        How do we iterate through the term posting list?
-     */
+    public void fieldsList() throws IOException {
 
+        // we'll just look at the first segment - generally, the fields
+        // list will be the same for all segments
+        LeafReader leafReader = reader.leaves().get(0).reader();
+        for (String field : leafReader.fields()) {
+            System.out.println(field);
+        }
+
+    }
+
+    public void termsList(String field) throws IOException {
+
+        // again, we'll just look at the first segment.  Terms dictionaries
+        // for different segments may well be different, as they depend on
+        // the individual documents that have been added.
+        LeafReader leafReader = reader.leaves().get(0).reader();
+        Terms terms = leafReader.terms(field);
+
+        // The Terms object gives us some stats for this term within the segment
+        System.out.println("Number of docs with this term:" + terms.getDocCount());
+
+        TermsEnum te = terms.iterator();
+        BytesRef term;
+        while ((term = te.next()) != null) {
+            System.out.println(term.utf8ToString());
+        }
+
+    }
+
+    public void termPostingsList(String field, String termText) throws IOException {
+
+        LeafReader leafReader = reader.leaves().get(0).reader();
+        Terms terms = leafReader.terms(field);
+        TermsEnum te = terms.iterator();
+        te.seekCeil(new BytesRef(termText));
+
+        PostingsEnum postings = te.postings(null);
+        int doc;
+        while ((doc = postings.nextDoc()) != PostingsEnum.NO_MORE_DOCS) {
+            System.out.println(doc);
+            // you can also iterate positions for each doc
+            int position;
+            int numPositions = postings.freq();
+            for (int i = 0; i < numPositions; i++) {
+                System.out.println(postings.nextPosition());
+            }
+        }
 
     }
 
