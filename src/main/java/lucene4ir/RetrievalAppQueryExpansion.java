@@ -195,7 +195,8 @@ public class RetrievalAppQueryExpansion {
         try {
 
             //Multi-field query
-            //MultiFieldQuery
+            String[] fields = new String[]{"title", "content"};
+
             // A query builder for constructing a complex query
             BooleanQuery.Builder queryBuilder = new BooleanQuery.Builder();
 
@@ -270,7 +271,7 @@ public class RetrievalAppQueryExpansion {
             selectSimilarityFunction(sim);
             searcher.setSimilarity(simfn);
 
-            // Use whatever analyzer you want
+            // Use whatever ANALYZER you want
             analyzer = new StandardAnalyzer();
 
             parser = new QueryParser("content", analyzer);
