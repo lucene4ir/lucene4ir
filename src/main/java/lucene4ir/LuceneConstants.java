@@ -5,6 +5,13 @@ import org.apache.lucene.analysis.standard.StandardAnalyzer;
 
 public class LuceneConstants {
 
-    public static final Analyzer analyzer = new StandardAnalyzer();
+    // Common analyzer
+    public static final Analyzer ANALYZER = new StandardAnalyzer();
+
+    // Field names
+    public static final String FIELD_CONTENT = "content";
+    public static final String FIELD_TITLE = "title";
+    public static final String FIELD_AUTHOR = "author";
+    public static final String FIELD_DOCNUM = "docnum";
 
 }
