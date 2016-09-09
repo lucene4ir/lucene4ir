@@ -17,6 +17,7 @@ import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.document.Document;
+import main.java.lucene4ir.similarity.BM25LSimilarity;
 
 import lucene4ir.similarity.TMPL;
 import lucene4ir.similarity.OKAPIBM25;
@@ -36,7 +37,7 @@ public class RetrievalApp {
     private CollectionModel colModel;
 
     private enum SimModel {
-        DEF, BM25, LMD, LMJ, PL2, TFIDF, TMPL, OKAPIBM25
+        DEF, BM25, BM25L, LMD, LMJ, PL2, TFIDF, TMPL, OKAPIBM25
     }
 
     private SimModel sim;
@@ -72,7 +73,10 @@ public class RetrievalApp {
                 System.out.println("BM25 Similarity Function");
                 simfn = new BM25Similarity(p.k,p.b);
                 break;
-
+            case BM25L:
+                System.out.println("BM25L Similarity Function");
+                simfn = new BM25LSimilarity(p.k,p.b,p.delta);
+                break;
             case LMD:
                 System.out.println("LM Dirichlet Similarity Function");
                 colModel = new LMSimilarity.DefaultCollectionModel();
@@ -125,6 +129,7 @@ public class RetrievalApp {
         if (p.b == 0.0){ p.b = 0.75f;}
         if (p.beta == 0.0){p.beta = 500f;}
         if (p.k ==0.0){ p.k = 1.2f;}
+        if (p.delta==0.0){p.delta = 1.0f;}
         if (p.lam==0.0){p.lam = 0.5f;}
         if (p.mu==0.0){p.mu = 500f;}
         if (p.c==0.0){p.c=10.0f;}
@@ -224,7 +229,7 @@ public class RetrievalApp {
         System.out.println("Retrieval App");
         readParamsFromFile(retrievalParamFile);
         try {
-          reader = DirectoryReader.open(FSDirectory.open( new File(p.indexName).toPath()) );
+            reader = DirectoryReader.open(FSDirectory.open( new File(p.indexName).toPath()) );
             searcher = new IndexSearcher(reader);
 
             // create similarity function and parameter
@@ -276,6 +281,7 @@ class RetrievalParams {
     public float beta;
     public float mu;
     public float c;
+    public float delta;
     public String runTag;
 }
 

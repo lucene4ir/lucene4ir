@@ -1,14 +1,14 @@
 package lucene4ir;
 
-import org.apache.lucene.document.Document;
-import org.apache.lucene.index.*;
-import org.apache.lucene.store.FSDirectory;
-import org.apache.lucene.util.BytesRef;
-
 import javax.xml.bind.JAXB;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
+
+import org.apache.lucene.document.Document;
+import org.apache.lucene.index.*;
+import org.apache.lucene.store.FSDirectory;
+import org.apache.lucene.util.BytesRef;
 
 /**
  * Created by leif on 21/08/2016.
@@ -70,76 +70,146 @@ public class ExampleStatsApp {
 
     }
 
+    // A lucene index consists of a number of immutable segments
+    // The top-level index reader contains a LeafReader for each segment
+    // Fields and Terms are accessed through these LeafReaders
 
-    public void termPostingsList(String termText){
-    /*
-        How do we iterate through the term posting list?
-     */
 
+     public void numSegments(){
+        // how do we get the number of segements
+         int segements = reader.leaves().size();
+         System.out.println("Number of Segments in Index");
+
+         // you can use a writer to force merge - and then you will only
+         // have one segment
+         // the maximum number of documents in a lucene index is approx 2 millio
+         // you need to go solr or elastic search for bigger collections
+         // solr/es using sharding.
+
+    }
+
+    public void fieldsList()  throws IOException{
+        // we'll just look at the first segment - generally, the fields
+        // list will be the same for all segments
+        LeafReader leafReader = reader.leaves().get(0).reader();
+        for (String field : leafReader.fields()) {
+            System.out.println(field);
+        }
+    }
+
+    public void termsList(String field) throws IOException {
+
+        // again, we'll just look at the first segment.  Terms dictionaries
+        // for different segments may well be different, as they depend on
+        // the individual documents that have been added.
+        LeafReader leafReader = reader.leaves().get(0).reader();
+        Terms terms = leafReader.terms(field);
+
+        // The Terms object gives us some stats for this term within the segment
+        System.out.println("Number of docs with this term:" + terms.getDocCount());
+
+        TermsEnum te = terms.iterator();
+        BytesRef term;
+        while ((term = te.next()) != null) {
+            System.out.println(term.utf8ToString() + " DF: " + te.docFreq() + " CF: " + te.totalTermFreq());
+
+        }
+
+    }
+
+    public void docLength(int docid) throws IOException{
+
+        Terms t = reader.getTermVector(docid, "title");
+
+        long tot = 0;
+        if ((t != null) && (t.size()>0)) {
+            tot = tot + t.size();
+            System.out.println("title: " + t.size());
+        }
+
+        t = reader.getTermVector(docid, "content");
+        if ((t != null) && (t.size()>0)) {
+            tot = tot + t.size();
+            System.out.println("content: " + t.size());
+        }
+        System.out.println("Doc Length: " + tot);
 
     }
 
 
-    public void iterateThroughDocList(){
-        try {
+    public void termPostingsList(String field, String termText)  throws IOException {
+
+            LeafReader leafReader = reader.leaves().get(0).reader();
+            Terms terms = leafReader.terms(field);
+            TermsEnum te = terms.iterator();
+            te.seekCeil(new BytesRef(termText));
+
+            PostingsEnum postings = te.postings(null);
+            int doc;
+            while ((doc = postings.nextDoc()) != PostingsEnum.NO_MORE_DOCS) {
+                System.out.println(doc);
+                // you can also iterate positions for each doc
+                int position;
+                int numPositions = postings.freq();
+                for (int i = 0; i < numPositions; i++) {
+                    int pos = postings.nextPosition();
+                    if (pos > 0){
+                        //Only prints out the positions if they are indexed
+                        System.out.println(pos );
+                    }
+                }
+            }
+    }
+
+
+    public void iterateThroughDocList()  throws IOException {
             int n = reader.maxDoc();
             if (n>10) {
                 n = 10;
             }
             for (int i = 0; i < n; i++) {
                 Document doc = reader.document(i);
+
+                // the doc.get pulls out the values stored - ONLY if you store the fields
                 String docnum = doc.get("docnum");
                 String title = doc.get("title");
                 System.out.println("docnum and title: " + docnum + " " + title);
-                System.out.println(doc.get("content"));
+                //System.out.println(doc.get("content"));
 
                 iterateThroughDocTermVector(i);
 
             }
-        } catch (IOException e){
-            System.out.println(" caught a " + e.getClass() +
-                    "\n with message: " + e.getMessage());
-        }
-
     }
 
-    public void iterateThroughTermPosting(String termText){
-    /*
-        How do we iterate through the term posting list?
-     */
 
-
-    }
-
-    public void termStats(String termText){
+    public void termStats(String termText)  throws IOException{
         /*
         How to get the term frequency and document frequency of a term
          */
-        try {
             Term termInstance = new Term("content", termText);
             long termFreq = reader.totalTermFreq(termInstance);
             long docFreq = reader.docFreq(termInstance);
 
             System.out.println("Term: "+termText+", Term Freq. = "+termFreq+", Doc Freq. = "+docFreq);
 
-        } catch (IOException e){
-            System.out.println(" caught a " + e.getClass() +
-                    "\n with message: " + e.getMessage());
-        }
-
     }
 
-    public void iterateThroughDocTermVector(int docid){
+    public void iterateThroughDocTermVector(int docid)  throws IOException{
     /*
         How do we iterate through the term vector list?
 
         int docid - is the document id assigned by the lucene index.
 
+        This will only work is you have you have instructed the index to index the
+        term vector - but this is not very efficient.
+
+        Apparently you can use an in memory index to take the stored field, and then
+        index it at run time in memory so you can iterate through it.
+
+        So, How do we creat this run time memory index.
+
      */
-        try {
             Terms t = reader.getTermVector(docid, "title");
-
-
 
             if ((t != null) && (t.size()>0)) {
                 TermsEnum te = t.iterator();
@@ -155,15 +225,12 @@ public class ExampleStatsApp {
                 }
 
             }
-        } catch (IOException e){
-            System.out.println(" caught a " + e.getClass() +
-                    "\n with message: " + e.getMessage());
-        }
+
 
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args)  throws IOException {
 
 
         String statsParamFile = "";
@@ -188,9 +255,14 @@ public class ExampleStatsApp {
         statsApp.termStats("system");
         statsApp.termStats("systems");
         statsApp.termStats("Evacuation");
-        statsApp.iterateThroughDocTermVector(0);
 
 
+        statsApp.termPostingsList("title","system");
+        statsApp.fieldsList();
+        statsApp.termsList("title");
+
+        statsApp.iterateThroughDocTermVector(1);
+        statsApp.docLength(1);
 
 
 
