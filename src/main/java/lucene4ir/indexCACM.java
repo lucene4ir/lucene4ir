@@ -12,11 +12,11 @@ import lucene4ir.indexer.CACMDocumentIndexer;
 public class indexCACM {
 
     /**
-     * @param args Index path as the sole parameter
+     * @param args 1) Index path, 2) File path
      */
     public static void main(String[] args) {
 
-        CACMDocumentIndexer indexer = new CACMDocumentIndexer("cacm_index");
-        indexer.indexDocumentsFromFile(args[0]);
+        CACMDocumentIndexer indexer = new CACMDocumentIndexer(args[0]);
+        indexer.indexDocumentsFromFile(args[1]);
     }
 }
