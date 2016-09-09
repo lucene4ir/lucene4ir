@@ -19,8 +19,7 @@ import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.document.Document;
 import main.java.lucene4ir.similarity.BM25LSimilarity;
 
-import lucene4ir.similarity.TMPL;
-import lucene4ir.similarity.OKAPIBM25;
+import lucene4ir.similarity.OKAPIBM25Similarity;
 
 /**
  * Created by leif on 22/08/2016.
@@ -60,8 +59,8 @@ public class RetrievalApp {
         colModel = null;
         switch(sim){
             case OKAPIBM25:
-                System.out.println("OKAPIBM25 Similarity Function");
-                simfn = new OKAPIBM25(1.2f, 0.75f);
+                System.out.println("OKAPIBM25Similarity Function");
+                simfn = new OKAPIBM25Similarity(1.2f, 0.75f);
                 break;
 		
             case TMPL:
