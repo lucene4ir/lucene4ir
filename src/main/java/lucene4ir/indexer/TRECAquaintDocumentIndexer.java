@@ -23,7 +23,7 @@ import org.jsoup.Jsoup;
 public class TRECAquaintDocumentIndexer extends DocumentIndexer  {
     Whitelist whiteList;
 
-    public TRECAquaintDocumentIndexer(String indexPath){
+    public TRECAquaintDocumentIndexer(String indexPath, String tokenFilterFile){
         writer = null;
         try {
 
@@ -41,7 +41,7 @@ public class TRECAquaintDocumentIndexer extends DocumentIndexer  {
                     "\n with message: " + e.getMessage());
         }
 
-        createWriter(indexPath);
+        createWriter(indexPath, tokenFilterFile);
     }
 
     public static Document createTrecAquaintDocument(String docid, String title, String content, String source, String pubdate){
