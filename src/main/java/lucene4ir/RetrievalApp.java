@@ -35,7 +35,7 @@ public class RetrievalApp {
     private CollectionModel colModel;
 
     private enum SimModel {
-        DEF, BM25, BM25L, LMD, LMJ, PL2, TFIDF, TMPL, OKAPIBM25
+        DEF, BM25, BM25L, LMD, LMJ, PL2, TFIDF, OKAPIBM25
     }
 
     private SimModel sim;
@@ -50,7 +50,6 @@ public class RetrievalApp {
                 System.out.println("<model>"+value.name()+"</model>");
             }
             sim = SimModel.DEF;
-	    e.printStackTrace();
         }
     }
 
@@ -58,7 +57,7 @@ public class RetrievalApp {
         colModel = null;
         switch(sim){
             case OKAPIBM25:
-                System.out.println("OKAPIBM25Similarity Function");
+                System.out.println("OKAPI BM25 Similarity Function");
                 simfn = new OKAPIBM25Similarity(1.2f, 0.75f);
                 break;
 		
