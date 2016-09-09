@@ -1,0 +1,6 @@
+#!/bin/bash
+
+params=(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 16.0, 32.0, 64.0, 128.0)
+for i in "${params[@]}"; do
+    python lucene_models_trec_script_generator.py /Users/colin/Workspace/lucene4ir title.trec2005.aquaint.query aquaint PL2 $i
+done
