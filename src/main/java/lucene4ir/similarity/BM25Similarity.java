@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package main.java.lucene4ir.similarity;
+package lucene4ir.similarity;
 
 
 import java.io.IOException;

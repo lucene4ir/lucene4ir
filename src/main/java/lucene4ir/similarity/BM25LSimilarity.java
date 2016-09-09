@@ -1,6 +1,5 @@
-package main.java.lucene4ir.similarity;
+package lucene4ir.similarity;
 
-import main.java.lucene4ir.similarity.BM25Similarity;
 import org.apache.lucene.index.LeafReaderContext;
 import org.apache.lucene.index.NumericDocValues;
 

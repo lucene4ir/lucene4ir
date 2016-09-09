@@ -1,6 +1,7 @@
 package lucene4ir;
 
-import main.java.lucene4ir.similarity.BM25LSimilarity;
+import lucene4ir.similarity.BM25LSimilarity;
+import lucene4ir.similarity.BM25Similarity;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.DirectoryReader;
@@ -17,7 +18,6 @@ import org.apache.lucene.store.FSDirectory;
 
 import javax.xml.bind.JAXB;
 import java.io.*;
-
 /**
  * Created by leif on 22/08/2016.
  */
