@@ -16,8 +16,10 @@ import org.apache.lucene.search.similarities.*;
 import org.apache.lucene.search.similarities.LMSimilarity.CollectionModel;
 import org.apache.lucene.store.FSDirectory;
 
+import lucene4ir.similarity.OKAPIBM25Similarity;
 import javax.xml.bind.JAXB;
 import java.io.*;
+
 /**
  * Created by leif on 22/08/2016.
  */
@@ -32,10 +34,8 @@ public class RetrievalApp {
     private QueryParser parser;
     private CollectionModel colModel;
 
-
-
     private enum SimModel {
-        DEF, BM25, BM25L, LMD, LMJ, PL2, TFIDF
+        DEF, BM25, BM25L, LMD, LMJ, PL2, TFIDF, TMPL, OKAPIBM25
     }
 
     private SimModel sim;
@@ -50,14 +50,23 @@ public class RetrievalApp {
                 System.out.println("<model>"+value.name()+"</model>");
             }
             sim = SimModel.DEF;
-
+	    e.printStackTrace();
         }
     }
-
 
     public void selectSimilarityFunction(SimModel sim){
         colModel = null;
         switch(sim){
+            case OKAPIBM25:
+                System.out.println("OKAPIBM25Similarity Function");
+                simfn = new OKAPIBM25Similarity(1.2f, 0.75f);
+                break;
+		
+            case TMPL:
+                System.out.println("TMPL Similarity Function");
+                simfn = new TMPL();
+                break;
+		
             case BM25:
                 System.out.println("BM25 Similarity Function");
                 simfn = new BM25Similarity(p.k,p.b);
@@ -93,8 +102,6 @@ public class RetrievalApp {
                 break;
         }
     }
-
-
 
     public void readParamsFromFile(String paramFile){
         /*
@@ -191,9 +198,6 @@ public class RetrievalApp {
             System.out.println(" caught a " + e.getClass() +
                     "\n with message: " + e.getMessage());
         }
-
-
-
     }
 
     public ScoreDoc[] runQuery(String qno, String queryTerms){
@@ -219,8 +223,6 @@ public class RetrievalApp {
         return hits;
     }
 
-
-
     public RetrievalApp(String retrievalParamFile){
         System.out.println("Retrieval App");
         readParamsFromFile(retrievalParamFile);
@@ -242,14 +244,6 @@ public class RetrievalApp {
         }
 
     }
-
-
-
-
-
-
-
-
 
     public static void main(String []args) {
 
