@@ -4,9 +4,13 @@ import javax.xml.bind.JAXB;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.HashSet;
+import java.util.Set;
 
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.*;
+import org.apache.lucene.index.memory.MemoryIndex;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.BytesRef;
 
@@ -194,13 +198,40 @@ public class ExampleStatsApp {
 
     }
 
+    public void buildTermVector(int docid) throws IOException {
+
+        Set<String> fieldList = new HashSet<>();
+        fieldList.add("content");
+
+        Document doc = reader.document(docid, fieldList);
+        MemoryIndex mi = MemoryIndex.fromDocument(doc, new StandardAnalyzer());
+        IndexReader mr = mi.createSearcher().getIndexReader();
+
+        Terms t = mr.leaves().get(0).reader().terms("content");
+
+        if ((t != null) && (t.size()>0)) {
+            TermsEnum te = t.iterator();
+            BytesRef term = null;
+
+            System.out.println(t.size());
+
+            while ((term = te.next()) != null) {
+                System.out.println("BytesRef: " + term.utf8ToString());
+                System.out.println("docFreq: " + te.docFreq());
+                System.out.println("totalTermFreq: " + te.totalTermFreq());
+
+            }
+
+        }
+    }
+
     public void iterateThroughDocTermVector(int docid)  throws IOException{
     /*
         How do we iterate through the term vector list?
 
         int docid - is the document id assigned by the lucene index.
 
-        This will only work is you have you have instructed the index to index the
+        This will only work is you have you have instructed the index to store the
         term vector - but this is not very efficient.
 
         Apparently you can use an in memory index to take the stored field, and then
