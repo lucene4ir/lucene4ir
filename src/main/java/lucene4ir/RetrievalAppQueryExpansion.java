@@ -21,6 +21,22 @@ import org.apache.lucene.document.Document;
 
 public class RetrievalAppQueryExpansion {
 
+    // Inner class to avoid conflicts with the classes in the original Retrieval App
+    class RetrievalParams {
+        public String indexName;
+        public String queryFile;
+        public String resultFile;
+        public String model;
+        public int maxResults;
+        public float k;
+        public float b;
+        public float lam;
+        public float beta;
+        public float mu;
+        public float c;
+        public String runTag;
+    }
+
     public RetrievalParams p;
 
     private Similarity simfn;
@@ -293,21 +309,6 @@ public class RetrievalAppQueryExpansion {
 
     }
 
-}
-
-class RetrievalParams {
-    public String indexName;
-    public String queryFile;
-    public String resultFile;
-    public String model;
-    public int maxResults;
-    public float k;
-    public float b;
-    public float lam;
-    public float beta;
-    public float mu;
-    public float c;
-    public String runTag;
 }
 
 
