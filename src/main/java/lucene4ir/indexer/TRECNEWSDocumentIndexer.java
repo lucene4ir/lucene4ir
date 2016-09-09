@@ -18,9 +18,9 @@ import javax.xml.xpath.XPathFactory;
  * Modified by Yashar on 31/08/2016
  */
 public class TRECNEWSDocumentIndexer extends DocumentIndexer {
-    public TRECNEWSDocumentIndexer(String indexPath){
+    public TRECNEWSDocumentIndexer(String indexPath, String tokenFilterFile){
         writer = null;
-        createWriter(indexPath);
+        createWriter(indexPath, tokenFilterFile);
     }
 
     public void indexDocumentsFromFile(String filename){

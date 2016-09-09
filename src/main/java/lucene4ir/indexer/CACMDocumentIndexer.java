@@ -18,8 +18,8 @@ public class CACMDocumentIndexer extends DocumentIndexer {
     private Field pubdateField;
     private Document doc;
 
-    public CACMDocumentIndexer(String indexPath){
-        super(indexPath);
+    public CACMDocumentIndexer(String indexPath, String tokenFilterFile){
+        super(indexPath, tokenFilterFile);
 
         // Reusable document object to reduce GC overhead
         doc = new Document();

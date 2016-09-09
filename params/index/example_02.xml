@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tokenFilters>
+    <tokenizer>whitespace</tokenizer>
+    <tokenFilter>
+        <name>lowercase</name>
+    </tokenFilter>
+    <tokenFilter>
+        <name>worddelimiter</name>
+        <param>
+            <key>preserveOriginal</key>
+            <value>1</value>
+        </param>
+        <param>
+            <key>generateWordParts</key>
+            <value>1</value>
+        </param>
+    </tokenFilter>
+</tokenFilters>
