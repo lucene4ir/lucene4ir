@@ -1,25 +1,24 @@
 package lucene4ir;
 
-import javax.xml.bind.JAXB;
-import java.io.*;
-
+import lucene4ir.similarity.BM25LSimilarity;
+import lucene4ir.similarity.BM25Similarity;
 import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.document.Document;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.queryparser.classic.ParseException;
-import org.apache.lucene.search.similarities.*;
-import org.apache.lucene.search.similarities.LMSimilarity.CollectionModel;
-import org.apache.lucene.search.IndexSearcher;
-import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.queryparser.classic.QueryParser;
+import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopDocs;
-import org.apache.lucene.document.Document;
-import main.java.lucene4ir.similarity.BM25LSimilarity;
+import org.apache.lucene.search.similarities.*;
+import org.apache.lucene.search.similarities.LMSimilarity.CollectionModel;
+import org.apache.lucene.store.FSDirectory;
 
 import lucene4ir.similarity.OKAPIBM25Similarity;
+import javax.xml.bind.JAXB;
+import java.io.*;
 
 /**
  * Created by leif on 22/08/2016.
@@ -234,7 +233,7 @@ public class RetrievalApp {
             // create similarity function and parameter
             selectSimilarityFunction(sim);
             searcher.setSimilarity(simfn);
-            analyzer = new StandardAnalyzer();
+            analyzer = LuceneConstants.ANALYZER;
 
             parser = new QueryParser("content", analyzer);
 

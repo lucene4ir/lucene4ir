@@ -1,18 +1,15 @@
 package lucene4ir.indexer;
 
+import lucene4ir.LuceneConstants;
 import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 
 /**
  * Created by leif on 21/08/2016.
@@ -51,7 +48,7 @@ public class DocumentIndexer {
         try {
             Directory dir = FSDirectory.open(Paths.get(indexPath));
             System.out.println("Indexing to directory '" + indexPath + "'...");
-            Analyzer analyzer = new StandardAnalyzer();
+            Analyzer analyzer = LuceneConstants.ANALYZER;
             IndexWriterConfig iwc = new IndexWriterConfig(analyzer);
             iwc.setOpenMode(IndexWriterConfig.OpenMode.CREATE);
             writer = new IndexWriter(dir, iwc);
@@ -62,10 +59,6 @@ public class DocumentIndexer {
         }
     }
 
-
-
-
-
     public void addDocumentToIndex(Document doc){
         try {
             writer.addDocument(doc);
@@ -74,8 +67,6 @@ public class DocumentIndexer {
                     "\n with message: " + e.getMessage());
         }
     }
-
-
 
     public void indexDocumentsFromFile(String filename){
         /* to be implemented in sub classess*/

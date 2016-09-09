@@ -1,5 +1,6 @@
 package lucene4ir.indexer;
 
+import lucene4ir.LuceneConstants;
 import org.apache.lucene.document.*;
 
 import java.io.BufferedReader;
@@ -27,11 +28,11 @@ public class CACMDocumentIndexer extends DocumentIndexer {
     }
 
     private void initFields() {
-        docnumField = new IntPoint("docnum",0);
-        titleField = new TextField("title", "", Field.Store.YES);
-        textField = new TextField("content", "", Field.Store.YES);
-        authorField = new TextField("author", "", Field.Store.YES);
-        pubdateField = new StringField("pubdate", "", Field.Store.YES);
+        docnumField = new IntPoint(LuceneConstants.FIELD_DOCNUM, 0);
+        titleField = new TextField(LuceneConstants.FIELD_TITLE, "", Field.Store.YES);
+        textField = new TextField(LuceneConstants.FIELD_CONTENT, "", Field.Store.YES);
+        authorField = new TextField(LuceneConstants.FIELD_AUTHOR, "", Field.Store.YES);
+        pubdateField = new StringField(LuceneConstants.FIELD_PUBDATE, "", Field.Store.YES);
     }
 
     private void initCacmDoc() {
