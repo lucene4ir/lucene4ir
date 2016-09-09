@@ -1,0 +1,69 @@
+Overview of Index Structure
+===========================
+
+A lucene index is composed of multiple immutable segments, each of which is
+in effect a mini-index on its own.  When new documents are added to an IndexWriter,
+they are buffered in memory and then written out as a new segment.  A background
+merge process selects small segments and merges them together into larger segments,
+to keep the number of segments as a whole manageable.
+
+Index
+    - segment0 : 10 docs
+    - segment1 : 10 docs
+    - segment2 : 100 docs
+
+
+A segment is composed of fields, each of which is also a type of mini-index
+
+Segment0
+    - field1
+    - field2
+    - field3
+
+Each field has a terms dictionary and a set of postings lists
+
+Field1
+    - term1 -> 0, 1, 2, 5, 9, 14
+    - term2 -> 0, 6, 8, 9, 10, 14
+    - term3 -> 1, 3, 4, 7, 8, 11, 12, 13
+
+Postings lists can also contain positional information, with offsets and payloads
+
+Term1->doc0
+    - 0[0->4], 24[127->131], 98[534->538]
+
+
+How a search works
+==================
+
+IndexSearcher.search(Query, Collector)
+- the Collector is called for every document that matches the Query
+- Query.createWeight() returns a Weight object, which builds the similarity stats
+  for this particular index and query
+
+For every segment in the index, the searcher calls Weight.scorer(), and iterates
+through the matching documents:
+
+{pseudo-code!}
+for (LeafReaderContext ctx : reader.leaves()) {
+    LeafCollector leafCollector = collector.getLeafCollector(ctx);
+    Scorer scorer = weight.scorer(ctx);
+    leafCollector.setScorer(scorer);
+    int doc;
+    while ((doc = scorer.nextDoc()) != PostingsEnum.NO_MORE_DOCS) {
+        leafCollector.collect(doc);
+    }
+}
+
+For example, to get the top-k hits, you use a TopDocsCollector, which has a collect()
+function that looks something like this:
+
+    void collect(int doc) {
+        // Scorer is set earlier, and is advanced by the searcher
+        assert doc = scorer.docId();
+        float score = scorer.score();
+        addToPriorityQueue(doc, score);
+    }
+
+The priority queues from leaf collector for each segment are then merged to yield
+the final result.
