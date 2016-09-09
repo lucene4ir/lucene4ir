@@ -1,41 +1,25 @@
 package lucene4ir;
 
+import lucene4ir.utils.SynonymProvider;
+import net.sf.extjwnl.JWNLException;
+import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.document.Document;
+import org.apache.lucene.index.DirectoryReader;
+import org.apache.lucene.index.IndexReader;
+import org.apache.lucene.queryparser.classic.ParseException;
+import org.apache.lucene.queryparser.classic.QueryParser;
+import org.apache.lucene.search.*;
+import org.apache.lucene.search.similarities.*;
+import org.apache.lucene.search.similarities.LMSimilarity.CollectionModel;
+import org.apache.lucene.store.FSDirectory;
+
 import javax.xml.bind.JAXB;
 import java.io.*;
 import java.util.Iterator;
 import java.util.Set;
 
-import lucene4ir.utils.SynonymProvider;
-import net.sf.extjwnl.JWNLException;
-import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
-import org.apache.lucene.index.DirectoryReader;
-import org.apache.lucene.index.IndexReader;
-import org.apache.lucene.queryparser.classic.ParseException;
-import org.apache.lucene.search.*;
-import org.apache.lucene.search.similarities.*;
-import org.apache.lucene.search.similarities.LMSimilarity.CollectionModel;
-import org.apache.lucene.store.FSDirectory;
-import org.apache.lucene.queryparser.classic.QueryParser;
-import org.apache.lucene.document.Document;
-
 public class RetrievalAppQueryExpansion {
-
-    // Inner class to avoid conflicts with the classes in the original Retrieval App
-    class RetrievalParams {
-        public String indexName;
-        public String queryFile;
-        public String resultFile;
-        public String model;
-        public int maxResults;
-        public float k;
-        public float b;
-        public float lam;
-        public float beta;
-        public float mu;
-        public float c;
-        public String runTag;
-    }
 
     public RetrievalParams p;
 
@@ -209,15 +193,18 @@ public class RetrievalAppQueryExpansion {
         System.out.println("Query No.: " + qno + " " + queryTerms);
 
         try {
+
+            //Multi-field query
+            //MultiFieldQuery
             // A query builder for constructing a complex query
             BooleanQuery.Builder queryBuilder = new BooleanQuery.Builder();
 
             // Boost the original query by a factor of 5
             // Query terms are important but the original terms are importantER
-            BoostQuery query = new BoostQuery(parser.parse(queryTerms), 5.0f);
+            BoostQuery termQuery = new BoostQuery(parser.parse(queryTerms), 5.0f);
 
             // Add it to the query builder
-            queryBuilder.add(query, BooleanClause.Occur.MUST);
+            queryBuilder.add(termQuery, BooleanClause.Occur.MUST);
 
             // Print out what Lucene generated
             // System.out.println(query.toString());
