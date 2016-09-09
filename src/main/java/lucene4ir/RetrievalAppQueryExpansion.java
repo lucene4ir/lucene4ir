@@ -2,26 +2,24 @@ package lucene4ir;
 
 import javax.xml.bind.JAXB;
 import java.io.*;
+import java.util.Iterator;
+import java.util.Set;
 
+import lucene4ir.utils.SynonymProvider;
+import net.sf.extjwnl.JWNLException;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.queryparser.classic.ParseException;
+import org.apache.lucene.search.*;
 import org.apache.lucene.search.similarities.*;
 import org.apache.lucene.search.similarities.LMSimilarity.CollectionModel;
-import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.queryparser.classic.QueryParser;
-import org.apache.lucene.search.Query;
-import org.apache.lucene.search.ScoreDoc;
-import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.document.Document;
 
-/**
- * Created by leif on 22/08/2016.
- */
-public class RetrievalApp {
+public class RetrievalAppQueryExpansion {
 
     public RetrievalParams p;
 
@@ -31,8 +29,6 @@ public class RetrievalApp {
     private Analyzer analyzer;
     private QueryParser parser;
     private CollectionModel colModel;
-
-
 
     private enum SimModel {
         DEF, BM25, LMD, LMJ, PL2, TFIDF
@@ -162,8 +158,9 @@ public class RetrievalApp {
                     String[] parts = line.split(" ");
                     String qno = parts[0];
                     String queryTerms = "";
-                    for (int i=1; i<parts.length; i++)
+                    for (int i=1; i<parts.length; i++) {
                         queryTerms = queryTerms + " " + parts[i];
+                    }
 
                     ScoreDoc[] scored = runQuery(qno, queryTerms);
 
@@ -184,8 +181,7 @@ public class RetrievalApp {
                 fw.close();
             }
         } catch (Exception e){
-            System.out.println(" caught a " + e.getClass() +
-                    "\n with message: " + e.getMessage());
+            System.out.println(" caught a " + e.getClass() + "\n with message: " + e.getMessage());
         }
 
 
@@ -194,18 +190,61 @@ public class RetrievalApp {
 
     public ScoreDoc[] runQuery(String qno, String queryTerms){
         ScoreDoc[] hits = null;
-
         System.out.println("Query No.: " + qno + " " + queryTerms);
+
         try {
-            Query query = parser.parse(queryTerms);
+            // A query builder for constructing a complex query
+            BooleanQuery.Builder queryBuilder = new BooleanQuery.Builder();
+
+            // Boost the original query by a factor of 5
+            // Query terms are important but the original terms are importantER
+            BoostQuery query = new BoostQuery(parser.parse(queryTerms), 5.0f);
+
+            // Add it to the query builder
+            queryBuilder.add(query, BooleanClause.Occur.MUST);
+
+            // Print out what Lucene generated
+            // System.out.println(query.toString());
+
+            // Find the synonyms of each term in the original query
+            StringBuilder sb = new StringBuilder();
+            for (String queryTerm : queryTerms.trim().split(" ")) {
+                try {
+                    Set<String> synonyms = SynonymProvider.getSynonyms(queryTerm);
+
+                    if (synonyms == null) {
+                        continue;
+                    }
+
+                    Iterator<String> it = synonyms.iterator();
+
+                    while (it.hasNext()) {
+                        sb.append(it.next());
+                        sb.append(" ");
+                    }
+
+                } catch (JWNLException e) {
+                    e.printStackTrace();
+                }
+
+            }
+            String querySynonymized = sb.toString();
+
+            // If we found some synonyms, construct a query and add it to the query builder
+            if (querySynonymized.length() > 0) {
+                Query queryExpanded = parser.parse(querySynonymized);
+                queryBuilder.add(queryExpanded, BooleanClause.Occur.SHOULD);
+            }
+
+            // Construct the final query and run it
+            Query finalQuery = queryBuilder.build();
 
             try {
-                TopDocs results = searcher.search(query, 1000);
+                TopDocs results = searcher.search(finalQuery, 1000);
                 hits = results.scoreDocs;
             }
             catch (IOException ioe){
-                System.out.println(" caught a " + ioe.getClass() +
-                        "\n with message: " + ioe.getMessage());
+                System.out.println(" caught a " + ioe.getClass() + "\n with message: " + ioe.getMessage());
             }
 
 
@@ -217,57 +256,44 @@ public class RetrievalApp {
 
 
 
-    public RetrievalApp(String retrievalParamFile){
+    public RetrievalAppQueryExpansion(String retrievalParamFile){
         System.out.println("Retrieval App");
         readParamsFromFile(retrievalParamFile);
         try {
-          reader = DirectoryReader.open(FSDirectory.open( new File(p.indexName).toPath()) );
+            reader = DirectoryReader.open(FSDirectory.open(new File(p.indexName).toPath()));
             searcher = new IndexSearcher(reader);
 
-            // create similarity function and parameter
+            // Create similarity function and parameter
             selectSimilarityFunction(sim);
             searcher.setSimilarity(simfn);
+
+            // Use whatever analyzer you want
             analyzer = new StandardAnalyzer();
 
             parser = new QueryParser("content", analyzer);
 
-
         } catch (Exception e){
-            System.out.println(" caught a " + e.getClass() +
-                    "\n with message: " + e.getMessage());
+            System.out.println(" caught a " + e.getClass() + "\n with message: " + e.getMessage());
         }
 
     }
 
-
-
-
-
-
-
-
-
     public static void main(String []args) {
-
-
         String retrievalParamFile = "";
 
         try {
             retrievalParamFile = args[0];
         } catch (Exception e) {
-            System.out.println(" caught a " + e.getClass() +
-                    "\n with message: " + e.getMessage());
+            System.out.println(" caught a " + e.getClass() + "\n with message: " + e.getMessage());
             System.exit(1);
         }
 
-        RetrievalApp retriever = new RetrievalApp(retrievalParamFile);
+        RetrievalAppQueryExpansion retriever = new RetrievalAppQueryExpansion(retrievalParamFile);
         retriever.processQueryFile();
 
     }
 
 }
-
-
 
 class RetrievalParams {
     public String indexName;
