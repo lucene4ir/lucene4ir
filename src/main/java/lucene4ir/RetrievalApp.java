@@ -16,6 +16,7 @@ import org.apache.lucene.search.similarities.*;
 import org.apache.lucene.search.similarities.LMSimilarity.CollectionModel;
 import org.apache.lucene.store.FSDirectory;
 
+import lucene4ir.similarity.TMPL;
 import lucene4ir.similarity.OKAPIBM25Similarity;
 import javax.xml.bind.JAXB;
 import java.io.*;
@@ -50,7 +51,6 @@ public class RetrievalApp {
                 System.out.println("<model>"+value.name()+"</model>");
             }
             sim = SimModel.DEF;
-	    e.printStackTrace();
         }
     }
 
@@ -58,7 +58,7 @@ public class RetrievalApp {
         colModel = null;
         switch(sim){
             case OKAPIBM25:
-                System.out.println("OKAPIBM25Similarity Function");
+                System.out.println("OKAPI BM25 Similarity Function");
                 simfn = new OKAPIBM25Similarity(1.2f, 0.75f);
                 break;
 		
