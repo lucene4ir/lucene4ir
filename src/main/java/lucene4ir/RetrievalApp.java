@@ -16,6 +16,7 @@ import org.apache.lucene.search.similarities.*;
 import org.apache.lucene.search.similarities.LMSimilarity.CollectionModel;
 import org.apache.lucene.store.FSDirectory;
 
+import lucene4ir.similarity.TMPL;
 import lucene4ir.similarity.OKAPIBM25Similarity;
 import javax.xml.bind.JAXB;
 import java.io.*;
@@ -35,7 +36,7 @@ public class RetrievalApp {
     private CollectionModel colModel;
 
     private enum SimModel {
-        DEF, BM25, BM25L, LMD, LMJ, PL2, TFIDF, OKAPIBM25
+        DEF, BM25, BM25L, LMD, LMJ, PL2, TFIDF, TMPL, OKAPIBM25
     }
 
     private SimModel sim;
