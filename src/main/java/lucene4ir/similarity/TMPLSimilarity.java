@@ -17,9 +17,9 @@ import org.apache.lucene.util.SmallFloat;
 import java.io.IOException;
 import java.util.Collections;
 
-public class TMPL extends Similarity {
+public class TMPLSimilarity extends Similarity {
     
-    public TMPL() {}
+    public TMPLSimilarity() {}
 
     public float log(double x)
     {

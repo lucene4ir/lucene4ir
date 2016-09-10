@@ -1,7 +1,6 @@
 package lucene4ir;
 
-import lucene4ir.similarity.BM25LSimilarity;
-import lucene4ir.similarity.BM25Similarity;
+
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.DirectoryReader;
@@ -16,8 +15,10 @@ import org.apache.lucene.search.similarities.*;
 import org.apache.lucene.search.similarities.LMSimilarity.CollectionModel;
 import org.apache.lucene.store.FSDirectory;
 
-import lucene4ir.similarity.TMPL;
+import lucene4ir.similarity.BM25LSimilarity;
 import lucene4ir.similarity.OKAPIBM25Similarity;
+import lucene4ir.similarity.TMPLSimilarity;
+
 import javax.xml.bind.JAXB;
 import java.io.*;
 
@@ -63,8 +64,8 @@ public class RetrievalApp {
                 break;
 		
             case TMPL:
-                System.out.println("TMPL Similarity Function");
-                simfn = new TMPL();
+                System.out.println("TMPLSimilarity Similarity Function");
+                simfn = new TMPLSimilarity();
                 break;
 		
             case BM25:
