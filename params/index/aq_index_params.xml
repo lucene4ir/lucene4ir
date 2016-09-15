@@ -3,5 +3,5 @@
     <indexName>aqindex</indexName>
     <fileList>data/aq_file_list</fileList>
     <indexType>trecaquaint</indexType>
-    <tokenFilterFile>params/index/kstem_token_filter_params.xml</tokenFilterFile>
+    <tokenFilterFile>params/index/kstem_params.xml</tokenFilterFile>
 </indexParams>
