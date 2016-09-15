@@ -182,5 +182,7 @@ class IndexParams {
     public String indexType; /** trecWeb, trecNews, trec678, cacm **/
     public Boolean compressed;
     public String tokenFilterFile;
+    public Boolean recordPositions;
+
 }
 
