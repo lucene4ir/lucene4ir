@@ -77,8 +77,8 @@ public class ExampleStatsApp {
 
      public void numSegments(){
         // how do we get the number of segements
-         int segements = reader.leaves().size();
-         System.out.println("Number of Segments in Index");
+         int segments = reader.leaves().size();
+         System.out.println("Number of Segments in Index: " + segments);
 
          // you can use a writer to force merge - and then you will only
          // have one segment
@@ -263,6 +263,7 @@ public class ExampleStatsApp {
 
         statsApp.iterateThroughDocTermVector(1);
         statsApp.docLength(1);
+        statsApp.numSegments();
 
 
 
