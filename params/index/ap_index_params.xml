@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <indexParams>
     <indexName>apindex</indexName>
-    <fileList>data/all_ap_file_list</fileList>
+    <fileList>data/ap_file_list</fileList>
     <indexType>trecnews</indexType>
+    <tokenFilterFile>params/index/example_01.xml</tokenFilterFile>
 </indexParams>
