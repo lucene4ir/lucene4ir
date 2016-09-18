@@ -1,0 +1,20 @@
+%!TEX root = lucene4IR2016workshop_report.tex
+\section{Resources}
+As part of the workshop numerous attendees contributed to the Lucene4IR GitHub Repository - \url{http://github.com/leifos/lucene4ir/}. In the repository, three main applications were developed and worked on:
+\begin{itemize}
+	\item IndexerApp - enables the indexing of several different TREC collections, e.g. TREC123 News Collections, Aquaint Collection, etc.
+	\item RetrievalApp - a batch retrieval application when numerous retrieval algorithms can be configured, e.g. BM25, PL2, etc
+	\item ExampleStatsApp - an application that shows how you can access various statistics about terms, documents and the collection. e.g. how to access the term posting list, how to access term positions in a document, etc.
+	\end{itemize}
+	
+In the repository, a sample test collection (documents, queries and relevance judgements) was provided (CACM), so that participants could try out the different applications.
+
+During the workshop, a number of different teams undertook various projects:
+\begin{itemize}
+	\item Customisation of the tokenisation, stemming and stopping during the indexing process: this enabled the IndexerApp to be configured so that the collections can be indexed in different ways - the idea being that students would be able to vary the indexing and then see the effect on performance.
+	\item Implementation of other retrieval models: inheriting from Lucene's BM25Similiarity Class,  BM25 for Long documents was implemented BM25L\cite{}, OKAPI BM25's was also implemented to facilitate the comparison between how it is currently implemented in Lucene versus an implementation of the original BM25 weighting function~\cite{}.
+	\item Rather than scoring through Lucene's mechanics, others attempted to implement BM25 by directly accessing the inverted index - again to provide a comparison in terms of both efficiency and effectiveness for scoring queries.
+	\item A QueryExpansionRetrievalApp
+	\item Hacking the innerloop
+	\item Additional Examples on how to access and work with Lucene's index and 
+\end{itemize}

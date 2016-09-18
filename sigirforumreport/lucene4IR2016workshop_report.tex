@@ -34,71 +34,34 @@ Leif Azzopardi$^{1}$, Yashar Mosfeghi$^{2}$, Martin Halvey$^{1}$, TBA$^{3}$, TBA
 
 \maketitle \thispagestyle{fancy} 
 \abstract{
-The workshop and hackathon on developing Information Retrieval Evaluation Resources using Lucene (L4IR) was held on the 8th and 9th of September, 2016 at the University of Strathclyde in Glasgow, UK. The event featured three main elements: (i) a series of keynote and invited talks on Lucene in action in industry, in teaching and learning environments, and evaluation forums. (ii) planning, coding and hacking where a number of groups created modules and infrastructure to use Lucene to undertake TREC based evaluations. And (iii) a number of breakout groups discussing challenges, opportunities and problems in bridging the divide between academia and industry, and how we can use Lucene and the resources created in teaching and learning IR evaluation. The event was composed of a mix and blend of academics, experts and students wanting to learn, share and create evaluation resources with the community. The hacking was intense and the discussions lively creating the basis of many useful tools and raising many issues as well as opportunities for the IR community to embrace and utilize the most widely used Open Source IR toolkit for the mutual benefit of academics, students, researchers, developers and practitioners.}
+The workshop and hackathon on developing Information Retrieval Evaluation Resources using Lucene (L4IR) was held on the 8th and 9th of September, 2016 at the University of Strathclyde in Glasgow, UK and funded by the ESF Elias Network. The event featured three main elements: (i) a series of keynote and invited talks on Lucene in action in industry, in teaching and learning environments, and evaluation forums. (ii) planning, coding and hacking where a number of groups created modules and infrastructure to use Lucene to undertake TREC based evaluations. And (iii) a number of breakout groups discussing challenges, opportunities and problems in bridging the divide between academia and industry, and how we can use Lucene and the resources created in teaching and learning IR evaluation. The event was composed of a mix and blend of academics, experts and students wanting to learn, share and create evaluation resources for the community. The hacking was intense and the discussions lively creating the basis of many useful tools and raising numerous issues. However, by adopting and contributing to most widely used and supported Open Source IR toolkit, it was clear that there were many benefits for academics, students, researchers, developers and practitioners - providing a basis for stronger evaluation practices, increased reproducibility, more efficient knowledge transfer, greater collaboration between academia and industry, and shared teaching and training resources.}
+
 \maketitle
 
 
 
 \section{Introduction}
-Lucene and its expansions, Solr and ElasticSearch, represent the major open source Information Retrieval toolkits used in Industry. However, there is a lack of coherent and coordinated documentation that explains from an experimentalist?s point of view how to use Lucene to undertake and perform Information Retrieval Research and Evaluation. In particularly, how to undertake and perform TREC based evaluations using Lucene.    
-
-The objective of this event is to bring together researchers and developers to create a set of evaluation resources showing how to use Lucene to perform typical IR operations (i.e. indexing, retrieval, etc.) as well as how to extend, modify and work with Lucene to extract typical statistics, implement typical retrieval models, and to evaluate various TREC tasks. Over the course of days, we essentially plan to have a hackathon to build these resources, share knowledge about the platform, and to create a road map for future development. The tools and resources built during the workshop/hackathon will be uploaded to GitHub and shared with the community.     
+Lucene and its expansions, Solr and ElasticSearch, represent the major open source Information Retrieval toolkits used in Industry. However, there is a lack of coherent and coordinated documentation that explains from an experimentalist's point of view how to use Lucene to undertake and perform Information Retrieval Research and Evaluation. In particularly, how to undertake and perform TREC based evaluations using Lucene. Consequently, the objective of this event was to bring together researchers and developers to create a set of evaluation resources showing how to use Lucene to perform typical IR operations (i.e.  indexing, retrieval, evaluation, analysis, etc.) as well as how to extend, modify and work with Lucene to extract typical statistics, implement typical retrieval models. Over the course of the workshop participants shared their knowledge with each other creating a number of resources and guides along with a road map for future development.
 
 
-\section{Keynotes and Invited Talks}
-
-{\bf Keynote Talk: Lucene in Industry - Charlie Hull (Flaxsearch)}
-
-Flax have been building search applications using open source search software since 2001. Charlie will talk about the rise of Lucene-based search engines and how Flax have used them in a number of different real-world projects. He'll also discuss some ideas about improving the links between academia and industry.
-
-
-{\bf Using Lucene for Teaching and Learning IR: The 
-University of Granada case of study ? Prof. Juan Manual Fernandez Luna (University of Granda) }
-
-In this talk, we shall describe how the University of Granada is 
-supporting teaching and learning Information Retrieval (TLIR) discipline 
-across different courses in the Computer Science studies (degree and 
-masters), and how this is done by means of the Lucene API. Later we 
-shall present our thoughts about how Lucene could be used inTLIR context 
-and present some proposals for improving the Lucene experience, both for 
-students and lecturers.
-
-
-{\bf Evaluation and Reproducible Experiments - Sauparna ``Rup'' Palchowdhury (NIST) }
-
-Having seen students and practitioners in the IR community grapple with abstruse documentation that accompany search systems, I want to direct some attention to Lucene's internals and demonstrate how to do IR experiments using it. Ensuring that a search system you have built works 'correctly' entails evaluating its output on test-collections like those from TREC. In this way evaluation finds a purpose in my exposition. The goal is to help bring Lucene to the IR community and prevent its usage as a black box, which misleads students because they learn little from their results. On top of that it makes it hard to reproduce experiments reported in papers. The talk will also go over Lucene's scoring by showing how a TFxIDF term-weighting scheme is implemented. I intend to initiate a discussion on implementing models of similarity and accept feedback to validate the implementation I describe.
-
-To this end, I have built tools and written notes to help the experimenter organize her work: http://kak.tx0.org/IR/. Here is a
-glorified Python script called TRECBOX that runs other search engines, notes on Terrier (TTR) and Lucene's (LTR) internals. LTR is a 'mod' that works on TREC data to help in quickly getting a system up and running; tests prove it to behave correctly on TREC test-collections.
-
-
-{\bf Deep Dive into the Lucene Query/Weight/Scorer Java Classes - Jake Mannix (Lucidworks) }
-
-To provide some overview of how to do scoring modifications to Lucene-based systems, we'll get down and dirty with the BooleanQuery class and its cousins, seeing where the Lucene API allows for modification of scoring with pluggable Similarity metrics and even deep inner-loop ML-trained ranking models - *if* you're willing to do a little work.
-
-
-{\bf Learning to Rank with Solr - Diego Ceccarelli (Bloomberg)}
-
-Learning To Rank is a technique that allows you to apply a machine learning model in the construction of a ranking model for information retrieval systems. In fact, it is well known that sophisticated models can make more nuanced ranking decisions than a traditional ranking function. At Bloomberg we have integrated a learning to rank component directly into Solr, enabling others to easily build their own Learning To Rank systems and access the rich matching features readily available in Solr. In this talk we will present the key concepts of Learning to Rank, how to evaluate the quality of the search in a production service, and then how the Solr plugin works.
-
+\input{talks}
 
 \section{Discussion}
-
-{\bf Challenges and Opportunities}
-
-
-{\bf Teaching and Learning}
+During the course of the workshop, two breakout groups were formed to discuss how we can use Lucene when teaching and learning, and what were the main challenges in bridging the industry/academia along with what opportunities it could bring about. Finally, we asked participants to provide some feedback on the event.
 
 
-{\bf Feedback}
 
+\input{teaching}
+\input{challenges}
+\input{feedback}
 
-\section{Resources}
+\input{resources}
+
 
 \section{Summary}
 
 \section{Acknowledgments}
-We thank ELIAS foundation for their grant \todo{add number}. We would also like to thank our speakers as well as Bloomberg, FlaxSearch, LucidWorks and the University of Strathclyde. Finally, we would like to thank all the participants for their contributions to the workshops and hackathon.
+We thank the European Science Foundation / ELIAS Network for funding the workshop \todo{add number}. We would also like to thank our speakers as well as Bloomberg, FlaxSearch, LucidWorks and the University of Strathclyde. Finally, we would like to thank all the participants for their contributions to the workshops and hackathon. Also, thanks to Manisha, Guido and Casper for their offline contributions.
 
 \bibliographystyle{abbrv}
 

@@ -1,0 +1,7 @@
+%!TEX root = lucene4IR2016workshop_report.tex
+\subsection*{Evaluation and Reproducible Experiments}
+{\bf Sauparna ``Rup'' Palchowdhury (NIST) }:
+Having seen students and practitioners in the IR community grapple with abstruse documentation that accompany search systems, I want to direct some attention to Lucene's internals and demonstrate how to do IR experiments using it. Ensuring that a search system you have built works ``correctly'' entails evaluating its output on test-collections like those from TREC. In this way evaluation finds a purpose in my exposition. The goal is to help bring Lucene to the IR community and prevent its usage as a black box, which misleads students because they learn little from their results. On top of that it makes it hard to reproduce experiments reported in papers. The talk will also go over Lucene's scoring by showing how a TFxIDF term-weighting scheme is implemented. I intend to initiate a discussion on implementing models of similarity and accept feedback to validate the implementation I describe.
+
+To this end, I have built tools and written notes to help the experimenter organize her work: http://kak.tx0.org/IR/. Here is a
+glorified Python script called TRECBOX that runs other search engines, notes on Terrier (TTR) and Lucene's (LTR) internals. LTR is a 'mod' that works on TREC data to help in quickly getting a system up and running; tests prove it to behave correctly on TREC test-collections.

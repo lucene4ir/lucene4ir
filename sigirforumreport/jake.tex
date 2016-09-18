@@ -1,0 +1,4 @@
+%!TEX root = lucene4IR2016workshop_report.tex
+\subsection*{ Deep Dive into the Lucene Query/Weight/Scorer Java Classes}
+{\bf Jake Mannix, Lucidworks}:
+In this more technical talk, Jake explained how Lucene scores a query, and what classes are instantiated to support the scoring. Jake described, first, at a high level how to do scoring modification to Lucene-based systems, including some ``Google''-like questions on how to score efficiently. Then, he went into more details about the BooleanQuery class and is cousins, showing where the Lucene API allows for modifications of scoring with pluggable Similarity metrics and even deep inner-loop, where ML-trained ranking models could be instantiated - \emph{if you're willing to do a little work}.
