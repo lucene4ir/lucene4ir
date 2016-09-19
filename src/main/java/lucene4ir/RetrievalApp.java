@@ -1,7 +1,5 @@
 package lucene4ir;
 
-import lucene4ir.similarity.BM25LSimilarity;
-import lucene4ir.similarity.BM25Similarity;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.DirectoryReader;
@@ -16,8 +14,11 @@ import org.apache.lucene.search.similarities.*;
 import org.apache.lucene.search.similarities.LMSimilarity.CollectionModel;
 import org.apache.lucene.store.FSDirectory;
 
-import lucene4ir.similarity.TMPL;
+import lucene4ir.similarity.SMARTBNNBNNSimilarity;
 import lucene4ir.similarity.OKAPIBM25Similarity;
+import lucene4ir.similarity.BM25LSimilarity;
+import lucene4ir.similarity.BM25Similarity;
+
 import javax.xml.bind.JAXB;
 import java.io.*;
 
@@ -36,7 +37,8 @@ public class RetrievalApp {
     private CollectionModel colModel;
 
     private enum SimModel {
-        DEF, BM25, BM25L, LMD, LMJ, PL2, TFIDF, TMPL, OKAPIBM25
+        DEF, BM25, BM25L, LMD, LMJ, PL2, TFIDF,
+	OKAPIBM25, SMARTBNNBNN
     }
 
     private SimModel sim;
@@ -61,30 +63,28 @@ public class RetrievalApp {
                 System.out.println("OKAPI BM25 Similarity Function");
                 simfn = new OKAPIBM25Similarity(1.2f, 0.75f);
                 break;
-		
-            case TMPL:
-                System.out.println("TMPL Similarity Function");
-                simfn = new TMPL();
+            case SMARTBNNBNN:
+                System.out.println("SMART bnn.bnn Similarity Function");
+                simfn = new SMARTBNNBNNSimilarity();
                 break;
-		
             case BM25:
                 System.out.println("BM25 Similarity Function");
-                simfn = new BM25Similarity(p.k,p.b);
+                simfn = new BM25Similarity(p.k, p.b);
                 break;
             case BM25L:
                 System.out.println("BM25L Similarity Function");
-                simfn = new BM25LSimilarity(p.k,p.b,p.delta);
+                simfn = new BM25LSimilarity(p.k, p.b, p.delta);
                 break;
             case LMD:
                 System.out.println("LM Dirichlet Similarity Function");
                 colModel = new LMSimilarity.DefaultCollectionModel();
-                simfn = new LMDirichletSimilarity(colModel,p.mu);
+                simfn = new LMDirichletSimilarity(colModel, p.mu);
                 break;
 
             case LMJ:
                 System.out.println("LM Jelinek Mercer Similarity Function");
                 colModel = new LMSimilarity.DefaultCollectionModel();
-                simfn = new LMJelinekMercerSimilarity(colModel,p.lam);
+                simfn = new LMJelinekMercerSimilarity(colModel, p.lam);
                 break;
 
             case PL2:
@@ -92,7 +92,7 @@ public class RetrievalApp {
                 BasicModel bm = new BasicModelP();
                 AfterEffect ae = new AfterEffectL();
                 Normalization nn = new NormalizationH2(p.c);
-                simfn = new DFRSimilarity(bm,ae,nn);
+                simfn = new DFRSimilarity(bm, ae, nn);
                 break;
 
             default:

@@ -17,28 +17,26 @@ import org.apache.lucene.util.SmallFloat;
 import java.io.IOException;
 import java.util.Collections;
 
-public class OKAPIBM25 extends Similarity {
+/**
+   Author: rup, rup.palchowdhury@gmail.com
+   
+   This is the bnn.bnn TFxIDF variant from SMART. The nomenclature is
+   SMART's. See http://kak.tx0.org/IR/TFxIDF/ for the naming scheme
+   and an encyclopedia of TFxIDF variants.
 
-    float k1;
-    float b;
-    
-    public OKAPIBM25() {
+   This is a stripped-down version of one of Lucene's stock
+   'similarity' classes, devoid of any checks for validitiy and
+   safety, so use it carefully. The reduction is meant to make this
+   beast more readable.
+*/
 
-	/* force it to balk */
-	
-	this.k1 = -1;
-	this.b  = -1;
-	if (k1 < 0 || b < 0)
-	    throw new IllegalArgumentException("Must set k1 and b, no defaults.");
-    }
+public class SMARTBNNBNNSimilarity extends Similarity {
     
-    public OKAPIBM25(float k1, float b) {
-	if (Float.isFinite(k1) == false || k1 < 0)
-	    throw new IllegalArgumentException("k1 = " + k1);
-	if (Float.isNaN(b) || b < 0 || b > 1)
-	    throw new IllegalArgumentException("b = " + b);
-	this.k1 = k1;
-	this.b  = b;
+    public SMARTBNNBNNSimilarity() {}
+
+    public float log(double x)
+    {
+	return (float)(Math.log(x) / Math.log(2.0D));
     }
 
     public float coord(int overlap, int maxOverlap)
@@ -51,37 +49,27 @@ public class OKAPIBM25 extends Similarity {
 	return 1f;
     }
 
-    protected float idf(long n, long N) {
-	return (float) Math.log(1 + (N - n + 0.5D)/(n + 0.5D));
-    }
-
     @Override
     public final SimWeight computeWeight(CollectionStatistics collectionStats,
 					 TermStatistics... termStats)
     {
-	long  N, n;
-	float idf_, avdl;
-
-	idf_ = 1.0f;
-
-	N    = collectionStats.docCount();
-	if (N == -1)
-	    N = collectionStats.maxDoc();
-
-	avdl = collectionStats.sumTotalTermFreq() / N;
+	float N, n, idf, adl;
+	idf = 1.0f;
+	N   = collectionStats.maxDoc();
+	adl = collectionStats.sumTotalTermFreq() / N;
 	
 	if (termStats.length == 1) {
-	    n    = termStats[0].docFreq();
-	    idf_ = idf(n, N);
+	    n = termStats[0].docFreq();
+	    idf = log(N/n);
 	}
-	else { /* computation for a phrase */
+	else {
 	    for (final TermStatistics stat : termStats) {
-		n     = stat.docFreq();
-		idf_ += idf(n, N);
+		n = stat.docFreq();
+		idf += log(N/n);
 	    }
 	}
 	
-	return new TFIDFWeight(collectionStats.field(), idf_, avdl);
+	return new TFIDFWeight(collectionStats.field(), idf, adl);
     }
 
     @Override
@@ -107,20 +95,19 @@ public class OKAPIBM25 extends Similarity {
 	@Override
 	public float score(int doc, float tf)
 	{
-	    float idf_, dl, avdl, K, w;
-	    idf_ = tw.idf_;
-	    avdl = tw.avdl;
-	    dl   = (float)norms.get(doc);
-	    K    = k1 * (1.0f - b + b * (dl / avdl));
-	    w    = ((k1 + 1.0f) * tf) / (K + tf) * idf_;
+	    float idf, dl, adl, K, w;
+	    idf = tw.idf;
+	    adl = tw.adl;
+	    dl = (float)norms.get(doc);
+	    K = 1.0f;
+	    w = 1.0f;
 	    return w;
 	}
 
 	@Override
 	public float computeSlopFactor(int distance)
 	{
-	    // return 1.0f / (distance + 1);
-	    return 1.0f;
+	    return 1.0f / (distance + 1);
 	}
 
 	@Override
@@ -133,14 +120,14 @@ public class OKAPIBM25 extends Similarity {
     public static class TFIDFWeight extends SimWeight
     {
 	private final String field;
-	private final float  idf_;
-	private final float  avdl;
+	private final float idf;
+	private final float adl;
 	
-	public TFIDFWeight(String field, float idf_, float avdl)
+	public TFIDFWeight(String field, float idf, float adl)
 	{
 	    this.field = field;
-	    this.idf_  = idf_;
-	    this.avdl  = avdl;
+	    this.idf   = idf;
+	    this.adl   = adl;
 	}
 
 	@Override
