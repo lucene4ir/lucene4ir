@@ -1,7 +1,17 @@
 %!TEX root = lucene4IR2016workshop_report.tex
-\subsection*{Evaluation and Reproducible Experiments}
+\subsection*{Black Boxes are Harmful}
 {\bf Sauparna ``Rup'' Palchowdhury (NIST) }:
-Having seen students and practitioners in the IR community grapple with abstruse documentation that accompany search systems, I want to direct some attention to Lucene's internals and demonstrate how to do IR experiments using it. Ensuring that a search system you have built works ``correctly'' entails evaluating its output on test-collections like those from TREC. In this way evaluation finds a purpose in my exposition. The goal is to help bring Lucene to the IR community and prevent its usage as a black box, which misleads students because they learn little from their results. On top of that it makes it hard to reproduce experiments reported in papers. The talk will also go over Lucene's scoring by showing how a TFxIDF term-weighting scheme is implemented. I intend to initiate a discussion on implementing models of similarity and accept feedback to validate the implementation I describe.
+Having seen students and practitioners in the IR community grapple with abstruse documentation that accompany search systems, Rup wanted to direct some attention to Lucene's internals and demonstrate how to do IR experiments using it. Rup argued that it is important to ensure that a search system that you have built works ``correctly'' - and one way to do this is by evaluating its output on test-collections like those from TREC. He further argues that using such systems as black boxes can  mislead students because they learn little from their results.  Rup points out that this is because there are many possible points of failure when implementing and configuring a search system (document corpus problems, checksum mismatches, wrong document-query-qrel triplets, one parameter with many meanings, switches not mutually exclusive, bugs in algorithms, different naming conventions). This means it is very difficult to reproduce experiments and results reported in research papers.
 
-To this end, I have built tools and written notes to help the experimenter organize her work: http://kak.tx0.org/IR/. Here is a
-glorified Python script called TRECBOX that runs other search engines, notes on Terrier (TTR) and Lucene's (LTR) internals. LTR is a 'mod' that works on TREC data to help in quickly getting a system up and running; tests prove it to behave correctly on TREC test-collections.
+As a more concrete example he described how Lucene conceptualizes the scoring of a document:
+
+\begin{equation}
+	score(q,d) = coord-factor(q,d) \times query-boost(q) \times \frac{V(q) \times V(d)}{|V(q)|} \times doc-len-norm(d) \times doc-boost(d)
+	\end{equation}
+	
+Rup focused in on implementations of some of the core retrieval algorithms, i.e. TFxIDF and BM25 - and described some of the numerous variations that exist, and how these can lead to quite different levels of performance. 
+
+His summarised a number of key issues that have to be considered when using search systems in the context of evaluation and reproducibility. These included have a focus on standardizing how we describe and naming variables, methods and functions, and using a well defined notation, creating sharable experimental artifacts, and providing implementations that are tracable to a source.
+	
+
+%To this end, I have built tools and written notes to help the experimenter organize her work: http://kak.tx0.org/IR/. Here is a glorified Python script called TRECBOX that runs other search engines, notes on Terrier (TTR) and Lucene's (LTR) internals. LTR is a 'mod' that works on TREC data to help in quickly getting a system up and running; tests prove it to behave correctly on TREC test-collections.
