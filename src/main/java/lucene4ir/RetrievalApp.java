@@ -66,7 +66,6 @@ public class RetrievalApp {
             case SMARTBNNBNN:
                 System.out.println("SMART bnn.bnn Similarity Function");
                 simfn = new SMARTBNNBNNSimilarity();
-                break;
             case BM25:
                 System.out.println("BM25 Similarity Function");
                 simfn = new BM25Similarity(p.k, p.b);

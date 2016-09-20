@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <indexParams>
     <indexName>aqindex</indexName>
-    <fileList>data/aq_full_file_list</fileList>
+    <fileList>data/aq_file_list</fileList>
     <indexType>trecaquaint</indexType>
+    <tokenFilterFile>params/index/kstem_params.xml</tokenFilterFile>
 </indexParams>

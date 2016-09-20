@@ -53,7 +53,7 @@ public class IndexerApp {
         switch(dm){
             case CACM:
                 System.out.println("CACM Document Parser");
-                di = new CACMDocumentIndexer(p.indexName);
+                di = new CACMDocumentIndexer(p.indexName, p.tokenFilterFile);
                 break;
 
             case CLUEWEB:
@@ -65,12 +65,12 @@ public class IndexerApp {
 
             case TRECNEWS:
                 System.out.println("TRECNEWS");
-                di = new TRECNEWSDocumentIndexer(p.indexName);
+                di = new TRECNEWSDocumentIndexer(p.indexName, p.tokenFilterFile);
                 break;
 
             case TRECAQUAINT:
                 System.out.println("TRECAQUAINT");
-                di = new TRECAquaintDocumentIndexer(p.indexName);
+                di = new TRECAquaintDocumentIndexer(p.indexName, p.tokenFilterFile);
                 break;
 
             default:
@@ -181,5 +181,8 @@ class IndexParams {
     public String fileList;
     public String indexType; /** trecWeb, trecNews, trec678, cacm **/
     public Boolean compressed;
+    public String tokenFilterFile;
+    public Boolean recordPositions;
+
 }
 

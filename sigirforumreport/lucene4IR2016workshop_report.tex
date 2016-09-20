@@ -1,0 +1,73 @@
+\documentclass[12pt]{article}
+\usepackage{fancyhdr}
+\usepackage{url}
+\usepackage{color}
+
+
+ \topmargin -0.8cm
+ \oddsidemargin -0.7cm
+
+ \textwidth 17.5cm
+ \textheight 22.6 cm
+
+
+\pagestyle{fancy} {\fancyhead{}
+\fancyfoot[c]{\small{\rule{17.5cm}{1pt}}}}
+
+\begin{document}
+\title{\vspace{-2.5cm}
+\begin{center}
+\textbf{\small{Lucene4IR Workshop Report}}\\\vspace{-0.5cm} \rule{17.5cm}{1pt}
+\end{center}
+\vspace{1cm}\textbf{Report on the Lucene4IR workshop: Developing Information Retrieval Evaluation Resources using Lucene (L4IR2016) }}
+
+\newcommand{\todo}[1]{\textcolor{red}{#1}}
+\author{
+Leif Azzopardi$^{1}$, Yashar Mosfeghi$^{2}$, Martin Halvey$^{1}$, \\Krisztian Balog$^{3}$, Juan Manual Fernandez Luna $^{4}$\\
+    $^{1}$ {\small University of Strathclyde  \emph{ \{Leif.Azzopardi,Martin.Halvey\}@strath.ac.uk}}\\
+    $^{2}$ {\small University of Glasgow\emph{\small Yashar.Mosfeghi@glasgow.ac.uk}}\\
+	$^{3}$ {\small University of Stavanger \emph{\small krisztian.balog@uis.no}}\\
+	$^{4}$ {\small University of Granda \emph{\small jmfluna@decsai.ugr.es}}
+}
+
+\begin{sloppypar}
+
+\maketitle \thispagestyle{fancy} 
+\abstract{
+The workshop and hackathon on developing Information Retrieval Evaluation Resources using Lucene (L4IR) was held on the 8th and 9th of September, 2016 at the University of Strathclyde in Glasgow, UK and funded by the ESF Elias Network. The event featured three main elements: (i) a series of keynote and invited talks on Lucene in action in industry, in teaching and learning environments, and evaluation forums. (ii) planning, coding and hacking where a number of groups created modules and infrastructure to use Lucene to undertake TREC based evaluations. And (iii) a number of breakout groups discussing challenges, opportunities and problems in bridging the divide between academia and industry, and how we can use Lucene and the resources created in teaching and learning IR evaluation. The event was composed of a mix and blend of academics, experts and students wanting to learn, share and create evaluation resources for the community. The hacking was intense and the discussions lively creating the basis of many useful tools and raising numerous issues. However, by adopting and contributing to most widely used and supported Open Source IR toolkit, it was clear that there were many benefits for academics, students, researchers, developers and practitioners - providing a basis for stronger evaluation practices, increased reproducibility, more efficient knowledge transfer, greater collaboration between academia and industry, and shared teaching and training resources.}
+
+\maketitle
+
+
+
+\section{Introduction}
+Lucene and its expansions, Solr and ElasticSearch, represent the major open source Information Retrieval toolkits used in Industry. However, there is a lack of coherent and coordinated documentation that explains from an experimentalist's point of view how to use Lucene to undertake and perform Information Retrieval Research and Evaluation. In particularly, how to undertake and perform TREC based evaluations using Lucene. Consequently, the objective of this event was to bring together researchers and developers to create a set of evaluation resources showing how to use Lucene to perform typical IR operations (i.e.  indexing, retrieval, evaluation, analysis, etc.) as well as how to extend, modify and work with Lucene to extract typical statistics, implement typical retrieval models. Over the course of the workshop participants shared their knowledge with each other creating a number of resources and guides along with a road map for future development.
+
+
+\input{talks}
+
+\section{Discussion}
+During the course of the workshop, two breakout groups were formed to discuss how we can use Lucene when teaching and learning, and what were the main challenges in bridging the industry/academia along with what opportunities it could bring about. Finally, we asked participants to provide some feedback on the event.
+
+
+
+\input{teaching}
+\input{challenges}
+\input{feedback}
+
+\input{resources}
+
+
+\section{Summary}
+
+\section{Acknowledgments}
+We thank the European Science Foundation / ELIAS Network for funding the workshop \todo{add number}. We would also like to thank our speakers as well as Bloomberg, FlaxSearch, LucidWorks and the University of Strathclyde. Finally, we would like to thank all the participants for their contributions to the workshops and hackathon. Also, thanks to Manisha, Guido and Casper for their offline contributions.
+
+\bibliographystyle{abbrv}
+
+\bibliography{refWS}
+\end{sloppypar}
+\end{document}
+
+
+

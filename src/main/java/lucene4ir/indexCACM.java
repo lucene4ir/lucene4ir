@@ -16,8 +16,8 @@ public class indexCACM {
      */
     public static void main(String[] args) {
 
-        CACMDocumentIndexer indexer = new CACMDocumentIndexer(args[0]);
-        indexer.indexDocumentsFromFile(args[1]);
-        indexer.finished();
+//        CACMDocumentIndexer indexer = new CACMDocumentIndexer(args[0]);
+//        indexer.indexDocumentsFromFile(args[1]);
+//        indexer.finished();
     }
 }
