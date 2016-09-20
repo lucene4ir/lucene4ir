@@ -1,1 +1,37 @@
 \subsection{Teaching and Learning}
+
+
+
+\todo{Juanma}
+
+\todo{Krisztian}
+
+
+\todo{Martin}
+
+
+How do you go about teaching IR? What level?
+
+What kinds of things do you need/want from such resources?
+
+
+How do we see Lucene fitting in? Benefits to students?
+
+
+\begin{table}[]
+\centering
+\caption{Attempt at encoding the picture}
+\label{my-label}
+\begin{tabular}{|l|l|l|}
+\hline
+Apps                    & High Level                                                                                                            & Low Level                                                                                                                                                           \\ \hline
+IndexerApp              & \begin{tabular}[c]{@{}l@{}}Modify how the indexer is performed\\ i.e. different tokenizers, parsers, etc\end{tabular} & Can modify parsers, tokenizers, etc                                                                                                                                 \\ \hline
+IndexAnalyzerApp        & Inspect the influence of indexer                                                                                      &                                                                                                                                                                     \\ \hline
+RetrievalApp            & \begin{tabular}[c]{@{}l@{}}Try out different retrieval algorithms\\ Change retrieval parameters\end{tabular}          & Implement new retrieval algorithms                                                                                                                                  \\ \hline
+trec\_eval              & Measure the performance                                                                                               &                                                                                                                                                                     \\ \hline
+ResultAnalyzerApp       & Inspect and analyze the results returned                                                                              & \begin{tabular}[c]{@{}l@{}}Customise the analysis, put out other \\ statistics of interest\end{tabular}                                                             \\ \hline
+ExampleApp              &                                                                                                                       & \begin{tabular}[c]{@{}l@{}}Examples of how to work with the Lucene\\ index, to make modifications\end{tabular}                                                      \\ \hline
+Batch Retrieval Scripts & \begin{tabular}[c]{@{}l@{}}Configure to run a series of standard\\ batch experiments\end{tabular}                     & \begin{tabular}[c]{@{}l@{}}Customize to run specific retrieval\\ experiments\end{tabular}                                                                           \\ \hline
+RetrievalShellApp       & n/a                                                                                                                   & \begin{tabular}[c]{@{}l@{}}Customize to implement retrieval algorithms \\ outwith the Lucene scorer i.e. a simple scorer \\ assuming term independence\end{tabular} \\ \hline
+\end{tabular}
+\end{table}
