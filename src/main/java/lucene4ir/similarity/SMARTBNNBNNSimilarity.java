@@ -17,9 +17,22 @@ import org.apache.lucene.util.SmallFloat;
 import java.io.IOException;
 import java.util.Collections;
 
-public class TMPLSimilarity extends Similarity {
+/**
+   Author: rup, rup.palchowdhury@gmail.com
+   
+   This is the bnn.bnn TFxIDF variant from SMART. The nomenclature is
+   SMART's. See http://kak.tx0.org/IR/TFxIDF/ for the naming scheme
+   and an encyclopedia of TFxIDF variants.
+
+   This is a stripped-down version of one of Lucene's stock
+   'similarity' classes, devoid of any checks for validitiy and
+   safety, so use it carefully. The reduction is meant to make this
+   beast more readable.
+*/
+
+public class SMARTBNNBNNSimilarity extends Similarity {
     
-    public TMPLSimilarity() {}
+    public SMARTBNNBNNSimilarity() {}
 
     public float log(double x)
     {
