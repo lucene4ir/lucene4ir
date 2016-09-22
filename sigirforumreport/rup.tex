@@ -28,7 +28,7 @@ Some of the points of failures mentioned in the talk are misplaced
 test-collection pieces (document-query-qrel triplet), counterintuitive
 configuration interfaces of systems, poor documentation that makes
 systems look enigmatic and lead to the creation of heuristics passed
-around by word-of-mouth, naming confusion (a myriad TFxIDF model
+around by word-of-mouth, naming confusion (a myriad of TFxIDF model
 names), blatant bugs and not knowing how the parser works. As
 mitigation, Sauparna listed some of the things he did as an
 experimenter. He wrote a script (TRECBOX) to abstract the IR
@@ -74,119 +74,125 @@ components and Table \ref{tab:lucene} shows where the components were
 transplanted to.
 
 \begin{table}
-	\begin{center}
-  \begin{small}
-	 
-  \begin{tabular}{lcc}
-    \multicolumn{3}{c}{TFxIDF VARIANTS}\\
-    \hline\hline
-    \\
-    Name & $w_{ik}$ & $w_{jk}$\\
-    \hline
-    \\
-    BM25(A)
-    & $\frac{f_{ik}}{k_{1}((1-b)+b\frac{dl_{i}}{avdl})+f_{ik}} \times \log(\frac{N-n_{k}+0.5}{n_{k}+0.5})$
-    & $\frac{(k_{3}+1)f_{jk}}{k_{3}+f_{jk}}$ \\
-    \\
-    BM25(B)
-    & $\frac{(k_{1}+1)f_{ik}}{k_{1}((1-b)+b\frac{dl_{i}}{avdl})+2f_{ik}} \times \log(\frac{N-n_{k}+0.5}{n_{k}+0.5})$
-    & $\frac{(k_{3}+1)f_{jk}}{k_{3}+f_{jk}}$ \\
-    \\\hline
-    \\
-    Okapi BM25
-    & $\frac{(k_{1}+1)f_{ik}}{k_{1}((1-b)+b\frac{dl_{i}}{avdl})+f_{ik}} \times \log(\frac{N-n_{k}+0.5}{n_{k}+0.5})$
-    & $\frac{(k_{3}+1)f_{jk}}{k_{3}+f_{jk}}$ \\
-    \\
-    components & $T \times I$ & $Q$ \\
-    \\\hline
-    \\
-    SMART dtb.nnn
-    & $\frac{(1+\log(1+\log(f_{ik}))) \times \log(\frac{N+1}{n_{k}})}{1-s+s \cdot \frac{b_{i}}{avgb}}$
-    & $f_{jk}$ \\
-    \\
-    components & $T \times I \div L$ & $Q$ \\
-    \\\hline\hline
-  \label{tab:tfxidf}
-  \end{tabular}
-  \caption{\small The similarity score;
-    $score(D_{i},D_{j})=\sum_{k=1}^{t}(w_{ik} \cdot w_{jk})$ $\forall
-    i \neq j$, combines the weight of a term $k$ over the $t$ terms
-    which occur in document $D_{i}$ and $D_{j}$. Since a query can
-    also be thought of as a document in the same vector space, the
-    symbol $D_{j}$ has been used to denote a query without introducing
-    another symbol, say, $Q$. BM25(A) and BM25(B) are the two
-    incorrect implementations found in a popular retrieval
-    system. Comparing them to \emph{Okapi BM25} on the third row shows
-    that A has the $k_{1}+1$ factor missing in the numerator, and B
-    uses twice the term-frequency $2f_{ik}$ in the
-    denominator. Neither can they be traced to any source in IR
-    literature, nor does the system's documentation say anything about
-    them. The \emph{Okapi BM25} and the \emph{SMART dtb.nnn} variants
-    are known to be effective formulations developed by trial and
-    error over eight years of experimentation at TREC 1 through
-    8. Their forms have been abstracted using capital letters to show
-    how these components fit in Lucene's term-weight expression.}
-	\end{small}
-	\end{center}
+  \centering
+  \small
+  \begin{minipage}[t]{0.65\textwidth}
+    
+    \begin{tabular}{lcc}
+      \multicolumn{3}{c}{TFxIDF VARIANTS; WHAT'S CORRECT AND NOT}\\
+      \hline\hline
+      \\
+      Name & $w_{ik}$ & $w_{jk}$\\
+      \hline
+      \\
+      BM25(A)
+      & $\frac{f_{ik}}{k_{1}((1-b)+b\frac{dl_{i}}{avdl})+f_{ik}} \times \log(\frac{N-n_{k}+0.5}{n_{k}+0.5})$
+      & $\frac{(k_{3}+1)f_{jk}}{k_{3}+f_{jk}}$ \\
+      \\
+      BM25(B)
+      & $\frac{(k_{1}+1)f_{ik}}{k_{1}((1-b)+b\frac{dl_{i}}{avdl})+2f_{ik}} \times \log(\frac{N-n_{k}+0.5}{n_{k}+0.5})$
+      & $\frac{(k_{3}+1)f_{jk}}{k_{3}+f_{jk}}$ \\
+      \\\hline
+      \\
+      Okapi BM25
+      & $\frac{(k_{1}+1)f_{ik}}{k_{1}((1-b)+b\frac{dl_{i}}{avdl})+f_{ik}} \times \log(\frac{N-n_{k}+0.5}{n_{k}+0.5})$
+      & $\frac{(k_{3}+1)f_{jk}}{k_{3}+f_{jk}}$ \\
+      \\
+      components & $T \times I$ & $Q$ \\
+      \\\hline
+      \\
+      SMART dtb.nnn
+      & $\frac{(1+\log(1+\log(f_{ik}))) \times \log(\frac{N+1}{n_{k}})}{1-s+s \cdot \frac{b_{i}}{avgb}}$
+      & $f_{jk}$ \\
+      \\
+      components & $T \times I \div L$ & $Q$ \\
+      \\\hline\hline
+      \label{tab:tfxidf}
+    \end{tabular}
+
+    \caption{\small The similarity score;
+      $score(D_{i},D_{j})=\sum_{k=1}^{t}(w_{ik} \cdot w_{jk})$
+      $\forall i \neq j$, combines the weight of a term $k$ over the
+      $t$ terms which occur in document $D_{i}$ and $D_{j}$. Since a
+      query can also be thought of as a document in the same vector
+      space, the symbol $D_{j}$ has been used to denote a query
+      without introducing another symbol, say, $Q$. BM25(A) and
+      BM25(B) are the two incorrect implementations found in a popular
+      retrieval system. Comparing them to \emph{Okapi BM25} on the
+      third row shows that A has the $k_{1}+1$ factor missing in the
+      numerator, and B uses twice the term-frequency $2f_{ik}$ in the
+      denominator. Neither can they be traced to any source in IR
+      literature, nor does the system's documentation say anything
+      about them. The \emph{Okapi BM25} and the \emph{SMART dtb.nnn}
+      variants are known to be effective formulations developed by
+      trial and error over eight years of experimentation at TREC 1
+      through 8. Their forms have been abstracted using capital
+      letters to show how these components fit in Lucene's term-weight
+      expression.}
+
+  \end{minipage}
 \end{table}
 
 \begin{table}[bht!]
-	\small
   \centering
-  \begin{tabular}{lcccccccccccccc}
-    \multicolumn{15}{c}{IMPLEMENTING TFxIDF VARIANTS IN LUCENE}
-    \\
-    \hline\hline
+  \small
+  \begin{minipage}[t]{0.94\textwidth}
 
-    & Lucene  & $f_{c}(Q,D)$     & $\cdot$ & $f_{q}(Q)$
-    & $\cdot$ & $\displaystyle\sum_{T \in Q \cap D}($     & $tf(T_{k})$
-    & $\cdot$ & $df(T_{k})$      & $\cdot$ & $f_{b}(T_{k})$
-    & $\cdot$ & $f_{n}(T_{k}, D_{j})$      & $)$ \\
-    
-    & BM25    & $1$              &  $\cdot$ & $1$
-    & $\cdot$ & $\displaystyle\sum_{T \in Q \cap D}($      & $T$
-    & $\cdot$ & $I$              & $\cdot$  & $Q$
-    & $\cdot$ & $1$              & $)$ \\
+    \begin{tabular}{lccccccccccccc}
+      \multicolumn{14}{c}{IMPLEMENTING TFxIDF VARIANTS IN LUCENE}
+      \\
+      \hline\hline
 
-    & dtb.nnn & $1$              & $\cdot$ & $1$
-    & $\cdot$ & $\displaystyle\sum_{T \in Q \cap D}($     & $T$
-    & $\cdot$ & $I$              & $\cdot$ & $Q$
-    & $\cdot$ & $L$              & $)$ \\
+      Lucene    & $f_{c}(Q,D)$ & $\cdot$  & $f_{q}(Q)$
+      & $\cdot$ & $\displaystyle\sum_{T \in Q \cap D}($  & $tf(T_{k})$
+      & $\cdot$ & $df(T_{k})$  & $\cdot$  & $f_{b}(T_{k})$
+      & $\cdot$ & $f_{n}(T_{k}, D_{j})$   & $)$ \\
+      
+      BM25      & $1$          &  $\cdot$ & $1$
+      & $\cdot$ & $\displaystyle\sum_{T \in Q \cap D}($  & $T$
+      & $\cdot$ & $I$          & $\cdot$  & $Q$
+      & $\cdot$ & $1$          & $)$ \\
 
-    \hline\hline
-  \end{tabular}
+      dtb.nnn   & $1$          & $\cdot$  & $1$
+      & $\cdot$ & $\displaystyle\sum_{T \in Q \cap D}($  & $T$
+      & $\cdot$ & $I$          & $\cdot$  & $Q$
+      & $\cdot$ & $L$          & $)$ \\
 
-  \caption{Plugging components of the TFxIDF equation into Lucene's
-    scoring equation; the first row is the generalized form and the
-    following two rows show the components of two popular TFxIDF
-    equations transplanted to Lucene's equation. Table
-    \ref{tab:tfxidf} specifies what the capital letters represent.}
+      \hline\hline
+    \end{tabular}
 
-  \label{tab:lucene}
+    \caption{\small Plugging components of the TFxIDF equation into
+      Lucene's scoring equation; the first row is the generalized form
+      and the following two rows show the components of two popular
+      TFxIDF equations transplanted to Lucene's equation. Table
+      \ref{tab:tfxidf} specifies what the capital letters represent.}
 
+    \label{tab:lucene}
+
+  \end{minipage}
 \end{table}
 
 
-Making a reference to the SIGIR 2012 tutorial on Experimental
-Methods for Information Retrieval
-~\cite{Metzler:2012:EMI:2348283.2348534}, Sauparna states that we need to be providing a more rigorous on the IR experimental methodology we employ. In conclusion, a list of best practices was recommended that would add more structure to IR experiments and prevent the use of systems as black boxes. These were:
+Making a reference to the SIGIR 2012 tutorial on \emph{Experimental
+  Methods for Information
+  Retrieval}~\cite{Metzler:2012:EMI:2348283.2348534}, Sauparna states
+that we need to take a more rigorous approach to the IR experimental
+methodology. A list of best practices was recommended that would add
+more structure to IR experiments and prevent the use of systems as
+black boxes. These were:
 
-\begin{enumerate}
-
+\begin{itemize}
 \item Record test-collection statistics.
-
 \item Provide design documentation for systems.
-
 \item Use a consistent naming scheme and a well-defined notation.
-
 \item Build an evaluation table to be used as a sanity-check.
-
 \item Isolate sharable experimental artefacts.
-
 \item Ensure that implementations are traceable to a source in IR
   literature.
-\end{enumerate}
+\end{itemize}
 
-Sauparna concludes that if we, the IR research community, are to build and work with Lucene, then it would be helpful to consider these points when introducing new feature into Lucene.
+In conclusion, Sauparna suggests that if we, the IR research
+community, are to build and work with Lucene, then it would be helpful
+to consider these points when introducing new features into Lucene.
 
 
