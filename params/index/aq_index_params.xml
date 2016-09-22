@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <indexParams>
     <indexName>aqindex</indexName>
+<<<<<<< HEAD:params/index/aq_index_params.xml
     <fileList>data/aq_file_list</fileList>
+=======
+    <fileList>data/aquaint_file_list</fileList>
+>>>>>>> 0a4b5ae:params/aq_index_params.xml
     <indexType>trecaquaint</indexType>
     <tokenFilterFile>params/index/kstem_params.xml</tokenFilterFile>
 </indexParams>
