@@ -1,10 +1,10 @@
 %!TEX root = lucene4IR2016workshop_report.tex
 \subsection*{Black Boxes are Harmful}
-{\bf Sauparna ``Rup'' Palchowdhury (NIST) }:
+{\bf Sauparna Palchowdhury (NIST)}:
 
 Having seen students and practitioners in the IR community grapple
 with abstruse documentation accompanying search systems and their use
-as a black box, Rup, in his talk, argued why Lucene is a useful
+as a black box, Sauparna, in his talk, argued why Lucene is a useful
 alternative and how and why we must ensure it does not become another
 black box. In establishing his views, he described the pitfalls in an
 IR experiment and the ways of mitigation. The suggestions he puts
@@ -12,15 +12,17 @@ forth, as a set of best practices, highlights the importance of
 evaluation in IR to render an experiment reproducible and repeatable
 and the need for a well-documented system with correct implementations
 of search algorithms traceable to a source in IR literature. In the
-absence of such constraints on experimentation students are mislead
-and learn little from the results of their experiments and it becomes
-hard to reproduce the experiments. As an example, the talk cited a
-wrong implementation of the Okapi BM25 term-weighting equation in a popular research retrieval system (Table \ref{tab:tfxidf}). Following this was
-a brief how-to on implementing BM25 (or any TFxIDF weighting scheme)
-in Lucene (Table \ref{tab:lucene}). This also explained Lucene's way
-of computing the similarity between two text documents (usually
-referred to as `Lucene's scoring') that may be of use to the student
-and practitioner interested in using Lucene for IR experiments.
+absence of such constraints on experimentation students are misled and
+learn little from the results of their experiments and it becomes hard
+to reproduce the experiments. As an example, the talk cited a wrong
+implementation of the \emph{Okapi BM25} term-weighting equation in a
+popular research retrieval system (Table \ref{tab:tfxidf}). Following
+this was a brief how-to on implementing \emph{BM25} (or any TFxIDF
+weighting scheme) in Lucene (Table \ref{tab:lucene}). This also
+explained Lucene's way of computing the similarity between two text
+documents (usually referred to as `Lucene's scoring') that may be of
+use to the student and practitioner interested in using Lucene for IR
+experiments.
 
 Some of the points of failures mentioned in the talk are misplaced
 test-collection pieces (document-query-qrel triplet), counterintuitive
@@ -28,7 +30,7 @@ configuration interfaces of systems, poor documentation that makes
 systems look enigmatic and lead to the creation of heuristics passed
 around by word-of-mouth, naming confusion (a myriad TFxIDF model
 names), blatant bugs and not knowing how the parser works. As
-mitigation, Rup listed some of the things he did as an
+mitigation, Sauparna listed some of the things he did as an
 experimenter. He wrote a script (TRECBOX) to abstract the IR
 experiment pipeline and map them to configuration end-points of the
 three systems; Terrier, Lucene and Indri. This would enable
@@ -44,35 +46,34 @@ on a chart that would act as a sanity check for the system's
 integrity. As a part of these investigations he modified Lucene for
 use with TREC collections (the mod was named LTR) which is available
 for others to use. The ``mod'' is also accompanied by notes to augment
-Lucene's documentation. The gamut of Rup's work is to be found online
-~\cite{rup:IR}.
+Lucene's documentation. The gamut of Sauparna's work is to be found
+online ~\cite{rup:IR}.
 
 Lucene's documentation does not use well-defined notation to represent
 its way of computing the similarity score between a pair of
-documents;
-\\
-$score(Q,D) = coord(Q,D) \cdot qnorm(Q) \cdot \displaystyle\sum_{T \in Q} (tf(T \in D) \cdot idf(T)^2 \cdot boost() \cdot norm(T, D))$
-\\
-In the notation, actual function names that is to be found in Lucene's
-source code have been used.
+documents. The notation below is Lucene's scoring equation, lifeted
+from Lucene's documentation. It uses actual function names that are to
+be found in Lucene's source code;
 
-Rup's explanation begins with a well-defined, generalized, notation
-for Lucene's scoring in step with the definition from Lucene's
-documentation ~\cite{Lucene:6.2.1:Scoring};
-\\
-$score(Q,D) = f_{c}(Q,D) \cdot f_{q}(Q) \cdot \displaystyle\sum_{T \in Q \cap D}(tf(T_{k}) \cdot df(T_{k}) \cdot f_{b}(T_{k}) \cdot f_{n}(T_{k},D)))$
-\\
-He then picks two popular TFxIDF variants, breaks them down into
-meaningful components (a term-frequency transformation, a
-transformation on the document-frequency and a length normalization
-coefficient) and plugs these components into Lucene's equation. The
-components of Lucene's equation that are left unused are replaced by
-the integer $1$, meaning, the functions return $1$ which would not
-affect the chain of multiplications. Table \ref{tab:tfxidf} lists the
-variants and components and Table \ref{tab:lucene} shows where the
-components were transplanted to.
+$score(Q,D) = coord(Q,D) \cdot qnorm(Q) \cdot \displaystyle\sum_{T \in Q} (tf(T \in D) \cdot idf(T)^2 \cdot boost() \cdot norm(T, D))$\\
 
-\begin{table}
+Sauparna's explanation begins with a well-defined, generalized,
+notation for Lucene's scoring in step with the definition from
+Lucene's documentation ~\cite{Lucene:6.2.1:Scoring};
+
+$score(Q,D) = f_{c}(Q,D) \cdot f_{q}(Q) \cdot \displaystyle\sum_{T \in Q \cap D}(tf(T_{k}) \cdot df(T_{k}) \cdot f_{b}(T_{k}) \cdot f_{n}(T_{k},D)))$\\
+
+He picks two popular TFxIDF variants, breaks them down into meaningful
+components (a term-frequency transformation, a transformation on the
+document-frequency and a length normalization coefficient) and plugs
+these components into Lucene's equation. The components in Lucene's
+equation that are left unused are replaced by the integer $1$,
+meaning, the functions return $1$; which has no effect on the chain of
+multiplications. Table \ref{tab:tfxidf} lists the variants and
+components and Table \ref{tab:lucene} shows where the components were
+transplanted to.
+
+\begin{table}[bht!]
   \centering
   \begin{tabular}{lcc}
     \multicolumn{3}{c}{TFxIDF VARIANTS}\\
@@ -93,17 +94,18 @@ components were transplanted to.
     Okapi BM25
     & $\frac{(k_{1}+1)f_{ik}}{k_{1}((1-b)+b\frac{dl_{i}}{avdl})+f_{ik}} \times \log(\frac{N-n_{k}+0.5}{n_{k}+0.5})$
     & $\frac{(k_{3}+1)f_{jk}}{k_{3}+f_{jk}}$ \\
-    \\\\
+    \\
     components & $T \times I$ & $Q$ \\
     \\\hline
     \\
     SMART dtb.nnn
     & $\frac{(1+\log(1+\log(f_{ik}))) \times \log(\frac{N+1}{n_{k}})}{1-s+s \cdot \frac{b_{i}}{avgb}}$
     & $f_{jk}$ \\
-    \\\\
+    \\
     components & $T \times I \div L$ & $Q$ \\
     \\\hline\hline
   \end{tabular}
+
   \caption{The similarity score;
     $score(D_{i},D_{j})=\sum_{k=1}^{t}(w_{ik} \cdot w_{jk})$ $\forall
     i \neq j$, combines the weight of a term $k$ over the $t$ terms
@@ -111,43 +113,44 @@ components were transplanted to.
     also be thought of as a document in the same vector space, the
     symbol $D_{j}$ has been used to denote a query without introducing
     another symbol, say, $Q$. BM25(A) and BM25(B) are the two
-    incorrect implementations found in Terrier-4.0. Comparing them to
-    Okapi BM25 on the third row shows that A has the $k_{1}+1$ factor
-    missing in the numerator, and B uses twice the term-frequency
-    $2f_{ik}$ in the denominator. Neither can they be traced to any
-    source in IR literature, nor does Terrier's documentation say
-    anything about them. The Okapi BM25 and the SMART dtb.nnn variants
-    are known to be effective formulation developed by trial and error
-    over eight years of experimentation in TREC 1 to 8. Their forms
-    have been abstracted using capital letters to show how these
-    components map to Lucene's term-weight computation.}
+    incorrect implementations found in a popular retrieval
+    system. Comparing them to \emph{Okapi BM25} on the third row shows
+    that A has the $k_{1}+1$ factor missing in the numerator, and B
+    uses twice the term-frequency $2f_{ik}$ in the
+    denominator. Neither can they be traced to any source in IR
+    literature, nor does the system's documentation say anything about
+    them. The \emph{Okapi BM25} and the \emph{SMART dtb.nnn} variants
+    are known to be effective formulations developed by trial and
+    error over eight years of experimentation at TREC 1 through
+    8. Their forms have been abstracted using capital letters to show
+    how these components fit in Lucene's term-weight expression.}
+  
   \label{tab:tfxidf}
+
 \end{table}
 
-\begin{table}
+\begin{table}[bht!]
   \centering
   \begin{tabular}{lcccccccccccccc}
     \multicolumn{15}{c}{IMPLEMENTING TFxIDF VARIANTS IN LUCENE}
     \\
     \hline\hline
-    \\
+
     & Lucene  & $f_{c}(Q,D)$     & $\cdot$ & $f_{q}(Q)$
     & $\cdot$ & $\displaystyle\sum_{T \in Q \cap D}($     & $tf(T_{k})$
     & $\cdot$ & $df(T_{k})$      & $\cdot$ & $f_{b}(T_{k})$
     & $\cdot$ & $f_{n}(T_{k}, D_{j})$      & $)$ \\
-    \\
-    \\
+    
     & BM25    & $1$              &  $\cdot$ & $1$
     & $\cdot$ & $\displaystyle\sum_{T \in Q \cap D}($      & $T$
     & $\cdot$ & $I$              & $\cdot$  & $Q$
     & $\cdot$ & $1$              & $)$ \\
-    \\
-    \\
+
     & dtb.nnn & $1$              & $\cdot$ & $1$
     & $\cdot$ & $\displaystyle\sum_{T \in Q \cap D}($     & $T$
     & $\cdot$ & $I$              & $\cdot$ & $Q$
     & $\cdot$ & $L$              & $)$ \\
-    \\
+
     \hline\hline
   \end{tabular}
 
@@ -160,3 +163,31 @@ components were transplanted to.
   \label{tab:lucene}
 
 \end{table}
+
+In conclusion, a list of best practices was recommended that would add
+more structure to IR experiments and prevent the use of systems as
+black boxes;
+
+\begin{enumerate}
+
+\item Record test-collection statistics.
+
+\item Provide design documentation for systems.
+
+\item Use a consistent naming scheme and using well-defined notation.
+
+\item Build a evaluation table to be used as a sanity-check.
+
+\item Isolate sharable experimental artifacts.
+
+\item Ensure that implementations are traceable to a source in IR
+  literature.
+
+\end{enumerate}
+
+It would help to have some of these introduced as features and aspects
+in Lucene when it is modified for use by the IR research community. A
+reference was also made to the SIGIR 2012 tutorial on Experimental
+Methods for Information Retrieval
+~\cite{Metzler:2012:EMI:2348283.2348534} as more rigorous exposition
+on IR experimental methodology.
