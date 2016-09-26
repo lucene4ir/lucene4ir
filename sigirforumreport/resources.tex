@@ -6,18 +6,15 @@ As part of the workshop numerous attendees contributed to the Lucene4IR GitHub R
 	\item RetrievalApp - a batch retrieval application when numerous retrieval algorithms can be configured, e.g. BM25, PL2, etc
 	\item ExampleStatsApp - an application that shows how you can access various statistics about terms, documents and the collection. e.g. how to access the term posting list, how to access term positions in a document, etc.
 	\end{itemize}
-	
+
 In the repository, a sample test collection (documents, queries and relevance judgements) was provided (CACM), so that participants could try out the different applications.
 
 During the workshop, a number of different teams undertook various projects:
 \begin{itemize}
 	\item Customisation of the tokenisation, stemming and stopping during the indexing process: this enabled the IndexerApp to be configured so that the collections can be indexed in different ways - the idea being that students would be able to vary the indexing and then see the effect on performance.
-	\item Implementation of other retrieval models: inheriting from Lucene's BM25Similiarity Class,  BM25 for Long documents was implemented BM25L\cite{}, OKAPI BM25's was also implemented to facilitate the comparison between how it is currently implemented in Lucene versus an implementation of the original BM25 weighting function~\cite{}.
-	\item Rather than scoring through Lucene's mechanics, others attempted to implement BM25 by directly accessing the inverted index - again to provide a comparison in terms of both efficiency and effectiveness for scoring queries.
+	\item Implementation of other retrieval models: inheriting from Lucene's BM25Similiarity Class, BM25 for Long documents was implemented BM25L\cite{Lv:2011:DVL:2009916.2010070}, OKAPI BM25's was also implemented to facilitate the comparison between how it is currently implemented in Lucene versus an implementation of the original BM25 weighting function~\cite{}.
+	\item Rather than scoring through Lucene's mechanics (Query $\rightarrow$ Weight $\rightarrow$ Scorer), others attempted to implement BM25 by directly accessing the inverted index through the Lucene's index API --- see RetrieverBM25 class. The objective was twofold. First, to provide a ``template'' to implement a retrieval model where document matching is performed through a Document At A Time (DAAT) strategy and access to term vocabulary (via Terms and TermsEnum) and to posting lists (via PostingsEnum) is made more explicit; in some scenarios (e.g. for teaching activities) it could be useful to provide sample code that relies only on general concepts (term vocabulary, posting lists, etc.) and it is not tailored to peculiarities of the library --- e.g. the Lucene scoring model. The second objective was to provide an ``easier'' way to control the variables in the experimental settings or to investigate if choices made for efficiency purposes (e.g. document length approximation) significantly affect effectiveness.
 	\item A QueryExpansionRetrievalApp
 	\item Hacking the innerloop
-	\item Additional Examples on how to access and work with Lucene's index and 
+	\item Additional Examples on how to access and work with Lucene's index and
 \end{itemize}
-
-
-The break-out group focused on inner loop scoring wanted to try something that was simultaneously simple, practical, and yet required some inner loop scoring magic.  Based on the interests of the group members, we decided on "cross-field phrase queries": an extension of the idea of a sloppy phrase query where the "slop" allowed for a pair of terms occurring in *different* fields to be part of a phrase (but with a parametrizably lower score than terms in the same field).  We worked out the design (delegating most of the work to Query / Weight / Scorer classes already in Lucene, but then combining them together across fields), and stepped through much of the iteration implementation.  While we got most of the "plumbing" done, we only had enough time for our "score()" method to be implemented as naively as imaginable, and did not get it fully working in the time of the workshop.  Some participants expressed interest in working on it further, to see how efficient it was, and what effect on scoring it would have (if a QueryParser was configured to explicitly spit out queries of this form sometimes).
