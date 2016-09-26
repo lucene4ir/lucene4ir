@@ -18,3 +18,6 @@ During the workshop, a number of different teams undertook various projects:
 	\item Hacking the innerloop
 	\item Additional Examples on how to access and work with Lucene's index and 
 \end{itemize}
+
+
+The break-out group focused on inner loop scoring wanted to try something that was simultaneously simple, practical, and yet required some inner loop scoring magic.  Based on the interests of the group members, we decided on "cross-field phrase queries": an extension of the idea of a sloppy phrase query where the "slop" allowed for a pair of terms occurring in *different* fields to be part of a phrase (but with a parametrizably lower score than terms in the same field).  We worked out the design (delegating most of the work to Query / Weight / Scorer classes already in Lucene, but then combining them together across fields), and stepped through much of the iteration implementation.  While we got most of the "plumbing" done, we only had enough time for our "score()" method to be implemented as naively as imaginable, and did not get it fully working in the time of the workshop.  Some participants expressed interest in working on it further, to see how efficient it was, and what effect on scoring it would have (if a QueryParser was configured to explicitly spit out queries of this form sometimes).
