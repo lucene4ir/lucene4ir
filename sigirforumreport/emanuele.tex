@@ -1,0 +1,27 @@
+%!TEX root = lucene4IR2016workshop_report.tex
+{\bf Emanuele Di Buccio, University of Padova}:  Emanuele described one of the courses taught as part of the Master Degree in Statistical Science at the University of Padua, called {\em Information Systems (Advanced)}\footnote{\scriptsize{The description refers to the course editions in the Academic Years 2011/12-2014/15. The professor in charge was Massimo Melucci.}}.
+The course covered both basic IR topics: indexing and retrieval methods, retrieval models, and evaluation, along with more advanced topics such as Web Search or Machine Learning for IR. A detailed description of the course contents can be found in~\cite{Melucci2013}, which is an IR book developed from the experiences teaching the course.
+The course was designed so that, for most of the topics, lessons at a theoretical level on a specific topic were followed by a laboratory assignment on that topic. The topics covered in laboratory assignments were: 
+\begin{itemize}
+	\item creation of a test collection, 
+	\item  indexing, 
+	\item retrieval, 
+	\item relevance feedback, 
+	\item  link analysis, 
+	\item Learning to Rank, and
+	\item Optimization of Ranking functions with parameters. 
+\end{itemize}
+
+Emanuele explained that students were asked to propose their own methodology to carry out the laboratory activities. For instance, when considering the topic of ``relevance feedback'', each student could propose their own methodology to perform feedback, e.g. through a query expansion method or term re-weighting. Each assignment, then, involved the experimental evaluation on a shared test collection. Indeed, the objective of the assignments was three-fold:
+\begin{enumerate}
+	\item to better understand the topic; 
+	\item to become familiar in the design and the implementation of experimental methodologies to evaluate methods and/or components and, 
+	\item more  generally, to test research hypotheses.
+\end{enumerate}
+
+Students were allowed to use a manual approach (when possible), a software library or build their own software modules to achieve the assignment objective; a list of software libraries were provided before the first laboratory assignment to make the students aware of possible options.
+However, the adoption of a manual approach for some of the laboratory activities was mandatory. For instance, in the case of the assignment on indexing, the use of a manual approach aimed at a better understanding of the conceptual mechanisms to identify the most effective descriptors to retrieve relevant documents. When the students proposed their own methodology for indexing, they were asked to present their approach as a set of steps that can be automated.
+
+The availability of software libraries or resources to easily use the basic operations is crucial to allow the students to test their methodology with little/less effort. In an edition of the course, a lesson was dedicated to a general introduction to Apache Lucene, where sample code was  provided. Along with Apache Lucene, and introduction to ElasticSearch~\cite{elasticsearch} was also presented, particularly how to index documents, perform retrieval, and how to customize the scoring mechanism via scripting\footnote{\scriptsize{ElasticSearch allows to evaluate a custom score via scripts --- see the {\em Scripting} module. Apache Solr provides similar functionalities via {\em Function Queries}.}} The main reason for the introduction to ElasticSearch was that the students could index, retrieve, and customize the retrieval algorithm -- and therefore test some of their methodologies -- without writing actual code but only through the use of REST requests.
+
+Another aspect Emanuele commented on was the heterogeneous background of the students, and how they came from various disciplines. This was one of the reasons, why they did not restrict the laboratory activities to a single software library and  allowed students to select the tool they felt most comfortable with. While students in Computer Science and Computer Engineering were familiar with Java, students in Statistical Science tended to prefer the R language because it was used in many courses within their course degree. Therefore, one of the resources that could be useful for teaching is a R wrapper for Apache Lucene --- wrappers in other programming languages exist, e.g. PyLucene~\cite{PyLucene} for Python. Software libraries such as ElasticSearch, could be useful tools to support teaching: for instance, they provide functionalities -- in the event of ElasticSearch a REST request -- to display how a specific fragment of text is processed given a pipeline, e.g. a specific tokenizer and a set of filters (lowercase, porter stemming, $\dots$).
