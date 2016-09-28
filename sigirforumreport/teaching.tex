@@ -3,16 +3,18 @@
 \label{sec:teaching}
 
 
-\noindent \todo{Juanma}
+\todo{Juanma}
 
-\noindent \todo{Krisztian}
+\todo{Krisztian}
 
-\noindent \todo{Martin}
+
+\todo{Martin}
 
 
 How do you go about teaching IR? What level?
 
 What kinds of things do you need/want from such resources?
+
 
 How do we see Lucene fitting in? Benefits to students?
 
@@ -36,14 +38,13 @@ While students in Computer Science and Computer Engineering were familiar with J
 Software libraries such as elasticsearch, could be useful tools to support teaching: for instance, they provide functionalities -- in the event of elasticsearch a REST request -- to display how a specific fragment of text is processed given a pipeline, e.g. a specific tokenizer and a set of filters (lowercase, porter stemming, $\dots$).
 
 
-\begin{table}[]
+\begin{table}
+  \centering
   \small
-\centering
-\caption{Attempt at encoding the picture}
-\label{my-label}
-\begin{tabular}{|l|l|l|}
+    \begin{tabular}{lll}
 \hline
-Apps                    & High Level                                                                                                            & Low Level                                                                                                                                                           \\ \hline
+Apps                    & High Level  & Low Level \\
+\hline\hline
 IndexerApp              & \begin{tabular}[c]{@{}l@{}}Modify how the indexer is performed\\ i.e. different tokenizers, parsers, etc\end{tabular} & Can modify parsers, tokenizers, etc                                                                                                                                 \\ \hline
 IndexAnalyzerApp        & Inspect the influence of indexer                                                                                      &                                                                                                                                                                     \\ \hline
 RetrievalApp            & \begin{tabular}[c]{@{}l@{}}Try out different retrieval algorithms\\ Change retrieval parameters\end{tabular}          & Implement new retrieval algorithms                                                                                                                                  \\ \hline
