@@ -1,11 +1,68 @@
 %!TEX root = lucene4IR2016workshop_report.tex
-\subsection*{Using Lucene for Teaching and Learning IR: The 
-University of Granada case of study ?} 
-{\bf  Prof. Juan Manual Fernandez Luna (University of Granda) }:
-In this talk, we shall describe how the University of Granada is 
-supporting teaching and learning Information Retrieval (TLIR) discipline 
-across different courses in the Computer Science studies (degree and 
-masters), and how this is done by means of the Lucene API. Later we 
-shall present our thoughts about how Lucene could be used inTLIR context 
-and present some proposals for improving the Lucene experience, both for 
-students and lecturers.
+
+\subsection*{Using Lucene for Teaching and Learning IR: The University of Granada case of study} 
+
+{\bf  Prof. Juan M. Fernández-Luna (University of Granada) }: In his talk, Juanma explained the Bologna Process, the establishment of the European Higher Education Area, and how the University of Granada (UGR) has adopted its study programmes, changing the existing undergraduate and master degrees and introducing a few new ones. Currently, Computer Science studies at UGR are composed of an undergraduate degree of four years and a master degree of one, with three different options in this last case: one professional master in Computer Science and two research masters (Data Science and Computer Engineering, and Software Development). With a lot more attention focused on Information Retrieval, a number of courses have been introduced within their undergraduate and masters courses: 
+
+\begin{itemize}
+\item {\it Information Retrieval} at the undergraduate Computer Science degree (6 ECTS, 4th year).  The objective of this subject is that the students learn the foundation of IR (document preprocessing, indexing, retrieval models, evaluation and text classification and clustering).
+
+\item {\it Information Management in the Web} at Master in Computer Science (4 ECTS). This subject is composed of three parts: social network analysis, IR and recommender systems. The basic aim is to show the students different ways of managing and accessing the information in the Web. The part related to IR is focused just in briefly explaining the IR foundations. 
+
+\item {\it Information Retrieval and Recommender Systems} at Master in Data Science and Computer Engineering (3 ECTS). In the context of this master, IR foundations are shown to the students, but with a perspective closer to Data Science (preprocessing of large document collections, clustering and classification, etc.).
+
+\item {\it Undergraduate and Master Thesis}  (12 ECTS). Each degree contains a final thesis where the students have to show the skills they have acquired during their studies by means of the development of a project. These are proposed by the lecturers and some of them are related to Information Retrieval.
+\end{itemize}
+
+Juanma explained that before introducing programming details, the lecturers at UGR thought that it would be better if  students could understand the core IR process itself. To facilitate the teaching and learning process, {\it SulaIR}~\cite{Fernandez2010} was designed. This is a desktop tool that covers the different IR stages: web crawling, document pre-processing,  indexing, retrieval and relevance feedback. The tool lets students interact with all these processes and secure the concepts from a practical point of view. 
+
+In any of these IR-related subjects, the same question came about when the lecturers were planning 
+lab work and exercises, is it better to: (1) create IR projects from the scratch, programming even the more basic classes and focusing on the implementation details, or (2) use an existing IR library (Lucene, Terrier, Lemur, MG, etc.) and focusing on the process?
+
+At the very beginning, they opted for the first alternative as they thought that this could help to understand the details of the search engines, but this created to two learning challenges. The students had to understand the IR process, in a first abstraction step,  and then, to transfer it to code, in a second step. Often the second step interfered with their understanding of the first step as they faced many programming challenges. So the learning process was not very effective.
+
+Therefore, Juanma and the lecturers made the decision of using an Open Source library, where the problem is reduced to learning about an API and identifying the classes and methods that need to be used. In this case, students need not care about the implementation details, per say, instead they could focus on the process (or at least this was their theory). In addition, they realised that the typical professional developer with real needs regarding IR will use an API/Toolkit and there will not be programming IR-related modules from scratch. From all of available APIs, Lucene was, without any doubt, the first choice. This was because it is the most popular IR toolkit openly available and most widely used in industry.
+
+Juanma points out that Teaching and Learning IR with Lucene in these subjects is not without its own problems and challenges. After using it with their courses, the lecturers came to a number of realisations:
+
+\begin{itemize}
+
+\item From {\it Information Retrieval}:
+	\begin{itemize}
+		\item Lucene is a ``monster'', with lots of classes and methods. This is because it is a large-scale production system, and so students often are frighten by it, unsure of how to work with it.
+	\item Considering Java as the programming language to work with Lucene, our students usually have to learn this language first, as they are used to work with C++ in the degree. This language could be a possibility but the Lucene C++ API is poorly documented in comparison to its Java version, so it was discarded.
+	\item There is a large amount of documentation about how basic tasks are carried out with Lucene, but sometimes the students select sources from different versions of Lucene. And this causes many headaches when understanding and debugging the problems faced when programming with Lucene. 
+	%In addition, the good bibliographic references are not adapted to the Lucene last versions. 
+	\item The students' learning curve is very steep when working with the basic process. However, when they progress to more advanced topics such as fielded and complex queries, they find that they can advance at a good pace.
+	\end{itemize}
+
+\item From {\it Information Management in the Web}:
+
+	\begin{itemize}
+		\item Due to the length of the course, the ABCs of IR with Lucene are shown to the students. They consider this a good approach because in case of needing to build a search engine in their professional career, they have the basic knowledge to use a toolkit to configure a search engine.
+	\end{itemize}
+
+\item From {\it Information Retrieval and Recommender Systems}:
+
+	\begin{itemize}
+		\item In the context of a Data Science Master, students are not so interested in the retrieval process itself, but in the pre-processing and indexing stages as bases of further tasks related to machine learning. Other toolkits, as Tika, are shown.
+		\item Students have different programming backgrounds (Computer Science, Statistics, Mathematics, Information Science, Electronics, etc.), so it is a real problem to use Lucene for developing lab projects. Considering that R is the programming language on which most of the subjects from the Data Science master are based, an initiative such as RLucene\footnote{https://github.com/s-u/RLucene} could be very interesting for the students.
+	\end{itemize}
+
+\item From {\it Undergraduate and Master Thesis}:
+
+	\begin{itemize}
+		\item It is difficult to find Lucene advanced documentation for more specific topics, so they usually spend too much time trying to work out how such functionality works (usually through trial and error). In addition,  it is very difficult for them to develop new retrieval models or ranking functions.
+		\item As Lucene has not got native support for documents, they have to make great efforts to build the piece of software required to extract the text of the real documents that they find in their projects.
+		\item There is no support for IR evaluation in Lucene, so students have to write their own tools to evaluate the performance.
+	\end{itemize}
+
+\end{itemize}
+
+As a conclusion, Juanma and the other lecturers at UGR recognised that Lucene is a great tool for teaching and learning IR, but clearly the experience would be much more productive if:
+
+\begin{itemize}
+\item Lucene documentation or tutorials from the point of view of teaching and learning were available as well as material describing advanced tasks.
+\item Visual and/or Command-Line Tools for teaching and learning the IR process based on Lucene, a kind of SulaIR-L, would really be very useful.
+\item Visual and/or Command-Line Tools for IR evaluation (TREC-based) were available, or at least, classes for these purposes were included in the API.
+\end{itemize}
