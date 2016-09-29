@@ -11,10 +11,10 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- *  A subclass of {@link Retriever} that provides batch retrieval by Okapi BM25 retrieval model
- *  Apache Lucene index API.
+ *  A subclass of {@link Retriever} that provides batch retrieval
+ *  by Okapi BM25 retrieval model Apache Lucene index API.
  *
- * Created by dibuccio on 09/09/2016.
+ *  Created by dibuccio on 09/09/2016.
  */
 public class RetrieverOkapiBM25 extends Retriever {
 
@@ -41,16 +41,15 @@ public class RetrieverOkapiBM25 extends Retriever {
             List<String> queryTokens = getTokens(fieldToQuery, queryTerms, true);
 
             // TODO: handle query term frequency
-            // Currently only the distinct query tokens are extracted
-            // if you are going to use k3, the code should be modified in order
-            // to extract the query term frequency
-            // (use false as last parameter value to obtain the sequence of terms with repetitions)
+            // Currently only the distinct query tokens are extracted; in order to use k3,
+            // the query term frequencies should be extracted (use false as last parameter value
+            // to obtain the sequence of terms with repetitions)
             int[] qtf = new int[queryTokens.size()];
             for (int qt = 0; qt < queryTokens.size(); qt++) {
                 qtf[qt] = 1;
             }
 
-            // TODO: why not use the number of documents in the index instead of the number of documents with the field?
+            // TODO: use the number of documents in the index instead of the number of documents with the field?
             final double avgDocLength = 1.0d * reader.getSumTotalTermFreq(fieldToQuery) / reader.getDocCount(fieldToQuery);
 
             final double[] IDFs = new double[queryTokens.size()];
@@ -70,7 +69,8 @@ public class RetrieverOkapiBM25 extends Retriever {
 
             }
 
-            // priority queue where the top p.maxResult will be stored
+            // priority queue where the top p.maxResult will be stored;
+            // the queue is pre-populated with sentiment elements (score -inf).
             HitQueue pq = new HitQueue(p.maxResults, true);
 
             // number of hits currently in the queue
@@ -101,7 +101,7 @@ public class RetrieverOkapiBM25 extends Retriever {
 
                 }
 
-                // norm to get document lengths for the field to query
+                // retrieve norms that stores document lengths of the field to query
                 NumericDocValues norms = leafReaderContext.reader().getNormValues(fieldToQuery);
 
                 // iterate over the documents in the index segment
@@ -126,8 +126,8 @@ public class RetrieverOkapiBM25 extends Retriever {
                         }
 
                         if (pl.docID() < doc) {
-                            // advance the iterator in the current posting list until
-                            // the pointed document id is equal or higher than the current document id (doc)
+                            // advance the iterator in the current posting list until the pointed
+                            // document id (pl.docID()) is equal or greater than the current document id (doc)
                             while (pl.nextDoc() < doc && pl.docID() < leafReaderContext.reader().maxDoc()) {
                                 ;
                             }
@@ -143,7 +143,6 @@ public class RetrieverOkapiBM25 extends Retriever {
                                 score += 1.0f  * (k1 + 1)
                                         * (pl.freq() / (pl.freq() + K))
                                         * IDFs[qt];
-
                             } else {
                                 score += 1.0f * (k1 + 1)
                                         * (pl.freq() / (pl.freq() + K))
@@ -155,7 +154,7 @@ public class RetrieverOkapiBM25 extends Retriever {
 
                     }
 
-                    // if the score of this document is greater than zero
+                    // if the score of this document is greater than zero adds it to the queue
                     if (score > 0) {
                         ScoreDoc sd = new ScoreDoc(doc + leafReaderContext.docBase, score);
                         pq.insertWithOverflow(sd);
@@ -168,7 +167,7 @@ public class RetrieverOkapiBM25 extends Retriever {
 
             }
 
-            // pop all the elements from the priority queue an populate the result list (ScoreDoc[])
+            // pop all the elements from the priority queue and populate the result list (ScoreDoc[])
             ScoreDoc[] results = new ScoreDoc[totalHits];
 
             if (totalHits > 0 && pq.size() > 0) {

@@ -29,7 +29,7 @@ import lucene4ir.LuceneConstants;
  * index API.
  *
  * In order to implement a new retrieval model and/or a new document matching procedure
- * the abstract method {@link #runQuery(String, String) runQuery} should be implmented.
+ * the abstract method {@link #runQuery(String, String) runQuery} should be implemented.
  * See {@link RetrieverOkapiBM25} for an implementation of Okapi BM25.
  *
  * Created by dibuccio on 09/09/2016.
@@ -128,8 +128,6 @@ public abstract class Retriever {
 
                     int n = Math.min(p.maxResults, scored.length);
 
-//                    System.out.println("Number of results: "+n);
-
                     for(int i=0; i<n; i++){
                         Document doc = searcher.doc(scored[i].doc);
                         String docno = doc.get("docnum");
@@ -152,7 +150,7 @@ public abstract class Retriever {
     }
 
     /**
-     * Perform document matching for the query (queryTerms) with the given identifier (qno).
+     * Performs document matching for the query (queryTerms) with the given identifier (qno).
      *
      * @param qno identifier / number of the query.
      *
