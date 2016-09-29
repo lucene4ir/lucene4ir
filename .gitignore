@@ -20,3 +20,18 @@ index/*
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+data/robust2004_file_list
+/sigirforumreport/lucene4IR2016workshop_report.aux
+/sigirforumreport/lucene4IR2016workshop_report.log
+/sigirforumreport/lucene4IR2016workshop_report.fdb_latexmk
+/sigirforumreport/lucene4IR2016workshop_report.bbl
+/sigirforumreport/lucene4IR2016workshop_report.blg
+/sigirforumreport/lucene4IR2016workshop_report.fls
+/lucene4ir.iml
+/.gitignore
+/data/robust2004/
+/params/index_params.xml
+/lucene4ir.ipr
+/lucene4ir.iws
+/index/

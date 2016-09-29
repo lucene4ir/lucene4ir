@@ -13,6 +13,8 @@ import java.io.FileReader;
 import java.util.ListIterator;
 
 /**
+ * Indexer for TIPSTER test collections relying on JSOUP.
+ *
  * Created by dibuccio on 26/09/2016.
  */
 public class TRECTipsterDocumentIndexer extends DocumentIndexer {
@@ -71,8 +73,6 @@ public class TRECTipsterDocumentIndexer extends DocumentIndexer {
                         }
                         Field textField = new TextField("content", content.toString().trim(), Field.Store.YES);
                         doc.add(textField);
-
-//                        System.out.println(doc);
 
                         addDocumentToIndex(doc);
 
