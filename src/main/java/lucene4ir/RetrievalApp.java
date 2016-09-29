@@ -204,7 +204,7 @@ public class RetrievalApp {
 
         System.out.println("Query No.: " + qno + " " + queryTerms);
         try {
-            Query query = parser.parse(queryTerms);
+            Query query = parser.parse(QueryParser.escape(queryTerms));
 
             try {
                 TopDocs results = searcher.search(query, 1000);
@@ -217,7 +217,7 @@ public class RetrievalApp {
 
 
         } catch (ParseException pe){
-            System.out.println("Cant parse query");
+            System.out.println("Can't parse query");
         }
         return hits;
     }

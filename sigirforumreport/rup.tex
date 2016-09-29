@@ -1,9 +1,7 @@
 %!TEX root = lucene4IR2016workshop_report.tex
 \subsection*{Black Boxes are Harmful}
-{\bf Sauparna Palchowdhury (NIST)}:
 
-Having seen students and practitioners in the IR community grapple
-with abstruse documentation accompanying search systems and their use
+{\bf Sauparna Palchowdhury (NIST)}:Having seen students and practitioners in the IR community grapple with abstruse documentation accompanying search systems and their use
 as a black box, Sauparna, in his talk, argued why Lucene is a useful
 alternative and how and why we must ensure it does not become another
 black box. In establishing his views, he described the pitfalls in an
@@ -79,7 +77,7 @@ transplanted to.
   \begin{minipage}[t]{0.65\textwidth}
     
     \begin{tabular}{lcc}
-      \multicolumn{3}{c}{TFxIDF VARIANTS; WHAT'S CORRECT AND NOT}\\
+      \multicolumn{3}{c}{TFxIDF Variants: what's correct and what's not.}\\
       \hline\hline
       \\
       Name & $w_{ik}$ & $w_{jk}$\\
@@ -109,8 +107,7 @@ transplanted to.
       \\\hline\hline
       \label{tab:tfxidf}
     \end{tabular}
-
-    \caption{\small The similarity score;
+    \caption{ The similarity score;
       $score(D_{i},D_{j})=\sum_{k=1}^{t}(w_{ik} \cdot w_{jk})$
       $\forall i \neq j$, combines the weight of a term $k$ over the
       $t$ terms which occur in document $D_{i}$ and $D_{j}$. Since a
