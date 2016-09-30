@@ -65,7 +65,7 @@ public class RetrieverOkapiBM25 extends Retriever {
 
                 int docFreq = reader.docFreq(qTerm);
 
-                IDFs[qt] = Math.log(1 + (docCount - docFreq + 0.5D)/(docFreq + 0.5D));
+                IDFs[qt] = Math.log(docCount - docFreq + 0.5D) - Math.log(docFreq + 0.5D);
 
             }
 
