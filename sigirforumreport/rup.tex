@@ -62,7 +62,7 @@ Sauparna's explanation begins with a well-defined, generalized,
 notation for Lucene's scoring in step with the definition from
 Lucene's documentation~\cite{Lucene:6.2.1:Scoring};
 
-$score(Q,D) = f_{c}(Q,D) \cdot f_{q}(Q) \cdot \displaystyle\sum_{T \in Q \cap D}(tf(T_{k}) \cdot df(T_{k}) \cdot f_{b}(T_{k}) \cdot f_{n}(T_{k},D)))$\\
+$score(Q,D) = f_{c}(Q,D) \cdot f_{q}(Q) \cdot \displaystyle\sum_{T \in Q \cap D}(tf(T) \cdot df(T) \cdot f_{b}(T) \cdot f_{n}(T,D)))$\\
 
 He picks two popular TF$\times$IDF variants, breaks them down into
 meaningful components (a term-frequency transformation, a
