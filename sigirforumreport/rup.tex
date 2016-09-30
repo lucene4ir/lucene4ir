@@ -17,25 +17,27 @@ of their experiments and it becomes hard to reproduce the
 experiments. As an example, the talk cited a wrong implementation of
 the \emph{Okapi BM25} term-weighting equation in a popular research
 retrieval system (Table \ref{tab:tfxidf}). Following this was a brief
-how-to on implementing \emph{BM25} (or any TFxIDF weighting scheme) in
-Lucene (Table \ref{tab:lucene}). This also explained Lucene's way of
-computing the similarity between two text documents (usually referred
-to as `Lucene's scoring') that may be of use to the student and
-practitioner interested in using Lucene for IR experiments.
+how-to on implementing \emph{BM25} (or any TF$\times$IDF weighting
+scheme) in Lucene (Table \ref{tab:lucene}). This also explained
+Lucene's way of computing the similarity between two text documents
+(usually referred to as `Lucene's scoring
+formula'\footnote{\url{https://lucene.apache.org/core/6_2_1/core/org/apache/lucene/search/similarities/TFIDFSimilarity.html}})
+that may be of use to the student and practitioner interested in using
+Lucene for IR experiments.
 
 Some of the points of failures mentioned in the talk are misplaced
 test-collection pieces (document-query-qrel triplet), counterintuitive
 configuration interfaces of systems, poor documentation that makes
 systems look enigmatic and lead to the creation of heuristics passed
-around by word-of-mouth, naming confusion (a myriad of TFxIDF model
+around by word-of-mouth, naming confusion (a myriad of TF$\times$IDF model
 names), blatant bugs and not knowing how the parser works. As
 mitigation, Sauparna listed some of the things he did as an
 experimenter. He wrote a script (TRECBOX) to abstract the IR
 experiment pipeline and map them to configuration end-points of the
 three systems; Terrier, Lucene and Indri. This would enable
 documenting an experiment's design in plain text files, that could be
-shared and the experiment repeated. He constructed a survey of TFxIDF
-variants titled \emph{TFxIDF Repository} ~\cite{rup:TFXIDFRepository}
+shared and the experiment repeated. He constructed a survey of TF$\times$IDF
+variants titled \emph{TF$\times$IDF Repository} ~\cite{rup:TFXIDFRepository}
 meant to be a single point of reference to help disambiguate the
 variants in the wild. All mentions of term-weighting equations in this
 repository are traceable to a source in IR literature. He also shows
@@ -62,7 +64,7 @@ Lucene's documentation ~\cite{Lucene:6.2.1:Scoring};
 
 $score(Q,D) = f_{c}(Q,D) \cdot f_{q}(Q) \cdot \displaystyle\sum_{T \in Q \cap D}(tf(T_{k}) \cdot df(T_{k}) \cdot f_{b}(T_{k}) \cdot f_{n}(T_{k},D)))$\\
 
-He picks two popular TFxIDF variants, breaks them down into meaningful
+He picks two popular TF$\times$IDF variants, breaks them down into meaningful
 components (a term-frequency transformation, a transformation on the
 document-frequency and a length normalization coefficient) and plugs
 these components into Lucene's equation. The components in Lucene's
@@ -78,7 +80,7 @@ transplanted to.
   \begin{minipage}[t]{0.65\textwidth}
     
     \begin{tabular}{lcc}
-      \multicolumn{3}{c}{TFxIDF Variants: what's correct and what's not.}\\
+      \multicolumn{3}{c}{TF$\times$IDF Variants: what's correct and what's not.}\\
       \hline\hline
       \\
       Name & $w_{ik}$ & $w_{jk}$\\
@@ -137,7 +139,7 @@ transplanted to.
   \begin{minipage}[t]{0.94\textwidth}
 
     \begin{tabular}{lccccccccccccc}
-      \multicolumn{14}{c}{IMPLEMENTING TFxIDF VARIANTS IN LUCENE}
+      \multicolumn{14}{c}{IMPLEMENTING TF$\times$IDF VARIANTS IN LUCENE}
       \\
       \hline\hline
 
@@ -159,10 +161,10 @@ transplanted to.
       \hline\hline
     \end{tabular}
 
-    \caption{\small Plugging components of the TFxIDF equation into
+    \caption{\small Plugging components of the TF$\times$IDF equation into
       Lucene's scoring equation; the first row is the generalized form
       and the following two rows show the components of two popular
-      TFxIDF equations transplanted to Lucene's equation. Table
+      TF$\times$IDF equations transplanted to Lucene's equation. Table
       \ref{tab:tfxidf} specifies what the capital letters represent.}
 
     \label{tab:lucene}
