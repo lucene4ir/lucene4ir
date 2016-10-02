@@ -1,55 +1,58 @@
 %!TEX root = lucene4IR2016workshop_report.tex
 \subsection*{Black Boxes are Harmful}
 
-{\bf Sauparna Palchowdhury (NIST)}:Having seen students and practitioners in the IR community grapple with abstruse documentation accompanying search systems and their use
-as a black box, Sauparna, in his talk, argued why Lucene is a useful
-alternative and how and why we must ensure it does not become another
-black box. In establishing his views, he described the pitfalls in an
-IR experiment and the ways of mitigation. The suggestions he puts
-forth, as a set of best practices, highlights the importance of
-evaluation in IR to render an experiment reproducible and repeatable
-and the need for a well-documented system with correct implementations
-of search algorithms traceable to a source in IR literature. In the
-absence of such constraints on experimentation students are misled and
-learn little from the results of their experiments and it becomes hard
-to reproduce the experiments. As an example, the talk cited a wrong
-implementation of the \emph{Okapi BM25} term-weighting equation in a
-popular research retrieval system (Table \ref{tab:tfxidf}). Following
-this was a brief how-to on implementing \emph{BM25} (or any TFxIDF
-weighting scheme) in Lucene (Table \ref{tab:lucene}). This also
-explained Lucene's way of computing the similarity between two text
-documents (usually referred to as `Lucene's scoring') that may be of
-use to the student and practitioner interested in using Lucene for IR
-experiments.
+{\bf Sauparna Palchowdhury (NIST)}: Having seen students and
+practitioners in the IR community grapple with abstruse documentation
+accompanying search systems and their use as a black box, Sauparna, in
+his talk, argued why Lucene is a useful alternative and how and why we
+must ensure it does not become another black box. In establishing his
+views, he described the pitfalls in an IR experiment and the ways of
+mitigation. The suggestions he puts forth, as a set of best practices,
+highlights the importance of evaluation in IR to render an experiment
+reproducible and repeatable and the need for a well-documented system
+with correct implementations of search algorithms traceable to a
+source in IR literature. In the absence of such constraints on
+experimentation students are misled and learn little from the results
+of their experiments and it becomes hard to reproduce the
+experiments. As an example, the talk cited a wrong implementation of
+the \emph{Okapi BM25} term-weighting equation in a popular research
+retrieval system (Table \ref{tab:tfxidf}). Following this was a brief
+how-to on implementing \emph{BM25} (or any TF$\times$IDF weighting
+scheme) in Lucene (Table \ref{tab:lucene}). This also explained
+Lucene's way of computing the similarity between two text documents
+(usually referred to as `Lucene's scoring
+formula\footnote{\url{https://lucene.apache.org/core/6_2_1/core/org/apache/lucene/search/similarities/TFIDFSimilarity.html}}')
+that may be of use to the student and practitioner interested in using
+Lucene for IR experiments.
 
 Some of the points of failures mentioned in the talk are misplaced
 test-collection pieces (document-query-qrel triplet), counterintuitive
 configuration interfaces of systems, poor documentation that makes
 systems look enigmatic and lead to the creation of heuristics passed
-around by word-of-mouth, naming confusion (a myriad of TFxIDF model
-names), blatant bugs and not knowing how the parser works. As
+around by word-of-mouth, naming confusion (a myriad of TF$\times$IDF
+model names), blatant bugs and not knowing how the parser works. As
 mitigation, Sauparna listed some of the things he did as an
 experimenter. He wrote a script (TRECBOX) to abstract the IR
 experiment pipeline and map them to configuration end-points of the
 three systems; Terrier, Lucene and Indri. This would enable
 documenting an experiment's design in plain text files, that could be
-shared and the experiment repeated. He constructed a survey of TFxIDF
-variants titled \emph{TFxIDF Repository} ~\cite{rup:TFXIDFRepository}
-meant to be a single point of reference to help disambiguate the
-variants in the wild. All mentions of term-weighting equations in this
-repository are traceable to a source in IR literature. He also shows
-how to visually juxtapose evaluation results obtained using a
-permutation of a set of systems, retrieval models and test-collections
-on a chart that would act as a sanity check for the system's
-integrity. As a part of these investigations he modified Lucene for
-use with TREC collections (the mod was named LTR) which is available
-for others to use. The ``mod'' is also accompanied by notes to augment
-Lucene's documentation. The gamut of Sauparna's work is to be found
-online ~\cite{rup:IR}.
+shared and the experiment repeated. He constructed a survey of
+TF$\times$IDF variants titled \emph{TF$\times$IDF
+  Repository}~\cite{rup:TFXIDFRepository} meant to be a single point
+of reference to help disambiguate the variants in the wild. All
+mentions of term-weighting equations in this repository are traceable
+to a source in IR literature. He also shows how to visually juxtapose
+evaluation results obtained using a permutation of a set of systems,
+retrieval models and test-collections on a chart that would act as a
+sanity check for the system's integrity. As a part of these
+investigations he modified Lucene for use with TREC collections (the
+mod was named LTR) which is available for others to use. The ``mod''
+is also accompanied by notes to augment Lucene's documentation. The
+gamut of Sauparna's work is to be found online~\cite{rup:IR}.
 
 Lucene's documentation does not use well-defined notation to represent
 its way of computing the similarity score between a pair of
-documents. The notation below is Lucene's scoring equation, lifeted
+documents. The notation below is Lucene's scoring equation, lifted
 from Lucene's documentation. It uses actual function names that are to
 be found in Lucene's source code;
 
@@ -57,19 +60,19 @@ $score(Q,D) = coord(Q,D) \cdot qnorm(Q) \cdot \displaystyle\sum_{T \in Q} (tf(T 
 
 Sauparna's explanation begins with a well-defined, generalized,
 notation for Lucene's scoring in step with the definition from
-Lucene's documentation ~\cite{Lucene:6.2.1:Scoring};
+Lucene's documentation~\cite{Lucene:6.2.1:Scoring};
 
 $score(Q,D) = f_{c}(Q,D) \cdot f_{q}(Q) \cdot \displaystyle\sum_{T \in Q \cap D}(tf(T_{k}) \cdot df(T_{k}) \cdot f_{b}(T_{k}) \cdot f_{n}(T_{k},D)))$\\
 
-He picks two popular TFxIDF variants, breaks them down into meaningful
-components (a term-frequency transformation, a transformation on the
-document-frequency and a length normalization coefficient) and plugs
-these components into Lucene's equation. The components in Lucene's
-equation that are left unused are replaced by the integer $1$,
-meaning, the functions return $1$; which has no effect on the chain of
-multiplications. Table \ref{tab:tfxidf} lists the variants and
-components and Table \ref{tab:lucene} shows where the components were
-transplanted to.
+He picks two popular TF$\times$IDF variants, breaks them down into
+meaningful components (a term-frequency transformation, a
+transformation on the document-frequency and a length normalization
+coefficient) and plugs these components into Lucene's equation. The
+components in Lucene's equation that are left unused are replaced by
+the integer $1$, meaning, the functions return $1$; which has no
+effect on the chain of multiplications. Table \ref{tab:tfxidf} lists
+the variants and components and Table \ref{tab:lucene} shows where the
+components were transplanted to.
 
 \begin{table}
   \centering
@@ -77,7 +80,7 @@ transplanted to.
   \begin{minipage}[t]{0.65\textwidth}
     
     \begin{tabular}{lcc}
-      \multicolumn{3}{c}{TFxIDF Variants: what's correct and what's not.}\\
+      \multicolumn{3}{c}{TF$\times$IDF Variants: what's correct and what's not.}\\
       \hline\hline
       \\
       Name & $w_{ik}$ & $w_{jk}$\\
@@ -107,6 +110,7 @@ transplanted to.
       \\\hline\hline
       \label{tab:tfxidf}
     \end{tabular}
+    
     \caption{ The similarity score;
       $score(D_{i},D_{j})=\sum_{k=1}^{t}(w_{ik} \cdot w_{jk})$
       $\forall i \neq j$, combines the weight of a term $k$ over the
@@ -136,7 +140,7 @@ transplanted to.
   \begin{minipage}[t]{0.94\textwidth}
 
     \begin{tabular}{lccccccccccccc}
-      \multicolumn{14}{c}{IMPLEMENTING TFxIDF VARIANTS IN LUCENE}
+      \multicolumn{14}{c}{IMPLEMENTING TF$\times$IDF VARIANTS IN LUCENE}
       \\
       \hline\hline
 
@@ -158,17 +162,16 @@ transplanted to.
       \hline\hline
     \end{tabular}
 
-    \caption{\small Plugging components of the TFxIDF equation into
+    \caption{\small Plugging components of the TF$\times$IDF equation into
       Lucene's scoring equation; the first row is the generalized form
       and the following two rows show the components of two popular
-      TFxIDF equations transplanted to Lucene's equation. Table
+      TF$\times$IDF equations transplanted to Lucene's equation. Table
       \ref{tab:tfxidf} specifies what the capital letters represent.}
 
     \label{tab:lucene}
 
   \end{minipage}
 \end{table}
-
 
 Making a reference to the SIGIR 2012 tutorial on \emph{Experimental
   Methods for Information
@@ -178,15 +181,15 @@ methodology. A list of best practices was recommended that would add
 more structure to IR experiments and prevent the use of systems as
 black boxes. These were:
 
-\begin{itemize}
+\begin{enumerate}
 \item Record test-collection statistics.
 \item Provide design documentation for systems.
 \item Use a consistent naming scheme and a well-defined notation.
 \item Build an evaluation table to be used as a sanity-check.
-\item Isolate sharable experimental artefacts.
+\item Isolate shareable experimental artifacts.
 \item Ensure that implementations are traceable to a source in IR
   literature.
-\end{itemize}
+\end{enumerate}
 
 In conclusion, Sauparna suggests that if we, the IR research
 community, are to build and work with Lucene, then it would be helpful
