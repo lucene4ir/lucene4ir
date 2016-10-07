@@ -29,6 +29,7 @@ test-collection pieces (document-query-qrel triplet), counterintuitive
 configuration interfaces of systems, poor documentation that make
 systems look enigmatic and lead to the creation of heuristics passed
 around by word-of-mouth, naming confusion (a myriad of TF$\times$IDF
+<<<<<<< HEAD
 model names), blatant bugs and a obscure parser. As mitigation,
 Sauparna listed some of the things he did as an experimenter. He wrote
 a script (TRECBOX\footnote{\url{https://github.com/sauparna/TRECBOX}})
@@ -41,6 +42,20 @@ equations titled \emph{TF$\times$IDF
 a single point of reference to help disambiguate the variants in the
 wild. All equations mentioned in this repository are traceable to a
 source in IR literature. He also showed how to visually juxtapose
+=======
+model names), blatant bugs and not knowing how the parser works. As
+mitigation, Sauparna listed some of the things he did as an
+experimenter. He wrote a script (TRECBOX) to abstract the IR
+experiment pipeline and map them to configuration end-points of the
+three systems; Terrier, Lucene and Indri \cite{Strohman05indri:a}. This would enable
+documenting an experiment's design in plain text files, that could be
+shared and the experiment repeated. He constructed a survey of
+TF$\times$IDF variants titled \emph{TF$\times$IDF
+  Repository}~\cite{rup:TFXIDFRepository} meant to be a single point
+of reference to help disambiguate the variants in the wild. All
+mentions of term-weighting equations in this repository are traceable
+to a source in IR literature. He also shows how to visually juxtapose
+>>>>>>> 080720e1237b8bcd718de1e576f178c2ce03abef
 evaluation results obtained using a permutation of a set of systems,
 retrieval models and test-collections on a chart that would act as a
 sanity check for the system's integrity. As a part of these
@@ -119,7 +134,7 @@ transplanted to.
       \\
       components & $TF \times DF \div LN$ & $QTF$ \\
       \\\hline\hline
-      
+
     \end{tabular}
     
     \caption{ \small The similarity score;
@@ -184,6 +199,7 @@ transplanted to.
       equation.}
 
     \label{tab:lucene}
+
   \end{minipage}
 \end{table}
 
@@ -208,5 +224,3 @@ black boxes. These were:
 In conclusion, Sauparna suggested that if we, the IR research
 community, were to build and work with Lucene, it would be helpful to
 consider these points when introducing new features into Lucene.
-
-
