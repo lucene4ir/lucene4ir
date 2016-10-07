@@ -1,0 +1,74 @@
+\begin{thebibliography}{10}
+
+\bibitem{Lucene:6.2.1:Scoring}
+{\sc {Apache~Lucene}}.
+\newblock {Class TFIDFSimilarity}, 2016.
+\newblock [Online; accessed 21-September-2016].
+
+\bibitem{arguello2016repro}
+{\sc Arguello, J., Crane, M., Diaz, F., Lin, J., and Trotman, A.}
+\newblock Report on the sigir 2015 workshop on reproducibility,
+  inexplicability, and generalizability of results (rigor).
+\newblock {\em SIGIR Forum 49}, 2 (Jan. 2016), 107--116.
+
+\bibitem{elasticsearch}
+{\sc Elastic}.
+\newblock \url{https://www.elastic.co/products/elasticsearch}.
+
+\bibitem{Fernandez2012}
+{\sc Fern\'andez-Luna, J.~M., Huete, J.~F., Rodr\'iguez-Cano, J.~C., and
+  Rodr\'iguez-Hern\'andez, M.}
+\newblock Teaching and learning information retrieval based on a visual and
+  interactive tool: sulair.
+\newblock In {\em 4Th International Conference on Education and New Learning
+  Technologies (EDULEARN)\/} (2012), pp.~6634--6642.
+
+\bibitem{Lv:2011:DVL:2009916.2010070}
+{\sc Lv, Y., and Zhai, C.}
+\newblock When documents are very long, bm25 fails!
+\newblock In {\em Proceedings of the 34th International ACM SIGIR Conference on
+  Research and Development in Information Retrieval\/} (New York, NY, USA,
+  2011), SIGIR '11, ACM, pp.~1103--1104.
+
+\bibitem{Melucci2013}
+{\sc Melucci, M.}
+\newblock {\em {Information retrieval. Metodi e modelli per i motori di
+  ricerca}}.
+\newblock Informatica: Nuova serie. Franco Angeli, 2013.
+
+\bibitem{Metzler:2012:EMI:2348283.2348534}
+{\sc Metzler, D., and Kurland, O.}
+\newblock Experimental methods for information retrieval.
+\newblock In {\em Proceedings of the 35th International ACM SIGIR Conference on
+  Research and Development in Information Retrieval\/} (New York, NY, USA,
+  2012), SIGIR '12, ACM, pp.~1185--1186.
+
+\bibitem{Ounis:2005:TIR:2149960.2150009}
+{\sc Ounis, I., Amati, G., Plachouras, V., He, B., Macdonald, C., and Johnson,
+  D.}
+\newblock Terrier information retrieval platform.
+\newblock In {\em Proceedings of the 27th European Conference on Advances in
+  Information Retrieval Research\/} (Berlin, Heidelberg, 2005), ECIR'05,
+  Springer-Verlag, pp.~517--519.
+
+\bibitem{rup:IR}
+{\sc Palchowdhury, S.}
+\newblock {IR}, 2016.
+\newblock [Online; accessed 21-September-2016].
+
+\bibitem{rup:TFXIDFRepository}
+{\sc Palchowdhury, S.}
+\newblock {TFxIDF Repository}, 2016.
+\newblock [Online; accessed 21-September-2016].
+
+\bibitem{PyLucene}
+{\sc PyLucene}.
+\newblock \url{http://lucene.apache.org/pylucene/}.
+
+\bibitem{Strohman05indri:a}
+{\sc Strohman, T., Metzler, D., Turtle, H., and Croft, W.~B.}
+\newblock Indri: a language-model based search engine for complex queries.
+\newblock Tech. rep., in Proceedings of the International Conference on
+  Intelligent Analysis, 2005.
+
+\end{thebibliography}

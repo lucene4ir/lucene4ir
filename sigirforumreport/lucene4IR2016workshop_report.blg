@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: lucene4IR2016workshop_report.aux
+The style file: acm.bst
+Database file #1: lucene4IR.bib
+You've used 12 entries,
+            2253 wiz_defined-function locations,
+            598 strings with 6095 characters,
+and the built_in function-call counts, 4096 in all, are:
+= -- 392
+> -- 169
+< -- 0
++ -- 70
+- -- 58
+* -- 264
+:= -- 628
+add.period$ -- 35
+call.type$ -- 12
+change.case$ -- 63
+chr.to.int$ -- 0
+cite$ -- 12
+duplicate$ -- 173
+empty$ -- 359
+format.name$ -- 58
+if$ -- 893
+int.to.chr$ -- 0
+int.to.str$ -- 12
+missing$ -- 7
+newline$ -- 61
+num.names$ -- 24
+pop$ -- 102
+preamble$ -- 1
+purify$ -- 53
+quote$ -- 0
+skip$ -- 135
+stack$ -- 0
+substring$ -- 233
+swap$ -- 61
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 46
+warning$ -- 0
+while$ -- 37
+width$ -- 14
+write$ -- 124
