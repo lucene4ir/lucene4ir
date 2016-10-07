@@ -11,6 +11,12 @@
   inexplicability, and generalizability of results (rigor).
 \newblock {\em SIGIR Forum 49}, 2 (Jan. 2016), 107--116.
 
+\bibitem{Dowie2013}
+{\sc Dowie, D., and Azzopardi, L.}
+\newblock {\em Re-leashed! The PuppyIR Framework for Developing Information
+  Services for Children, Adults and Dogs}.
+\newblock 2013, pp.~824--827.
+
 \bibitem{elasticsearch}
 {\sc Elastic}.
 \newblock \url{https://www.elastic.co/products/elasticsearch}.
@@ -27,8 +33,13 @@
 {\sc Lv, Y., and Zhai, C.}
 \newblock When documents are very long, bm25 fails!
 \newblock In {\em Proceedings of the 34th International ACM SIGIR Conference on
-  Research and Development in Information Retrieval\/} (New York, NY, USA,
-  2011), SIGIR '11, ACM, pp.~1103--1104.
+  Research and Development in Information Retrieval\/} (2011), SIGIR '11,
+  pp.~1103--1104.
+
+\bibitem{macdonald2012puppy}
+{\sc Macdonald, C., McCreadie, R., Santos, R.~L., and Ounis, I.}
+\newblock From puppy to maturity: Experiences in developing terrier.
+\newblock {\em Proc. of OSIR at SIGIR\/} (2012), 60--63.
 
 \bibitem{Melucci2013}
 {\sc Melucci, M.}
@@ -40,8 +51,13 @@
 {\sc Metzler, D., and Kurland, O.}
 \newblock Experimental methods for information retrieval.
 \newblock In {\em Proceedings of the 35th International ACM SIGIR Conference on
-  Research and Development in Information Retrieval\/} (New York, NY, USA,
-  2012), SIGIR '12, ACM, pp.~1185--1186.
+  Research and Development in Information Retrieval\/} (2012), SIGIR '12,
+  pp.~1185--1186.
+
+\bibitem{ogilvie2001experiments}
+{\sc Ogilvie, P., and Callan, J.~P.}
+\newblock Experiments using the lemur toolkit.
+\newblock In {\em TREC\/} (2001), vol.~10, pp.~103--108.
 
 \bibitem{Ounis:2005:TIR:2149960.2150009}
 {\sc Ounis, I., Amati, G., Plachouras, V., He, B., Macdonald, C., and Johnson,
@@ -70,5 +86,11 @@
 \newblock Indri: a language-model based search engine for complex queries.
 \newblock Tech. rep., in Proceedings of the International Conference on
   Intelligent Analysis, 2005.
+
+\bibitem{zobel2004zettair}
+{\sc Zobel, J., Williams, H., Scholer, F., Yiannis, J., and Hein, S.}
+\newblock The zettair search engine.
+\newblock {\em Search Engine Group, RMIT University, Melbourne, Australia\/}
+  (2004).
 
 \end{thebibliography}

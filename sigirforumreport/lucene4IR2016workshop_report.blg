@@ -3,44 +3,46 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: lucene4IR2016workshop_report.aux
 The style file: acm.bst
 Database file #1: lucene4IR.bib
-You've used 12 entries,
+Warning--empty publisher in Dowie2013
+You've used 16 entries,
             2253 wiz_defined-function locations,
-            598 strings with 6095 characters,
-and the built_in function-call counts, 4096 in all, are:
-= -- 392
-> -- 169
+            621 strings with 6825 characters,
+and the built_in function-call counts, 5670 in all, are:
+= -- 546
+> -- 242
 < -- 0
-+ -- 70
-- -- 58
-* -- 264
-:= -- 628
-add.period$ -- 35
-call.type$ -- 12
-change.case$ -- 63
++ -- 101
+- -- 84
+* -- 372
+:= -- 868
+add.period$ -- 47
+call.type$ -- 16
+change.case$ -- 87
 chr.to.int$ -- 0
-cite$ -- 12
-duplicate$ -- 173
-empty$ -- 359
-format.name$ -- 58
-if$ -- 893
+cite$ -- 17
+duplicate$ -- 236
+empty$ -- 484
+format.name$ -- 84
+if$ -- 1232
 int.to.chr$ -- 0
-int.to.str$ -- 12
-missing$ -- 7
-newline$ -- 61
-num.names$ -- 24
-pop$ -- 102
+int.to.str$ -- 16
+missing$ -- 12
+newline$ -- 81
+num.names$ -- 32
+pop$ -- 135
 preamble$ -- 1
-purify$ -- 53
+purify$ -- 74
 quote$ -- 0
-skip$ -- 135
+skip$ -- 187
 stack$ -- 0
-substring$ -- 233
-swap$ -- 61
+substring$ -- 337
+swap$ -- 85
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 46
-warning$ -- 0
-while$ -- 37
-width$ -- 14
-write$ -- 124
+type$ -- 60
+warning$ -- 1
+while$ -- 53
+width$ -- 18
+write$ -- 162
+(There was 1 warning)
