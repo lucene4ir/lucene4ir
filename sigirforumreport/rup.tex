@@ -1,17 +1,18 @@
 %!TEX root = lucene4IR2016workshop_report.tex
 \subsection*{Black Boxes are Harmful}
 
-{\bf Sauparna Palchowdhury (NIST)}: Having seen students and
+{\bf Sauparna Palchowdhury (National Institute of Standards and
+  Technology, Gaithersburg, Maryland, USA)}: Having seen students and
 practitioners in the IR community grapple with abstruse documentation
 accompanying search systems and their use as a black box, Sauparna, in
 his talk, argued why Lucene is a useful alternative and how and why we
 must ensure it does not become another black box. In establishing his
 views, he described the pitfalls in an IR experiment and the ways of
-mitigation. The suggestions he puts forth, as a set of best practices,
-highlights the importance of evaluation in IR to render an experiment
+mitigation. The suggestions he put forth, as a set of best practices,
+highlighted the importance of evaluation in IR to render an experiment
 reproducible and repeatable and the need for a well-documented system
-with correct implementations of search algorithms traceable to a
-source in IR literature. In the absence of such constraints on
+with correct implementations of search algorithms that are traceable
+to a source in IR literature. In the absence of such constraints on
 experimentation students are misled and learn little from the results
 of their experiments and it becomes hard to reproduce the
 experiments. As an example, the talk cited a wrong implementation of
@@ -20,59 +21,69 @@ retrieval system (Table \ref{tab:tfxidf}). Following this was a brief
 how-to on implementing \emph{BM25} (or any TF$\times$IDF weighting
 scheme) in Lucene (Table \ref{tab:lucene}). This also explained
 Lucene's way of computing the similarity between two text documents
-(usually referred to as `Lucene's scoring
-formula\footnote{\url{https://lucene.apache.org/core/6_2_1/core/org/apache/lucene/search/similarities/TFIDFSimilarity.html}}')
-that may be of use to the student and practitioner interested in using
-Lucene for IR experiments.
+(usually referred to as \emph{Lucene's scoring
+  formula}\footnote{\url{https://goo.gl/ZOMVYe}}).
 
-Some of the points of failures mentioned in the talk are misplaced
+Some of the points of failure mentioned in the talk were misplaced
 test-collection pieces (document-query-qrel triplet), counterintuitive
-configuration interfaces of systems, poor documentation that makes
+configuration interfaces of systems, poor documentation that make
 systems look enigmatic and lead to the creation of heuristics passed
 around by word-of-mouth, naming confusion (a myriad of TF$\times$IDF
-model names), blatant bugs and not knowing how the parser works. As
-mitigation, Sauparna listed some of the things he did as an
-experimenter. He wrote a script (TRECBOX) to abstract the IR
-experiment pipeline and map them to configuration end-points of the
-three systems; Terrier, Lucene and Indri. This would enable
-documenting an experiment's design in plain text files, that could be
-shared and the experiment repeated. He constructed a survey of
-TF$\times$IDF variants titled \emph{TF$\times$IDF
-  Repository}~\cite{rup:TFXIDFRepository} meant to be a single point
-of reference to help disambiguate the variants in the wild. All
-mentions of term-weighting equations in this repository are traceable
-to a source in IR literature. He also shows how to visually juxtapose
+model names), blatant bugs and a obscure parser. As mitigation,
+Sauparna listed some of the things he did as an experimenter. He wrote
+a script (TRECBOX\footnote{\url{https://github.com/sauparna/TRECBOX}})
+to abstract parts of the IR experiment pipeline and map them to
+configuration end-points of the three systems; Terrier, Lucene and
+Indri. This would enable documenting and sharing an experiment's
+design in plain text files. He constructed a survey of term-weighting
+equations titled \emph{TF$\times$IDF
+  Repository}\footnote{\url{http://kak.tx0.org/IR/TFxIDF}} meant to be
+a single point of reference to help disambiguate the variants in the
+wild. All equations mentioned in this repository are traceable to a
+source in IR literature. He also showed how to visually juxtapose
 evaluation results obtained using a permutation of a set of systems,
 retrieval models and test-collections on a chart that would act as a
 sanity check for the system's integrity. As a part of these
 investigations he modified Lucene for use with TREC collections (the
-mod was named LTR) which is available for others to use. The ``mod''
-is also accompanied by notes to augment Lucene's documentation. The
-gamut of Sauparna's work is to be found online~\cite{rup:IR}.
+mod was named LTR\footnote{\url{https://github.com/sauparna/LTR}})
+which is available for others to use. The ``mod'' is also accompanied
+by notes to augment Lucene's documentation. The gamut of Sauparna's
+work is collected on a webstie\footnote{\url{http://kak.tx0.org/IR}}.
 
-Lucene's documentation does not use well-defined notation to represent
-its way of computing the similarity score between a pair of
-documents. The notation below is Lucene's scoring equation, lifted
-from Lucene's documentation. It uses actual function names that are to
-be found in Lucene's source code;
+Lucene's documentation does not use a well-defined notation to
+represent its way of computing the similarity score between a query
+$Q$ and document $D$. Equation \eqref{eqn:Lucene-scoring} denotes
+Lucene's scoring formula as described in Lucene's documentation. In
+the equation $T$ denotes a term. The functions in order from left to
+right on the right-hand-side of the equation is the \emph{coordination
+  factor}, \emph{query normalization factor}, \emph{term-frequency
+  transformation}, \emph{document-frequency transformation},
+\emph{query boost} and \emph{document-length normalization factor}. A
+well-defined, generalized, notation for Lucene's scoring in step with
+the definition from Lucene's documentation is Equation
+\eqref{eqn:Lucene-scoring-generalized} (function names were shortened
+appropriately).
 
-$score(Q,D) = coord(Q,D) \cdot qnorm(Q) \cdot \displaystyle\sum_{T \in Q} (tf(T \in D) \cdot idf(T)^2 \cdot boost() \cdot norm(T, D))$\\
+\begin{equation}
+  score(Q,D) = coord(Q,D) \cdot qnorm(Q) \cdot \displaystyle\sum_{T \in Q} (tf(T \in D) \cdot idf(T)^2 \cdot boost(T) \cdot norm(T,D))
+  \label{eqn:Lucene-scoring}
+\end{equation}
 
-Sauparna's explanation begins with a well-defined, generalized,
-notation for Lucene's scoring in step with the definition from
-Lucene's documentation~\cite{Lucene:6.2.1:Scoring};
+\begin{equation}
+  score(Q,D) = f_{c}(Q,D) \cdot f_{q}(Q) \cdot \displaystyle\sum_{T \in Q \cap D}(tf(T) \cdot df(T) \cdot f_{b}(T) \cdot f_{n}(T,D)))
+  \label{eqn:Lucene-scoring-generalized}
+\end{equation}
 
-$score(Q,D) = f_{c}(Q,D) \cdot f_{q}(Q) \cdot \displaystyle\sum_{T \in Q \cap D}(tf(T_{k}) \cdot df(T_{k}) \cdot f_{b}(T_{k}) \cdot f_{n}(T_{k},D)))$\\
-
-He picks two popular TF$\times$IDF variants, breaks them down into
-meaningful components (a term-frequency transformation, a
-transformation on the document-frequency and a length normalization
-coefficient) and plugs these components into Lucene's equation. The
-components in Lucene's equation that are left unused are replaced by
-the integer $1$, meaning, the functions return $1$; which has no
-effect on the chain of multiplications. Table \ref{tab:tfxidf} lists
-the variants and components and Table \ref{tab:lucene} shows where the
-components were transplanted to.
+To explain Lucene's scoring, he picked two popular TF$\times$IDF
+variants, broke them down into meaningful components (a term-frequency
+transformation, a transformation on the document-frequency and a
+length normalization coefficient) and plugged these components into
+Lucene's equation. The components in Lucene's equation that were left
+unused were replaced by the integer $1$, meaning, the functions
+returned $1$; which would have no effect on the chain of
+multiplications. Table \ref{tab:tfxidf} lists the variants and
+components and Table \ref{tab:lucene} shows where the components were
+transplanted to.
 
 \begin{table}
   \centering
@@ -80,7 +91,7 @@ components were transplanted to.
   \begin{minipage}[t]{0.65\textwidth}
     
     \begin{tabular}{lcc}
-      \multicolumn{3}{c}{TF$\times$IDF Variants: what's correct and what's not.}\\
+      \multicolumn{3}{c}{TF$\times$IDF Variants: What's correct and what's not.}\\
       \hline\hline
       \\
       Name & $w_{ik}$ & $w_{jk}$\\
@@ -99,16 +110,16 @@ components were transplanted to.
       & $\frac{(k_{1}+1)f_{ik}}{k_{1}((1-b)+b\frac{dl_{i}}{avdl})+f_{ik}} \times \log(\frac{N-n_{k}+0.5}{n_{k}+0.5})$
       & $\frac{(k_{3}+1)f_{jk}}{k_{3}+f_{jk}}$ \\
       \\
-      components & $T \times I$ & $Q$ \\
+      components & $TF \times DF$ & $QTF$ \\
       \\\hline
       \\
       SMART dtb.nnn
       & $\frac{(1+\log(1+\log(f_{ik}))) \times \log(\frac{N+1}{n_{k}})}{1-s+s \cdot \frac{b_{i}}{avgb}}$
       & $f_{jk}$ \\
       \\
-      components & $T \times I \div L$ & $Q$ \\
+      components & $TF \times DF \div LN$ & $QTF$ \\
       \\\hline\hline
-      \label{tab:tfxidf}
+      
     \end{tabular}
     
     \caption{ \small The similarity score;
@@ -116,22 +127,26 @@ components were transplanted to.
       $\forall i \neq j$, combines the weight of a term $k$ over the
       $t$ terms which occur in document $D_{i}$ and $D_{j}$. Since a
       query can also be thought of as a document in the same vector
-      space, the symbol $D_{j}$ has been used to denote a query
-      without introducing another symbol, say, $Q$. BM25(A) and
-      BM25(B) are the two incorrect implementations found in a popular
+      space, the symbol $D_{j}$ denotes a query. BM25(A) and BM25(B)
+      are the two incorrect implementations found in a popular
       retrieval system. Comparing them to \emph{Okapi BM25} on the
       third row shows that A has the $k_{1}+1$ factor missing in the
-      numerator, and B uses twice the term-frequency $2f_{ik}$ in the
-      denominator. Neither can they be traced to any source in IR
+      numerator, and B uses twice the term-frequency, $2f_{ik}$, in
+      the denominator. Neither can they be traced to any source in IR
       literature, nor does the system's documentation say anything
       about them. The \emph{Okapi BM25} and the \emph{SMART dtb.nnn}
       variants are known to be effective formulations developed by
       trial and error over eight years of experimentation at TREC 1
-      through 8. Their forms have been abstracted using capital
-      letters to show how these components fit in Lucene's term-weight
-      expression.}
+      through 8. Their forms have been abstracted using the
+      abbreviations $TF$, $DF$, $LN$ and $QTF$ (term-frequency,
+      document-frequency, length-normalization and
+      query-term-frequency) to show how these components fit in
+      Lucene's term-weight expression.}
 
+    \label{tab:tfxidf}
+    
   \end{minipage}
+
 \end{table}
 
 \begin{table}[bht!]
@@ -140,7 +155,7 @@ components were transplanted to.
   \begin{minipage}[t]{0.94\textwidth}
 
     \begin{tabular}{lccccccccccccc}
-      \multicolumn{14}{c}{IMPLEMENTING TF$\times$IDF VARIANTS IN LUCENE}
+      \multicolumn{14}{c}{Implementing TF$\times$IDF variants in Lucene}
       \\
       \hline\hline
 
@@ -150,34 +165,33 @@ components were transplanted to.
       & $\cdot$ & $f_{n}(T_{k}, D_{j})$   & $)$ \\
       
       BM25      & $1$          &  $\cdot$ & $1$
-      & $\cdot$ & $\displaystyle\sum_{T \in Q \cap D}($  & $T$
-      & $\cdot$ & $I$          & $\cdot$  & $Q$
+      & $\cdot$ & $\displaystyle\sum_{T \in Q \cap D}($  & $TF$
+      & $\cdot$ & $DF$          & $\cdot$  & $QTF$
       & $\cdot$ & $1$          & $)$ \\
 
       dtb.nnn   & $1$          & $\cdot$  & $1$
-      & $\cdot$ & $\displaystyle\sum_{T \in Q \cap D}($  & $T$
-      & $\cdot$ & $I$          & $\cdot$  & $Q$
-      & $\cdot$ & $L$          & $)$ \\
+      & $\cdot$ & $\displaystyle\sum_{T \in Q \cap D}($  & $TF$
+      & $\cdot$ & $DF$          & $\cdot$  & $QTF$
+      & $\cdot$ & $LN$          & $)$ \\
 
       \hline\hline
     \end{tabular}
 
-    \caption{\small Plugging components of the TF$\times$IDF equation into
-      Lucene's scoring equation; the first row is the generalized form
-      and the following two rows show the components of two popular
-      TF$\times$IDF equations transplanted to Lucene's equation. Table
-      \ref{tab:tfxidf} specifies what the capital letters represent.}
+    \caption{\small Plugging components of the TF$\times$IDF equation
+      into Lucene's scoring equation; the first row is the generalized
+      form and the following two rows show the components of two
+      popular TF$\times$IDF equations transplanted to Lucene's
+      equation.}
 
     \label{tab:lucene}
-
   \end{minipage}
 \end{table}
 
 Making a reference to the SIGIR 2012 tutorial on \emph{Experimental
   Methods for Information
-  Retrieval}~\cite{Metzler:2012:EMI:2348283.2348534}, Sauparna states
+  Retrieval}~\cite{Metzler:2012:EMI:2348283.2348534}, Sauparna stated
 that we need to take a more rigorous approach to the IR experimental
-methodology. A list of best practices was recommended that would add
+methodology. A list of best practices were recommended that would add
 more structure to IR experiments and prevent the use of systems as
 black boxes. These were:
 
@@ -185,14 +199,14 @@ black boxes. These were:
 \item Record test-collection statistics.
 \item Provide design documentation for systems.
 \item Use a consistent naming scheme and a well-defined notation.
-\item Build an evaluation table to be used as a sanity-check.
+\item Use a evaluation table as a sanity check.
 \item Isolate shareable experimental artifacts.
 \item Ensure that implementations are traceable to a source in IR
   literature.
 \end{enumerate}
 
-In conclusion, Sauparna suggests that if we, the IR research
-community, are to build and work with Lucene, then it would be helpful
-to consider these points when introducing new features into Lucene.
+In conclusion, Sauparna suggested that if we, the IR research
+community, were to build and work with Lucene, it would be helpful to
+consider these points when introducing new features into Lucene.
 
 
