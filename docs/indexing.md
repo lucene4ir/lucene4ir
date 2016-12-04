@@ -41,8 +41,15 @@ An example tokenFilerFile:
 </tokenFilters>
 ```
 
-where the terms are converted to lowercase and then porter stemmed.
+which uses the *standard tokenizer* that divides text on word boundaries (and removes most punctuation, and is typically the best choice for most languages).
+For other tokenizers, see: https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-tokenizers.html
 
+It then includes the *TokenFilters* where the terms are converted to lowercase and then porter stemmed.
+
+Two things to keep in mind when specifying Token Filters:  The analysis you do at index time should also be done at query time to have matching tokens.
+Certain Filters expect tokens to be in a certain form (e.g. already lowercase) so the order of ```TokenFilters``` can be of impact.
+
+See
 
 In the data directory we have provided some sample files to show how the indexing works.
 
@@ -60,7 +67,7 @@ Analyzer analyzer = CustomAnalyzer.builder(Paths.get("/path/to/config/dir"))
                     .addTokenFilter("stop", "ignoreCase", "false", "words", "stopwords.txt", "format", "wordset")
                     .build();
 ```
-The analyzer allows for several kind of filters to be passed to. Those filters can be addjusted via the ```/params/token_filter_params.xml``` parameter file.
+The analyzer allows for several kind of *Tokenizers* and *TokenFilters* to be passed to. Those filters can be adjusted via the ```/params/token_filter_params.xml``` parameter file.
 
 ```
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -74,6 +81,7 @@ The analyzer allows for several kind of filters to be passed to. Those filters c
     </tokenFilter>
 </tokenFilters>
 ```
+
 For TokenFilters that can have multiple parameters you can add those via ```<key> <value> ``` pairs in a ```<param>`` tag.
 
 ```
@@ -95,5 +103,40 @@ For TokenFilters that can have multiple parameters you can add those via ```<key
 </tokenFilters>
 
 ```
-Two things to keep in mind:  The analysis you do at index time should also be done at query time to have matching tokens.
-Certain Filters expect tokens to be in a certain form (e.g. already lowercased) so the order of ```TokenFilters``` can be of impact.
+
+
+To index character n-grams, you can use the *ngram tokenFilter*, where you can specify the minimum and maximum of the n-grams.
+
+```
+<tokenFilter>
+        <name>ngram</name>
+        <param>
+            <key>minGramSize</key>
+            <value>1</value>
+        </param>
+        <param>
+            <key>maxGramSize</key>
+            <value>3</value>
+        </param>
+    </tokenFilter>
+```
+
+To index word n-grams, you need to use the *shingle tokenFilter*, where you can set the minimum and maximum n-grams (for words).
+
+```
+ <tokenFilter>
+        <name>shingle</name>
+        <param>
+            <key>minShingleSize</key>
+            <value>2</value>
+        </param>
+        <param>
+            <key>maxShingleSize</key>
+            <value>3</value>
+        </param>
+ </tokenFilter>
+```
+
+This will still index unigrams, but also index bi-grams and tri-grams.
+
+For other TokenFilters, see: https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-tokenfilters.html

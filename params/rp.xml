@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<retrievalParams>
+<indexParams>
     <indexName>index</indexName>
     <queryFile>data/cacm/title.query</queryFile>
     <maxResults>100</maxResults>
     <model>bm25</model>
     <resultFile>data/cacm/bm25_results.res</resultFile>
-</retrievalParams>
+    <b>0.75</b>
+    <k>1.2</k>
+</indexParams>

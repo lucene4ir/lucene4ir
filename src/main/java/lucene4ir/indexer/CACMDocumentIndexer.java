@@ -28,7 +28,7 @@ public class CACMDocumentIndexer extends DocumentIndexer {
     }
 
     private void initFields() {
-        docnumField = new IntPoint(LuceneConstants.FIELD_DOCNUM, 0);
+        docnumField = new StringField(LuceneConstants.FIELD_DOCNUM, "", Field.Store.YES);
         titleField = new TextField(LuceneConstants.FIELD_TITLE, "", Field.Store.YES);
         textField = new TextField(LuceneConstants.FIELD_CONTENT, "", Field.Store.YES);
         authorField = new TextField(LuceneConstants.FIELD_AUTHOR, "", Field.Store.YES);
@@ -45,7 +45,7 @@ public class CACMDocumentIndexer extends DocumentIndexer {
 
     public Document createCacmDocument(String docid, String title, String author, String content, String pubdate){
 
-        docnumField.setIntValue(Integer.parseInt(docid));
+        docnumField.setStringValue(docid);
         titleField.setStringValue(title);
         authorField.setStringValue(author);
         textField.setStringValue(content);
