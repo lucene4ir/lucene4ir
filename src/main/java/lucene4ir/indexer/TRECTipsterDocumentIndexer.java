@@ -25,8 +25,7 @@ public class TRECTipsterDocumentIndexer extends DocumentIndexer {
     };
 
     public TRECTipsterDocumentIndexer(String indexPath, String tokenFilterFile){
-        writer = null;
-        createWriter(indexPath, tokenFilterFile);
+        super(indexPath, tokenFilterFile);
     }
 
     public void indexDocumentsFromFile(String filename){

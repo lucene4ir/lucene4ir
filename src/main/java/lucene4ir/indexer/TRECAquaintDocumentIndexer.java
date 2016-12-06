@@ -20,11 +20,12 @@ import org.jsoup.Jsoup;
 /**
  * Created by leif on 03/09/2016.
  */
-public class TRECAquaintDocumentIndexer extends DocumentIndexer  {
+public class TRECAquaintDocumentIndexer extends DocumentIndexer {
     Whitelist whiteList;
 
     public TRECAquaintDocumentIndexer(String indexPath, String tokenFilterFile){
-        writer = null;
+        super(indexPath, tokenFilterFile);
+
         try {
 
             whiteList = Whitelist.relaxed();
@@ -40,8 +41,6 @@ public class TRECAquaintDocumentIndexer extends DocumentIndexer  {
             System.out.println(" caught a " + e.getClass() +
                     "\n with message: " + e.getMessage());
         }
-
-        createWriter(indexPath, tokenFilterFile);
     }
 
     public static Document createTrecAquaintDocument(String docid, String title, String content, String source, String pubdate){

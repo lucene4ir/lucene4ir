@@ -19,8 +19,7 @@ import javax.xml.xpath.XPathFactory;
  */
 public class TRECNEWSDocumentIndexer extends DocumentIndexer {
     public TRECNEWSDocumentIndexer(String indexPath, String tokenFilterFile){
-        writer = null;
-        createWriter(indexPath, tokenFilterFile);
+        super(indexPath, tokenFilterFile);
     }
 
     public void indexDocumentsFromFile(String filename){
