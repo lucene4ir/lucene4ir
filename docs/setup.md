@@ -29,6 +29,8 @@ Assuming you are using IntelliJ, go to File, Project Structure, then the Project
 
 Next, go to the Modules tab and mark the following directories as follows.
 - Mark the ~/lucene4ir/src directory as Sources
+- Mark the ~/lucene4ir/src/main directory as Sources
+- Mark the ~/lucene4ir/src/main/java directory as Sources
 - Mark the ~/lucene4ir/test directory as Tests
 
 Also, +Add Content Root, to be ~/lucene4ir/
