@@ -18,6 +18,7 @@ import lucene4ir.similarity.SMARTBNNBNNSimilarity;
 import lucene4ir.similarity.OKAPIBM25Similarity;
 import lucene4ir.similarity.BM25LSimilarity;
 import lucene4ir.similarity.BM25Similarity;
+import lucene4ir.utils.TokenAnalyzerMaker;
 
 import javax.xml.bind.JAXB;
 import java.io.*;
@@ -149,6 +150,15 @@ public class RetrievalApp {
         System.out.println("b: " + p.b);
 
 
+        if (p.tokenFilterFile != null){
+            TokenAnalyzerMaker tam = new TokenAnalyzerMaker();
+            analyzer = tam.createAnalyzer(p.tokenFilterFile);
+        }
+        else{
+            analyzer = LuceneConstants.ANALYZER;
+        }
+
+
     }
 
     public void processQueryFile(){
@@ -232,7 +242,7 @@ public class RetrievalApp {
             // create similarity function and parameter
             selectSimilarityFunction(sim);
             searcher.setSimilarity(simfn);
-            analyzer = LuceneConstants.ANALYZER;
+
 
             parser = new QueryParser("content", analyzer);
 
@@ -280,6 +290,7 @@ class RetrievalParams {
     public float c;
     public float delta;
     public String runTag;
+    public String tokenFilterFile;
 }
 
 

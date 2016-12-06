@@ -5,6 +5,9 @@
         <name>lowercase</name>
     </tokenFilter>
     <tokenFilter>
+        <name>stop</name>
+    </tokenFilter>
+    <tokenFilter>
         <name>worddelimiter</name>
         <param>
             <key>preserveOriginal</key>
@@ -16,16 +19,15 @@
         </param>
     </tokenFilter>
     <tokenFilter>
-        <name>ngram</name>
+        <name>shingle</name>
         <param>
-            <key>minGramSize</key>
-            <value>1</value>
+            <key>minShingleSize</key>
+            <value>2</value>
         </param>
         <param>
-            <key>maxGramSize</key>
+            <key>maxShingleSize</key>
             <value>3</value>
         </param>
     </tokenFilter>
-
 
 </tokenFilters>
