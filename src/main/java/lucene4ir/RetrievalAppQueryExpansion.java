@@ -1,5 +1,7 @@
 package lucene4ir;
 
+import lucene4ir.utils.RetrievalParams;
+import lucene4ir.utils.RetrievalParamsReader;
 import lucene4ir.utils.SynonymProvider;
 import net.sf.extjwnl.JWNLException;
 import org.apache.lucene.analysis.Analyzer;
@@ -21,121 +23,12 @@ import java.util.Set;
 
 public class RetrievalAppQueryExpansion {
 
-    public RetrievalParams p;
+    private RetrievalParams params;
 
-    private Similarity simfn;
     private IndexReader reader;
     private IndexSearcher searcher;
-    private Analyzer analyzer;
     private QueryParser parser;
     private CollectionModel colModel;
-
-    private enum SimModel {
-        DEF, BM25, LMD, LMJ, PL2, TFIDF
-    }
-
-    private SimModel sim;
-
-    private void setSim(String val){
-//        try {
-//            sim = SimModel.valueOf(p.model.toUpperCase());
-//        } catch (Exception e){
-//            System.out.println("Similarity Function Not Recognized - Setting to Default");
-//            System.out.println("Possible Similarity Functions are:");
-//            for(SimModel value: SimModel.values()){
-//                System.out.println("<model>"+value.name()+"</model>");
-//            }
-//            sim = SimModel.DEF;
-//
-//        }
-    }
-
-
-    public void selectSimilarityFunction(SimModel sim){
-        colModel = null;
-        switch(sim){
-            case BM25:
-                System.out.println("BM25 Similarity Function");
-                simfn = new BM25Similarity(p.k,p.b);
-                break;
-
-            case LMD:
-                System.out.println("LM Dirichlet Similarity Function");
-                colModel = new LMSimilarity.DefaultCollectionModel();
-                simfn = new LMDirichletSimilarity(colModel,p.mu);
-                break;
-
-            case LMJ:
-                System.out.println("LM Jelinek Mercer Similarity Function");
-                colModel = new LMSimilarity.DefaultCollectionModel();
-                simfn = new LMJelinekMercerSimilarity(colModel,p.lam);
-                break;
-
-            case PL2:
-                System.out.println("PL2 Similarity Function (?)");
-                BasicModel bm = new BasicModelP();
-                AfterEffect ae = new AfterEffectL();
-                Normalization nn = new NormalizationH2(p.c);
-                simfn = new DFRSimilarity(bm,ae,nn);
-                break;
-
-            default:
-                System.out.println("Default Similarity Function");
-                simfn = new BM25Similarity();
-
-                break;
-        }
-    }
-
-
-
-    public void readParamsFromFile(String paramFile){
-        /*
-        Reads in the xml formatting parameter file
-        Maybe this code should go into the RetrievalParams class.
-
-        Actually, it would probably be neater to create a ParameterFile class
-        which these apps can inherit from - and customize accordinging.
-         */
-
-
-        try {
-            p = JAXB.unmarshal(new File(paramFile), RetrievalParams.class);
-        } catch (Exception e){
-            System.out.println(" caught a " + e.getClass() +
-                    "\n with message: " + e.getMessage());
-            System.exit(1);
-        }
-
-//        setSim(p.model);
-
-        if (p.maxResults==0.0) {p.maxResults=1000;}
-        if (p.b == 0.0){ p.b = 0.75f;}
-        if (p.beta == 0.0){p.beta = 500f;}
-        if (p.k ==0.0){ p.k = 1.2f;}
-        if (p.lam==0.0){p.lam = 0.5f;}
-        if (p.mu==0.0){p.mu = 500f;}
-        if (p.c==0.0){p.c=10.0f;}
-//        if (p.model == null){
-//            p.model = "def";
-//        }
-//        if (p.runTag == null){
-//            p.runTag = p.model.toLowerCase();
-//        }
-
-        if (p.resultFile == null){
-            p.resultFile = p.runTag+"_results.res";
-        }
-
-        System.out.println("Path to index: " + p.indexName);
-        System.out.println("Query File: " + p.queryFile);
-        System.out.println("Result File: " + p.resultFile);
-        System.out.println("Model: " + p.model.className);
-        System.out.println("Max Results: " + p.maxResults);
-        System.out.println("b: " + p.b);
-
-
-    }
 
     public void processQueryFile(){
         /*
@@ -147,8 +40,8 @@ public class RetrievalAppQueryExpansion {
         Q3 hello etc
          */
         try {
-            BufferedReader br = new BufferedReader(new FileReader(p.queryFile));
-            File file = new File(p.resultFile);
+            BufferedReader br = new BufferedReader(new FileReader(params.queryFile));
+            File file = new File(params.resultFile);
             FileWriter fw = new FileWriter(file);
 
             try {
@@ -164,12 +57,12 @@ public class RetrievalAppQueryExpansion {
 
                     ScoreDoc[] scored = runQuery(qno, queryTerms);
 
-                    int n = Math.min(p.maxResults, scored.length);
+                    int n = Math.min(params.maxResults, scored.length);
 
                     for(int i=0; i<n; i++){
                         Document doc = searcher.doc(scored[i].doc);
                         String docno = doc.get("docnum");
-                        fw.write(qno + " QO " + docno + " " + (i+1) + " " + scored[i].score + " " + p.runTag);
+                        fw.write(qno + " QO " + docno + " " + (i+1) + " " + scored[i].score + " " + params.runTag);
                         fw.write(System.lineSeparator());
                     }
 
@@ -262,19 +155,22 @@ public class RetrievalAppQueryExpansion {
 
     public RetrievalAppQueryExpansion(String retrievalParamFile){
         System.out.println("Retrieval App");
-        readParamsFromFile(retrievalParamFile);
+
+        RetrievalParamsReader paramsReader = new RetrievalParamsReader();
+        params = paramsReader.read(retrievalParamFile);
+
         try {
-            reader = DirectoryReader.open(FSDirectory.open(new File(p.indexName).toPath()));
+            reader = DirectoryReader.open(FSDirectory.open(new File(params.indexName).toPath()));
             searcher = new IndexSearcher(reader);
 
             // Create similarity function and parameter
-            selectSimilarityFunction(sim);
-            searcher.setSimilarity(simfn);
+            searcher.setSimilarity(paramsReader.getSimilarityFunction());
 
             // Use whatever ANALYZER you want
-            analyzer = new StandardAnalyzer();
+            // I commented this out since you can load it from XML...?
+            // analyzer = new StandardAnalyzer();
 
-            parser = new QueryParser("content", analyzer);
+            parser = new QueryParser("content", paramsReader.getAnalyzer());
 
         } catch (Exception e){
             System.out.println(" caught a " + e.getClass() + "\n with message: " + e.getMessage());
