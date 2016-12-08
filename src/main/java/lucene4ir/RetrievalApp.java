@@ -20,6 +20,7 @@ import javax.xml.bind.JAXB;
 import javax.xml.bind.annotation.*;
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -76,6 +77,10 @@ public class RetrievalApp {
         }
         if (params.c == 0.0) {
             params.c = 10.0f;
+        }
+        if (params.model == null) {
+            params.model = new RetrievalParams.Model();
+            params.model.className = "org.apache.lucene.search.similarities.BM25Similarity";
         }
         if (params.runTag == null) {
             params.runTag = params.model.className;
@@ -200,16 +205,12 @@ public class RetrievalApp {
         params = readParamsFromFile(retrievalParamFile);
 
         // use some of the params to set the similarity function
-        // if no class is specified, default to BM25 like before
-        if (params.model == null || params.model.className.isEmpty()) {
-            similarityFunction = new BM25Similarity();
-        } else { // otherwise try to load the class
-            try {
-                setSimilarityFunction(params);
-            } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException e) {
-                e.printStackTrace();
-            }
+        try {
+            setSimilarityFunction(params);
+        } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException e) {
+            e.printStackTrace();
         }
+
         try {
             reader = DirectoryReader.open(FSDirectory.open(new File(params.indexName).toPath()));
             searcher = new IndexSearcher(reader);
@@ -280,7 +281,7 @@ class RetrievalParams {
 
         @XmlAttribute(name = "params")
         @XmlList
-        public List<Float> params;
+        public List<Float> params = new ArrayList<>();
     }
 
 }
