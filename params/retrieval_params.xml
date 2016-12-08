@@ -3,7 +3,7 @@
     <indexName>index</indexName>
     <queryFile>data/cacm/title.query</queryFile>
     <maxResults>100</maxResults>
-    <model>bm25</model>
+    <model className="lucene4ir.similarity.BM25LSimilarity" params="1.2 0.7 1.0"/>
     <resultFile>data/cacm/bm25_results.res</resultFile>
     <tokenFilterFile>params/index/example_03.xml</tokenFilterFile>
 </retrievalParams>
