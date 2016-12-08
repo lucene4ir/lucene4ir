@@ -37,17 +37,17 @@ public class RetrievalAppQueryExpansion {
     private SimModel sim;
 
     private void setSim(String val){
-        try {
-            sim = SimModel.valueOf(p.model.toUpperCase());
-        } catch (Exception e){
-            System.out.println("Similarity Function Not Recognized - Setting to Default");
-            System.out.println("Possible Similarity Functions are:");
-            for(SimModel value: SimModel.values()){
-                System.out.println("<model>"+value.name()+"</model>");
-            }
-            sim = SimModel.DEF;
-
-        }
+//        try {
+//            sim = SimModel.valueOf(p.model.toUpperCase());
+//        } catch (Exception e){
+//            System.out.println("Similarity Function Not Recognized - Setting to Default");
+//            System.out.println("Possible Similarity Functions are:");
+//            for(SimModel value: SimModel.values()){
+//                System.out.println("<model>"+value.name()+"</model>");
+//            }
+//            sim = SimModel.DEF;
+//
+//        }
     }
 
 
@@ -107,7 +107,7 @@ public class RetrievalAppQueryExpansion {
             System.exit(1);
         }
 
-        setSim(p.model);
+//        setSim(p.model);
 
         if (p.maxResults==0.0) {p.maxResults=1000;}
         if (p.b == 0.0){ p.b = 0.75f;}
@@ -116,12 +116,12 @@ public class RetrievalAppQueryExpansion {
         if (p.lam==0.0){p.lam = 0.5f;}
         if (p.mu==0.0){p.mu = 500f;}
         if (p.c==0.0){p.c=10.0f;}
-        if (p.model == null){
-            p.model = "def";
-        }
-        if (p.runTag == null){
-            p.runTag = p.model.toLowerCase();
-        }
+//        if (p.model == null){
+//            p.model = "def";
+//        }
+//        if (p.runTag == null){
+//            p.runTag = p.model.toLowerCase();
+//        }
 
         if (p.resultFile == null){
             p.resultFile = p.runTag+"_results.res";
@@ -130,7 +130,7 @@ public class RetrievalAppQueryExpansion {
         System.out.println("Path to index: " + p.indexName);
         System.out.println("Query File: " + p.queryFile);
         System.out.println("Result File: " + p.resultFile);
-        System.out.println("Model: " + p.model);
+        System.out.println("Model: " + p.model.className);
         System.out.println("Max Results: " + p.maxResults);
         System.out.println("b: " + p.b);
 
