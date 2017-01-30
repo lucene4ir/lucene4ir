@@ -68,7 +68,7 @@ Classes with main method can be executed by right clicking on class name, select
 If a class needs command line parameters, right click and select Run configuration. Add the parameters in Arguments tab of Run 
 Configurations window. Example parameter arguments for IndexerApp and RetrievalApp are as follows:
 
-IndexerApp:  params/index_params.xml
+IndexerApp:  params/index/index_params.xml
 RetrievalApp: params/retrieval_params.xml
 
 ####JAR creation.
@@ -173,11 +173,13 @@ where:
 - **queryFile**: the name of the file that contains the list of queries to issue (format: query_num query_text, one per line)
 - **maxResults**: the maximum number of results to output per query
 - **model**: the retrieval algorithm to use (called similarity function in Lucene)
-	  - **bm25** - best match 25 (b,k)
-	  - **lmj** - language model with jelinek mercer smoothing (lam)
-	  - **lmd** - language model with dirichlet prior smoothing (mu)
-	  - **pl2** - divergence from randomness model (c)
-	  - **default** - bm25 b=0.75 and k=0.75
+      - Use the `className` and `params` attributes to specify the Java class and constructor arguments; for example:
+      - `<model className="lucene4ir.similarity.BM25LSimilarity" params="1.2 0.7 1.0"/>`
+      - **bm25** - best match 25 (b,k)
+      - **lmj** - language model with jelinek mercer smoothing (lam)
+      - **lmd** - language model with dirichlet prior smoothing (mu)
+      - **pl2** - divergence from randomness model (c)
+      - **default** - bm25 b=0.75 and k=0.75
 - **resultFile**: the name of the file to output the results to
 - parameters: **b**, **c**, **k**, **mu**, **beta**, **lam**, values for the retrieval algorithm selected.
 
