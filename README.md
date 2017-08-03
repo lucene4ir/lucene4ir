@@ -43,7 +43,7 @@ Go to the Run menu, and select Edit Configurations. In the top left hand side of
 - **IndexerApp**
 	- **Name**: IndexerApp
 	- **Main Class**: lucene4ir.IndexerApp
-	- **Program Arguments**: params/index_params.xml
+	- **Program Arguments**: params/index/index_params.xml
 	- **Working Directory**: ~/lucene4ir
 - **RetrievalApp**
 	- **Name**: RetrievalApp
