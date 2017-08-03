@@ -90,7 +90,7 @@ Configurations window. Example parameter arguments for IndexerApp and RetrievalA
 IndexerApp:  params/index_params.xml
 RetrievalApp: params/retrieval_params.xml
 
-####JAR creation.
+#### JAR creation.
 
 run `mvn package` from the shell, executable jar will be in `target/lucene4ir-0.0.1-SNAPSHOT.jar` 
 
