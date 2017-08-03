@@ -76,8 +76,8 @@ https://stackoverflow.com/questions/29888592/errorjava-javactask-source-release-
 #### Class Execution
 
 For executing App, you can use the command line or terminal and execute the following command
-java -cp lucene4ir-0.0.1-SNAPSHOT.jar lucene4ir.IndexerApp params\index_params.xml
-java -cp lucene4ir-0.0.1-SNAPSHOT.jar lucene4ir.RetrievalApp params\retrieval_params.xml
+- java -cp lucene4ir-0.0.1-SNAPSHOT.jar lucene4ir.IndexerApp params\index_params.xml
+- java -cp lucene4ir-0.0.1-SNAPSHOT.jar lucene4ir.RetrievalApp params\retrieval_params.xml
 
 Please make sure the directory position when you execute the jar because it will need files in  data\cacm_file_list
 
