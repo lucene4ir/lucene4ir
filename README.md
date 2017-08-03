@@ -22,6 +22,9 @@ We are using IntelliJ by JetBrains (https://www.jetbrains.com/idea/download/),
 so once you clone the repo you'll need to see up a few things so that you can run and compile
 the apps.
 
+Please follow the link provided to clone github using IntelliJ
+https://www.jetbrains.com/help/webstorm/cloning-a-repository-from-github.html
+
 Assuming you are using IntelliJ, go to File, Project Structure, then the Project tab.
 
 - Set the Project SDK, we are using Java 1.8.
@@ -56,13 +59,29 @@ Go to the Run menu, and select Edit Configurations. In the top left hand side of
 	- **Program Arguments**: params/example_stats_params.xml
 	- **Working Directory**: ~/lucene4ir
 
+If the following error prompted when running the app
+Error:java: javacTask: source release 1.8 requires target release 1.8 intellij
+Please change the target bytecode into 1.8. You can follow the steps explained in the link
+https://stackoverflow.com/questions/29888592/errorjava-javactask-source-release-8-requires-target-release-1-8
+
 ### Eclipse Setup
 #### Project creation and build path configuration
 1. Start a new java project using File->Import...->Existing Maven project
-2. Uncheck Use default location option and set Project name to Lucene. 
-3. Set the location option to the path PATH/TO/lucene4IR/ and click Finish.
+2. Set the location option to the path PATH/TO/lucene4IR/ and click Finish.
+3. Right click on the project, Click Run as Maven Build
+4. In the prompted form, input “clean verify” to goals
+5. Click run, wait until the build process done. You will have an executable jar, lucene4ir-0.0.1-SNAPSHOT.jar under target directory
 
-####Class Execution
+
+#### Class Execution
+
+For executing App, you can use the command line or terminal and execute the following command
+java -cp lucene4ir-0.0.1-SNAPSHOT.jar lucene4ir.IndexerApp params\index_params.xml
+java -cp lucene4ir-0.0.1-SNAPSHOT.jar lucene4ir.RetrievalApp params\retrieval_params.xml
+
+Please make sure the directory position when you execute the jar because it will need files in  data\cacm_file_list
+
+##### Alternatively, 
 
 Classes with main method can be executed by right clicking on class name, selecting Run As option and selecting Java application.
 If a class needs command line parameters, right click and select Run configuration. Add the parameters in Arguments tab of Run 
