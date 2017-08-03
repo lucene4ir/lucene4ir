@@ -26,9 +26,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.*;
 
-/**
- * Created by leif on 22/08/2016.
- */
 public class RetrievalApp {
 
     public RetrievalParams p;
@@ -39,13 +36,14 @@ public class RetrievalApp {
     protected Analyzer analyzer;
     protected QueryParser parser;
     protected CollectionModel colModel;
+    protected String fieldsFile;
 
     private enum SimModel {
         DEF, BM25, BM25L, LMD, LMJ, PL2, TFIDF,
 	OKAPIBM25, SMARTBNNBNN
     }
 
-    private SimModel sim;
+    protected SimModel sim;
 
     private void setSim(String val){
         try {
@@ -145,12 +143,17 @@ public class RetrievalApp {
             p.resultFile = p.runTag+"_results.res";
         }
 
+        fieldsFile = p.fieldsFile;
+
         System.out.println("Path to index: " + p.indexName);
         System.out.println("Query File: " + p.queryFile);
         System.out.println("Result File: " + p.resultFile);
         System.out.println("Model: " + p.model);
         System.out.println("Max Results: " + p.maxResults);
         System.out.println("b: " + p.b);
+        if (p.fieldsFile!=null){
+            System.out.println("Fields File: " + p.fieldsFile);
+        }
 
 
         if (p.tokenFilterFile != null){
@@ -294,6 +297,7 @@ class RetrievalParams {
     public float delta;
     public String runTag;
     public String tokenFilterFile;
+    public String fieldsFile;
 }
 
 

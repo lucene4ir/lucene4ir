@@ -7,5 +7,6 @@
     <b>0.75</b>
     <resultFile>data/cacm/bm25_results.res</resultFile>
     <tokenFilterFile>params/index/example_03.xml</tokenFilterFile>
-    <runTag>Fred</runTag>
+    <runTag>Fielded</runTag>
+    <fieldsFile>fields.xml</fieldsFile>
 </retrievalParams>
