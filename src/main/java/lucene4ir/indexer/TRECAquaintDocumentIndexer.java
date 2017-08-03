@@ -1,5 +1,6 @@
 package lucene4ir.indexer;
 
+import lucene4ir.LuceneConstants;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.StringField;
@@ -45,15 +46,15 @@ public class TRECAquaintDocumentIndexer extends DocumentIndexer {
 
     public static Document createTrecAquaintDocument(String docid, String title, String content, String source, String pubdate){
         Document doc = new Document();
-        Field docnumField = new StringField("docnum", docid, Field.Store.YES);
+        Field docnumField = new StringField(LuceneConstants.FIELD_DOCNUM, docid, Field.Store.YES);
         doc.add(docnumField);
-        Field titleField = new StringField("title", title, Field.Store.YES);
+        Field titleField = new StringField(LuceneConstants.FIELD_TITLE, title, Field.Store.YES);
         doc.add(titleField);
-        Field textField = new TextField("content", content, Field.Store.YES);
+        Field textField = new TextField(LuceneConstants.FIELD_CONTENT, content, Field.Store.YES);
         doc.add(textField);
-        Field sourceField = new TextField("source", source, Field.Store.YES);
+        Field sourceField = new TextField(LuceneConstants.FIELD_SOURCE, source, Field.Store.YES);
         doc.add(sourceField);
-        Field pubdateField = new StringField("pubdate", pubdate, Field.Store.YES);
+        Field pubdateField = new StringField(LuceneConstants.FIELD_PUBDATE, pubdate, Field.Store.YES);
         doc.add(pubdateField);
         return doc;
     }

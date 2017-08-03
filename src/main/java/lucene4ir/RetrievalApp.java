@@ -21,6 +21,9 @@ import lucene4ir.similarity.BM25Similarity;
 import lucene4ir.utils.TokenAnalyzerMaker;
 
 import javax.xml.bind.JAXB;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.*;
 
 /**
@@ -30,12 +33,12 @@ public class RetrievalApp {
 
     public RetrievalParams p;
 
-    private Similarity simfn;
-    private IndexReader reader;
-    private IndexSearcher searcher;
-    private Analyzer analyzer;
-    private QueryParser parser;
-    private CollectionModel colModel;
+    protected Similarity simfn;
+    protected IndexReader reader;
+    protected IndexSearcher searcher;
+    protected Analyzer analyzer;
+    protected QueryParser parser;
+    protected CollectionModel colModel;
 
     private enum SimModel {
         DEF, BM25, BM25L, LMD, LMJ, PL2, TFIDF,
@@ -275,7 +278,7 @@ public class RetrievalApp {
 }
 
 
-
+@XmlRootElement(name = "RetrievalParams")
 class RetrievalParams {
     public String indexName;
     public String queryFile;
