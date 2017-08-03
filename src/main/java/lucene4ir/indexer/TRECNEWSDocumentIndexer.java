@@ -1,5 +1,6 @@
 package lucene4ir.indexer;
 
+import lucene4ir.LuceneConstants;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.StringField;
@@ -49,22 +50,22 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
 
                         String expression = "/DOC/DOCNO";
                         String docid = xPath.compile(expression).evaluate(xmlDocument).trim();
-                        Field docnumField = new StringField("docnum", docid, Field.Store.YES);
+                        Field docnumField = new StringField(LuceneConstants.FIELD_DOCNUM, docid, Field.Store.YES);
                         doc.add(docnumField);
 
                         expression = "/DOC/HEAD";
                         String title = xPath.compile(expression).evaluate(xmlDocument).trim();
-                        Field titleField = new TextField("title", title, Field.Store.YES);
+                        Field titleField = new TextField(LuceneConstants.FIELD_TITLE, title, Field.Store.YES);
                         doc.add(titleField);
 
                         expression = "/DOC/TEXT";
                         String content = xPath.compile(expression).evaluate(xmlDocument).trim();
-                        Field textField = new TextField("content", content, Field.Store.YES);
+                        Field textField = new TextField(LuceneConstants.FIELD_CONTENT, content, Field.Store.YES);
                         doc.add(textField);
 
                         expression = "/DOC/BYLINE";
                         String author = xPath.compile(expression).evaluate(xmlDocument).trim();
-                        Field authorField = new TextField("author", author, Field.Store.YES);
+                        Field authorField = new TextField(LuceneConstants.FIELD_AUTHOR, author, Field.Store.YES);
                         doc.add(authorField);
 
                         addDocumentToIndex(doc);

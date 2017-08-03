@@ -1,5 +1,6 @@
 package lucene4ir.indexer;
 
+import lucene4ir.LuceneConstants;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.StringField;
@@ -56,7 +57,7 @@ public class TRECTipsterDocumentIndexer extends DocumentIndexer {
                         Elements docidElements = jsoupDoc.getElementsByTag("DOCNO");
                         if (docidElements!=null && docidElements.size()==1) {
                             String docid = docidElements.text();
-                            Field docnumField = new StringField("docnum", docid, Field.Store.YES);
+                            Field docnumField = new StringField(LuceneConstants.FIELD_DOCNUM, docid, Field.Store.YES);
                             doc.add(docnumField);
                         }
 
@@ -70,7 +71,7 @@ public class TRECTipsterDocumentIndexer extends DocumentIndexer {
                                 content.append(" ").append(elIterator.next().text());
                             }
                         }
-                        Field textField = new TextField("content", content.toString().trim(), Field.Store.YES);
+                        Field textField = new TextField(LuceneConstants.FIELD_CONTENT, content.toString().trim(), Field.Store.YES);
                         doc.add(textField);
 
                         addDocumentToIndex(doc);
