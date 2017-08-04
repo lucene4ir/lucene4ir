@@ -19,6 +19,15 @@ import java.io.*;
 import java.util.Iterator;
 import java.util.Set;
 
+
+/**
+ * Application to that protoypes query expansion using synonyms
+ *
+ * Created by marytnas on 09/09/2016.
+ */
+
+
+
 public class RetrievalAppQueryExpansion {
 
     public RetrievalParams p;

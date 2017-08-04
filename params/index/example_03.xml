@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <tokenFilters>
-    <tokenizer>whitespace</tokenizer>
+    <tokenizer>letter</tokenizer>
     <tokenFilter>
         <name>lowercase</name>
+    </tokenFilter>
+    <tokenFilter>
+        <name>porterstem</name>
     </tokenFilter>
     <tokenFilter>
         <name>stop</name>

@@ -9,7 +9,10 @@ import java.io.File;
 import javax.xml.bind.JAXB;
 
 /**
- * Application to perform retrieval by Apache Lucene index API.
+ * Application to perform retrieval directly on Apache Lucene index API.
+ *
+ * This was created to compare the performance against the Lucene BM25 scoring
+ * and BM25 calculated directly from index statistics.
  *
  * Created by dibuccio on 09/09/2016.
  */
