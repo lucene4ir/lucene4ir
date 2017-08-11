@@ -40,7 +40,7 @@ public class RetrievalApp {
 
     private enum SimModel {
         DEF, BM25, BM25L, LMD, LMJ, PL2, TFIDF,
-	OKAPIBM25, SMARTBNNBNN
+	OKAPIBM25, SMARTBNNBNN, DFR
     }
 
     protected SimModel sim;
@@ -94,6 +94,14 @@ public class RetrievalApp {
                 AfterEffect ae = new AfterEffectL();
                 Normalization nn = new NormalizationH2(p.c);
                 simfn = new DFRSimilarity(bm, ae, nn);
+                break;
+
+            case DFR:
+                System.out.println("DFR Similarity Function with no after effect (?)");
+                BasicModel bmd = new BasicModelD();
+                AfterEffect aen = new AfterEffect.NoAfterEffect();
+                Normalization nh1 = new NormalizationH1();
+                simfn = new DFRSimilarity(bmd, aen, nh1);
                 break;
 
             default:
