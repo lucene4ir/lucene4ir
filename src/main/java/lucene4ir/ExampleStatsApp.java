@@ -380,17 +380,17 @@ public class ExampleStatsApp {
 
         statsApp.openReader();
         statsApp.docStats();
-//        statsApp.iterateThroughDocList();
-//        statsApp.termStats("program");
-//        statsApp.termStats("programs");
-//        statsApp.termStats("system");
-//        statsApp.termStats("systems");
-//        statsApp.termStats("Evacuation");
-//
-//
-//        statsApp.termPostingsList("title","system");
-//        statsApp.fieldsList();
-//        statsApp.termsList("title");
+        statsApp.iterateThroughDocList();
+        statsApp.termStats("program");
+        statsApp.termStats("programs");
+        statsApp.termStats("system");
+        statsApp.termStats("systems");
+        statsApp.termStats("Evacuation");
+
+
+        statsApp.termPostingsList("title","system");
+        statsApp.fieldsList();
+        statsApp.termsList("title");
 
         statsApp.iterateThroughDocTermVector(1);
         statsApp.docLength(1);
