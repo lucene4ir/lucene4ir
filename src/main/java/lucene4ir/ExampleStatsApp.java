@@ -256,7 +256,7 @@ public class ExampleStatsApp {
         Apparently you can use an in memory index to take the stored field, and then
         index it at run time in memory so you can iterate through it.
 
-        So, How do we creat this run time memory index.
+        So, How do we create this run time memory index.
 
      */
             Terms t = reader.getTermVector(docid, "title");
@@ -267,10 +267,20 @@ public class ExampleStatsApp {
 
                System.out.println(t.size());
 
+                PostingsEnum p = null;
                 while ((term = te.next()) != null) {
                     System.out.println("BytesRef: " + term.utf8ToString());
                     System.out.println("docFreq: " + te.docFreq());
                     System.out.println("totalTermFreq: " + te.totalTermFreq());
+                    p = te.postings( p, PostingsEnum.ALL );
+                    //Print term positions
+                    while( p.nextDoc() != PostingsEnum.NO_MORE_DOCS ) {
+                        int freq = p.freq();
+                        for( int i = 0; i < freq; i++ ) {
+                            int pos = p.nextPosition();
+                            System.out.println("Term: " + term.utf8ToString() + " Pos: " + pos);
+                        }
+                    }
 
                 }
 
@@ -299,17 +309,17 @@ public class ExampleStatsApp {
 
         statsApp.openReader();
         statsApp.docStats();
-        statsApp.iterateThroughDocList();
-        statsApp.termStats("program");
-        statsApp.termStats("programs");
-        statsApp.termStats("system");
-        statsApp.termStats("systems");
-        statsApp.termStats("Evacuation");
-
-
-        statsApp.termPostingsList("title","system");
-        statsApp.fieldsList();
-        statsApp.termsList("title");
+//        statsApp.iterateThroughDocList();
+//        statsApp.termStats("program");
+//        statsApp.termStats("programs");
+//        statsApp.termStats("system");
+//        statsApp.termStats("systems");
+//        statsApp.termStats("Evacuation");
+//
+//
+//        statsApp.termPostingsList("title","system");
+//        statsApp.fieldsList();
+//        statsApp.termsList("title");
 
         statsApp.iterateThroughDocTermVector(1);
         statsApp.docLength(1);

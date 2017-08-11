@@ -29,7 +29,7 @@ public class CACMDocumentIndexer extends DocumentIndexer {
 
     private void initFields() {
         docnumField = new StringField(LuceneConstants.FIELD_DOCNUM, "", Field.Store.YES);
-        titleField = new TextField(LuceneConstants.FIELD_TITLE, "", Field.Store.YES);
+        titleField = new TermVectorEnabledTextField(LuceneConstants.FIELD_TITLE, "", Field.Store.YES);
         textField = new TextField(LuceneConstants.FIELD_CONTENT, "", Field.Store.YES);
         authorField = new TextField(LuceneConstants.FIELD_AUTHOR, "", Field.Store.YES);
         pubdateField = new StringField(LuceneConstants.FIELD_PUBDATE, "", Field.Store.YES);
