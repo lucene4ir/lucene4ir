@@ -4,8 +4,12 @@ import javax.xml.bind.JAXB;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
-
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
@@ -278,6 +282,73 @@ public class ExampleStatsApp {
 
 
     }
+    
+    
+
+    	public void printTermVectorWithPosition(int docid, Set<String> fields) throws IOException {
+    		
+	    	Map<String, Map<String, List<Integer>>> fieldToTermToPos =
+	    			this.buildTermVectorWithPosition(0, Collections.singleton("title"));
+	
+	    	System.out.println("docid:" + docid);
+	
+	    	for(String field : fieldToTermToPos.keySet()) {
+	    		System.out.println("field:" + field);
+	
+	    		Map<String, List<Integer>> termToPos = fieldToTermToPos.get(field);
+	
+	    		for(String term : termToPos.keySet()) {
+	    			System.out.println("term:" + term + " freq:" + termToPos.get(term).size());
+	    			StringBuilder posBuilder = new StringBuilder("positions:");
+	    			for(int pos : termToPos.get(term)) {
+	    				posBuilder.append(" ").append(pos);
+	    			}
+	    			posBuilder.toString();
+	    		}
+		}
+    	}
+    
+    	public Map<String, Map<String, List<Integer>>> buildTermVectorWithPosition(int docid, Set<String> fields) throws IOException {
+
+	    	Map<String, Map<String, List<Integer>>> fieldToTermVector = new HashMap<>();
+	
+	    	Document doc = reader.document(docid, fields);
+	
+	    	MemoryIndex mi = MemoryIndex.fromDocument(doc, new StandardAnalyzer());
+	    	IndexReader mr = mi.createSearcher().getIndexReader();
+	
+	    	for (LeafReaderContext leafContext : mr.leaves()) {
+	
+	    		LeafReader leaf = leafContext.reader();
+	
+	    		for (String field : fields) {
+	    			Map<String, List<Integer>> termToPositions = new HashMap<>();
+	
+	    			Terms t = leaf.terms(field);
+	
+	    			if(t != null) {
+	    				fieldToTermVector.put(field, termToPositions);
+	    				TermsEnum tenum = t.iterator();
+	
+	    				BytesRef termBytes = null;
+	    				PostingsEnum postings = null;
+	    				while ((termBytes = tenum.next()) != null) {
+	
+	    					List<Integer> positions = new ArrayList<>();
+	    					termToPositions.put(termBytes.utf8ToString(), positions);
+	    					postings = tenum.postings(postings);
+	    					postings.advance(0);
+	
+	    					for (int i = 0; i < postings.freq(); i++) {
+	    						positions.add(postings.nextPosition());
+	    					}
+	    				}
+	    			}
+	    		}
+	
+	    	}
+	    	return fieldToTermVector;
+    }
 
 
     public static void main(String[] args)  throws IOException {
@@ -315,9 +386,9 @@ public class ExampleStatsApp {
         statsApp.docLength(1);
         statsApp.numSegments();
 
+        statsApp.printTermVectorWithPosition(0, Collections.singleton("title"));
+    	}
 
-
-    }
 }
 
 class ExampleStatsParams {
