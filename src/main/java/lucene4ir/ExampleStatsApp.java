@@ -386,12 +386,9 @@ public class ExampleStatsApp {
         statsApp.termStats("system");
         statsApp.termStats("systems");
         statsApp.termStats("Evacuation");
-
-
         statsApp.termPostingsList("title","system");
         statsApp.fieldsList();
         statsApp.termsList("title");
-
         statsApp.iterateThroughDocTermVector(1);
         statsApp.docLength(1);
         statsApp.numSegments();

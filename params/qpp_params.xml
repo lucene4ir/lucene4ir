@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<qppParams>
+    <indexName>index</indexName>
+    <queryFile>data/cacm/title.query</queryFile>
+    <qppFile>data/cacm/qp_predictions.res</qppFile>
+    <tokenFilterFile>params/index/example_03.xml</tokenFilterFile>
+    <runTag>Fred</runTag>
+</qppParams>
