@@ -27,17 +27,20 @@ import java.util.Map;
 
 /**
  * Created by leif on 21/08/2016.
+ * Edited by kojayboy on 16/08/2017.
  */
 public class DocumentIndexer {
 
+    protected boolean indexPositions;
     public IndexWriter writer;
     public Analyzer analyzer;
 
     public DocumentIndexer(){};
 
-    public DocumentIndexer(String indexPath, String tokenFilterFile){
+    public DocumentIndexer(String indexPath, String tokenFilterFile, boolean positional){
         writer = null;
         analyzer = LuceneConstants.ANALYZER;
+        indexPositions=positional;
 
         if (tokenFilterFile != null){
             TokenAnalyzerMaker tam = new TokenAnalyzerMaker();

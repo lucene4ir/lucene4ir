@@ -17,32 +17,81 @@ import javax.xml.xpath.XPathFactory;
 /**
  * Created by leif on 30/08/2016.
  * Modified by Yashar on 31/08/2016
+ * Edited by kojayboy on 16/08/2017.
  */
 public class TRECNEWSDocumentIndexer extends DocumentIndexer {
-    public TRECNEWSDocumentIndexer(String indexPath, String tokenFilterFile){
-        super(indexPath, tokenFilterFile);
+
+    private Field docnumField;
+    private Field titleField;
+    private Field textField;
+    private Field authorField;
+    private Field allField;
+    private Document doc;
+
+    public TRECNEWSDocumentIndexer(String indexPath, String tokenFilterFile, boolean positional){
+        super(indexPath, tokenFilterFile, positional);
+
+        doc = new Document();
+        initFields();
+        initNEWSDoc();
+    }
+
+    private void initFields() {
+        docnumField = new StringField(LuceneConstants.FIELD_DOCNUM, "", Field.Store.YES);
+        if(indexPositions){
+            titleField = new TermVectorEnabledTextField(LuceneConstants.FIELD_TITLE, "", Field.Store.YES);
+            textField = new TermVectorEnabledTextField(LuceneConstants.FIELD_CONTENT, "", Field.Store.YES);
+            allField = new TermVectorEnabledTextField("all", "", Field.Store.YES);
+            authorField = new TermVectorEnabledTextField(LuceneConstants.FIELD_AUTHOR, "", Field.Store.YES);
+        }
+        else {
+            titleField = new TextField(LuceneConstants.FIELD_TITLE, "", Field.Store.YES);
+            textField = new TextField(LuceneConstants.FIELD_CONTENT, "", Field.Store.YES);
+            allField = new TextField("all", "", Field.Store.YES);
+            authorField = new TextField(LuceneConstants.FIELD_AUTHOR, "", Field.Store.YES);
+        }
+    }
+
+    private void initNEWSDoc() {
+        doc.add(docnumField);
+        doc.add(titleField);
+        doc.add(textField);
+        doc.add(allField);
+        doc.add(authorField);
+    }
+
+    public Document createNEWSDocument(String docid, String author, String title, String content, String all){
+        docnumField.setStringValue(docid);
+        titleField.setStringValue(title);
+        allField.setStringValue(all);
+        textField.setStringValue(content);
+        authorField.setStringValue(author);
+
+        doc.add(docnumField);
+        doc.add(authorField);
+        doc.add(titleField);
+        doc.add(textField);
+        doc.add(allField);
+        System.out.println("Adding document: " + docid + " Title: " + title);
+        return doc;
     }
 
     public void indexDocumentsFromFile(String filename){
 
         String line = "";
         java.lang.StringBuilder text = new StringBuilder();
-        Document doc = new Document();
 
         try {
             BufferedReader br = new BufferedReader(new FileReader(filename));
             try {
-
                 line = br.readLine();
                 while (line != null){
-
                     if (line.startsWith("<DOC>")) {
                         text = new StringBuilder();
                     }
                     text.append(line + "\n");
 
                     if (line.startsWith("</DOC>")){
-
                         DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
                         DocumentBuilder builder =  builderFactory.newDocumentBuilder();
                         org.w3c.dom.Document xmlDocument = builder.parse(new InputSource(new StringReader(text.toString())));
@@ -50,28 +99,21 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
 
                         String expression = "/DOC/DOCNO";
                         String docid = xPath.compile(expression).evaluate(xmlDocument).trim();
-                        Field docnumField = new StringField(LuceneConstants.FIELD_DOCNUM, docid, Field.Store.YES);
-                        doc.add(docnumField);
 
                         expression = "/DOC/HEAD";
                         String title = xPath.compile(expression).evaluate(xmlDocument).trim();
-                        Field titleField = new TextField(LuceneConstants.FIELD_TITLE, title, Field.Store.YES);
-                        doc.add(titleField);
 
                         expression = "/DOC/TEXT";
                         String content = xPath.compile(expression).evaluate(xmlDocument).trim();
-                        Field textField = new TextField(LuceneConstants.FIELD_CONTENT, content, Field.Store.YES);
-                        doc.add(textField);
 
                         expression = "/DOC/BYLINE";
                         String author = xPath.compile(expression).evaluate(xmlDocument).trim();
-                        Field authorField = new TextField(LuceneConstants.FIELD_AUTHOR, author, Field.Store.YES);
-                        doc.add(authorField);
 
+                        String all = title + " " + content + " " + author;
+                        createNEWSDocument(docid,author,title,content,all);
                         addDocumentToIndex(doc);
 
                         text = new StringBuilder();
-                        doc = new Document();
                     }
                     line = br.readLine();
                 }
