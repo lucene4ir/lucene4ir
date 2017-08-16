@@ -17,18 +17,25 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathFactory;
 import org.jsoup.Jsoup;
 
-
 /**
  * Created by leif on 03/09/2016.
+ * Edited by kojayboy on 16/08/2017.
  */
 public class TRECAquaintDocumentIndexer extends DocumentIndexer {
     Whitelist whiteList;
 
-    public TRECAquaintDocumentIndexer(String indexPath, String tokenFilterFile){
-        super(indexPath, tokenFilterFile);
+    private Field docnumField;
+    private Field titleField;
+    private Field textField;
+    private Field allField;
+    private Field sourceField;
+    private Field pubdateField;
+    private Document doc;
+
+    public TRECAquaintDocumentIndexer(String indexPath, String tokenFilterFile, boolean positional){
+        super(indexPath, tokenFilterFile, positional);
 
         try {
-
             whiteList = Whitelist.relaxed();
             whiteList.addTags("docno");
             whiteList.addTags("doc");
@@ -36,31 +43,61 @@ public class TRECAquaintDocumentIndexer extends DocumentIndexer {
             whiteList.addTags("text");
             whiteList.addTags("date_time");
             whiteList.addTags("slug");
-
-
         } catch (Exception e){
             System.out.println(" caught a " + e.getClass() +
                     "\n with message: " + e.getMessage());
         }
+
+        doc = new Document();
+        initFields();
+        initAQUAINTDoc();
     }
 
-    public static Document createTrecAquaintDocument(String docid, String title, String content, String source, String pubdate){
-        Document doc = new Document();
-        Field docnumField = new StringField(LuceneConstants.FIELD_DOCNUM, docid, Field.Store.YES);
+    private void initFields() {
+        docnumField = new StringField(LuceneConstants.FIELD_DOCNUM, "", Field.Store.YES);
+        pubdateField = new StringField(LuceneConstants.FIELD_PUBDATE, "", Field.Store.YES);
+        if(indexPositions){
+            titleField = new TermVectorEnabledTextField(LuceneConstants.FIELD_TITLE, "", Field.Store.YES);
+            textField = new TermVectorEnabledTextField(LuceneConstants.FIELD_CONTENT, "", Field.Store.YES);
+            allField = new TermVectorEnabledTextField("all", "", Field.Store.YES);
+            sourceField = new TermVectorEnabledTextField(LuceneConstants.FIELD_SOURCE, "", Field.Store.YES);
+        }
+        else {
+            titleField = new TextField(LuceneConstants.FIELD_TITLE, "", Field.Store.YES);
+            textField = new TextField(LuceneConstants.FIELD_CONTENT, "", Field.Store.YES);
+            allField = new TextField("all", "", Field.Store.YES);
+            sourceField = new TextField(LuceneConstants.FIELD_SOURCE, "", Field.Store.YES);
+        }
+    }
+
+    private void initAQUAINTDoc() {
         doc.add(docnumField);
-        Field titleField = new StringField(LuceneConstants.FIELD_TITLE, title, Field.Store.YES);
         doc.add(titleField);
-        Field textField = new TextField(LuceneConstants.FIELD_CONTENT, content, Field.Store.YES);
         doc.add(textField);
-        Field sourceField = new TextField(LuceneConstants.FIELD_SOURCE, source, Field.Store.YES);
         doc.add(sourceField);
-        Field pubdateField = new StringField(LuceneConstants.FIELD_PUBDATE, pubdate, Field.Store.YES);
         doc.add(pubdateField);
+        doc.add(allField);
+    }
+
+    public Document createTRECAQUAINTDocument(String docid, String pubdate, String source, String title, String content, String all){
+        docnumField.setStringValue(docid);
+        titleField.setStringValue(title);
+        allField.setStringValue(all);
+        textField.setStringValue(content);
+        sourceField.setStringValue(source);
+        pubdateField.setStringValue(pubdate);
+
+        doc.add(docnumField);
+        doc.add(pubdateField);
+        doc.add(sourceField);
+        doc.add(titleField);
+        doc.add(textField);
+        doc.add(allField);
+        System.out.println("Adding document: " + docid + " Title: " + title);
         return doc;
     }
 
     public void indexDocumentsFromFile(String filename){
-
         String line = "";
         java.lang.StringBuilder text = new StringBuilder();
 
@@ -90,11 +127,9 @@ public class TRECAquaintDocumentIndexer extends DocumentIndexer {
             System.out.println(" caught a " + e.getClass() +
                     "\n with message: " + e.getMessage());
         }
-    };
-
+    }
 
     public void extractFieldsFromXmlAndIndex(String xmlString){
-
         String docnum;
         String title;
         String content;
@@ -104,42 +139,30 @@ public class TRECAquaintDocumentIndexer extends DocumentIndexer {
         String safeText = org.jsoup.Jsoup.clean(xmlString,whiteList);
         org.jsoup.nodes.Document jdoc = org.jsoup.Jsoup.parse(safeText);
 
-        docnum = getFieldText(jdoc, "docno");
+        docnum = getFieldText(jdoc, "docno").trim();
         title = getFieldText(jdoc, "headline");
-        if (title == ""){
+        if (title == "")
             title = getFieldText(jdoc, "slug");
-        }
         content = getFieldText(jdoc, "text");
         pubdate = getFieldText(jdoc, "date_time");
-
-        if (docnum.startsWith("NYT")) {
+        if (docnum.startsWith("NYT"))
             source = "New York Times";
-        }
-        if (docnum.startsWith("AP")) {
+        if (docnum.startsWith("AP"))
             source = "Associated Press";
-        }
-        if (docnum.startsWith("XIE")) {
+        if (docnum.startsWith("XIE"))
             source = "XIE";
-        }
 
-        Document doc = createTrecAquaintDocument(docnum,title,content,source,pubdate);
+        String all = title + " " + content + " " + source + " " + pubdate;
+        doc = createTRECAQUAINTDocument(docnum,pubdate,source,title,content,all);
         addDocumentToIndex(doc);
-
-
-    };
+    }
 
     private String getFieldText(org.jsoup.nodes.Document jdoc, String fieldName){
         String fieldText = "";
-
         org.jsoup.select.Elements dns = jdoc.getElementsByTag(fieldName);
         for (org.jsoup.nodes.Element dn : dns) {
             fieldText = dns.text();
         }
         return fieldText;
-
-
     }
-
-
-
 }

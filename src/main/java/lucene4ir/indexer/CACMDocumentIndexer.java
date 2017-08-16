@@ -8,6 +8,7 @@ import java.io.FileReader;
 
 /**
  * Created by leif on 21/08/2016.
+ * Edited by kojayboy on 16/08/2017.
  */
 public class CACMDocumentIndexer extends DocumentIndexer {
 
@@ -18,21 +19,30 @@ public class CACMDocumentIndexer extends DocumentIndexer {
     private Field pubdateField;
     private Document doc;
 
-    public CACMDocumentIndexer(String indexPath, String tokenFilterFile){
-        super(indexPath, tokenFilterFile);
+    public CACMDocumentIndexer(String indexPath, String tokenFilterFile, boolean positional){
+        super(indexPath, tokenFilterFile,positional);
 
         // Reusable document object to reduce GC overhead
         doc = new Document();
+
         initFields();
         initCacmDoc();
     }
 
     private void initFields() {
+        System.out.println("InitFields");
         docnumField = new StringField(LuceneConstants.FIELD_DOCNUM, "", Field.Store.YES);
-        titleField = new TermVectorEnabledTextField(LuceneConstants.FIELD_TITLE, "", Field.Store.YES);
-        textField = new TextField(LuceneConstants.FIELD_CONTENT, "", Field.Store.YES);
-        authorField = new TextField(LuceneConstants.FIELD_AUTHOR, "", Field.Store.YES);
         pubdateField = new StringField(LuceneConstants.FIELD_PUBDATE, "", Field.Store.YES);
+        if(indexPositions){
+            titleField = new TermVectorEnabledTextField(LuceneConstants.FIELD_TITLE, "", Field.Store.YES);
+            textField = new TermVectorEnabledTextField(LuceneConstants.FIELD_CONTENT, "", Field.Store.YES);
+            authorField = new TermVectorEnabledTextField(LuceneConstants.FIELD_AUTHOR, "", Field.Store.YES);
+        }
+        else {
+            titleField = new TextField(LuceneConstants.FIELD_TITLE, "", Field.Store.YES);
+            textField = new TextField(LuceneConstants.FIELD_CONTENT, "", Field.Store.YES);
+            authorField = new TextField(LuceneConstants.FIELD_AUTHOR, "", Field.Store.YES);
+        }
     }
 
     private void initCacmDoc() {
@@ -137,7 +147,7 @@ public class CACMDocumentIndexer extends DocumentIndexer {
                     line = br.readLine();
                 }
                 if (fields[0] != ""){
-                    Document doc = createCacmDocument(fields[0],fields[1],fields[2],fields[3],fields[4]);
+                    doc = createCacmDocument(fields[0],fields[1],fields[2],fields[3],fields[4]);
                     addDocumentToIndex(doc);
                 }
 

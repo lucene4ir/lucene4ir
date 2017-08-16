@@ -53,7 +53,8 @@ public class IndexerApp {
         switch(dm){
             case CACM:
                 System.out.println("CACM Document Parser");
-                di = new CACMDocumentIndexer(p.indexName, p.tokenFilterFile);
+                System.out.println("Positional: " + p.recordPositions);
+                di = new CACMDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions);
                 break;
 
             case CLUEWEB:
@@ -65,17 +66,17 @@ public class IndexerApp {
 
             case TRECNEWS:
                 System.out.println("TRECNEWS");
-                di = new TRECNEWSDocumentIndexer(p.indexName, p.tokenFilterFile);
+                di = new TRECNEWSDocumentIndexer(p.indexName, p.tokenFilterFile,p.recordPositions);
                 break;
 
             case TRECTIPSTER:
                 System.out.println("TRECTIPSTER");
-                di = new TRECTipsterDocumentIndexer(p.indexName, p.tokenFilterFile);
+                di = new TRECTipsterDocumentIndexer(p.indexName, p.tokenFilterFile,p.recordPositions);
                 break;
 
             case TRECAQUAINT:
                 System.out.println("TRECAQUAINT");
-                di = new TRECAquaintDocumentIndexer(p.indexName, p.tokenFilterFile);
+                di = new TRECAquaintDocumentIndexer(p.indexName, p.tokenFilterFile,p.recordPositions);
                 break;
 
             default:
@@ -125,6 +126,9 @@ public class IndexerApp {
                     "\n with message: " + e.getMessage());
             System.exit(1);
         }
+
+        if(p.recordPositions==null)
+            p.recordPositions=false;
 
         System.out.println("Path to index: " + p.indexName);
         System.out.println("File List: " + p.fileList);
