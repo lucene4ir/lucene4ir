@@ -104,7 +104,6 @@ public class TRECAquaintDocumentIndexer extends DocumentIndexer {
         try {
             BufferedReader br = new BufferedReader(new FileReader(filename));
             try {
-
                 line = br.readLine();
                 while (line != null){
 
@@ -141,6 +140,7 @@ public class TRECAquaintDocumentIndexer extends DocumentIndexer {
 
         docnum = getFieldText(jdoc, "docno").trim();
         title = getFieldText(jdoc, "headline");
+        System.out.println(title);
         if (title == "")
             title = getFieldText(jdoc, "slug");
         content = getFieldText(jdoc, "text");

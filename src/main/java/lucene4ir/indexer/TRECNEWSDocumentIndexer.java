@@ -72,7 +72,7 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
         doc.add(titleField);
         doc.add(textField);
         doc.add(allField);
-        System.out.println("Adding document: " + docid + " Title: " + title);
+//        System.out.println("Adding document: " + docid + " Title: " + title);
         return doc;
     }
 
