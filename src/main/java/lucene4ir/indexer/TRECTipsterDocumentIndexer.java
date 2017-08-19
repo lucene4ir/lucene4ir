@@ -148,6 +148,7 @@ public class TRECTipsterDocumentIndexer extends DocumentIndexer {
                         //doc.add(textField);
 
                         String all = title.toString().trim() + " " + content.toString().trim();
+                        doc.clear();
                         createTipsterDocument(docnum.trim(), title.toString().trim(), content.toString().trim(), all);
                         addDocumentToIndex(doc);
 

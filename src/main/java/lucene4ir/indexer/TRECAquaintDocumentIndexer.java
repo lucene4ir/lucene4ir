@@ -153,6 +153,7 @@ public class TRECAquaintDocumentIndexer extends DocumentIndexer {
             source = "XIE";
 
         String all = title + " " + content + " " + source + " " + pubdate;
+        doc.clear();
         doc = createTRECAQUAINTDocument(docnum,pubdate,source,title,content,all);
         addDocumentToIndex(doc);
     }

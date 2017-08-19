@@ -110,6 +110,7 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
                         String author = xPath.compile(expression).evaluate(xmlDocument).trim();
 
                         String all = title + " " + content + " " + author;
+                        doc.clear();
                         createNEWSDocument(docid,author,title,content,all);
                         addDocumentToIndex(doc);
 
