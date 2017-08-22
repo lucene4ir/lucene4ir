@@ -37,6 +37,7 @@ public class RetrievalApp {
     protected QueryParser parser;
     protected CollectionModel colModel;
     protected String fieldsFile;
+    protected String qeFile;
 
     private enum SimModel {
         DEF, BM25, BM25L, LMD, LMJ, PL2, TFIDF,
@@ -133,13 +134,13 @@ public class RetrievalApp {
         setSim(p.model);
 
         if (p.maxResults==0.0) {p.maxResults=1000;}
-        if (p.b == 0.0){ p.b = 0.75f;}
-        if (p.beta == 0.0){p.beta = 500f;}
-        if (p.k ==0.0){ p.k = 1.2f;}
-        if (p.delta==0.0){p.delta = 1.0f;}
-        if (p.lam==0.0){p.lam = 0.5f;}
-        if (p.mu==0.0){p.mu = 500f;}
-        if (p.c==0.0){p.c=10.0f;}
+        if (p.b < 0.0){ p.b = 0.75f;}
+        if (p.beta < 0.0){p.beta = 500f;}
+        if (p.k <0.0){ p.k = 1.2f;}
+        if (p.delta<0.0){p.delta = 1.0f;}
+        if (p.lam<0.0){p.lam = 0.5f;}
+        if (p.mu<0.0){p.mu = 500f;}
+        if (p.c<0.0){p.c=10.0f;}
         if (p.model == null){
             p.model = "def";
         }
@@ -162,7 +163,9 @@ public class RetrievalApp {
         if (p.fieldsFile!=null){
             System.out.println("Fields File: " + p.fieldsFile);
         }
-
+        if (p.qeFile!=null){
+            System.out.println("QE File: " + p.qeFile);
+        }
 
         if (p.tokenFilterFile != null){
             TokenAnalyzerMaker tam = new TokenAnalyzerMaker();
@@ -306,6 +309,7 @@ class RetrievalParams {
     public String runTag;
     public String tokenFilterFile;
     public String fieldsFile;
+    public String qeFile;
 }
 
 
