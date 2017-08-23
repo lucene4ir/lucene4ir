@@ -1,0 +1,1003 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE PubmedArticleSet SYSTEM "http://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_170101.dtd">
+<PubmedArticleSet>
+  <PubmedArticle>
+    <MedlineCitation Status="MEDLINE" Owner="NLM">
+      <PMID Version="1">20124856</PMID>
+      <DateCreated>
+        <Year>2010</Year>
+        <Month>02</Month>
+        <Day>03</Day>
+      </DateCreated>
+      <DateCompleted>
+        <Year>2010</Year>
+        <Month>03</Month>
+        <Day>01</Day>
+      </DateCompleted>
+      <DateRevised>
+        <Year>2015</Year>
+        <Month>06</Month>
+        <Day>24</Day>
+      </DateRevised>
+      <Article PubModel="Print">
+        <Journal>
+          <ISSN IssnType="Electronic">1529-4242</ISSN>
+          <JournalIssue CitedMedium="Internet">
+            <Volume>125</Volume>
+            <Issue>2</Issue>
+            <PubDate>
+              <Year>2010</Year>
+              <Month>Feb</Month>
+            </PubDate>
+          </JournalIssue>
+          <Title>Plastic and reconstructive surgery</Title>
+          <ISOAbbreviation>Plast. Reconstr. Surg.</ISOAbbreviation>
+        </Journal>
+        <ArticleTitle>Minor complications after blepharoplasty: dry eyes, chemosis, granulomas, ptosis, and scleral show.</ArticleTitle>
+        <Pagination>
+          <MedlinePgn>709-18</MedlinePgn>
+        </Pagination>
+        <ELocationID EIdType="doi" ValidYN="Y">10.1097/PRS.0b013e3181c830c7</ELocationID>
+        <Abstract>
+          <AbstractText Label="SUMMARY" NlmCategory="CONCLUSIONS">Blepharoplasty remains one of the most popular operations in facial aesthetic surgery. Serious complications, which include blindness, retrobulbar hematoma, and ectropion, although relatively rare, are well reported in the literature. As techniques evolve in aesthetic eyelid surgery, minor complications continue to be very common. Nonetheless, management of these complications can be challenging and may require extended management or surgical revision. The authors discuss several of the most common minor complications, including hematoma, dry-eye syndrome, infections, atypical lesions, lid malposition, and scarring. In addition, preoperative assessment of risk factors, treatment, and management of these minor complications are presented.</AbstractText>
+        </Abstract>
+        <AuthorList CompleteYN="Y">
+          <Author ValidYN="Y">
+            <LastName>Pacella</LastName>
+            <ForeName>Salvatore J</ForeName>
+            <Initials>SJ</Initials>
+            <AffiliationInfo>
+              <Affiliation>Division of Plastic Surgery, Scripps Clinic and Research Institute, and Paces Plastic Surgery, La Jolla, Calif, USA.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>Codner</LastName>
+            <ForeName>Mark A</ForeName>
+            <Initials>MA</Initials>
+          </Author>
+        </AuthorList>
+        <Language>eng</Language>
+        <PublicationTypeList>
+          <PublicationType UI="D016428">Journal Article</PublicationType>
+        </PublicationTypeList>
+      </Article>
+      <MedlineJournalInfo>
+        <Country>United States</Country>
+        <MedlineTA>Plast Reconstr Surg</MedlineTA>
+        <NlmUniqueID>1306050</NlmUniqueID>
+        <ISSNLinking>0032-1052</ISSNLinking>
+      </MedlineJournalInfo>
+      <CitationSubset>AIM</CitationSubset>
+      <CitationSubset>IM</CitationSubset>
+      <MeshHeadingList>
+        <MeshHeading>
+          <DescriptorName UI="D019882" MajorTopicYN="N">Blepharoplasty</DescriptorName>
+          <QualifierName UI="Q000009" MajorTopicYN="Y">adverse effects</QualifierName>
+          <QualifierName UI="Q000706" MajorTopicYN="Y">statistics &amp; numerical data</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D001763" MajorTopicYN="N">Blepharoptosis</DescriptorName>
+          <QualifierName UI="Q000453" MajorTopicYN="N">epidemiology</QualifierName>
+          <QualifierName UI="Q000473" MajorTopicYN="N">pathology</QualifierName>
+          <QualifierName UI="Q000628" MajorTopicYN="N">therapy</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D015352" MajorTopicYN="N">Dry Eye Syndromes</DescriptorName>
+          <QualifierName UI="Q000453" MajorTopicYN="N">epidemiology</QualifierName>
+          <QualifierName UI="Q000473" MajorTopicYN="N">pathology</QualifierName>
+          <QualifierName UI="Q000628" MajorTopicYN="N">therapy</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D004487" MajorTopicYN="N">Edema</DescriptorName>
+          <QualifierName UI="Q000453" MajorTopicYN="N">epidemiology</QualifierName>
+          <QualifierName UI="Q000473" MajorTopicYN="N">pathology</QualifierName>
+          <QualifierName UI="Q000628" MajorTopicYN="N">therapy</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D006099" MajorTopicYN="N">Granuloma</DescriptorName>
+          <QualifierName UI="Q000453" MajorTopicYN="N">epidemiology</QualifierName>
+          <QualifierName UI="Q000473" MajorTopicYN="N">pathology</QualifierName>
+          <QualifierName UI="Q000628" MajorTopicYN="N">therapy</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D006406" MajorTopicYN="N">Hematoma</DescriptorName>
+          <QualifierName UI="Q000453" MajorTopicYN="N">epidemiology</QualifierName>
+          <QualifierName UI="Q000473" MajorTopicYN="N">pathology</QualifierName>
+          <QualifierName UI="Q000628" MajorTopicYN="N">therapy</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D006801" MajorTopicYN="N">Humans</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D015994" MajorTopicYN="N">Incidence</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D011183" MajorTopicYN="Y">Postoperative Complications</DescriptorName>
+          <QualifierName UI="Q000453" MajorTopicYN="N">epidemiology</QualifierName>
+          <QualifierName UI="Q000473" MajorTopicYN="N">pathology</QualifierName>
+          <QualifierName UI="Q000628" MajorTopicYN="N">therapy</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D012307" MajorTopicYN="N">Risk Factors</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D012590" MajorTopicYN="N">Sclera</DescriptorName>
+          <QualifierName UI="Q000473" MajorTopicYN="N">pathology</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D013530" MajorTopicYN="N">Surgical Wound Infection</DescriptorName>
+          <QualifierName UI="Q000453" MajorTopicYN="N">epidemiology</QualifierName>
+          <QualifierName UI="Q000473" MajorTopicYN="N">pathology</QualifierName>
+          <QualifierName UI="Q000628" MajorTopicYN="N">therapy</QualifierName>
+        </MeshHeading>
+      </MeshHeadingList>
+    </MedlineCitation>
+    <PubmedData>
+      <History>
+        <PubMedPubDate PubStatus="entrez">
+          <Year>2010</Year>
+          <Month>2</Month>
+          <Day>4</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="pubmed">
+          <Year>2010</Year>
+          <Month>2</Month>
+          <Day>4</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="medline">
+          <Year>2010</Year>
+          <Month>3</Month>
+          <Day>2</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+      </History>
+      <PublicationStatus>ppublish</PublicationStatus>
+      <ArticleIdList>
+        <ArticleId IdType="pubmed">20124856</ArticleId>
+        <ArticleId IdType="doi">10.1097/PRS.0b013e3181c830c7</ArticleId>
+        <ArticleId IdType="pii">00006534-201002000-00037</ArticleId>
+      </ArticleIdList>
+    </PubmedData>
+  </PubmedArticle>
+  <PubmedArticle>
+    <MedlineCitation Status="MEDLINE" Owner="NLM">
+      <PMID Version="1">20124857</PMID>
+      <DateCreated>
+        <Year>2010</Year>
+        <Month>02</Month>
+        <Day>03</Day>
+      </DateCreated>
+      <DateCompleted>
+        <Year>2010</Year>
+        <Month>03</Month>
+        <Day>01</Day>
+      </DateCompleted>
+      <DateRevised>
+        <Year>2015</Year>
+        <Month>06</Month>
+        <Day>24</Day>
+      </DateRevised>
+      <Article PubModel="Print">
+        <Journal>
+          <ISSN IssnType="Electronic">1529-4242</ISSN>
+          <JournalIssue CitedMedium="Internet">
+            <Volume>125</Volume>
+            <Issue>2</Issue>
+            <PubDate>
+              <Year>2010</Year>
+              <Month>Feb</Month>
+            </PubDate>
+          </JournalIssue>
+          <Title>Plastic and reconstructive surgery</Title>
+          <ISOAbbreviation>Plast. Reconstr. Surg.</ISOAbbreviation>
+        </Journal>
+        <ArticleTitle>Active agents in common skin care products.</ArticleTitle>
+        <Pagination>
+          <MedlinePgn>719-24</MedlinePgn>
+        </Pagination>
+        <ELocationID EIdType="doi" ValidYN="Y">10.1097/PRS.0b013e3181c83192</ELocationID>
+        <Abstract>
+          <AbstractText Label="BACKGROUND" NlmCategory="BACKGROUND">Skin care products are numerous and perplexing, yet the majority fall into the moisturizer category. Moisturizers are substances designed to improve and maintain the skin barrier. They serve as a vehicle for the delivery of active ingredients that minimize facial lines of dehydration, deliver photoprotection, and provide antioxidant properties.</AbstractText>
+          <AbstractText Label="METHODS" NlmCategory="METHODS">Moisturizers are based on occlusive substances, such as petrolatum and dimethicone, and humectant substances, such as glycerin, with a variety of sunscreens and botanicals for added functionality and marketing impact. This article reviews these common active agents.</AbstractText>
+          <AbstractText Label="RESULTS" NlmCategory="RESULTS">The plethora of over-the-counter skin care products available for patient purchase is overwhelming, yet there is certain commonality among 80 percent of the formulations. The majority of the products are moisturizers with added ingredients to support marketing claims. Whether the product is a facial foundation, an antiaging night cream, a sunscreen, a topical antioxidant, or a skin-lightening serum, the formulation is basically a moisturizer.</AbstractText>
+          <AbstractText Label="CONCLUSION" NlmCategory="CONCLUSIONS">Sunscreen is the most biologically active antiaging ingredient in skin care products, but the antiinflammatory and antioxidant effects of botanicals possess tremendous marketing appeal.</AbstractText>
+        </Abstract>
+        <AuthorList CompleteYN="Y">
+          <Author ValidYN="Y">
+            <LastName>Draelos</LastName>
+            <ForeName>Zoe Diana</ForeName>
+            <Initials>ZD</Initials>
+            <AffiliationInfo>
+              <Affiliation>Dermatology Consulting Services, High Point, NC, USA. zdraelos@northstate.net</Affiliation>
+            </AffiliationInfo>
+          </Author>
+        </AuthorList>
+        <Language>eng</Language>
+        <PublicationTypeList>
+          <PublicationType UI="D016428">Journal Article</PublicationType>
+          <PublicationType UI="D016454">Review</PublicationType>
+        </PublicationTypeList>
+      </Article>
+      <MedlineJournalInfo>
+        <Country>United States</Country>
+        <MedlineTA>Plast Reconstr Surg</MedlineTA>
+        <NlmUniqueID>1306050</NlmUniqueID>
+        <ISSNLinking>0032-1052</ISSNLinking>
+      </MedlineJournalInfo>
+      <ChemicalList>
+        <Chemical>
+          <RegistryNumber>0</RegistryNumber>
+          <NameOfSubstance UI="D000893">Anti-Inflammatory Agents</NameOfSubstance>
+        </Chemical>
+        <Chemical>
+          <RegistryNumber>0</RegistryNumber>
+          <NameOfSubstance UI="D000975">Antioxidants</NameOfSubstance>
+        </Chemical>
+        <Chemical>
+          <RegistryNumber>0</RegistryNumber>
+          <NameOfSubstance UI="D003358">Cosmetics</NameOfSubstance>
+        </Chemical>
+        <Chemical>
+          <RegistryNumber>0</RegistryNumber>
+          <NameOfSubstance UI="D003879">Dermatologic Agents</NameOfSubstance>
+        </Chemical>
+        <Chemical>
+          <RegistryNumber>0</RegistryNumber>
+          <NameOfSubstance UI="D004129">Dimethylpolysiloxanes</NameOfSubstance>
+        </Chemical>
+        <Chemical>
+          <RegistryNumber>0</RegistryNumber>
+          <NameOfSubstance UI="D004338">Drug Combinations</NameOfSubstance>
+        </Chemical>
+        <Chemical>
+          <RegistryNumber>0</RegistryNumber>
+          <NameOfSubstance UI="D004643">Emollients</NameOfSubstance>
+        </Chemical>
+        <Chemical>
+          <RegistryNumber>0</RegistryNumber>
+          <NameOfSubstance UI="D013473">Sunscreening Agents</NameOfSubstance>
+        </Chemical>
+        <Chemical>
+          <RegistryNumber>0</RegistryNumber>
+          <NameOfSubstance UI="C501844">dimethicone</NameOfSubstance>
+        </Chemical>
+        <Chemical>
+          <RegistryNumber>8009-03-8</RegistryNumber>
+          <NameOfSubstance UI="D010577">Petrolatum</NameOfSubstance>
+        </Chemical>
+        <Chemical>
+          <RegistryNumber>PDC6A3C0OX</RegistryNumber>
+          <NameOfSubstance UI="D005990">Glycerol</NameOfSubstance>
+        </Chemical>
+      </ChemicalList>
+      <CitationSubset>AIM</CitationSubset>
+      <CitationSubset>IM</CitationSubset>
+      <MeshHeadingList>
+        <MeshHeading>
+          <DescriptorName UI="D000893" MajorTopicYN="N">Anti-Inflammatory Agents</DescriptorName>
+          <QualifierName UI="Q000737" MajorTopicYN="N">chemistry</QualifierName>
+          <QualifierName UI="Q000627" MajorTopicYN="N">therapeutic use</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D000975" MajorTopicYN="N">Antioxidants</DescriptorName>
+          <QualifierName UI="Q000737" MajorTopicYN="N">chemistry</QualifierName>
+          <QualifierName UI="Q000627" MajorTopicYN="N">therapeutic use</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D003358" MajorTopicYN="N">Cosmetics</DescriptorName>
+          <QualifierName UI="Q000737" MajorTopicYN="Y">chemistry</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D003879" MajorTopicYN="N">Dermatologic Agents</DescriptorName>
+          <QualifierName UI="Q000737" MajorTopicYN="Y">chemistry</QualifierName>
+          <QualifierName UI="Q000627" MajorTopicYN="Y">therapeutic use</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D004129" MajorTopicYN="N">Dimethylpolysiloxanes</DescriptorName>
+          <QualifierName UI="Q000627" MajorTopicYN="Y">therapeutic use</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D004338" MajorTopicYN="N">Drug Combinations</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D004643" MajorTopicYN="N">Emollients</DescriptorName>
+          <QualifierName UI="Q000737" MajorTopicYN="N">chemistry</QualifierName>
+          <QualifierName UI="Q000627" MajorTopicYN="N">therapeutic use</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D005990" MajorTopicYN="N">Glycerol</DescriptorName>
+          <QualifierName UI="Q000627" MajorTopicYN="Y">therapeutic use</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D006801" MajorTopicYN="N">Humans</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D010577" MajorTopicYN="N">Petrolatum</DescriptorName>
+          <QualifierName UI="Q000627" MajorTopicYN="Y">therapeutic use</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D017592" MajorTopicYN="Y">Skin Care</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D013473" MajorTopicYN="N">Sunscreening Agents</DescriptorName>
+          <QualifierName UI="Q000737" MajorTopicYN="N">chemistry</QualifierName>
+          <QualifierName UI="Q000627" MajorTopicYN="N">therapeutic use</QualifierName>
+        </MeshHeading>
+      </MeshHeadingList>
+      <NumberOfReferences>26</NumberOfReferences>
+    </MedlineCitation>
+    <PubmedData>
+      <History>
+        <PubMedPubDate PubStatus="entrez">
+          <Year>2010</Year>
+          <Month>2</Month>
+          <Day>4</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="pubmed">
+          <Year>2010</Year>
+          <Month>2</Month>
+          <Day>4</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="medline">
+          <Year>2010</Year>
+          <Month>3</Month>
+          <Day>2</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+      </History>
+      <PublicationStatus>ppublish</PublicationStatus>
+      <ArticleIdList>
+        <ArticleId IdType="pubmed">20124857</ArticleId>
+        <ArticleId IdType="doi">10.1097/PRS.0b013e3181c83192</ArticleId>
+        <ArticleId IdType="pii">00006534-201002000-00038</ArticleId>
+      </ArticleIdList>
+    </PubmedData>
+  </PubmedArticle>
+  <PubmedArticle>
+    <MedlineCitation Status="MEDLINE" Owner="NLM">
+      <PMID Version="1">20124858</PMID>
+      <DateCreated>
+        <Year>2010</Year>
+        <Month>02</Month>
+        <Day>03</Day>
+      </DateCreated>
+      <DateCompleted>
+        <Year>2010</Year>
+        <Month>03</Month>
+        <Day>01</Day>
+      </DateCompleted>
+      <DateRevised>
+        <Year>2015</Year>
+        <Month>06</Month>
+        <Day>24</Day>
+      </DateRevised>
+      <Article PubModel="Print">
+        <Journal>
+          <ISSN IssnType="Electronic">1529-4242</ISSN>
+          <JournalIssue CitedMedium="Internet">
+            <Volume>125</Volume>
+            <Issue>2</Issue>
+            <PubDate>
+              <Year>2010</Year>
+              <Month>Feb</Month>
+            </PubDate>
+          </JournalIssue>
+          <Title>Plastic and reconstructive surgery</Title>
+          <ISOAbbreviation>Plast. Reconstr. Surg.</ISOAbbreviation>
+        </Journal>
+        <ArticleTitle>Assessing the plastic surgery workforce: a template for the future of plastic surgery.</ArticleTitle>
+        <Pagination>
+          <MedlinePgn>736-46</MedlinePgn>
+        </Pagination>
+        <ELocationID EIdType="doi" ValidYN="Y">10.1097/PRS.0b013e3181c830ec</ELocationID>
+        <Abstract>
+          <AbstractText Label="BACKGROUND" NlmCategory="BACKGROUND">The American Society of Plastic Surgeons (ASPS) formed the Plastic Surgery Workforce Task Force to study the size of the plastic surgery workforce and make recommendations about future workforce needs. The ASPS member workforce survey and two supplementary surveys of plastic surgery academic chairs and senior residents were developed to gain insights on current and projected demand for plastic surgery procedures and to find out more about plastic surgeons' current daily practice patterns and plans for the future.</AbstractText>
+          <AbstractText Label="METHODS" NlmCategory="METHODS">The ASPS member workforce survey was mailed to 2500 randomly selected ASPS active members practicing in the United States, and a second mailing was sent to 388 unique members who practice in an academic setting; a total of 1256 surgeons responded (43.5 percent response rate). The survey of academic chairs was distributed to 103 attendees at the annual meeting of the Association of Academic Chairmen of Plastic Surgery, and 74 returned the survey (71.8 percent response rate). The survey of senior residents was e-mailed to 183 graduating residents, of whom 65 responded (35.5 percent response rate).</AbstractText>
+          <AbstractText Label="RESULTS" NlmCategory="RESULTS">Useful demographic information regarding the current plastic surgery workforce was obtained from these surveys. In addition, insight into current trends in practice composition and procedural demand was gained.</AbstractText>
+          <AbstractText Label="CONCLUSIONS" NlmCategory="CONCLUSIONS">The rapid growth of the U.S. population, combined with a significant number of plastic surgeons approaching retirement and an unchanged number of plastic surgery residency training positions, will lead to a discrepancy between the demand for plastic surgery procedures and the supply of appropriately trained physicians. Without an increase in the number of plastic surgeons trained each year, there will be a significant shortage in the next 10 to 15 years.</AbstractText>
+        </Abstract>
+        <AuthorList CompleteYN="Y">
+          <Author ValidYN="Y">
+            <LastName>Rohrich</LastName>
+            <ForeName>Rod J</ForeName>
+            <Initials>RJ</Initials>
+            <AffiliationInfo>
+              <Affiliation>Department of Plastic Surgery, University of Texas Southwestern Medical Center, Dallas, Texas 75390, USA. rod.rohrich@utsouthwestern.edu</Affiliation>
+            </AffiliationInfo>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>McGrath</LastName>
+            <ForeName>Mary H</ForeName>
+            <Initials>MH</Initials>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>Lawrence</LastName>
+            <ForeName>W Thomas</ForeName>
+            <Initials>WT</Initials>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>Ahmad</LastName>
+            <ForeName>Jamil</ForeName>
+            <Initials>J</Initials>
+          </Author>
+          <Author ValidYN="Y">
+            <CollectiveName>American Society of Plastic Surgeons Plastic Surgery Workforce Task Force</CollectiveName>
+          </Author>
+        </AuthorList>
+        <Language>eng</Language>
+        <PublicationTypeList>
+          <PublicationType UI="D016428">Journal Article</PublicationType>
+        </PublicationTypeList>
+      </Article>
+      <MedlineJournalInfo>
+        <Country>United States</Country>
+        <MedlineTA>Plast Reconstr Surg</MedlineTA>
+        <NlmUniqueID>1306050</NlmUniqueID>
+        <ISSNLinking>0032-1052</ISSNLinking>
+      </MedlineJournalInfo>
+      <CitationSubset>AIM</CitationSubset>
+      <CitationSubset>IM</CitationSubset>
+      <MeshHeadingList>
+        <MeshHeading>
+          <DescriptorName UI="D002568" MajorTopicYN="N">Certification</DescriptorName>
+          <QualifierName UI="Q000706" MajorTopicYN="N">statistics &amp; numerical data</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D005180" MajorTopicYN="N">Faculty, Medical</DescriptorName>
+          <QualifierName UI="Q000600" MajorTopicYN="Y">supply &amp; distribution</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D006801" MajorTopicYN="N">Humans</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D007396" MajorTopicYN="N">Internship and Residency</DescriptorName>
+          <QualifierName UI="Q000364" MajorTopicYN="Y">manpower</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D055360" MajorTopicYN="N">Osteopathic Physicians</DescriptorName>
+          <QualifierName UI="Q000600" MajorTopicYN="N">supply &amp; distribution</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D010820" MajorTopicYN="N">Physicians</DescriptorName>
+          <QualifierName UI="Q000600" MajorTopicYN="Y">supply &amp; distribution</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D011364" MajorTopicYN="N">Professional Practice</DescriptorName>
+          <QualifierName UI="Q000706" MajorTopicYN="N">statistics &amp; numerical data</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D012179" MajorTopicYN="N">Retirement</DescriptorName>
+          <QualifierName UI="Q000706" MajorTopicYN="N">statistics &amp; numerical data</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D012955" MajorTopicYN="N">Societies, Medical</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D013518" MajorTopicYN="N">Surgery, Plastic</DescriptorName>
+          <QualifierName UI="Q000193" MajorTopicYN="Y">education</QualifierName>
+          <QualifierName UI="Q000364" MajorTopicYN="Y">manpower</QualifierName>
+          <QualifierName UI="Q000639" MajorTopicYN="N">trends</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D014481" MajorTopicYN="N" Type="Geographic">United States</DescriptorName>
+        </MeshHeading>
+      </MeshHeadingList>
+      <InvestigatorList>
+        <Investigator ValidYN="Y">
+          <LastName>Concannon</LastName>
+          <ForeName>Matthew J</ForeName>
+          <Initials>MJ</Initials>
+        </Investigator>
+        <Investigator ValidYN="Y">
+          <LastName>Eaves</LastName>
+          <ForeName>Felmont F</ForeName>
+          <Initials>FF</Initials>
+          <Suffix>3rd</Suffix>
+        </Investigator>
+        <Investigator ValidYN="Y">
+          <LastName>Guy</LastName>
+          <ForeName>Roxanne J</ForeName>
+          <Initials>RJ</Initials>
+        </Investigator>
+        <Investigator ValidYN="Y">
+          <LastName>Haeck</LastName>
+          <ForeName>Phillip C</ForeName>
+          <Initials>PC</Initials>
+        </Investigator>
+        <Investigator ValidYN="Y">
+          <LastName>Kerrigan</LastName>
+          <ForeName>Carolyn L</ForeName>
+          <Initials>CL</Initials>
+        </Investigator>
+        <Investigator ValidYN="Y">
+          <LastName>Lee</LastName>
+          <ForeName>W P Andrew</ForeName>
+          <Initials>WP</Initials>
+        </Investigator>
+        <Investigator ValidYN="Y">
+          <LastName>Lowenstein</LastName>
+          <ForeName>Adam D</ForeName>
+          <Initials>AD</Initials>
+        </Investigator>
+        <Investigator ValidYN="Y">
+          <LastName>Persing</LastName>
+          <ForeName>John A</ForeName>
+          <Initials>JA</Initials>
+        </Investigator>
+        <Investigator ValidYN="Y">
+          <LastName>Schubert</LastName>
+          <ForeName>Warren</ForeName>
+          <Initials>W</Initials>
+        </Investigator>
+        <Investigator ValidYN="Y">
+          <LastName>Sherman</LastName>
+          <ForeName>Randy</ForeName>
+          <Initials>R</Initials>
+        </Investigator>
+        <Investigator ValidYN="Y">
+          <LastName>Cunningham</LastName>
+          <ForeName>Bruce L</ForeName>
+          <Initials>BL</Initials>
+        </Investigator>
+        <Investigator ValidYN="Y">
+          <LastName>Dolak</LastName>
+          <ForeName>Melanie</ForeName>
+          <Initials>M</Initials>
+        </Investigator>
+      </InvestigatorList>
+    </MedlineCitation>
+    <PubmedData>
+      <History>
+        <PubMedPubDate PubStatus="entrez">
+          <Year>2010</Year>
+          <Month>2</Month>
+          <Day>4</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="pubmed">
+          <Year>2010</Year>
+          <Month>2</Month>
+          <Day>4</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="medline">
+          <Year>2010</Year>
+          <Month>3</Month>
+          <Day>2</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+      </History>
+      <PublicationStatus>ppublish</PublicationStatus>
+      <ArticleIdList>
+        <ArticleId IdType="pubmed">20124858</ArticleId>
+        <ArticleId IdType="doi">10.1097/PRS.0b013e3181c830ec</ArticleId>
+        <ArticleId IdType="pii">00006534-201002000-00041</ArticleId>
+      </ArticleIdList>
+    </PubmedData>
+  </PubmedArticle>
+  <PubmedArticle>
+    <MedlineCitation Status="MEDLINE" Owner="NLM">
+      <PMID Version="1">20124864</PMID>
+      <DateCreated>
+        <Year>2010</Year>
+        <Month>02</Month>
+        <Day>03</Day>
+      </DateCreated>
+      <DateCompleted>
+        <Year>2010</Year>
+        <Month>03</Month>
+        <Day>01</Day>
+      </DateCompleted>
+      <DateRevised>
+        <Year>2015</Year>
+        <Month>06</Month>
+        <Day>24</Day>
+      </DateRevised>
+      <Article PubModel="Print">
+        <Journal>
+          <ISSN IssnType="Electronic">1529-4242</ISSN>
+          <JournalIssue CitedMedium="Internet">
+            <Volume>125</Volume>
+            <Issue>2</Issue>
+            <PubDate>
+              <Year>2010</Year>
+              <Month>Feb</Month>
+            </PubDate>
+          </JournalIssue>
+          <Title>Plastic and reconstructive surgery</Title>
+          <ISOAbbreviation>Plast. Reconstr. Surg.</ISOAbbreviation>
+        </Journal>
+        <ArticleTitle>Vascularized groin lymph node transfer using the wrist as a recipient site for management of postmastectomy upper extremity lymphedema.</ArticleTitle>
+        <Pagination>
+          <MedlinePgn>751-2; author reply 752-3</MedlinePgn>
+        </Pagination>
+        <ELocationID EIdType="doi" ValidYN="Y">10.1097/PRS.0b013e3181c831a9</ELocationID>
+        <AuthorList CompleteYN="Y">
+          <Author ValidYN="Y">
+            <LastName>Chipp</LastName>
+            <ForeName>Elizabeth</ForeName>
+            <Initials>E</Initials>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>Ferguson</LastName>
+            <ForeName>Louise</ForeName>
+            <Initials>L</Initials>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>Rayatt</LastName>
+            <ForeName>Sukh</ForeName>
+            <Initials>S</Initials>
+          </Author>
+        </AuthorList>
+        <Language>eng</Language>
+        <PublicationTypeList>
+          <PublicationType UI="D016420">Comment</PublicationType>
+          <PublicationType UI="D016422">Letter</PublicationType>
+        </PublicationTypeList>
+      </Article>
+      <MedlineJournalInfo>
+        <Country>United States</Country>
+        <MedlineTA>Plast Reconstr Surg</MedlineTA>
+        <NlmUniqueID>1306050</NlmUniqueID>
+        <ISSNLinking>0032-1052</ISSNLinking>
+      </MedlineJournalInfo>
+      <CitationSubset>AIM</CitationSubset>
+      <CitationSubset>IM</CitationSubset>
+      <CommentsCorrectionsList>
+        <CommentsCorrections RefType="CommentOn">
+          <RefSource>Plast Reconstr Surg. 2009 Apr;123(4):1265-75</RefSource>
+          <PMID Version="1">19337095</PMID>
+        </CommentsCorrections>
+      </CommentsCorrectionsList>
+      <MeshHeadingList>
+        <MeshHeading>
+          <DescriptorName UI="D005260" MajorTopicYN="N">Female</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D006119" MajorTopicYN="N">Groin</DescriptorName>
+          <QualifierName UI="Q000601" MajorTopicYN="N">surgery</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D006801" MajorTopicYN="N">Humans</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D007264" MajorTopicYN="N">Inguinal Canal</DescriptorName>
+          <QualifierName UI="Q000601" MajorTopicYN="N">surgery</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D008198" MajorTopicYN="N">Lymph Nodes</DescriptorName>
+          <QualifierName UI="Q000098" MajorTopicYN="Y">blood supply</QualifierName>
+          <QualifierName UI="Q000637" MajorTopicYN="Y">transplantation</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D008209" MajorTopicYN="N">Lymphedema</DescriptorName>
+          <QualifierName UI="Q000209" MajorTopicYN="N">etiology</QualifierName>
+          <QualifierName UI="Q000601" MajorTopicYN="Y">surgery</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D008408" MajorTopicYN="N">Mastectomy</DescriptorName>
+          <QualifierName UI="Q000009" MajorTopicYN="Y">adverse effects</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D014953" MajorTopicYN="N">Wrist</DescriptorName>
+          <QualifierName UI="Q000601" MajorTopicYN="Y">surgery</QualifierName>
+        </MeshHeading>
+      </MeshHeadingList>
+    </MedlineCitation>
+    <PubmedData>
+      <History>
+        <PubMedPubDate PubStatus="entrez">
+          <Year>2010</Year>
+          <Month>2</Month>
+          <Day>4</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="pubmed">
+          <Year>2010</Year>
+          <Month>2</Month>
+          <Day>4</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="medline">
+          <Year>2010</Year>
+          <Month>3</Month>
+          <Day>2</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+      </History>
+      <PublicationStatus>ppublish</PublicationStatus>
+      <ArticleIdList>
+        <ArticleId IdType="pubmed">20124864</ArticleId>
+        <ArticleId IdType="doi">10.1097/PRS.0b013e3181c831a9</ArticleId>
+        <ArticleId IdType="pii">00006534-201002000-00048</ArticleId>
+      </ArticleIdList>
+    </PubmedData>
+  </PubmedArticle>
+  <PubmedArticle>
+    <MedlineCitation Status="MEDLINE" Owner="NLM">
+      <PMID Version="1">20124865</PMID>
+      <DateCreated>
+        <Year>2010</Year>
+        <Month>02</Month>
+        <Day>03</Day>
+      </DateCreated>
+      <DateCompleted>
+        <Year>2010</Year>
+        <Month>03</Month>
+        <Day>01</Day>
+      </DateCompleted>
+      <DateRevised>
+        <Year>2015</Year>
+        <Month>06</Month>
+        <Day>24</Day>
+      </DateRevised>
+      <Article PubModel="Print">
+        <Journal>
+          <ISSN IssnType="Electronic">1529-4242</ISSN>
+          <JournalIssue CitedMedium="Internet">
+            <Volume>125</Volume>
+            <Issue>2</Issue>
+            <PubDate>
+              <Year>2010</Year>
+              <Month>Feb</Month>
+            </PubDate>
+          </JournalIssue>
+          <Title>Plastic and reconstructive surgery</Title>
+          <ISOAbbreviation>Plast. Reconstr. Surg.</ISOAbbreviation>
+        </Journal>
+        <ArticleTitle>Focused ultrasound for noninvasive body contouring in cellulite.</ArticleTitle>
+        <Pagination>
+          <MedlinePgn>751</MedlinePgn>
+        </Pagination>
+        <ELocationID EIdType="doi" ValidYN="Y">10.1097/PRS.0b013e3181c831d1</ELocationID>
+        <AuthorList CompleteYN="Y">
+          <Author ValidYN="Y">
+            <LastName>Knobloch</LastName>
+            <ForeName>Karsten</ForeName>
+            <Initials>K</Initials>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>Joest</LastName>
+            <ForeName>Beatrice</ForeName>
+            <Initials>B</Initials>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>Vogt</LastName>
+            <ForeName>Peter M</ForeName>
+            <Initials>PM</Initials>
+          </Author>
+        </AuthorList>
+        <Language>eng</Language>
+        <PublicationTypeList>
+          <PublicationType UI="D016420">Comment</PublicationType>
+          <PublicationType UI="D016422">Letter</PublicationType>
+        </PublicationTypeList>
+      </Article>
+      <MedlineJournalInfo>
+        <Country>United States</Country>
+        <MedlineTA>Plast Reconstr Surg</MedlineTA>
+        <NlmUniqueID>1306050</NlmUniqueID>
+        <ISSNLinking>0032-1052</ISSNLinking>
+      </MedlineJournalInfo>
+      <CitationSubset>AIM</CitationSubset>
+      <CitationSubset>IM</CitationSubset>
+      <CommentsCorrectionsList>
+        <CommentsCorrections RefType="CommentOn">
+          <RefSource>Plast Reconstr Surg. 2009 Jul;124(1):92-101</RefSource>
+          <PMID Version="1">19346998</PMID>
+        </CommentsCorrections>
+      </CommentsCorrectionsList>
+      <MeshHeadingList>
+        <MeshHeading>
+          <DescriptorName UI="D003357" MajorTopicYN="Y">Cosmetic Techniques</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D005260" MajorTopicYN="N">Female</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D019220" MajorTopicYN="N">High-Energy Shock Waves</DescriptorName>
+          <QualifierName UI="Q000627" MajorTopicYN="Y">therapeutic use</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D006801" MajorTopicYN="N">Humans</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D009765" MajorTopicYN="N">Obesity</DescriptorName>
+          <QualifierName UI="Q000628" MajorTopicYN="Y">therapy</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D050151" MajorTopicYN="Y">Subcutaneous Fat</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D014464" MajorTopicYN="N">Ultrasonic Therapy</DescriptorName>
+          <QualifierName UI="Q000379" MajorTopicYN="Y">methods</QualifierName>
+        </MeshHeading>
+      </MeshHeadingList>
+    </MedlineCitation>
+    <PubmedData>
+      <History>
+        <PubMedPubDate PubStatus="entrez">
+          <Year>2010</Year>
+          <Month>2</Month>
+          <Day>4</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="pubmed">
+          <Year>2010</Year>
+          <Month>2</Month>
+          <Day>4</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="medline">
+          <Year>2010</Year>
+          <Month>3</Month>
+          <Day>2</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+      </History>
+      <PublicationStatus>ppublish</PublicationStatus>
+      <ArticleIdList>
+        <ArticleId IdType="pubmed">20124865</ArticleId>
+        <ArticleId IdType="doi">10.1097/PRS.0b013e3181c831d1</ArticleId>
+        <ArticleId IdType="pii">00006534-201002000-00047</ArticleId>
+      </ArticleIdList>
+    </PubmedData>
+  </PubmedArticle>
+  <PubmedArticle>
+    <MedlineCitation Status="MEDLINE" Owner="NLM">
+      <PMID Version="1">20124863</PMID>
+      <DateCreated>
+        <Year>2010</Year>
+        <Month>02</Month>
+        <Day>03</Day>
+      </DateCreated>
+      <DateCompleted>
+        <Year>2010</Year>
+        <Month>03</Month>
+        <Day>01</Day>
+      </DateCompleted>
+      <DateRevised>
+        <Year>2015</Year>
+        <Month>06</Month>
+        <Day>24</Day>
+      </DateRevised>
+      <Article PubModel="Print">
+        <Journal>
+          <ISSN IssnType="Electronic">1529-4242</ISSN>
+          <JournalIssue CitedMedium="Internet">
+            <Volume>125</Volume>
+            <Issue>2</Issue>
+            <PubDate>
+              <Year>2010</Year>
+              <Month>Feb</Month>
+            </PubDate>
+          </JournalIssue>
+          <Title>Plastic and reconstructive surgery</Title>
+          <ISOAbbreviation>Plast. Reconstr. Surg.</ISOAbbreviation>
+        </Journal>
+        <ArticleTitle>Allograft skin as a permanent tissue repair: to mesh or not?</ArticleTitle>
+        <Pagination>
+          <MedlinePgn>750-1</MedlinePgn>
+        </Pagination>
+        <ELocationID EIdType="doi" ValidYN="Y">10.1097/PRS.0b013e3181c831bd</ELocationID>
+        <AuthorList CompleteYN="Y">
+          <Author ValidYN="Y">
+            <LastName>Knobloch</LastName>
+            <ForeName>Karsten</ForeName>
+            <Initials>K</Initials>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>Vogt</LastName>
+            <ForeName>Peter M</ForeName>
+            <Initials>PM</Initials>
+          </Author>
+        </AuthorList>
+        <Language>eng</Language>
+        <PublicationTypeList>
+          <PublicationType UI="D016420">Comment</PublicationType>
+          <PublicationType UI="D016422">Letter</PublicationType>
+        </PublicationTypeList>
+      </Article>
+      <MedlineJournalInfo>
+        <Country>United States</Country>
+        <MedlineTA>Plast Reconstr Surg</MedlineTA>
+        <NlmUniqueID>1306050</NlmUniqueID>
+        <ISSNLinking>0032-1052</ISSNLinking>
+      </MedlineJournalInfo>
+      <ChemicalList>
+        <Chemical>
+          <RegistryNumber>0</RegistryNumber>
+          <NameOfSubstance UI="D007166">Immunosuppressive Agents</NameOfSubstance>
+        </Chemical>
+      </ChemicalList>
+      <CitationSubset>AIM</CitationSubset>
+      <CitationSubset>IM</CitationSubset>
+      <CommentsCorrectionsList>
+        <CommentsCorrections RefType="CommentOn">
+          <RefSource>Plast Reconstr Surg. 2009 Jun;123(6):1755-8</RefSource>
+          <PMID Version="1">19483575</PMID>
+        </CommentsCorrections>
+      </CommentsCorrectionsList>
+      <MeshHeadingList>
+        <MeshHeading>
+          <DescriptorName UI="D002056" MajorTopicYN="N">Burns</DescriptorName>
+          <QualifierName UI="Q000601" MajorTopicYN="Y">surgery</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D006084" MajorTopicYN="N">Graft Rejection</DescriptorName>
+          <QualifierName UI="Q000188" MajorTopicYN="Y">drug therapy</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D006801" MajorTopicYN="N">Humans</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D007166" MajorTopicYN="N">Immunosuppressive Agents</DescriptorName>
+          <QualifierName UI="Q000627" MajorTopicYN="Y">therapeutic use</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D012867" MajorTopicYN="N">Skin</DescriptorName>
+          <QualifierName UI="Q000187" MajorTopicYN="N">drug effects</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D016038" MajorTopicYN="N">Skin Transplantation</DescriptorName>
+          <QualifierName UI="Q000379" MajorTopicYN="Y">methods</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D013526" MajorTopicYN="Y">Surgical Mesh</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D014184" MajorTopicYN="N">Transplantation, Homologous</DescriptorName>
+        </MeshHeading>
+      </MeshHeadingList>
+    </MedlineCitation>
+    <PubmedData>
+      <History>
+        <PubMedPubDate PubStatus="entrez">
+          <Year>2010</Year>
+          <Month>2</Month>
+          <Day>4</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="pubmed">
+          <Year>2010</Year>
+          <Month>2</Month>
+          <Day>4</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="medline">
+          <Year>2010</Year>
+          <Month>3</Month>
+          <Day>2</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+      </History>
+      <PublicationStatus>ppublish</PublicationStatus>
+      <ArticleIdList>
+        <ArticleId IdType="pubmed">20124863</ArticleId>
+        <ArticleId IdType="doi">10.1097/PRS.0b013e3181c831bd</ArticleId>
+        <ArticleId IdType="pii">00006534-201002000-00046</ArticleId>
+      </ArticleIdList>
+    </PubmedData>
+  </PubmedArticle>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<indexParams>
+    <indexName>pubmedindex</indexName>
+    <fileList>data/pubmed_file_list</fileList>
+    <indexType>pubmed</indexType>
+    <tokenFilterFile>params/index/example_01.xml</tokenFilterFile>
+</indexParams>

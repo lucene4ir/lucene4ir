@@ -1,0 +1,1078 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE PubmedArticleSet SYSTEM "http://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_170101.dtd">
+<PubmedArticleSet>
+  <PubmedArticle>
+    <MedlineCitation Status="MEDLINE" Owner="NLM">
+      <PMID Version="1">13492096</PMID>
+      <DateCreated>
+        <Year>1958</Year>
+        <Month>12</Month>
+        <Day>01</Day>
+      </DateCreated>
+      <DateCompleted>
+        <Year>2000</Year>
+        <Month>07</Month>
+        <Day>01</Day>
+      </DateCompleted>
+      <DateRevised>
+        <Year>2006</Year>
+        <Month>11</Month>
+        <Day>15</Day>
+      </DateRevised>
+      <Article PubModel="Print">
+        <Journal>
+          <ISSN IssnType="Print">0030-1876</ISSN>
+          <JournalIssue CitedMedium="Print">
+            <Volume>51</Volume>
+            <Issue>1</Issue>
+            <PubDate>
+              <Year>1958</Year>
+              <Month>Jan</Month>
+            </PubDate>
+          </JournalIssue>
+          <Title>The Journal of the Oklahoma State Medical Association</Title>
+          <ISOAbbreviation>J Okla State Med Assoc</ISOAbbreviation>
+        </Journal>
+        <ArticleTitle>The role of tracheotomy in anterior poliomyelitis.</ArticleTitle>
+        <Pagination>
+          <MedlinePgn>14-5</MedlinePgn>
+        </Pagination>
+        <AuthorList CompleteYN="Y">
+          <Author ValidYN="Y">
+            <LastName>RIGUAL</LastName>
+            <ForeName>R</ForeName>
+            <Initials>R</Initials>
+          </Author>
+        </AuthorList>
+        <Language>eng</Language>
+        <PublicationTypeList>
+          <PublicationType UI="D016428">Journal Article</PublicationType>
+        </PublicationTypeList>
+      </Article>
+      <MedlineJournalInfo>
+        <Country>United States</Country>
+        <MedlineTA>J Okla State Med Assoc</MedlineTA>
+        <NlmUniqueID>7503043</NlmUniqueID>
+        <ISSNLinking>0030-1876</ISSNLinking>
+      </MedlineJournalInfo>
+      <CitationSubset>OM</CitationSubset>
+      <MeshHeadingList>
+        <MeshHeading>
+          <DescriptorName UI="D011051" MajorTopicYN="Y">Poliomyelitis</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D011052" MajorTopicYN="N">Poliomyelitis, Bulbar</DescriptorName>
+          <QualifierName UI="Q000601" MajorTopicYN="Y">surgery</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D014132" MajorTopicYN="N">Trachea</DescriptorName>
+          <QualifierName UI="Q000601" MajorTopicYN="Y">surgery</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D014140" MajorTopicYN="Y">Tracheotomy</DescriptorName>
+        </MeshHeading>
+      </MeshHeadingList>
+      <OtherID Source="CLML">5833:35154:404:510</OtherID>
+      <KeywordList Owner="NLM">
+        <Keyword MajorTopicYN="Y">POLIOMYELITIS, BULBAR/surgery</Keyword>
+        <Keyword MajorTopicYN="Y">TRACHEA/surgery</Keyword>
+      </KeywordList>
+    </MedlineCitation>
+    <PubmedData>
+      <History>
+        <PubMedPubDate PubStatus="pubmed">
+          <Year>1958</Year>
+          <Month>1</Month>
+          <Day>1</Day>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="medline">
+          <Year>1958</Year>
+          <Month>1</Month>
+          <Day>1</Day>
+          <Hour>0</Hour>
+          <Minute>1</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="entrez">
+          <Year>1958</Year>
+          <Month>1</Month>
+          <Day>1</Day>
+          <Hour>0</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+      </History>
+      <PublicationStatus>ppublish</PublicationStatus>
+      <ArticleIdList>
+        <ArticleId IdType="pubmed">13492096</ArticleId>
+      </ArticleIdList>
+    </PubmedData>
+  </PubmedArticle>
+  <PubmedArticle>
+    <MedlineCitation Status="MEDLINE" Owner="NLM">
+      <PMID Version="1">13492097</PMID>
+      <DateCreated>
+        <Year>1958</Year>
+        <Month>12</Month>
+        <Day>01</Day>
+      </DateCreated>
+      <DateCompleted>
+        <Year>2000</Year>
+        <Month>07</Month>
+        <Day>01</Day>
+      </DateCompleted>
+      <DateRevised>
+        <Year>1958</Year>
+        <Month>12</Month>
+        <Day>01</Day>
+      </DateRevised>
+      <Article PubModel="Print">
+        <Journal>
+          <ISSN IssnType="Print">0030-1876</ISSN>
+          <JournalIssue CitedMedium="Print">
+            <Volume>51</Volume>
+            <Issue>1</Issue>
+            <PubDate>
+              <Year>1958</Year>
+              <Month>Jan</Month>
+            </PubDate>
+          </JournalIssue>
+          <Title>The Journal of the Oklahoma State Medical Association</Title>
+          <ISOAbbreviation>J Okla State Med Assoc</ISOAbbreviation>
+        </Journal>
+        <ArticleTitle>Chlorpromazine as masking agent intestinal obstruction.</ArticleTitle>
+        <Pagination>
+          <MedlinePgn>16-7</MedlinePgn>
+        </Pagination>
+        <AuthorList CompleteYN="Y">
+          <Author ValidYN="Y">
+            <LastName>BARNETT</LastName>
+            <ForeName>D A</ForeName>
+            <Initials>DA</Initials>
+          </Author>
+        </AuthorList>
+        <Language>eng</Language>
+        <PublicationTypeList>
+          <PublicationType UI="D016428">Journal Article</PublicationType>
+        </PublicationTypeList>
+      </Article>
+      <MedlineJournalInfo>
+        <Country>United States</Country>
+        <MedlineTA>J Okla State Med Assoc</MedlineTA>
+        <NlmUniqueID>7503043</NlmUniqueID>
+        <ISSNLinking>0030-1876</ISSNLinking>
+      </MedlineJournalInfo>
+      <ChemicalList>
+        <Chemical>
+          <RegistryNumber>U42B7VYA4P</RegistryNumber>
+          <NameOfSubstance UI="D002746">Chlorpromazine</NameOfSubstance>
+        </Chemical>
+      </ChemicalList>
+      <CitationSubset>OM</CitationSubset>
+      <MeshHeadingList>
+        <MeshHeading>
+          <DescriptorName UI="D002746" MajorTopicYN="N">Chlorpromazine</DescriptorName>
+          <QualifierName UI="Q000494" MajorTopicYN="Y">pharmacology</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D006801" MajorTopicYN="N">Humans</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D007415" MajorTopicYN="Y">Intestinal Obstruction</DescriptorName>
+        </MeshHeading>
+      </MeshHeadingList>
+      <OtherID Source="CLML">5833:35155:119:265</OtherID>
+      <KeywordList Owner="NLM">
+        <Keyword MajorTopicYN="Y">CHLORPROMAZINE/effects</Keyword>
+        <Keyword MajorTopicYN="Y">INTESTINAL OBSTRUCTION/experimental</Keyword>
+      </KeywordList>
+    </MedlineCitation>
+    <PubmedData>
+      <History>
+        <PubMedPubDate PubStatus="pubmed">
+          <Year>1958</Year>
+          <Month>1</Month>
+          <Day>1</Day>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="medline">
+          <Year>1958</Year>
+          <Month>1</Month>
+          <Day>1</Day>
+          <Hour>0</Hour>
+          <Minute>1</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="entrez">
+          <Year>1958</Year>
+          <Month>1</Month>
+          <Day>1</Day>
+          <Hour>0</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+      </History>
+      <PublicationStatus>ppublish</PublicationStatus>
+      <ArticleIdList>
+        <ArticleId IdType="pubmed">13492097</ArticleId>
+      </ArticleIdList>
+    </PubmedData>
+  </PubmedArticle>
+  <PubmedArticle>
+    <MedlineCitation Status="MEDLINE" Owner="NLM">
+      <PMID Version="1">13492098</PMID>
+      <DateCreated>
+        <Year>1958</Year>
+        <Month>12</Month>
+        <Day>01</Day>
+      </DateCreated>
+      <DateCompleted>
+        <Year>2000</Year>
+        <Month>07</Month>
+        <Day>01</Day>
+      </DateCompleted>
+      <DateRevised>
+        <Year>2006</Year>
+        <Month>11</Month>
+        <Day>15</Day>
+      </DateRevised>
+      <Article PubModel="Print">
+        <Journal>
+          <ISSN IssnType="Print">0030-1876</ISSN>
+          <JournalIssue CitedMedium="Print">
+            <Volume>51</Volume>
+            <Issue>1</Issue>
+            <PubDate>
+              <Year>1958</Year>
+              <Month>Jan</Month>
+            </PubDate>
+          </JournalIssue>
+          <Title>The Journal of the Oklahoma State Medical Association</Title>
+          <ISOAbbreviation>J Okla State Med Assoc</ISOAbbreviation>
+        </Journal>
+        <ArticleTitle>A preliminary report of urinary tests for porphibilinogen.</ArticleTitle>
+        <Pagination>
+          <MedlinePgn>17-9</MedlinePgn>
+        </Pagination>
+        <AuthorList CompleteYN="Y">
+          <Author ValidYN="Y">
+            <LastName>HERNDON</LastName>
+            <ForeName>E</ForeName>
+            <Initials>E</Initials>
+          </Author>
+        </AuthorList>
+        <Language>eng</Language>
+        <PublicationTypeList>
+          <PublicationType UI="D016428">Journal Article</PublicationType>
+        </PublicationTypeList>
+      </Article>
+      <MedlineJournalInfo>
+        <Country>United States</Country>
+        <MedlineTA>J Okla State Med Assoc</MedlineTA>
+        <NlmUniqueID>7503043</NlmUniqueID>
+        <ISSNLinking>0030-1876</ISSNLinking>
+      </MedlineJournalInfo>
+      <ChemicalList>
+        <Chemical>
+          <RegistryNumber>0</RegistryNumber>
+          <NameOfSubstance UI="D011166">Porphyrins</NameOfSubstance>
+        </Chemical>
+      </ChemicalList>
+      <CitationSubset>OM</CitationSubset>
+      <MeshHeadingList>
+        <MeshHeading>
+          <DescriptorName UI="D006801" MajorTopicYN="N">Humans</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D011166" MajorTopicYN="N">Porphyrins</DescriptorName>
+          <QualifierName UI="Q000652" MajorTopicYN="Y">urine</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D014551" MajorTopicYN="Y">Urinary Tract</DescriptorName>
+        </MeshHeading>
+      </MeshHeadingList>
+      <OtherID Source="CLML">5833:35156:406</OtherID>
+      <KeywordList Owner="NLM">
+        <Keyword MajorTopicYN="Y">PORPHYRINS/in urine</Keyword>
+      </KeywordList>
+    </MedlineCitation>
+    <PubmedData>
+      <History>
+        <PubMedPubDate PubStatus="pubmed">
+          <Year>1958</Year>
+          <Month>1</Month>
+          <Day>1</Day>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="medline">
+          <Year>1958</Year>
+          <Month>1</Month>
+          <Day>1</Day>
+          <Hour>0</Hour>
+          <Minute>1</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="entrez">
+          <Year>1958</Year>
+          <Month>1</Month>
+          <Day>1</Day>
+          <Hour>0</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+      </History>
+      <PublicationStatus>ppublish</PublicationStatus>
+      <ArticleIdList>
+        <ArticleId IdType="pubmed">13492098</ArticleId>
+      </ArticleIdList>
+    </PubmedData>
+  </PubmedArticle>
+  <PubmedArticle>
+    <MedlineCitation Status="MEDLINE" Owner="NLM">
+      <PMID Version="1">13492100</PMID>
+      <DateCreated>
+        <Year>1958</Year>
+        <Month>12</Month>
+        <Day>01</Day>
+      </DateCreated>
+      <DateCompleted>
+        <Year>2000</Year>
+        <Month>07</Month>
+        <Day>01</Day>
+      </DateCompleted>
+      <DateRevised>
+        <Year>2008</Year>
+        <Month>11</Month>
+        <Day>21</Day>
+      </DateRevised>
+      <Article PubModel="Print">
+        <Journal>
+          <ISSN IssnType="Print">0030-3941</ISSN>
+          <JournalIssue CitedMedium="Print">
+            <Volume>48</Volume>
+            <Issue>1</Issue>
+            <PubDate>
+              <Year>1958</Year>
+              <Month>Jan</Month>
+            </PubDate>
+          </JournalIssue>
+          <Title>Journal of the Optical Society of America</Title>
+          <ISOAbbreviation>J Opt Soc Am</ISOAbbreviation>
+        </Journal>
+        <ArticleTitle>Simplified treatment of ellipsometry.</ArticleTitle>
+        <Pagination>
+          <MedlinePgn>51-4</MedlinePgn>
+        </Pagination>
+        <AuthorList CompleteYN="Y">
+          <Author ValidYN="Y">
+            <LastName>FAUCHER</LastName>
+            <ForeName>J A</ForeName>
+            <Initials>JA</Initials>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>McMANUS</LastName>
+            <ForeName>G M</ForeName>
+            <Initials>GM</Initials>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>TRURNIT</LastName>
+            <ForeName>H J</ForeName>
+            <Initials>HJ</Initials>
+          </Author>
+        </AuthorList>
+        <Language>eng</Language>
+        <PublicationTypeList>
+          <PublicationType UI="D016428">Journal Article</PublicationType>
+        </PublicationTypeList>
+      </Article>
+      <MedlineJournalInfo>
+        <Country>United States</Country>
+        <MedlineTA>J Opt Soc Am</MedlineTA>
+        <NlmUniqueID>7503097</NlmUniqueID>
+        <ISSNLinking>0030-3941</ISSNLinking>
+      </MedlineJournalInfo>
+      <CitationSubset>OM</CitationSubset>
+      <MeshHeadingList>
+        <MeshHeading>
+          <DescriptorName UI="D006801" MajorTopicYN="N">Humans</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D055095" MajorTopicYN="Y">Optics and Photonics</DescriptorName>
+        </MeshHeading>
+      </MeshHeadingList>
+      <OtherID Source="CLML">5833:35158:364</OtherID>
+      <KeywordList Owner="NLM">
+        <Keyword MajorTopicYN="Y">OPTICS</Keyword>
+      </KeywordList>
+    </MedlineCitation>
+    <PubmedData>
+      <History>
+        <PubMedPubDate PubStatus="pubmed">
+          <Year>1958</Year>
+          <Month>1</Month>
+          <Day>1</Day>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="medline">
+          <Year>1958</Year>
+          <Month>1</Month>
+          <Day>1</Day>
+          <Hour>0</Hour>
+          <Minute>1</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="entrez">
+          <Year>1958</Year>
+          <Month>1</Month>
+          <Day>1</Day>
+          <Hour>0</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+      </History>
+      <PublicationStatus>ppublish</PublicationStatus>
+      <ArticleIdList>
+        <ArticleId IdType="pubmed">13492100</ArticleId>
+      </ArticleIdList>
+    </PubmedData>
+  </PubmedArticle>
+  <PubmedArticle>
+    <MedlineCitation Status="MEDLINE" Owner="NLM">
+      <PMID Version="1">13492099</PMID>
+      <DateCreated>
+        <Year>1958</Year>
+        <Month>12</Month>
+        <Day>01</Day>
+      </DateCreated>
+      <DateCompleted>
+        <Year>2000</Year>
+        <Month>07</Month>
+        <Day>01</Day>
+      </DateCompleted>
+      <DateRevised>
+        <Year>2006</Year>
+        <Month>11</Month>
+        <Day>15</Day>
+      </DateRevised>
+      <Article PubModel="Print">
+        <Journal>
+          <ISSN IssnType="Print">0030-3941</ISSN>
+          <JournalIssue CitedMedium="Print">
+            <Volume>48</Volume>
+            <Issue>1</Issue>
+            <PubDate>
+              <Year>1958</Year>
+              <Month>Jan</Month>
+            </PubDate>
+          </JournalIssue>
+          <Title>Journal of the Optical Society of America</Title>
+          <ISOAbbreviation>J Opt Soc Am</ISOAbbreviation>
+        </Journal>
+        <ArticleTitle>Retinal distribution of entoptic stray light.</ArticleTitle>
+        <Pagination>
+          <MedlinePgn>13-22</MedlinePgn>
+        </Pagination>
+        <AuthorList CompleteYN="Y">
+          <Author ValidYN="Y">
+            <LastName>DEMOTT</LastName>
+            <ForeName>D W</ForeName>
+            <Initials>DW</Initials>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>BOYNTON</LastName>
+            <ForeName>R M</ForeName>
+            <Initials>RM</Initials>
+          </Author>
+        </AuthorList>
+        <Language>eng</Language>
+        <PublicationTypeList>
+          <PublicationType UI="D016428">Journal Article</PublicationType>
+        </PublicationTypeList>
+      </Article>
+      <MedlineJournalInfo>
+        <Country>United States</Country>
+        <MedlineTA>J Opt Soc Am</MedlineTA>
+        <NlmUniqueID>7503097</NlmUniqueID>
+        <ISSNLinking>0030-3941</ISSNLinking>
+      </MedlineJournalInfo>
+      <CitationSubset>OM</CitationSubset>
+      <MeshHeadingList>
+        <MeshHeading>
+          <DescriptorName UI="D006801" MajorTopicYN="N">Humans</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D008027" MajorTopicYN="Y">Light</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D012160" MajorTopicYN="N">Retina</DescriptorName>
+          <QualifierName UI="Q000502" MajorTopicYN="Y">physiology</QualifierName>
+        </MeshHeading>
+      </MeshHeadingList>
+      <OtherID Source="CLML">5833:35157:443</OtherID>
+      <KeywordList Owner="NLM">
+        <Keyword MajorTopicYN="Y">RETINA/physiology</Keyword>
+      </KeywordList>
+    </MedlineCitation>
+    <PubmedData>
+      <History>
+        <PubMedPubDate PubStatus="pubmed">
+          <Year>1958</Year>
+          <Month>1</Month>
+          <Day>1</Day>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="medline">
+          <Year>1958</Year>
+          <Month>1</Month>
+          <Day>1</Day>
+          <Hour>0</Hour>
+          <Minute>1</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="entrez">
+          <Year>1958</Year>
+          <Month>1</Month>
+          <Day>1</Day>
+          <Hour>0</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+      </History>
+      <PublicationStatus>ppublish</PublicationStatus>
+      <ArticleIdList>
+        <ArticleId IdType="pubmed">13492099</ArticleId>
+      </ArticleIdList>
+    </PubmedData>
+  </PubmedArticle>
+  <PubmedArticle>
+    <MedlineCitation Status="MEDLINE" Owner="NLM">
+      <PMID Version="1">13492101</PMID>
+      <DateCreated>
+        <Year>1958</Year>
+        <Month>12</Month>
+        <Day>01</Day>
+      </DateCreated>
+      <DateCompleted>
+        <Year>2000</Year>
+        <Month>07</Month>
+        <Day>01</Day>
+      </DateCompleted>
+      <DateRevised>
+        <Year>2007</Year>
+        <Month>05</Month>
+        <Day>22</Day>
+      </DateRevised>
+      <Article PubModel="Print">
+        <Journal>
+          <ISSN IssnType="Print">0146-1575</ISSN>
+          <JournalIssue CitedMedium="Print">
+            <Volume>16</Volume>
+            <Issue>1</Issue>
+            <PubDate>
+              <Year>1958</Year>
+              <Month>Jan</Month>
+            </PubDate>
+          </JournalIssue>
+          <Title>Journal of oral surgery</Title>
+          <ISOAbbreviation>J Oral Surg (Chic)</ISOAbbreviation>
+        </Journal>
+        <ArticleTitle>Surgical preparation of the mouth for a prosthesis.</ArticleTitle>
+        <Pagination>
+          <MedlinePgn>3-19</MedlinePgn>
+        </Pagination>
+        <AuthorList CompleteYN="Y">
+          <Author ValidYN="Y">
+            <LastName>BEAR</LastName>
+            <ForeName>S E</ForeName>
+            <Initials>SE</Initials>
+          </Author>
+        </AuthorList>
+        <Language>eng</Language>
+        <PublicationTypeList>
+          <PublicationType UI="D016428">Journal Article</PublicationType>
+        </PublicationTypeList>
+      </Article>
+      <MedlineJournalInfo>
+        <Country>United States</Country>
+        <MedlineTA>J Oral Surg (Chic)</MedlineTA>
+        <NlmUniqueID>0234121</NlmUniqueID>
+        <ISSNLinking>0146-1575</ISSNLinking>
+      </MedlineJournalInfo>
+      <CitationSubset>OM</CitationSubset>
+      <MeshHeadingList>
+        <MeshHeading>
+          <DescriptorName UI="D017266" MajorTopicYN="Y">Dental Prosthesis</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D005145" MajorTopicYN="Y">Face</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D009055" MajorTopicYN="Y">Mouth</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D019736" MajorTopicYN="Y">Prostheses and Implants</DescriptorName>
+        </MeshHeading>
+      </MeshHeadingList>
+      <OtherID Source="CLML">5833:35159:151</OtherID>
+      <KeywordList Owner="NLM">
+        <Keyword MajorTopicYN="Y">DENTAL PROSTHESIS</Keyword>
+      </KeywordList>
+    </MedlineCitation>
+    <PubmedData>
+      <History>
+        <PubMedPubDate PubStatus="pubmed">
+          <Year>1958</Year>
+          <Month>1</Month>
+          <Day>1</Day>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="medline">
+          <Year>1958</Year>
+          <Month>1</Month>
+          <Day>1</Day>
+          <Hour>0</Hour>
+          <Minute>1</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="entrez">
+          <Year>1958</Year>
+          <Month>1</Month>
+          <Day>1</Day>
+          <Hour>0</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+      </History>
+      <PublicationStatus>ppublish</PublicationStatus>
+      <ArticleIdList>
+        <ArticleId IdType="pubmed">13492101</ArticleId>
+      </ArticleIdList>
+    </PubmedData>
+  </PubmedArticle>
+  <PubmedArticle>
+    <MedlineCitation Status="MEDLINE" Owner="NLM">
+      <PMID Version="1">13492102</PMID>
+      <DateCreated>
+        <Year>1958</Year>
+        <Month>12</Month>
+        <Day>01</Day>
+      </DateCreated>
+      <DateCompleted>
+        <Year>2000</Year>
+        <Month>07</Month>
+        <Day>01</Day>
+      </DateCompleted>
+      <DateRevised>
+        <Year>2007</Year>
+        <Month>05</Month>
+        <Day>22</Day>
+      </DateRevised>
+      <Article PubModel="Print">
+        <Journal>
+          <ISSN IssnType="Print">0146-1575</ISSN>
+          <JournalIssue CitedMedium="Print">
+            <Volume>16</Volume>
+            <Issue>1</Issue>
+            <PubDate>
+              <Year>1958</Year>
+              <Month>Jan</Month>
+            </PubDate>
+          </JournalIssue>
+          <Title>Journal of oral surgery</Title>
+          <ISOAbbreviation>J Oral Surg (Chic)</ISOAbbreviation>
+        </Journal>
+        <ArticleTitle>Laryngeal stethoscope to monitor the respiratory exchange.</ArticleTitle>
+        <Pagination>
+          <MedlinePgn>20-1</MedlinePgn>
+        </Pagination>
+        <AuthorList CompleteYN="Y">
+          <Author ValidYN="Y">
+            <LastName>HUBBELL</LastName>
+            <ForeName>A O</ForeName>
+            <Initials>AO</Initials>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>WAGNER</LastName>
+            <ForeName>W A</ForeName>
+            <Initials>WA</Initials>
+          </Author>
+        </AuthorList>
+        <Language>eng</Language>
+        <PublicationTypeList>
+          <PublicationType UI="D016428">Journal Article</PublicationType>
+        </PublicationTypeList>
+      </Article>
+      <MedlineJournalInfo>
+        <Country>United States</Country>
+        <MedlineTA>J Oral Surg (Chic)</MedlineTA>
+        <NlmUniqueID>0234121</NlmUniqueID>
+        <ISSNLinking>0146-1575</ISSNLinking>
+      </MedlineJournalInfo>
+      <CitationSubset>OM</CitationSubset>
+      <MeshHeadingList>
+        <MeshHeading>
+          <DescriptorName UI="D000758" MajorTopicYN="N">Anesthesia</DescriptorName>
+          <QualifierName UI="Q000295" MajorTopicYN="Y">instrumentation</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D000776" MajorTopicYN="N">Anesthesiology</DescriptorName>
+          <QualifierName UI="Q000295" MajorTopicYN="Y">instrumentation</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D006801" MajorTopicYN="N">Humans</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D007442" MajorTopicYN="N">Intubation, Intratracheal</DescriptorName>
+          <QualifierName UI="Q000295" MajorTopicYN="Y">instrumentation</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D019023" MajorTopicYN="Y">Stethoscopes</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D014132" MajorTopicYN="Y">Trachea</DescriptorName>
+        </MeshHeading>
+      </MeshHeadingList>
+      <OtherID Source="CLML">5833:35160:31:481</OtherID>
+      <KeywordList Owner="NLM">
+        <Keyword MajorTopicYN="Y">ANESTHESIA, ENDOTRACHEAL/apparatus and instruments</Keyword>
+        <Keyword MajorTopicYN="Y">STETHOSCOPE</Keyword>
+      </KeywordList>
+    </MedlineCitation>
+    <PubmedData>
+      <History>
+        <PubMedPubDate PubStatus="pubmed">
+          <Year>1958</Year>
+          <Month>1</Month>
+          <Day>1</Day>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="medline">
+          <Year>1958</Year>
+          <Month>1</Month>
+          <Day>1</Day>
+          <Hour>0</Hour>
+          <Minute>1</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="entrez">
+          <Year>1958</Year>
+          <Month>1</Month>
+          <Day>1</Day>
+          <Hour>0</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+      </History>
+      <PublicationStatus>ppublish</PublicationStatus>
+      <ArticleIdList>
+        <ArticleId IdType="pubmed">13492102</ArticleId>
+      </ArticleIdList>
+    </PubmedData>
+  </PubmedArticle>
+  <PubmedArticle>
+    <MedlineCitation Status="MEDLINE" Owner="NLM">
+      <PMID Version="1">13492103</PMID>
+      <DateCreated>
+        <Year>1958</Year>
+        <Month>12</Month>
+        <Day>01</Day>
+      </DateCreated>
+      <DateCompleted>
+        <Year>2000</Year>
+        <Month>07</Month>
+        <Day>01</Day>
+      </DateCompleted>
+      <DateRevised>
+        <Year>2007</Year>
+        <Month>05</Month>
+        <Day>22</Day>
+      </DateRevised>
+      <Article PubModel="Print">
+        <Journal>
+          <ISSN IssnType="Print">0146-1575</ISSN>
+          <JournalIssue CitedMedium="Print">
+            <Volume>16</Volume>
+            <Issue>1</Issue>
+            <PubDate>
+              <Year>1958</Year>
+              <Month>Jan</Month>
+            </PubDate>
+          </JournalIssue>
+          <Title>Journal of oral surgery</Title>
+          <ISOAbbreviation>J Oral Surg (Chic)</ISOAbbreviation>
+        </Journal>
+        <ArticleTitle>Effect of drilling into bone.</ArticleTitle>
+        <Pagination>
+          <MedlinePgn>22-30</MedlinePgn>
+        </Pagination>
+        <AuthorList CompleteYN="Y">
+          <Author ValidYN="Y">
+            <LastName>THOMPSON</LastName>
+            <ForeName>H C</ForeName>
+            <Initials>HC</Initials>
+          </Author>
+        </AuthorList>
+        <Language>eng</Language>
+        <PublicationTypeList>
+          <PublicationType UI="D016428">Journal Article</PublicationType>
+        </PublicationTypeList>
+      </Article>
+      <MedlineJournalInfo>
+        <Country>United States</Country>
+        <MedlineTA>J Oral Surg (Chic)</MedlineTA>
+        <NlmUniqueID>0234121</NlmUniqueID>
+        <ISSNLinking>0146-1575</ISSNLinking>
+      </MedlineJournalInfo>
+      <CitationSubset>OM</CitationSubset>
+      <MeshHeadingList>
+        <MeshHeading>
+          <DescriptorName UI="D001842" MajorTopicYN="N">Bone and Bones</DescriptorName>
+          <QualifierName UI="Q000601" MajorTopicYN="Y">surgery</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D006801" MajorTopicYN="N">Humans</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D019637" MajorTopicYN="Y">Orthopedic Procedures</DescriptorName>
+        </MeshHeading>
+      </MeshHeadingList>
+      <OtherID Source="CLML">5833:35161:86</OtherID>
+      <KeywordList Owner="NLM">
+        <Keyword MajorTopicYN="Y">BONE AND BONES/surgery</Keyword>
+      </KeywordList>
+    </MedlineCitation>
+    <PubmedData>
+      <History>
+        <PubMedPubDate PubStatus="pubmed">
+          <Year>1958</Year>
+          <Month>1</Month>
+          <Day>1</Day>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="medline">
+          <Year>1958</Year>
+          <Month>1</Month>
+          <Day>1</Day>
+          <Hour>0</Hour>
+          <Minute>1</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="entrez">
+          <Year>1958</Year>
+          <Month>1</Month>
+          <Day>1</Day>
+          <Hour>0</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+      </History>
+      <PublicationStatus>ppublish</PublicationStatus>
+      <ArticleIdList>
+        <ArticleId IdType="pubmed">13492103</ArticleId>
+      </ArticleIdList>
+    </PubmedData>
+  </PubmedArticle>
+  <PubmedArticle>
+    <MedlineCitation Status="MEDLINE" Owner="NLM">
+      <PMID Version="1">13492104</PMID>
+      <DateCreated>
+        <Year>1958</Year>
+        <Month>12</Month>
+        <Day>01</Day>
+      </DateCreated>
+      <DateCompleted>
+        <Year>2000</Year>
+        <Month>07</Month>
+        <Day>01</Day>
+      </DateCompleted>
+      <DateRevised>
+        <Year>2013</Year>
+        <Month>11</Month>
+        <Day>21</Day>
+      </DateRevised>
+      <Article PubModel="Print">
+        <Journal>
+          <ISSN IssnType="Print">0146-1575</ISSN>
+          <JournalIssue CitedMedium="Print">
+            <Volume>16</Volume>
+            <Issue>1</Issue>
+            <PubDate>
+              <Year>1958</Year>
+              <Month>Jan</Month>
+            </PubDate>
+          </JournalIssue>
+          <Title>Journal of oral surgery</Title>
+          <ISOAbbreviation>J Oral Surg (Chic)</ISOAbbreviation>
+        </Journal>
+        <ArticleTitle>The use of chlorpromazine in general anesthesia for office procedures.</ArticleTitle>
+        <Pagination>
+          <MedlinePgn>30-5</MedlinePgn>
+        </Pagination>
+        <AuthorList CompleteYN="Y">
+          <Author ValidYN="Y">
+            <LastName>STARK</LastName>
+            <ForeName>S</ForeName>
+            <Initials>S</Initials>
+          </Author>
+        </AuthorList>
+        <Language>eng</Language>
+        <PublicationTypeList>
+          <PublicationType UI="D016428">Journal Article</PublicationType>
+        </PublicationTypeList>
+      </Article>
+      <MedlineJournalInfo>
+        <Country>United States</Country>
+        <MedlineTA>J Oral Surg (Chic)</MedlineTA>
+        <NlmUniqueID>0234121</NlmUniqueID>
+        <ISSNLinking>0146-1575</ISSNLinking>
+      </MedlineJournalInfo>
+      <ChemicalList>
+        <Chemical>
+          <RegistryNumber>U42B7VYA4P</RegistryNumber>
+          <NameOfSubstance UI="D002746">Chlorpromazine</NameOfSubstance>
+        </Chemical>
+      </ChemicalList>
+      <CitationSubset>OM</CitationSubset>
+      <MeshHeadingList>
+        <MeshHeading>
+          <DescriptorName UI="D000758" MajorTopicYN="Y">Anesthesia</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D000768" MajorTopicYN="Y">Anesthesia, General</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D000776" MajorTopicYN="Y">Anesthesiology</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D002746" MajorTopicYN="N">Chlorpromazine</DescriptorName>
+          <QualifierName UI="Q000627" MajorTopicYN="Y">therapeutic use</QualifierName>
+        </MeshHeading>
+      </MeshHeadingList>
+      <OtherID Source="CLML">5833:35162:30:120</OtherID>
+      <KeywordList Owner="NLM">
+        <Keyword MajorTopicYN="Y">ANESTHESIA</Keyword>
+        <Keyword MajorTopicYN="Y">CHLORPROMAZINE/therapeutic use</Keyword>
+      </KeywordList>
+    </MedlineCitation>
+    <PubmedData>
+      <History>
+        <PubMedPubDate PubStatus="pubmed">
+          <Year>1958</Year>
+          <Month>1</Month>
+          <Day>1</Day>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="medline">
+          <Year>1958</Year>
+          <Month>1</Month>
+          <Day>1</Day>
+          <Hour>0</Hour>
+          <Minute>1</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="entrez">
+          <Year>1958</Year>
+          <Month>1</Month>
+          <Day>1</Day>
+          <Hour>0</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+      </History>
+      <PublicationStatus>ppublish</PublicationStatus>
+      <ArticleIdList>
+        <ArticleId IdType="pubmed">13492104</ArticleId>
+      </ArticleIdList>
+    </PubmedData>
+  </PubmedArticle>
+  <PubmedArticle>
+    <MedlineCitation Status="MEDLINE" Owner="NLM">
+      <PMID Version="1">13492105</PMID>
+      <DateCreated>
+        <Year>1958</Year>
+        <Month>12</Month>
+        <Day>01</Day>
+      </DateCreated>
+      <DateCompleted>
+        <Year>2000</Year>
+        <Month>07</Month>
+        <Day>01</Day>
+      </DateCompleted>
+      <DateRevised>
+        <Year>2007</Year>
+        <Month>05</Month>
+        <Day>22</Day>
+      </DateRevised>
+      <Article PubModel="Print">
+        <Journal>
+          <ISSN IssnType="Print">0146-1575</ISSN>
+          <JournalIssue CitedMedium="Print">
+            <Volume>16</Volume>
+            <Issue>1</Issue>
+            <PubDate>
+              <Year>1958</Year>
+              <Month>Jan</Month>
+            </PubDate>
+          </JournalIssue>
+          <Title>Journal of oral surgery</Title>
+          <ISOAbbreviation>J Oral Surg (Chic)</ISOAbbreviation>
+        </Journal>
+        <ArticleTitle>Familial osseous dysplasia of the jaws.</ArticleTitle>
+        <Pagination>
+          <MedlinePgn>35-45</MedlinePgn>
+        </Pagination>
+        <AuthorList CompleteYN="Y">
+          <Author ValidYN="Y">
+            <LastName>SMALL</LastName>
+            <ForeName>I A</ForeName>
+            <Initials>IA</Initials>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>YOUNG</LastName>
+            <ForeName>M C</ForeName>
+            <Initials>MC</Initials>
+          </Author>
+        </AuthorList>
+        <Language>eng</Language>
+        <PublicationTypeList>
+          <PublicationType UI="D016428">Journal Article</PublicationType>
+        </PublicationTypeList>
+      </Article>
+      <MedlineJournalInfo>
+        <Country>United States</Country>
+        <MedlineTA>J Oral Surg (Chic)</MedlineTA>
+        <NlmUniqueID>0234121</NlmUniqueID>
+        <ISSNLinking>0146-1575</ISSNLinking>
+      </MedlineJournalInfo>
+      <CitationSubset>OM</CitationSubset>
+      <MeshHeadingList>
+        <MeshHeading>
+          <DescriptorName UI="D001842" MajorTopicYN="Y">Bone and Bones</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D002648" MajorTopicYN="N">Child</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D004687" MajorTopicYN="Y">Enchondromatosis</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D006801" MajorTopicYN="N">Humans</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D007223" MajorTopicYN="N">Infant</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D007569" MajorTopicYN="Y">Jaw Abnormalities</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D010009" MajorTopicYN="Y">Osteochondrodysplasias</DescriptorName>
+        </MeshHeading>
+      </MeshHeadingList>
+      <OtherID Source="CLML">5833:35163:164:273</OtherID>
+      <KeywordList Owner="NLM">
+        <Keyword MajorTopicYN="Y">DYSCHONDROPLASIA/in infant and child</Keyword>
+        <Keyword MajorTopicYN="Y">JAWS/abnormalities</Keyword>
+      </KeywordList>
+    </MedlineCitation>
+    <PubmedData>
+      <History>
+        <PubMedPubDate PubStatus="pubmed">
+          <Year>1958</Year>
+          <Month>1</Month>
+          <Day>1</Day>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="medline">
+          <Year>1958</Year>
+          <Month>1</Month>
+          <Day>1</Day>
+          <Hour>0</Hour>
+          <Minute>1</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="entrez">
+          <Year>1958</Year>
+          <Month>1</Month>
+          <Day>1</Day>
+          <Hour>0</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+      </History>
+      <PublicationStatus>ppublish</PublicationStatus>
+      <ArticleIdList>
+        <ArticleId IdType="pubmed">13492105</ArticleId>
+      </ArticleIdList>
+    </PubmedData>
+  </PubmedArticle>
