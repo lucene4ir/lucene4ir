@@ -258,7 +258,7 @@ public class RetrievalApp {
             searcher.setSimilarity(simfn);
 
 
-            parser = new QueryParser("content", analyzer);
+            parser = new QueryParser(LuceneConstants.FIELD_ALL, analyzer);
 
 
         } catch (Exception e){
