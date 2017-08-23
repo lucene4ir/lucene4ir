@@ -6,6 +6,6 @@
     <model>bm25</model>
     <b>0.75</b>
     <resultFile>data/cacm/bm25_results.res</resultFile>
-    <tokenFilterFile>params/index/example_03.xml</tokenFilterFile>
+    <tokenFilterFile>params/index/example_01.xml</tokenFilterFile>
     <runTag>Fred</runTag>
 </retrievalParams>
