@@ -47,12 +47,12 @@ public class TRECTipsterDocumentIndexer extends DocumentIndexer {
         if(indexPositions){
             titleField = new TermVectorEnabledTextField(LuceneConstants.FIELD_TITLE, "", Field.Store.YES);
             textField = new TermVectorEnabledTextField(LuceneConstants.FIELD_CONTENT, "", Field.Store.YES);
-            allField = new TermVectorEnabledTextField("all", "", Field.Store.YES);
+            allField = new TermVectorEnabledTextField(LuceneConstants.FIELD_ALL, "", Field.Store.YES);
         }
         else {
             titleField = new TextField(LuceneConstants.FIELD_TITLE, "", Field.Store.YES);
             textField = new TextField(LuceneConstants.FIELD_CONTENT, "", Field.Store.YES);
-            allField = new TextField("all", "", Field.Store.YES);
+            allField = new TextField(LuceneConstants.FIELD_ALL, "", Field.Store.YES);
         }
     }
 

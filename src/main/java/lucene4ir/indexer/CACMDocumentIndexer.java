@@ -17,6 +17,7 @@ public class CACMDocumentIndexer extends DocumentIndexer {
     private Field textField;
     private Field authorField;
     private Field pubdateField;
+    private Field allField;
     private Document doc;
 
     public CACMDocumentIndexer(String indexPath, String tokenFilterFile, boolean positional){
@@ -37,11 +38,13 @@ public class CACMDocumentIndexer extends DocumentIndexer {
             titleField = new TermVectorEnabledTextField(LuceneConstants.FIELD_TITLE, "", Field.Store.YES);
             textField = new TermVectorEnabledTextField(LuceneConstants.FIELD_CONTENT, "", Field.Store.YES);
             authorField = new TermVectorEnabledTextField(LuceneConstants.FIELD_AUTHOR, "", Field.Store.YES);
+            allField = new TermVectorEnabledTextField(LuceneConstants.FIELD_ALL, "", Field.Store.YES);
         }
         else {
             titleField = new TextField(LuceneConstants.FIELD_TITLE, "", Field.Store.YES);
             textField = new TextField(LuceneConstants.FIELD_CONTENT, "", Field.Store.YES);
             authorField = new TextField(LuceneConstants.FIELD_AUTHOR, "", Field.Store.YES);
+            allField = new TextField(LuceneConstants.FIELD_ALL,"", Field.Store.YES);
         }
     }
 
@@ -51,6 +54,7 @@ public class CACMDocumentIndexer extends DocumentIndexer {
         doc.add(textField);
         doc.add(authorField);
         doc.add(pubdateField);
+        doc.add(allField);
     }
 
     public Document createCacmDocument(String docid, String title, String author, String content, String pubdate){
@@ -60,12 +64,14 @@ public class CACMDocumentIndexer extends DocumentIndexer {
         authorField.setStringValue(author);
         textField.setStringValue(content);
         pubdateField.setStringValue(pubdate);
+        allField.setStringValue(title + " " + author + " " +  content);
 
         doc.add(docnumField);
         doc.add(titleField);
         doc.add(textField);
         doc.add(authorField);
         doc.add(pubdateField);
+        doc.add(allField);
 
         return doc;
     }

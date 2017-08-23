@@ -1,5 +1,6 @@
 package lucene4ir.indexer;
 
+import lucene4ir.LuceneConstants;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.StringField;
@@ -124,6 +125,8 @@ public class PubMedDocumentIndexer extends DocumentIndexer {
         String authors = getStringFromXml(xmlDocument, "/PubmedArticle/MedlineCitation/Article/AuthorList");
         addTextFieldToDoc(doc, "authors", authors);
 
+        addTextFieldToDoc(doc, LuceneConstants.FIELD_ALL, title + " " + authors + " "+ journal + " " + content );
+
 
         /*
         expression = "/PubmedArticle/MedlineCitation/Article/Journal/Title";
@@ -137,7 +140,7 @@ public class PubMedDocumentIndexer extends DocumentIndexer {
         Field authorsField = new TextField("authors", authors, Field.Store.YES);
         doc.add(authorsField);
 */
-
+        System.out.println("Indexing: "+ docid);
         addDocumentToIndex(doc);
         } catch (Exception e){
             System.out.println(" caught a " + e.getClass() +
