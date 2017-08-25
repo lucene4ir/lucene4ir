@@ -16,8 +16,11 @@ import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.index.*;
 import org.apache.lucene.index.memory.MemoryIndex;
 import org.apache.lucene.document.Document;
+import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.BytesRef;
+
+import org.apache.lucene.search.CollectionStatistics;
 
 /**
  * Created by leif on 21/08/2016.
@@ -361,6 +364,29 @@ public class ExampleStatsApp {
     }
 
 
+    public void reportCollectionStatistics()throws IOException {
+
+        IndexSearcher searcher = new IndexSearcher(reader);
+
+        CollectionStatistics collectionStats = searcher.collectionStatistics("title");
+        long token_count = collectionStats.sumTotalTermFreq();
+        long doc_count = collectionStats.docCount();
+        long sum_doc_count = collectionStats.sumDocFreq();
+
+        System.out.println("TITLE: Token count: " + token_count+ " Doc Count: " + doc_count + " sum doc: " + sum_doc_count);
+
+        searcher.collectionStatistics("content");
+        token_count = collectionStats.sumTotalTermFreq();
+        doc_count = collectionStats.docCount();
+        sum_doc_count = collectionStats.sumDocFreq();
+
+        System.out.println("CONTENT: Token count: " + token_count+ " Doc Count: " + doc_count + " sum doc: " + sum_doc_count);
+
+
+
+    }
+
+
     public static void main(String[] args)  throws IOException {
 
 
@@ -394,6 +420,8 @@ public class ExampleStatsApp {
         statsApp.numSegments();
 
         statsApp.printTermVectorWithPosition(0, Collections.singleton("title"));
+
+        statsApp.reportCollectionStatistics();
     	}
 
 }
