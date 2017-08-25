@@ -368,20 +368,27 @@ public class ExampleStatsApp {
 
         IndexSearcher searcher = new IndexSearcher(reader);
 
-        CollectionStatistics collectionStats = searcher.collectionStatistics("title");
+        CollectionStatistics collectionStats = searcher.collectionStatistics(Lucene4IRConstants.FIELD_ALL);
         long token_count = collectionStats.sumTotalTermFreq();
         long doc_count = collectionStats.docCount();
         long sum_doc_count = collectionStats.sumDocFreq();
 
+        System.out.println("ALL: Token count: " + token_count+ " Doc Count: " + doc_count + " sum doc: " + sum_doc_count);
+
+        collectionStats = searcher.collectionStatistics(Lucene4IRConstants.FIELD_TITLE);
+        token_count = collectionStats.sumTotalTermFreq();
+        doc_count = collectionStats.docCount();
+        sum_doc_count = collectionStats.sumDocFreq();
+
         System.out.println("TITLE: Token count: " + token_count+ " Doc Count: " + doc_count + " sum doc: " + sum_doc_count);
 
-        collectionStats = searcher.collectionStatistics("content");
+
+        collectionStats = searcher.collectionStatistics(Lucene4IRConstants.FIELD_CONTENT);
         token_count = collectionStats.sumTotalTermFreq();
         doc_count = collectionStats.docCount();
         sum_doc_count = collectionStats.sumDocFreq();
 
         System.out.println("CONTENT: Token count: " + token_count+ " Doc Count: " + doc_count + " sum doc: " + sum_doc_count);
-
 
 
     }

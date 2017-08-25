@@ -21,8 +21,6 @@ import lucene4ir.similarity.BM25Similarity;
 import lucene4ir.utils.TokenAnalyzerMaker;
 
 import javax.xml.bind.JAXB;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.*;
 
@@ -172,7 +170,7 @@ public class RetrievalApp {
             analyzer = tam.createAnalyzer(p.tokenFilterFile);
         }
         else{
-            analyzer = LuceneConstants.ANALYZER;
+            analyzer = Lucene4IRConstants.ANALYZER;
         }
 
 
@@ -261,7 +259,7 @@ public class RetrievalApp {
             searcher.setSimilarity(simfn);
 
 
-            parser = new QueryParser(LuceneConstants.FIELD_ALL, analyzer);
+            parser = new QueryParser(Lucene4IRConstants.FIELD_ALL, analyzer);
 
 
         } catch (Exception e){

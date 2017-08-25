@@ -1,28 +1,7 @@
 package lucene4ir.predictor;
 
-import lucene4ir.LuceneConstants;
-import lucene4ir.utils.TokenAnalyzerMaker;
-import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexReader;
-import org.apache.lucene.index.IndexWriter;
-import org.apache.lucene.index.IndexWriterConfig;
-import org.apache.lucene.queryparser.classic.QueryParser;
-import org.apache.lucene.search.IndexSearcher;
-import org.apache.lucene.search.similarities.LMSimilarity;
-import org.apache.lucene.store.Directory;
-import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.search.Query;
-
-import java.io.IOException;
-import java.nio.file.Paths;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by leif on 13/08/2017.

@@ -1,15 +1,14 @@
 package lucene4ir.indexer;
 
-import lucene4ir.LuceneConstants;
+import lucene4ir.Lucene4IRConstants;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.StringField;
 import org.apache.lucene.document.TextField;
-import org.apache.lucene.document.IntPoint;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-import org.apache.lucene.index.IndexableField;
 import org.xml.sax.*;
 import java.io.*;
 import javax.xml.parsers.DocumentBuilder;
@@ -125,7 +124,7 @@ public class PubMedDocumentIndexer extends DocumentIndexer {
         String authors = getStringFromXml(xmlDocument, "/PubmedArticle/MedlineCitation/Article/AuthorList");
         addTextFieldToDoc(doc, "authors", authors);
 
-        addTextFieldToDoc(doc, LuceneConstants.FIELD_ALL, title + " " + authors + " "+ journal + " " + content );
+        addTextFieldToDoc(doc, Lucene4IRConstants.FIELD_ALL, title + " " + authors + " "+ journal + " " + content );
 
 
         /*

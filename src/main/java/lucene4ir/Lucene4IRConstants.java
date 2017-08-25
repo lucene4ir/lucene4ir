@@ -3,7 +3,7 @@ package lucene4ir;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 
-public class LuceneConstants {
+public class Lucene4IRConstants {
 
     // Common analyzer
     public static final Analyzer ANALYZER = new StandardAnalyzer();

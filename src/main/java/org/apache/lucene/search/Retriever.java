@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import lucene4ir.LuceneConstants;
+import lucene4ir.Lucene4IRConstants;
 
 /**
  * Abstract class that provides common functionalities to perform batch retrieval.
@@ -54,7 +54,7 @@ public abstract class Retriever {
 
             searcher = new IndexSearcher(reader);
 
-            analyzer = LuceneConstants.ANALYZER;
+            analyzer = Lucene4IRConstants.ANALYZER;
 
             parser = new QueryParser("content", analyzer);
 

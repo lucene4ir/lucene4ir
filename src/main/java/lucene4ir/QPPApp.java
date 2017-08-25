@@ -1,16 +1,12 @@
 package lucene4ir;
 
 import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.document.Document;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
-import org.apache.lucene.search.ScoreDoc;
-import org.apache.lucene.search.TopDocs;
-import org.apache.lucene.search.similarities.*;
 import org.apache.lucene.search.similarities.LMSimilarity.CollectionModel;
 import org.apache.lucene.store.FSDirectory;
 
@@ -19,13 +15,10 @@ import lucene4ir.utils.TokenAnalyzerMaker;
 import lucene4ir.predictor.*;
 
 import javax.xml.bind.JAXB;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Iterator;
 
 public class QPPApp {
 
@@ -72,7 +65,7 @@ public class QPPApp {
             analyzer = tam.createAnalyzer(p.tokenFilterFile);
         }
         else{
-            analyzer = LuceneConstants.ANALYZER;
+            analyzer = Lucene4IRConstants.ANALYZER;
         }
 
     }
