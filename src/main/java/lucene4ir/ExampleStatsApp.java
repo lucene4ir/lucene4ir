@@ -375,7 +375,7 @@ public class ExampleStatsApp {
 
         System.out.println("TITLE: Token count: " + token_count+ " Doc Count: " + doc_count + " sum doc: " + sum_doc_count);
 
-        searcher.collectionStatistics("content");
+        collectionStats = searcher.collectionStatistics("content");
         token_count = collectionStats.sumTotalTermFreq();
         doc_count = collectionStats.docCount();
         sum_doc_count = collectionStats.sumDocFreq();
