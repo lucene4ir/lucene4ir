@@ -134,13 +134,13 @@ public class RetrievalApp {
         setSim(p.model);
 
         if (p.maxResults==0.0) {p.maxResults=1000;}
-        if (p.b < 0.0){ p.b = 0.75f;}
-        if (p.beta < 0.0){p.beta = 500f;}
-        if (p.k <0.0){ p.k = 1.2f;}
-        if (p.delta<0.0){p.delta = 1.0f;}
-        if (p.lam<0.0){p.lam = 0.5f;}
-        if (p.mu<0.0){p.mu = 500f;}
-        if (p.c<0.0){p.c=10.0f;}
+        if (p.b <= 0.0){ p.b = 0.75f;}
+        if (p.beta <= 0.0){p.beta = 500f;}
+        if (p.k <= 0.0){ p.k = 1.2f;}
+        if (p.delta<=0.0){p.delta = 1.0f;}
+        if (p.lam <= 0.0){p.lam = 0.5f;}
+        if (p.mu <= 0.0){p.mu = 500f;}
+        if (p.c <= 0.0){p.c=10.0f;}
         if (p.model == null){
             p.model = "def";
         }
