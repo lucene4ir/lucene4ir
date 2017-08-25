@@ -7,6 +7,6 @@
 
     <field>
         <fieldName>title</fieldName>
-        <fieldBoost>1.0</fieldBoost>
+        <fieldBoost>2.0</fieldBoost>
     </field>
 </fields>
