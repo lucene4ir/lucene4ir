@@ -9,4 +9,8 @@
         <fieldName>title</fieldName>
         <fieldBoost>2.0</fieldBoost>
     </field>
+    <field>
+        <fieldName>all</fieldName>
+        <fieldBoost>3.0</fieldBoost>
+    </field>
 </fields>

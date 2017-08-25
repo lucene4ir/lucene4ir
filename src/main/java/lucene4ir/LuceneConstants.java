@@ -15,5 +15,6 @@ public class LuceneConstants {
     public static final String FIELD_DOCNUM = "docnum";
     public static final String FIELD_PUBDATE = "pubdate";
     public static final String FIELD_SOURCE = "source";
+    public static final String FIELD_ALL = "all";
 
 }

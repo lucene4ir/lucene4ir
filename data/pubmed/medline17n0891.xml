@@ -1,0 +1,1083 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE PubmedArticleSet SYSTEM "http://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_170101.dtd">
+<PubmedArticleSet>
+  <PubmedArticle>
+    <MedlineCitation Status="Publisher" Owner="NLM">
+      <PMID Version="1">27899016</PMID>
+      <DateCreated>
+        <Year>2016</Year>
+        <Month>11</Month>
+        <Day>29</Day>
+      </DateCreated>
+      <DateRevised>
+        <Year>2016</Year>
+        <Month>11</Month>
+        <Day>30</Day>
+      </DateRevised>
+      <Article PubModel="Print-Electronic">
+        <Journal>
+          <ISSN IssnType="Electronic">1528-0012</ISSN>
+          <JournalIssue CitedMedium="Internet">
+            <PubDate>
+              <Year>2016</Year>
+              <Month>Nov</Month>
+              <Day>26</Day>
+            </PubDate>
+          </JournalIssue>
+          <Title>Gastroenterology</Title>
+          <ISOAbbreviation>Gastroenterology</ISOAbbreviation>
+        </Journal>
+        <ArticleTitle>Bismuth and Non-bismuth Quadruple Therapy for Helicobacter pylori Eradication: Time to Make the Switch in Clinical Practice?</ArticleTitle>
+        <ELocationID EIdType="pii" ValidYN="Y">S0016-5085(16)35192-7</ELocationID>
+        <ELocationID EIdType="doi" ValidYN="Y">10.1053/j.gastro.2016.06.058</ELocationID>
+        <AuthorList CompleteYN="Y">
+          <Author ValidYN="Y">
+            <LastName>Liou</LastName>
+            <ForeName>Jyh-Ming</ForeName>
+            <Initials>JM</Initials>
+            <AffiliationInfo>
+              <Affiliation>Department of Internal Medicine, National Taiwan University Hospital, National Taiwan University College of Medicine, Taipei, Taiwan.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>Lin</LastName>
+            <ForeName>Jaw-Town</ForeName>
+            <Initials>JT</Initials>
+            <AffiliationInfo>
+              <Affiliation>Department of Internal Medicine, National Taiwan University Hospital, National Taiwan University College of Medicine, Taipei and College of Medicine, Fu-Ren Catholic University and Big Data Research Centre, Fu-Ren Catholic University, New Taipei City, Taiwan.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>Wu</LastName>
+            <ForeName>Ming-Shiang</ForeName>
+            <Initials>MS</Initials>
+            <AffiliationInfo>
+              <Affiliation>Department of Internal Medicine, National Taiwan University Hospital, National Taiwan University College of Medicine, Taipei, Taiwan.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+        </AuthorList>
+        <Language>eng</Language>
+        <PublicationTypeList>
+          <PublicationType UI="">Letter</PublicationType>
+        </PublicationTypeList>
+        <ArticleDate DateType="Electronic">
+          <Year>2016</Year>
+          <Month>11</Month>
+          <Day>26</Day>
+        </ArticleDate>
+      </Article>
+      <MedlineJournalInfo>
+        <Country>United States</Country>
+        <MedlineTA>Gastroenterology</MedlineTA>
+        <NlmUniqueID>0374630</NlmUniqueID>
+        <ISSNLinking>0016-5085</ISSNLinking>
+      </MedlineJournalInfo>
+    </MedlineCitation>
+    <PubmedData>
+      <History>
+        <PubMedPubDate PubStatus="received">
+          <Year>2016</Year>
+          <Month>05</Month>
+          <Day>17</Day>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="accepted">
+          <Year>2016</Year>
+          <Month>06</Month>
+          <Day>15</Day>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="entrez">
+          <Year>2016</Year>
+          <Month>11</Month>
+          <Day>30</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="pubmed">
+          <Year>2016</Year>
+          <Month>11</Month>
+          <Day>30</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="medline">
+          <Year>2016</Year>
+          <Month>11</Month>
+          <Day>30</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+      </History>
+      <PublicationStatus>aheadofprint</PublicationStatus>
+      <ArticleIdList>
+        <ArticleId IdType="pubmed">27899016</ArticleId>
+        <ArticleId IdType="pii">S0016-5085(16)35192-7</ArticleId>
+        <ArticleId IdType="doi">10.1053/j.gastro.2016.06.058</ArticleId>
+      </ArticleIdList>
+    </PubmedData>
+  </PubmedArticle>
+  <PubmedArticle>
+    <MedlineCitation Status="Publisher" Owner="NLM">
+      <PMID Version="1">27899017</PMID>
+      <DateCreated>
+        <Year>2016</Year>
+        <Month>11</Month>
+        <Day>29</Day>
+      </DateCreated>
+      <DateRevised>
+        <Year>2016</Year>
+        <Month>12</Month>
+        <Day>12</Day>
+      </DateRevised>
+      <Article PubModel="Print-Electronic">
+        <Journal>
+          <ISSN IssnType="Electronic">1873-1570</ISSN>
+          <JournalIssue CitedMedium="Internet">
+            <Volume>111</Volume>
+            <PubDate>
+              <Year>2016</Year>
+              <Month>Nov</Month>
+              <Day>27</Day>
+            </PubDate>
+          </JournalIssue>
+          <Title>Resuscitation</Title>
+          <ISOAbbreviation>Resuscitation</ISOAbbreviation>
+        </Journal>
+        <ArticleTitle>Public access defibrillation and outcomes after pediatric out-of-hospital cardiac arrest.</ArticleTitle>
+        <Pagination>
+          <MedlinePgn>1-7</MedlinePgn>
+        </Pagination>
+        <ELocationID EIdType="pii" ValidYN="Y">S0300-9572(16)30552-4</ELocationID>
+        <ELocationID EIdType="doi" ValidYN="Y">10.1016/j.resuscitation.2016.11.010</ELocationID>
+        <Abstract>
+          <AbstractText Label="BACKGROUND" NlmCategory="BACKGROUND">Use of automated external defibrillators (AEDs) has been recommended for pediatric out-of-hospital cardiac arrest (OHCA). However, there are no conclusive studies that elucidated the effectiveness of public-access defibrillation (PAD) in children.</AbstractText>
+          <AbstractText Label="METHODS" NlmCategory="METHODS">This was a nationwide, population-based, propensity score-matched study of pediatric OHCA in Japan from 2011 to 2012, based on data from the All-Japan Utstein Registry. We included pediatric OHCA patients (aged 1-17 years) who received bystander cardiopulmonary resuscitation. The primary outcome was a favorable neurological state 1 month after OHCA (defined as a CPC score of 1-2).</AbstractText>
+          <AbstractText Label="RESULTS" NlmCategory="RESULTS">A total of 1193 patients were included in the final cohort; 57 received PAD and 1136 did not. Among 1193 patients, 188 (15.8%) survived with a favorable neurological status 1 month after OHCA. The odds of neurologically favorable survival were significantly higher for patients receiving PAD after adjusting for potential confounders: propensity score matching, OR 3.17 (95% CI 1.40-7.17), and multivariable logistic regression modeling, OR<sub>adjusted</sub> 5.10 (95% CI 2.01-13.70). Similar findings were observed for the secondary outcomes (i.e., neurologically favorable survival with a CPC score of 1, one-month survival, and prehospital return of spontaneous circulation). In subgroup analyses, there were no significant differences in neurologically favorable survival between the PAD group and non-PAD group in the unwitnessed cohort (OR<sub>adjusted</sub> 7.76 [0.75-81.90]) or the non-cardiac etiology cohort (OR<sub>adjusted</sub> 6.65 [0.64-66.24]).</AbstractText>
+          <AbstractText Label="CONCLUSIONS" NlmCategory="CONCLUSIONS">PAD was associated with an increased chance of neurologically favorable survival in pediatric OHCA (aged 1-17 years) who received bystander CPR, except for in cases of unwitnessed or non-cardiac etiology.</AbstractText>
+          <CopyrightInformation>Copyright Â© 2016 Elsevier Ireland Ltd. All rights reserved.</CopyrightInformation>
+        </Abstract>
+        <AuthorList CompleteYN="Y">
+          <Author ValidYN="Y">
+            <LastName>Fukuda</LastName>
+            <ForeName>Tatsuma</ForeName>
+            <Initials>T</Initials>
+            <AffiliationInfo>
+              <Affiliation>Department of Emergency and Critical Care Medicine, Graduate School of Medicine, The University of Tokyo, 7-3-1, Hongo, Bunkyo-ku, Tokyo 113-8655, Japan. Electronic address: tatsumafukuda-jpn@umin.ac.jp.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>Ohashi-Fukuda</LastName>
+            <ForeName>Naoko</ForeName>
+            <Initials>N</Initials>
+            <AffiliationInfo>
+              <Affiliation>Department of Emergency and Critical Care Medicine, Graduate School of Medicine, The University of Tokyo, 7-3-1, Hongo, Bunkyo-ku, Tokyo 113-8655, Japan.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>Kobayashi</LastName>
+            <ForeName>Hiroaki</ForeName>
+            <Initials>H</Initials>
+            <AffiliationInfo>
+              <Affiliation>Department of Emergency and Critical Care Medicine, Graduate School of Medicine, The University of Tokyo, 7-3-1, Hongo, Bunkyo-ku, Tokyo 113-8655, Japan; Stephen M. Ross School of Business at the University of Michigan, 701 Tappan Street, Ann Arbor, MI 48109-1234, USA.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>Gunshin</LastName>
+            <ForeName>Masataka</ForeName>
+            <Initials>M</Initials>
+            <AffiliationInfo>
+              <Affiliation>Department of Disaster Medical Management, The University of Tokyo Hospital, 7-3-1, Hongo, Bunkyo-ku, Tokyo 113-8655, Japan; The Johns Hopkins Bloomberg School of Public Health, 615 N. Wolfe Street, Baltimore, MD 21205, USA.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>Sera</LastName>
+            <ForeName>Toshiki</ForeName>
+            <Initials>T</Initials>
+            <AffiliationInfo>
+              <Affiliation>Department of Acute Critical Care and Disaster Medicine, Tokyo Medical and Dental University, 1-5-45, Yushima, Bunkyo-ku, Tokyo 113-8519, Japan.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>Kondo</LastName>
+            <ForeName>Yutaka</ForeName>
+            <Initials>Y</Initials>
+            <AffiliationInfo>
+              <Affiliation>Department of Emergency Medicine, Graduate School of Medicine, University of Ryukyus, 207, Uehara, Nishihara-cho, Okinawa 903-0215, Japan; Division of Acute Care Surgery, Trauma, and Surgical Critical Care, Department of Surgery, Beth Israel Deaconess Medical Center, Harvard Medical School, 330 Brookline Avenue, Boston, MA 02215, USA.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>Yahagi</LastName>
+            <ForeName>Naoki</ForeName>
+            <Initials>N</Initials>
+            <AffiliationInfo>
+              <Affiliation>Department of Emergency and Critical Care Medicine, Graduate School of Medicine, The University of Tokyo, 7-3-1, Hongo, Bunkyo-ku, Tokyo 113-8655, Japan.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+        </AuthorList>
+        <Language>eng</Language>
+        <PublicationTypeList>
+          <PublicationType UI="">Journal Article</PublicationType>
+        </PublicationTypeList>
+        <ArticleDate DateType="Electronic">
+          <Year>2016</Year>
+          <Month>11</Month>
+          <Day>27</Day>
+        </ArticleDate>
+      </Article>
+      <MedlineJournalInfo>
+        <Country>Ireland</Country>
+        <MedlineTA>Resuscitation</MedlineTA>
+        <NlmUniqueID>0332173</NlmUniqueID>
+        <ISSNLinking>0300-9572</ISSNLinking>
+      </MedlineJournalInfo>
+      <KeywordList Owner="NOTNLM">
+        <Keyword MajorTopicYN="N">Cardiopulmonary resuscitation</Keyword>
+        <Keyword MajorTopicYN="N">Children</Keyword>
+        <Keyword MajorTopicYN="N">Epidemiology</Keyword>
+        <Keyword MajorTopicYN="N">Out-of-hospital cardiac arrest</Keyword>
+        <Keyword MajorTopicYN="N">Pediatrics</Keyword>
+      </KeywordList>
+    </MedlineCitation>
+    <PubmedData>
+      <History>
+        <PubMedPubDate PubStatus="received">
+          <Year>2016</Year>
+          <Month>09</Month>
+          <Day>08</Day>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="revised">
+          <Year>2016</Year>
+          <Month>11</Month>
+          <Day>03</Day>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="accepted">
+          <Year>2016</Year>
+          <Month>11</Month>
+          <Day>12</Day>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="pubmed">
+          <Year>2016</Year>
+          <Month>11</Month>
+          <Day>30</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="medline">
+          <Year>2016</Year>
+          <Month>11</Month>
+          <Day>30</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="entrez">
+          <Year>2016</Year>
+          <Month>11</Month>
+          <Day>30</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+      </History>
+      <PublicationStatus>aheadofprint</PublicationStatus>
+      <ArticleIdList>
+        <ArticleId IdType="pubmed">27899017</ArticleId>
+        <ArticleId IdType="pii">S0300-9572(16)30552-4</ArticleId>
+        <ArticleId IdType="doi">10.1016/j.resuscitation.2016.11.010</ArticleId>
+      </ArticleIdList>
+    </PubmedData>
+  </PubmedArticle>
+  <PubmedArticle>
+    <MedlineCitation Status="Publisher" Owner="NLM">
+      <PMID Version="1">27899018</PMID>
+      <DateCreated>
+        <Year>2016</Year>
+        <Month>11</Month>
+        <Day>29</Day>
+      </DateCreated>
+      <DateRevised>
+        <Year>2016</Year>
+        <Month>12</Month>
+        <Day>13</Day>
+      </DateRevised>
+      <Article PubModel="Print-Electronic">
+        <Journal>
+          <ISSN IssnType="Electronic">1095-9513</ISSN>
+          <JournalIssue CitedMedium="Internet">
+            <PubDate>
+              <Year>2016</Year>
+              <Month>Nov</Month>
+              <Day>27</Day>
+            </PubDate>
+          </JournalIssue>
+          <Title>Molecular phylogenetics and evolution</Title>
+          <ISOAbbreviation>Mol. Phylogenet. Evol.</ISOAbbreviation>
+        </Journal>
+        <ArticleTitle>Corrigendum to "Evolution and taxonomy of the wild species of the genus Ovis (Mammalia, Artiodactyla, Bovidae)" [Mol. Phylogenet. Evol. 54(2) (2010) 315-326].</ArticleTitle>
+        <ELocationID EIdType="pii" ValidYN="Y">S1055-7903(16)30369-4</ELocationID>
+        <ELocationID EIdType="doi" ValidYN="Y">10.1016/j.ympev.2016.11.011</ELocationID>
+        <AuthorList CompleteYN="Y">
+          <Author ValidYN="Y">
+            <LastName>Rezaei</LastName>
+            <ForeName>Hamid Reza</ForeName>
+            <Initials>HR</Initials>
+            <AffiliationInfo>
+              <Affiliation>Laboratoire d'Ecologie Alpine, CNRS UMR 5553, Université Joseph Fourier, B.P. 53, F-38041 Grenoble Cedex 9, France; Environmental Sciences Department, Gorgan University of Agriculture and Natural Resources, Beheshti St., 49138-15749 Gorgan, Iran. Electronic address: hamid.r.rezaei@gmail.com.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>Naderi</LastName>
+            <ForeName>Saeid</ForeName>
+            <Initials>S</Initials>
+            <AffiliationInfo>
+              <Affiliation>Laboratoire d'Ecologie Alpine, CNRS UMR 5553, Université Joseph Fourier, B.P. 53, F-38041 Grenoble Cedex 9, France; Natural Resources Faculty, University of Guilan, Guilan, Iran.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>Chintauan-Marquier</LastName>
+            <ForeName>Ioana Cristina</ForeName>
+            <Initials>IC</Initials>
+            <AffiliationInfo>
+              <Affiliation>Laboratoire d'Ecologie Alpine, CNRS UMR 5553, Université Joseph Fourier, B.P. 53, F-38041 Grenoble Cedex 9, France.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>Jordan</LastName>
+            <ForeName>Steve</ForeName>
+            <Initials>S</Initials>
+            <AffiliationInfo>
+              <Affiliation>Department of Biology, Bucknell University, Lewisburg, PA 17837, USA.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>Taberlet</LastName>
+            <ForeName>Pierre</ForeName>
+            <Initials>P</Initials>
+            <AffiliationInfo>
+              <Affiliation>Laboratoire d'Ecologie Alpine, CNRS UMR 5553, Université Joseph Fourier, B.P. 53, F-38041 Grenoble Cedex 9, France.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>Virk</LastName>
+            <ForeName>Amjad Tahir</ForeName>
+            <Initials>AT</Initials>
+            <AffiliationInfo>
+              <Affiliation>Sustainable Land Management Project, Ministry of Environment, Government of Pakistan, 40 Bazar Road, G-6/4 Islamabad, Pakistan.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>Naghash</LastName>
+            <ForeName>Hamid Reza</ForeName>
+            <Initials>HR</Initials>
+            <AffiliationInfo>
+              <Affiliation>Laboratoire d'Ecologie Alpine, CNRS UMR 5553, Université Joseph Fourier, B.P. 53, F-38041 Grenoble Cedex 9, France.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>Rioux</LastName>
+            <ForeName>Delphine</ForeName>
+            <Initials>D</Initials>
+            <AffiliationInfo>
+              <Affiliation>Laboratoire d'Ecologie Alpine, CNRS UMR 5553, Université Joseph Fourier, B.P. 53, F-38041 Grenoble Cedex 9, France.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>Kaboli</LastName>
+            <ForeName>Mohammad</ForeName>
+            <Initials>M</Initials>
+            <AffiliationInfo>
+              <Affiliation>Department of the Fishery and Environment, Faculty of Natural Resources, Tehran University, Tehran, Iran.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>Luikart</LastName>
+            <ForeName>Gordon</ForeName>
+            <Initials>G</Initials>
+            <AffiliationInfo>
+              <Affiliation>Flathead Lake Biological Station, Fish and Wildlife Genomics Group, Division of Biological Sciences, University of Montana, Polson, MT 59860, USA.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>Pompanon</LastName>
+            <ForeName>François</ForeName>
+            <Initials>F</Initials>
+            <AffiliationInfo>
+              <Affiliation>Laboratoire d'Ecologie Alpine, CNRS UMR 5553, Université Joseph Fourier, B.P. 53, F-38041 Grenoble Cedex 9, France. Electronic address: francois.pompanon@ujf-grenoble.fr.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+        </AuthorList>
+        <Language>eng</Language>
+        <PublicationTypeList>
+          <PublicationType UI="">Published Erratum</PublicationType>
+        </PublicationTypeList>
+        <ArticleDate DateType="Electronic">
+          <Year>2016</Year>
+          <Month>11</Month>
+          <Day>27</Day>
+        </ArticleDate>
+      </Article>
+      <MedlineJournalInfo>
+        <Country>United States</Country>
+        <MedlineTA>Mol Phylogenet Evol</MedlineTA>
+        <NlmUniqueID>9304400</NlmUniqueID>
+        <ISSNLinking>1055-7903</ISSNLinking>
+      </MedlineJournalInfo>
+    </MedlineCitation>
+    <PubmedData>
+      <History>
+        <PubMedPubDate PubStatus="pubmed">
+          <Year>2016</Year>
+          <Month>11</Month>
+          <Day>30</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="medline">
+          <Year>2016</Year>
+          <Month>11</Month>
+          <Day>30</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="entrez">
+          <Year>2016</Year>
+          <Month>11</Month>
+          <Day>30</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+      </History>
+      <PublicationStatus>aheadofprint</PublicationStatus>
+      <ArticleIdList>
+        <ArticleId IdType="pubmed">27899018</ArticleId>
+        <ArticleId IdType="pii">S1055-7903(16)30369-4</ArticleId>
+        <ArticleId IdType="doi">10.1016/j.ympev.2016.11.011</ArticleId>
+      </ArticleIdList>
+    </PubmedData>
+  </PubmedArticle>
+  <PubmedArticle>
+    <MedlineCitation Status="Publisher" Owner="NLM">
+      <PMID Version="1">27899019</PMID>
+      <DateCreated>
+        <Year>2016</Year>
+        <Month>11</Month>
+        <Day>29</Day>
+      </DateCreated>
+      <DateRevised>
+        <Year>2016</Year>
+        <Month>11</Month>
+        <Day>30</Day>
+      </DateRevised>
+      <Article PubModel="Print-Electronic">
+        <Journal>
+          <ISSN IssnType="Electronic">1531-5053</ISSN>
+          <JournalIssue CitedMedium="Internet">
+            <PubDate>
+              <Year>2016</Year>
+              <Month>Nov</Month>
+              <Day>09</Day>
+            </PubDate>
+          </JournalIssue>
+          <Title>Journal of oral and maxillofacial surgery : official journal of the American Association of Oral and Maxillofacial Surgeons</Title>
+          <ISOAbbreviation>J. Oral Maxillofac. Surg.</ISOAbbreviation>
+        </Journal>
+        <ArticleTitle>Antibiotic Resistance in Severe Orofacial Infections.</ArticleTitle>
+        <ELocationID EIdType="pii" ValidYN="Y">S0278-2391(16)31097-7</ELocationID>
+        <ELocationID EIdType="doi" ValidYN="Y">10.1016/j.joms.2016.10.039</ELocationID>
+        <Abstract>
+          <AbstractText Label="PURPOSE" NlmCategory="OBJECTIVE">This study assessed the antibiotic resistance profile in patients with severe orofacial infections treated at a single institution from 2009 through 2014. Factors contributing to resistance were studied. The resistance profile was compared with that of a cohort of similar patients treated a decade previously to identify changes in antibiotic resistance. In addition, the effect of antibiotic resistance on in-hospital course was studied.</AbstractText>
+          <AbstractText Label="MATERIALS AND METHODS" NlmCategory="METHODS">This was a 5-year retrospective cohort study. Patients were identified through the oral and maxillofacial surgery data registry. Inclusion criteria were patients treated for orofacial infection requiring hospital admission, surgical drainage, and availability of complete medical, surgical, and microbiological data. Patients with incomplete data or treated as outpatients or nonsurgically were excluded. Sixty patient charts were identified for review. Demographic data; medical, dental, and surgical histories; and hospital course and treatment specifics were obtained for each patient. Linear regression and logistic analyses were used to analyze the data.</AbstractText>
+          <AbstractText Label="RESULTS" NlmCategory="RESULTS">Men composed 60% of the cohort (mean age, 45 yr). Average hospital stay was 5.5 days. Penicillin resistance was found in 32.5% of aerobic isolates and clindamycin resistance was found in 29.3%. Streptococcus viridans and Staphylococcus species showed increased resistance to clindamycin and erythromycin compared with historic controls. Younger patient age, surgical history, and number of cultured aerobes showed a relevant correlation to antibiotic resistance. The need for changes in antibiotics, repeat surgical drainage, and increased serum urea nitrogen levels correlated with longer hospital stay.</AbstractText>
+          <AbstractText Label="CONCLUSION" NlmCategory="CONCLUSIONS">A serious increase in clindamycin and erythromycin resistance was found for S viridans and Staphylococcus species. Age, surgical history, and number of cultured aerobes showed a statistically meaningful correlation to antibiotic resistance. Presence of antibiotic resistance failed to show statistically relevant correlations to prolongation of hospital stay. Rather, the need for change in antibiotic regimen, the need for re-drainage, and increased serum urea nitrogen level were associated with longer hospital stay.</AbstractText>
+          <CopyrightInformation>Copyright Â© 2016. Published by Elsevier Inc.</CopyrightInformation>
+        </Abstract>
+        <AuthorList CompleteYN="Y">
+          <Author ValidYN="Y">
+            <LastName>Kim</LastName>
+            <ForeName>Min Kyoung</ForeName>
+            <Initials>MK</Initials>
+            <AffiliationInfo>
+              <Affiliation>Student, Harvard School of Dental Medicine, Boston, MA.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>Chuang</LastName>
+            <ForeName>Sung-Kiang</ForeName>
+            <Initials>SK</Initials>
+            <AffiliationInfo>
+              <Affiliation>Private Practitioner, Brockton, MA.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>August</LastName>
+            <ForeName>Meredith</ForeName>
+            <Initials>M</Initials>
+            <AffiliationInfo>
+              <Affiliation>Associate Professor, Massachusetts General Hospital-Harvard School of Dental Medicine, Boston, MA. Electronic address: maugust@partners.org.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+        </AuthorList>
+        <Language>eng</Language>
+        <PublicationTypeList>
+          <PublicationType UI="">Journal Article</PublicationType>
+        </PublicationTypeList>
+        <ArticleDate DateType="Electronic">
+          <Year>2016</Year>
+          <Month>11</Month>
+          <Day>09</Day>
+        </ArticleDate>
+      </Article>
+      <MedlineJournalInfo>
+        <Country>United States</Country>
+        <MedlineTA>J Oral Maxillofac Surg</MedlineTA>
+        <NlmUniqueID>8206428</NlmUniqueID>
+        <ISSNLinking>0278-2391</ISSNLinking>
+      </MedlineJournalInfo>
+    </MedlineCitation>
+    <PubmedData>
+      <History>
+        <PubMedPubDate PubStatus="received">
+          <Year>2016</Year>
+          <Month>10</Month>
+          <Day>03</Day>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="revised">
+          <Year>2016</Year>
+          <Month>10</Month>
+          <Day>27</Day>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="accepted">
+          <Year>2016</Year>
+          <Month>10</Month>
+          <Day>29</Day>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="entrez">
+          <Year>2016</Year>
+          <Month>11</Month>
+          <Day>30</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="pubmed">
+          <Year>2016</Year>
+          <Month>11</Month>
+          <Day>30</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="medline">
+          <Year>2016</Year>
+          <Month>11</Month>
+          <Day>30</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+      </History>
+      <PublicationStatus>aheadofprint</PublicationStatus>
+      <ArticleIdList>
+        <ArticleId IdType="pubmed">27899019</ArticleId>
+        <ArticleId IdType="pii">S0278-2391(16)31097-7</ArticleId>
+        <ArticleId IdType="doi">10.1016/j.joms.2016.10.039</ArticleId>
+      </ArticleIdList>
+    </PubmedData>
+  </PubmedArticle>
+  <PubmedArticle>
+    <MedlineCitation Status="Publisher" Owner="NLM">
+      <PMID Version="1">27899020</PMID>
+      <DateCreated>
+        <Year>2016</Year>
+        <Month>11</Month>
+        <Day>29</Day>
+      </DateCreated>
+      <DateRevised>
+        <Year>2016</Year>
+        <Month>11</Month>
+        <Day>30</Day>
+      </DateRevised>
+      <Article PubModel="Print-Electronic">
+        <Journal>
+          <ISSN IssnType="Electronic">1531-5053</ISSN>
+          <JournalIssue CitedMedium="Internet">
+            <PubDate>
+              <Year>2016</Year>
+              <Month>Nov</Month>
+              <Day>07</Day>
+            </PubDate>
+          </JournalIssue>
+          <Title>Journal of oral and maxillofacial surgery : official journal of the American Association of Oral and Maxillofacial Surgeons</Title>
+          <ISOAbbreviation>J. Oral Maxillofac. Surg.</ISOAbbreviation>
+        </Journal>
+        <ArticleTitle>Enhancement of Resident Competencies Via Participation in the Peer Review/Quality Improvement Processes and Morbidity and Mortality Presentations.</ArticleTitle>
+        <ELocationID EIdType="pii" ValidYN="Y">S0278-2391(16)31095-3</ELocationID>
+        <ELocationID EIdType="doi" ValidYN="Y">10.1016/j.joms.2016.10.037</ELocationID>
+        <AuthorList CompleteYN="Y">
+          <Author ValidYN="Y">
+            <LastName>Friedlander</LastName>
+            <ForeName>Arthur H</ForeName>
+            <Initials>AH</Initials>
+            <AffiliationInfo>
+              <Affiliation>Accreditation Council for Graduate Medical Education Designated Institutional Official, VA Greater Los Angeles Healthcare System; Professor in Residence, Department of Oral and Maxillofacial Surgery, UCLA Dental School; Director of Quality Assurance, Dental Service, Ronald Reagan UCLA Medical Center, Los Angeles, CA. Electronic address: afriedlander@socal.rr.com.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>Perkins</LastName>
+            <ForeName>Kate</ForeName>
+            <Initials>K</Initials>
+            <AffiliationInfo>
+              <Affiliation>Accreditation Council for Graduate Medical Education Designated Institutional Official; Associate Dean for Graduate Medical Education and Professor of Pediatrics, David Geffen School of Medicine, University of California-Los Angeles, Los Angeles, CA.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>Felsenfeld</LastName>
+            <ForeName>Alan L</ForeName>
+            <Initials>AL</Initials>
+            <AffiliationInfo>
+              <Affiliation>Professor of Clinical Dentistry, Section of Oral and Maxillofacial Surgery; Assistant Director, Oral and Maxillofacial Surgery Residency Training Program, University of California-Los Angeles, Los Angeles, CA.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>Graves</LastName>
+            <ForeName>Lindsay L</ForeName>
+            <Initials>LL</Initials>
+            <AffiliationInfo>
+              <Affiliation>Research Fellow, Oral and Maxillofacial Surgery/Dental Service, Veterans Affairs Greater Los Angeles Healthcare System, Los Angeles, CA.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>Freymiller</LastName>
+            <ForeName>Earl</ForeName>
+            <Initials>E</Initials>
+            <AffiliationInfo>
+              <Affiliation>Chair, Division of Diagnostic and Surgical Sciences; Chair, Section of Oral and Maxillofacial Surgery, University of California-Los Angeles; Chief, Dental Service, Ronald Reagan UCLA Medical Center, Los Angeles, CA.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+        </AuthorList>
+        <Language>eng</Language>
+        <PublicationTypeList>
+          <PublicationType UI="">Journal Article</PublicationType>
+        </PublicationTypeList>
+        <ArticleDate DateType="Electronic">
+          <Year>2016</Year>
+          <Month>11</Month>
+          <Day>07</Day>
+        </ArticleDate>
+      </Article>
+      <MedlineJournalInfo>
+        <Country>United States</Country>
+        <MedlineTA>J Oral Maxillofac Surg</MedlineTA>
+        <NlmUniqueID>8206428</NlmUniqueID>
+        <ISSNLinking>0278-2391</ISSNLinking>
+      </MedlineJournalInfo>
+    </MedlineCitation>
+    <PubmedData>
+      <History>
+        <PubMedPubDate PubStatus="received">
+          <Year>2016</Year>
+          <Month>10</Month>
+          <Day>12</Day>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="accepted">
+          <Year>2016</Year>
+          <Month>10</Month>
+          <Day>17</Day>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="entrez">
+          <Year>2016</Year>
+          <Month>11</Month>
+          <Day>30</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="pubmed">
+          <Year>2016</Year>
+          <Month>11</Month>
+          <Day>30</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="medline">
+          <Year>2016</Year>
+          <Month>11</Month>
+          <Day>30</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+      </History>
+      <PublicationStatus>aheadofprint</PublicationStatus>
+      <ArticleIdList>
+        <ArticleId IdType="pubmed">27899020</ArticleId>
+        <ArticleId IdType="pii">S0278-2391(16)31095-3</ArticleId>
+        <ArticleId IdType="doi">10.1016/j.joms.2016.10.037</ArticleId>
+      </ArticleIdList>
+    </PubmedData>
+  </PubmedArticle>
+  <PubmedArticle>
+    <MedlineCitation Status="Publisher" Owner="NLM">
+      <PMID Version="1">27899021</PMID>
+      <DateCreated>
+        <Year>2016</Year>
+        <Month>11</Month>
+        <Day>29</Day>
+      </DateCreated>
+      <DateRevised>
+        <Year>2016</Year>
+        <Month>11</Month>
+        <Day>30</Day>
+      </DateRevised>
+      <Article PubModel="Print-Electronic">
+        <Journal>
+          <ISSN IssnType="Electronic">1531-5053</ISSN>
+          <JournalIssue CitedMedium="Internet">
+            <PubDate>
+              <Year>2016</Year>
+              <Month>Nov</Month>
+              <Day>09</Day>
+            </PubDate>
+          </JournalIssue>
+          <Title>Journal of oral and maxillofacial surgery : official journal of the American Association of Oral and Maxillofacial Surgeons</Title>
+          <ISOAbbreviation>J. Oral Maxillofac. Surg.</ISOAbbreviation>
+        </Journal>
+        <ArticleTitle>Does Preoperative Diplopia Determine the Incidence of Postoperative Diplopia After Repair of Orbital Floor Fracture? An Institutional Review.</ArticleTitle>
+        <ELocationID EIdType="pii" ValidYN="Y">S0278-2391(16)31094-1</ELocationID>
+        <ELocationID EIdType="doi" ValidYN="Y">10.1016/j.joms.2016.10.036</ELocationID>
+        <Abstract>
+          <AbstractText Label="PURPOSE" NlmCategory="OBJECTIVE">The purpose of our study was to investigate whether the occurrence of preoperative diplopia determines the incidence of postoperative diplopia after orbital floor repair.</AbstractText>
+          <AbstractText Label="MATERIALS AND METHODS" NlmCategory="METHODS">We undertook a retrospective cohort study with a review of the records of 126 consecutive patients who had undergone repair of an orbital floor fracture under the maxillofacial surgery service at John Hunter Hospital (Newcastle, NSW, Australia). The primary predictor variables were a number of demographic, etiologic, and operative factors that might influence the occurrence of diplopia. The secondary outcome variable was diplopia. A descriptive statistical analysis was used to assess each of these variables and their potential relationship to the occurrence of diplopia.</AbstractText>
+          <AbstractText Label="RESULTS" NlmCategory="RESULTS">Of the 126 patients included in our study, 84 (66.6%) were treated for diplopia and 42 (33.3%) for dystopia. We found that orbital exploration and repair, when undertaken to manage diplopia, can resolve (75%), improve (7.14%), stabilize (7.14%), or worsen (10.71%) diplopia. In contrast, orbital surgery to manage or prevent dystopia can, in our experience, induce diplopia in 9.52% of patients. At the 95% confidence interval, age was the only variable shown to be significantly associated with diplopia (P = .039). We found that the presence of preoperative diplopia is causally statistically associated with postoperative diplopia at the 90% confidence interval (P = .063).</AbstractText>
+          <AbstractText Label="CONCLUSIONS" NlmCategory="CONCLUSIONS">Diplopia is a common occurrence that results from orbital floor fracture. It can resolve, persist (improve, remain stable, or worsen), or be induced after repair of such an injury. In addition to the known myogenic cause (entrapment) of diplopia, both trauma and surgical manipulation have been shown to have the capacity to compromise ocular motor nerve function and possibly result in the development of neurogenic causes of diplopia. It has also been noted that several intraorbital adherence syndromes can potentially contribute to the development of diplopia. This is an area that requires further research.</AbstractText>
+          <CopyrightInformation>Copyright Â© 2016. Published by Elsevier Inc.</CopyrightInformation>
+        </Abstract>
+        <AuthorList CompleteYN="Y">
+          <Author ValidYN="Y">
+            <LastName>Ramphul</LastName>
+            <ForeName>Avisham</ForeName>
+            <Initials>A</Initials>
+            <AffiliationInfo>
+              <Affiliation>Resident Medical Officer, Division of Surgery, John Hunter Hospital, Newcastle, NSW, Australia. Electronic address: avisham210@yahoo.co.uk.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>Hoffman</LastName>
+            <ForeName>Gary</ForeName>
+            <Initials>G</Initials>
+            <AffiliationInfo>
+              <Affiliation>Visiting Medical Officer (Attending Surgeon), Department of Oral and Maxillofacial Surgery, John Hunter Hospital, Newcastle, NSW, Australia; Associate Professor, Medical School, University of Newcastle, Newcastle, NSW, Australia.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+        </AuthorList>
+        <Language>eng</Language>
+        <PublicationTypeList>
+          <PublicationType UI="">Journal Article</PublicationType>
+        </PublicationTypeList>
+        <ArticleDate DateType="Electronic">
+          <Year>2016</Year>
+          <Month>11</Month>
+          <Day>09</Day>
+        </ArticleDate>
+      </Article>
+      <MedlineJournalInfo>
+        <Country>United States</Country>
+        <MedlineTA>J Oral Maxillofac Surg</MedlineTA>
+        <NlmUniqueID>8206428</NlmUniqueID>
+        <ISSNLinking>0278-2391</ISSNLinking>
+      </MedlineJournalInfo>
+    </MedlineCitation>
+    <PubmedData>
+      <History>
+        <PubMedPubDate PubStatus="received">
+          <Year>2016</Year>
+          <Month>05</Month>
+          <Day>19</Day>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="revised">
+          <Year>2016</Year>
+          <Month>10</Month>
+          <Day>29</Day>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="accepted">
+          <Year>2016</Year>
+          <Month>10</Month>
+          <Day>29</Day>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="entrez">
+          <Year>2016</Year>
+          <Month>11</Month>
+          <Day>30</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="pubmed">
+          <Year>2016</Year>
+          <Month>11</Month>
+          <Day>30</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="medline">
+          <Year>2016</Year>
+          <Month>11</Month>
+          <Day>30</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+      </History>
+      <PublicationStatus>aheadofprint</PublicationStatus>
+      <ArticleIdList>
+        <ArticleId IdType="pubmed">27899021</ArticleId>
+        <ArticleId IdType="pii">S0278-2391(16)31094-1</ArticleId>
+        <ArticleId IdType="doi">10.1016/j.joms.2016.10.036</ArticleId>
+      </ArticleIdList>
+    </PubmedData>
+  </PubmedArticle>
+  <PubmedArticle>
+    <MedlineCitation Status="Publisher" Owner="NLM">
+      <PMID Version="1">27899022</PMID>
+      <DateCreated>
+        <Year>2016</Year>
+        <Month>11</Month>
+        <Day>29</Day>
+      </DateCreated>
+      <DateRevised>
+        <Year>2016</Year>
+        <Month>11</Month>
+        <Day>30</Day>
+      </DateRevised>
+      <Article PubModel="Print-Electronic">
+        <Journal>
+          <ISSN IssnType="Electronic">1467-789X</ISSN>
+          <JournalIssue CitedMedium="Internet">
+            <PubDate>
+              <Year>2016</Year>
+              <Month>Nov</Month>
+              <Day>29</Day>
+            </PubDate>
+          </JournalIssue>
+          <Title>Obesity reviews : an official journal of the International Association for the Study of Obesity</Title>
+          <ISOAbbreviation>Obes Rev</ISOAbbreviation>
+        </Journal>
+        <ArticleTitle>Alterations of specific lipid groups in serum of obese humans: a review.</ArticleTitle>
+        <ELocationID EIdType="doi" ValidYN="Y">10.1111/obr.12475</ELocationID>
+        <Abstract>
+          <AbstractText NlmCategory="UNASSIGNED">Obesity is a major contributor to the dysfunction of liver, cardiac, pulmonary, endocrine and reproductive system, as well as a component of metabolic syndrome. Although development of obesity-related disorders is associated with lipid abnormalities, most previous studies dealing with the problem in question were limited to routinely determined parameters, such as serum concentrations of triacylglycerols, total cholesterol, low-density and high-density lipoprotein cholesterol. Many authors postulated to extend the scope of analysed lipid compounds and to study obesity-related alterations in other, previously non-examined groups of lipids. Comprehensive quantitative, structural and functional analysis of specific lipid groups may result in identification of new obesity-related alterations. The review summarizes available evidence of obesity-related alterations in various groups of lipids and their impact on health status of obese subjects. Further, the role of diet and endogenous lipid synthesis in the development of serum lipid alterations is discussed, along with potential application of various lipid compounds as risk markers for obesity-related comorbidities.</AbstractText>
+          <CopyrightInformation>© 2016 World Obesity Federation.</CopyrightInformation>
+        </Abstract>
+        <AuthorList CompleteYN="Y">
+          <Author ValidYN="Y">
+            <LastName>Mika</LastName>
+            <ForeName>A</ForeName>
+            <Initials>A</Initials>
+            <AffiliationInfo>
+              <Affiliation>Department of Environmental Analysis, Faculty of Chemistry, University of Gdansk, Gdansk, Poland.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>Sledzinski</LastName>
+            <ForeName>T</ForeName>
+            <Initials>T</Initials>
+            <AffiliationInfo>
+              <Affiliation>Department of Pharmaceutical Biochemistry, Medical University of Gdansk, Gdansk, Poland.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+        </AuthorList>
+        <Language>eng</Language>
+        <PublicationTypeList>
+          <PublicationType UI="">Review</PublicationType>
+          <PublicationType UI="">Journal Article</PublicationType>
+        </PublicationTypeList>
+        <ArticleDate DateType="Electronic">
+          <Year>2016</Year>
+          <Month>11</Month>
+          <Day>29</Day>
+        </ArticleDate>
+      </Article>
+      <MedlineJournalInfo>
+        <Country>England</Country>
+        <MedlineTA>Obes Rev</MedlineTA>
+        <NlmUniqueID>100897395</NlmUniqueID>
+        <ISSNLinking>1467-7881</ISSNLinking>
+      </MedlineJournalInfo>
+      <KeywordList Owner="NOTNLM">
+        <Keyword MajorTopicYN="N">ceramides</Keyword>
+        <Keyword MajorTopicYN="N">fatty acids</Keyword>
+        <Keyword MajorTopicYN="N">insulin resistance</Keyword>
+        <Keyword MajorTopicYN="N">oxylipins</Keyword>
+      </KeywordList>
+    </MedlineCitation>
+    <PubmedData>
+      <History>
+        <PubMedPubDate PubStatus="received">
+          <Year>2016</Year>
+          <Month>06</Month>
+          <Day>15</Day>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="revised">
+          <Year>2016</Year>
+          <Month>08</Month>
+          <Day>16</Day>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="accepted">
+          <Year>2016</Year>
+          <Month>09</Month>
+          <Day>05</Day>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="entrez">
+          <Year>2016</Year>
+          <Month>11</Month>
+          <Day>30</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="pubmed">
+          <Year>2016</Year>
+          <Month>11</Month>
+          <Day>30</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="medline">
+          <Year>2016</Year>
+          <Month>11</Month>
+          <Day>30</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+      </History>
+      <PublicationStatus>aheadofprint</PublicationStatus>
+      <ArticleIdList>
+        <ArticleId IdType="pubmed">27899022</ArticleId>
+        <ArticleId IdType="doi">10.1111/obr.12475</ArticleId>
+      </ArticleIdList>
+    </PubmedData>
+  </PubmedArticle>
+  <PubmedArticle>
+    <MedlineCitation Status="Publisher" Owner="NLM">
+      <PMID Version="1">27899023</PMID>
+      <DateCreated>
+        <Year>2016</Year>
+        <Month>11</Month>
+        <Day>29</Day>
+      </DateCreated>
+      <DateRevised>
+        <Year>2016</Year>
+        <Month>11</Month>
+        <Day>30</Day>
+      </DateRevised>
+      <Article PubModel="Print-Electronic">
+        <Journal>
+          <ISSN IssnType="Electronic">1467-789X</ISSN>
+          <JournalIssue CitedMedium="Internet">
+            <PubDate>
+              <Year>2016</Year>
+              <Month>Nov</Month>
+              <Day>29</Day>
+            </PubDate>
+          </JournalIssue>
+          <Title>Obesity reviews : an official journal of the International Association for the Study of Obesity</Title>
+          <ISOAbbreviation>Obes Rev</ISOAbbreviation>
+        </Journal>
+        <ArticleTitle>Ghrelin function in human obesity and type 2 diabetes: a concise review.</ArticleTitle>
+        <ELocationID EIdType="doi" ValidYN="Y">10.1111/obr.12474</ELocationID>
+        <Abstract>
+          <AbstractText NlmCategory="UNASSIGNED">The 28 amino acid hormone, ghrelin, has been found to have various effects on metabolism. This review will focus on the pathways integrated into ghrelin's effect within the hypothalamus, pancreas and adipocytes. The identification of molecules and pathways that regulate ghrelin-mediated lipid retention could establish new mechanisms underlying cellular energy homeostasis. The impact of acyl-ghrelin on glucose metabolism and lipid homeostasis may allow for novel preventative or early intervention therapeutic strategies to treat obesity related type 2 diabetes and associated metabolic dysfunction.</AbstractText>
+          <CopyrightInformation>© 2016 World Obesity Federation.</CopyrightInformation>
+        </Abstract>
+        <AuthorList CompleteYN="Y">
+          <Author ValidYN="Y">
+            <LastName>Churm</LastName>
+            <ForeName>R</ForeName>
+            <Initials>R</Initials>
+            <AffiliationInfo>
+              <Affiliation>Diabetes Research Group, Institute of Life Science 1, Swansea University, Swansea, UK.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>Davies</LastName>
+            <ForeName>J S</ForeName>
+            <Initials>JS</Initials>
+            <AffiliationInfo>
+              <Affiliation>Molecular Neurobiology Research Group, Institute of Life Science 1, Swansea University, Swansea, UK.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>Stephens</LastName>
+            <ForeName>J W</ForeName>
+            <Initials>JW</Initials>
+            <AffiliationInfo>
+              <Affiliation>Diabetes Research Group, Institute of Life Science 1, Swansea University, Swansea, UK.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+          <Author ValidYN="Y">
+            <LastName>Prior</LastName>
+            <ForeName>S L</ForeName>
+            <Initials>SL</Initials>
+            <AffiliationInfo>
+              <Affiliation>Diabetes Research Group, Institute of Life Science 1, Swansea University, Swansea, UK.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+        </AuthorList>
+        <Language>eng</Language>
+        <PublicationTypeList>
+          <PublicationType UI="">Review</PublicationType>
+          <PublicationType UI="">Journal Article</PublicationType>
+        </PublicationTypeList>
+        <ArticleDate DateType="Electronic">
+          <Year>2016</Year>
+          <Month>11</Month>
+          <Day>29</Day>
+        </ArticleDate>
+      </Article>
+      <MedlineJournalInfo>
+        <Country>England</Country>
+        <MedlineTA>Obes Rev</MedlineTA>
+        <NlmUniqueID>100897395</NlmUniqueID>
+        <ISSNLinking>1467-7881</ISSNLinking>
+      </MedlineJournalInfo>
+      <KeywordList Owner="NOTNLM">
+        <Keyword MajorTopicYN="N">Ghrelin</Keyword>
+        <Keyword MajorTopicYN="N">obesity</Keyword>
+        <Keyword MajorTopicYN="N">type 2 diabetes</Keyword>
+      </KeywordList>
+    </MedlineCitation>
+    <PubmedData>
+      <History>
+        <PubMedPubDate PubStatus="received">
+          <Year>2016</Year>
+          <Month>06</Month>
+          <Day>28</Day>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="revised">
+          <Year>2016</Year>
+          <Month>09</Month>
+          <Day>06</Day>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="accepted">
+          <Year>2016</Year>
+          <Month>09</Month>
+          <Day>06</Day>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="entrez">
+          <Year>2016</Year>
+          <Month>11</Month>
+          <Day>30</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="pubmed">
+          <Year>2016</Year>
+          <Month>11</Month>
+          <Day>30</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="medline">
+          <Year>2016</Year>
+          <Month>11</Month>
+          <Day>30</Day>
+          <Hour>6</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+      </History>
+      <PublicationStatus>aheadofprint</PublicationStatus>
+      <ArticleIdList>
+        <ArticleId IdType="pubmed">27899023</ArticleId>
+        <ArticleId IdType="doi">10.1111/obr.12474</ArticleId>
+      </ArticleIdList>
+    </PubmedData>
+  </PubmedArticle>
