@@ -372,8 +372,9 @@ public class ExampleStatsApp {
         long token_count = collectionStats.sumTotalTermFreq();
         long doc_count = collectionStats.docCount();
         long sum_doc_count = collectionStats.sumDocFreq();
+        long avg_doc_length = token_count / doc_count;
 
-        System.out.println("ALL: Token count: " + token_count+ " Doc Count: " + doc_count + " sum doc: " + sum_doc_count);
+        System.out.println("ALL: Token count: " + token_count+ " Doc Count: " + doc_count + " sum doc: " + sum_doc_count + " avg doc len: " + avg_doc_length);
 
         collectionStats = searcher.collectionStatistics(Lucene4IRConstants.FIELD_TITLE);
         token_count = collectionStats.sumTotalTermFreq();
