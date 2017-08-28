@@ -1,62 +1,71 @@
 package lucene4ir.predictor;
 
 import org.apache.lucene.index.IndexReader;
+import org.apache.lucene.index.Term;
 import org.apache.lucene.search.Query;
+
+import java.io.IOException;
 
 /**
  * Created by leif on 13/08/2017.
  */
-public class QPPredictor {
+public abstract class QPPredictor {
 
     protected IndexReader reader;
+    public String field = "content";
 
-    public QPPredictor(){};
-
-    public QPPredictor(IndexReader ir){
+    QPPredictor(IndexReader ir) {
         reader = ir;
-
     }
 
-    public double scoreQuery(String qno, Query q) {
-        return 0.0;
+    public abstract double scoreQuery(String qno, Query q);
+
+    double log2(double n) {
+        return Math.log(n) / Math.log(2);
     }
 
+    double getDF(String term) throws IOException {
+        return reader.docFreq(new Term(field, term)) + 1;
+    }
 
+    double getIDF(String termText) {
 
+        double idf = 1.0;
+        try {
+            Term termInstance = new Term(field, termText);
+            //long termFreq = reader.totalTermFreq(termInstance);
+            long docFreq = reader.docFreq(termInstance);
+            // System.out.println(docFreq);
 
+            long numDocs = reader.numDocs();
+            // System.out.println(numDocs);
+            idf = Math.log((numDocs + 1.0) / (docFreq + 1.0));
+        } catch (IOException ioe) {
+            System.out.println(" caught a " + ioe.getClass() +
+                    "\n with message: " + ioe.getMessage());
+        }
+
+        return idf;
+    }
+
+    double getTF(String term) throws IOException {
+        return reader.totalTermFreq(new Term(field, term));
+    }
+
+    final double getTermCount() throws IOException {
+        int numDocs = reader.numDocs();
+        long termCount = 0;
+        for (int i = 0; i < numDocs; i++) {
+            termCount += reader.document(i).getField(field).stringValue().split(" ").length;
+        }
+        return termCount;
+    }
 }
 
 
 /*
-• Averaged Query Length (AvQL) [111],
-average number of characters - really just QL.
-
-• Averaged Inverse Document Frequency (AvIDF) [45],
-IDF = log (N) / df(q) ), where N is number of documents in the collection
-then take the average over all q terms.
-
-• Maximum Inverse Document Frequency (MaxIDF) [128],
-Take max of the IDF
-
-• Standard Deviation of IDF (DevIDF) [71],
 
 
-• Averaged Inverse Collection Term Frequency (AvICTF) [71],
- ICF = log(term_count / tf(q) )
-
-
- • Simplified Clarity Score (SCS) [71],
-  sum over all t in q:
-  p(t|q) log p(t|q) / p(q)
-
-
-• Summed Collection Query Similarity (SumSCQ) [174],
-
-sum over all t in q:
- (1 +ln( cf(t))) * (1+N/df(t) )
-
-• Averaged Collection Query Similarity AvSCQ [174],
-• Maximum Collection Query Similarity MaxSCQ [174], and,
 • Query Scope (QS) [71].
   = -log (Nq )/ (doc_count)
   where doc_count is the number of docs containing at least one query term
