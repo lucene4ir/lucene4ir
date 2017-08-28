@@ -9,7 +9,6 @@ import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
-import org.apache.lucene.search.similarities.LMSimilarity.CollectionModel;
 import org.apache.lucene.store.FSDirectory;
 
 import javax.xml.bind.JAXB;
@@ -29,14 +28,12 @@ public class QPPApp {
     protected IndexReader reader;
     protected IndexSearcher searcher;
     protected Analyzer analyzer;
-    protected QueryParser parser;
-    protected CollectionModel colModel;
-    protected String fieldsFile;
+//    protected CollectionModel colModel;
 
-    protected List<QPPredictor> predictors;
+    private QueryParser parser;
+    private List<QPPredictor> predictors;
 
-
-    public void readParamsFromFile(String paramFile) {
+    private void readParamsFromFile(String paramFile) {
         /*
         Reads in the xml formatting parameter file
         Maybe this code should go into the RetrievalParams class.
@@ -55,7 +52,7 @@ public class QPPApp {
         }
 
 
-        fieldsFile = p.fieldsFile;
+//        String fieldsFile = p.fieldsFile;
 
         System.out.println("Path to index: " + p.indexName);
         System.out.println("Query File: " + p.queryFile);
@@ -74,7 +71,7 @@ public class QPPApp {
 
     }
 
-    public void processQueryFile() {
+    private void processQueryFile() {
         /*
         Assumes the query file contains a qno followed by the query terms.
         One query per line. i.e.
@@ -84,24 +81,22 @@ public class QPPApp {
         Q3 hello etc
          */
         try {
-            BufferedReader br = new BufferedReader(new FileReader(p.queryFile));
             File file = new File(p.qppFile);
-            FileWriter fw = new FileWriter(file);
 
-            try {
+            try (BufferedReader br = new BufferedReader(new FileReader(p.queryFile)); FileWriter fw = new FileWriter(file)) {
                 String line = br.readLine();
                 while (line != null) {
 
                     String[] parts = line.split(" ");
                     String qno = parts[0];
-                    String queryTerms = "";
+                    StringBuilder queryTerms = new StringBuilder();
                     for (int i = 1; i < parts.length; i++)
-                        queryTerms = queryTerms + " " + parts[i];
+                        queryTerms.append(" ").append(parts[i]);
 
-                    ArrayList<Double> scores = runQuery(qno, queryTerms);
-                    String vals = "";
-                    for (int i = 0; i < scores.size(); i++) {
-                        vals = vals + " " + scores.get(i).toString();
+                    ArrayList<Double> scores = runQuery(qno, queryTerms.toString());
+                    StringBuilder vals = new StringBuilder();
+                    for (Double score : scores) {
+                        vals.append(" ").append(score.toString());
                     }
                     fw.write(qno + vals);
                     fw.write(System.lineSeparator());
@@ -109,9 +104,6 @@ public class QPPApp {
                     line = br.readLine();
                 }
 
-            } finally {
-                br.close();
-                fw.close();
             }
         } catch (Exception e) {
             System.out.println(" caught a " + e.getClass() +
@@ -119,19 +111,18 @@ public class QPPApp {
         }
     }
 
-    public ArrayList<Double> runQuery(String qno, String queryTerms) {
-        ArrayList<Double> predictions = new ArrayList<Double>();
+    private ArrayList<Double> runQuery(String qno, String queryTerms) {
+        ArrayList<Double> predictions = new ArrayList<>();
 
         System.out.println("Query No.: " + qno + " " + queryTerms);
         try {
             Query query = parser.parse(QueryParser.escape(queryTerms));
             System.out.println(query.toString());
-            double val = 0.0;
-            for (int i = 0; i < predictors.size(); i++) {
-                val = predictors.get(i).scoreQuery(qno, query);
+            double val;
+            for (QPPredictor predictor : predictors) {
+                val = predictor.scoreQuery(qno, query);
                 // System.out.println(val);
                 predictions.add(val);
-
             }
 
 
@@ -141,7 +132,8 @@ public class QPPApp {
         return predictions;
     }
 
-    public QPPApp(String qppParamFile) {
+    @SuppressWarnings("WeakerAccess")
+    QPPApp(String qppParamFile) {
         System.out.println("Query Performance Prediction App");
         readParamsFromFile(qppParamFile);
         try {
@@ -150,7 +142,7 @@ public class QPPApp {
             searcher = new IndexSearcher(reader);
             parser = new QueryParser("content", analyzer);
 
-            predictors = new ArrayList<QPPredictor>();
+            predictors = new ArrayList<>();
 
             for (String p : p.predictorClasses) {
                 QPPredictor c = (QPPredictor) Class.forName(p).getDeclaredConstructor(IndexReader.class).newInstance(reader);
@@ -167,7 +159,6 @@ public class QPPApp {
     }
 
     public static void main(String[] args) {
-
 
         String qppParamFile = "";
 
@@ -187,6 +178,7 @@ public class QPPApp {
 }
 
 
+@SuppressWarnings("WeakerAccess")
 @XmlRootElement(name = "QPPParams")
 class QPPParams {
     public String indexName;

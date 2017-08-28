@@ -5,9 +5,18 @@
     <qppFile>data/cacm/qp_predictions.res</qppFile>
     <tokenFilterFile>params/index/example_03.xml</tokenFilterFile>
     <predictorClasses>
-        <predictor>lucene4ir.predictor.AvgIDFQPPredictor</predictor>
         <predictor>lucene4ir.predictor.CharLenQPPredictor</predictor>
         <predictor>lucene4ir.predictor.TermLenQPPredictor</predictor>
+        <predictor>lucene4ir.predictor.AvgQLQPPredictor</predictor>
+        <predictor>lucene4ir.predictor.AvgIDFQPPredictor</predictor>
+        <predictor>lucene4ir.predictor.MaxIDFQPPredictor</predictor>
+        <predictor>lucene4ir.predictor.StdDevIDFQPPredictor</predictor>
+        <predictor>lucene4ir.predictor.AvgICTFQPPredictor</predictor>
+        <predictor>lucene4ir.predictor.SCSQPPredictor</predictor>
+        <predictor>lucene4ir.predictor.SumSCQQPPredictor</predictor>
+        <predictor>lucene4ir.predictor.AvgSCQQPPredictor</predictor>
+        <predictor>lucene4ir.predictor.MaxSCQQPPredictor</predictor>
+        <predictor>lucene4ir.predictor.QSQPPredictor</predictor>
     </predictorClasses>
     <runTag>Fred</runTag>
 </qppParams>
