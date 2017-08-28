@@ -1,6 +1,6 @@
 package lucene4ir.indexer;
 
-import lucene4ir.LuceneConstants;
+import lucene4ir.Lucene4IRConstants;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.StringField;
@@ -9,13 +9,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 
 import org.jsoup.safety.Whitelist;
-import org.xml.sax.*;
-import java.io.*;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathFactory;
-import org.jsoup.Jsoup;
 
 /**
  * Created by leif on 03/09/2016.
@@ -54,19 +47,19 @@ public class TRECAquaintDocumentIndexer extends DocumentIndexer {
     }
 
     private void initFields() {
-        docnumField = new StringField(LuceneConstants.FIELD_DOCNUM, "", Field.Store.YES);
-        pubdateField = new StringField(LuceneConstants.FIELD_PUBDATE, "", Field.Store.YES);
+        docnumField = new StringField(Lucene4IRConstants.FIELD_DOCNUM, "", Field.Store.YES);
+        pubdateField = new StringField(Lucene4IRConstants.FIELD_PUBDATE, "", Field.Store.YES);
         if(indexPositions){
-            titleField = new TermVectorEnabledTextField(LuceneConstants.FIELD_TITLE, "", Field.Store.YES);
-            textField = new TermVectorEnabledTextField(LuceneConstants.FIELD_CONTENT, "", Field.Store.YES);
-            allField = new TermVectorEnabledTextField(LuceneConstants.FIELD_ALL, "", Field.Store.YES);
-            sourceField = new TermVectorEnabledTextField(LuceneConstants.FIELD_SOURCE, "", Field.Store.YES);
+            titleField = new TermVectorEnabledTextField(Lucene4IRConstants.FIELD_TITLE, "", Field.Store.YES);
+            textField = new TermVectorEnabledTextField(Lucene4IRConstants.FIELD_CONTENT, "", Field.Store.YES);
+            allField = new TermVectorEnabledTextField(Lucene4IRConstants.FIELD_ALL, "", Field.Store.YES);
+            sourceField = new TermVectorEnabledTextField(Lucene4IRConstants.FIELD_SOURCE, "", Field.Store.YES);
         }
         else {
-            titleField = new TextField(LuceneConstants.FIELD_TITLE, "", Field.Store.YES);
-            textField = new TextField(LuceneConstants.FIELD_CONTENT, "", Field.Store.YES);
-            allField = new TextField(LuceneConstants.FIELD_ALL, "", Field.Store.YES);
-            sourceField = new TextField(LuceneConstants.FIELD_SOURCE, "", Field.Store.YES);
+            titleField = new TextField(Lucene4IRConstants.FIELD_TITLE, "", Field.Store.YES);
+            textField = new TextField(Lucene4IRConstants.FIELD_CONTENT, "", Field.Store.YES);
+            allField = new TextField(Lucene4IRConstants.FIELD_ALL, "", Field.Store.YES);
+            sourceField = new TextField(Lucene4IRConstants.FIELD_SOURCE, "", Field.Store.YES);
         }
     }
 

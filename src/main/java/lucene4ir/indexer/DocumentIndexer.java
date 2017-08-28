@@ -1,28 +1,16 @@
 package lucene4ir.indexer;
 
-import lucene4ir.LuceneConstants;
+import lucene4ir.Lucene4IRConstants;
 import lucene4ir.utils.TokenAnalyzerMaker;
 import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.custom.CustomAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
-import javax.xml.bind.JAXB;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 
 
 /**
@@ -39,7 +27,7 @@ public class DocumentIndexer {
 
     public DocumentIndexer(String indexPath, String tokenFilterFile, boolean positional){
         writer = null;
-        analyzer = LuceneConstants.ANALYZER;
+        analyzer = Lucene4IRConstants.ANALYZER;
         indexPositions=positional;
 
         if (tokenFilterFile != null){

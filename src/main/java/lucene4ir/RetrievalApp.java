@@ -21,8 +21,6 @@ import lucene4ir.similarity.BM25Similarity;
 import lucene4ir.utils.TokenAnalyzerMaker;
 
 import javax.xml.bind.JAXB;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.*;
 
@@ -134,13 +132,13 @@ public class RetrievalApp {
         setSim(p.model);
 
         if (p.maxResults==0.0) {p.maxResults=1000;}
-        if (p.b < 0.0){ p.b = 0.75f;}
-        if (p.beta == 0.0){p.beta = 500f;}
-        if (p.k == 0.0){ p.k = 1.2f;}
-        if (p.delta == 0.0){p.delta = 1.0f;}
-        if (p.lam == 0.0){p.lam = 0.5f;}
-        if (p.mu == 0.0){p.mu = 500f;}
-        if (p.c ==0.0){p.c=10.0f;}
+        if (p.b <= 0.0){ p.b = 0.75f;}
+        if (p.beta <= 0.0){p.beta = 500f;}
+        if (p.k <= 0.0){ p.k = 1.2f;}
+        if (p.delta<=0.0){p.delta = 1.0f;}
+        if (p.lam <= 0.0){p.lam = 0.5f;}
+        if (p.mu <= 0.0){p.mu = 500f;}
+        if (p.c <= 0.0){p.c=10.0f;}
         if (p.model == null){
             p.model = "def";
         }
@@ -172,7 +170,7 @@ public class RetrievalApp {
             analyzer = tam.createAnalyzer(p.tokenFilterFile);
         }
         else{
-            analyzer = LuceneConstants.ANALYZER;
+            analyzer = Lucene4IRConstants.ANALYZER;
         }
 
 
@@ -261,7 +259,7 @@ public class RetrievalApp {
             searcher.setSimilarity(simfn);
 
 
-            parser = new QueryParser(LuceneConstants.FIELD_ALL, analyzer);
+            parser = new QueryParser(Lucene4IRConstants.FIELD_ALL, analyzer);
 
 
         } catch (Exception e){

@@ -16,8 +16,11 @@ import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.index.*;
 import org.apache.lucene.index.memory.MemoryIndex;
 import org.apache.lucene.document.Document;
+import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.BytesRef;
+
+import org.apache.lucene.search.CollectionStatistics;
 
 /**
  * Created by leif on 21/08/2016.
@@ -361,6 +364,37 @@ public class ExampleStatsApp {
     }
 
 
+    public void reportCollectionStatistics()throws IOException {
+
+        IndexSearcher searcher = new IndexSearcher(reader);
+
+        CollectionStatistics collectionStats = searcher.collectionStatistics(Lucene4IRConstants.FIELD_ALL);
+        long token_count = collectionStats.sumTotalTermFreq();
+        long doc_count = collectionStats.docCount();
+        long sum_doc_count = collectionStats.sumDocFreq();
+        long avg_doc_length = token_count / doc_count;
+
+        System.out.println("ALL: Token count: " + token_count+ " Doc Count: " + doc_count + " sum doc: " + sum_doc_count + " avg doc len: " + avg_doc_length);
+
+        collectionStats = searcher.collectionStatistics(Lucene4IRConstants.FIELD_TITLE);
+        token_count = collectionStats.sumTotalTermFreq();
+        doc_count = collectionStats.docCount();
+        sum_doc_count = collectionStats.sumDocFreq();
+
+        System.out.println("TITLE: Token count: " + token_count+ " Doc Count: " + doc_count + " sum doc: " + sum_doc_count);
+
+
+        collectionStats = searcher.collectionStatistics(Lucene4IRConstants.FIELD_CONTENT);
+        token_count = collectionStats.sumTotalTermFreq();
+        doc_count = collectionStats.docCount();
+        sum_doc_count = collectionStats.sumDocFreq();
+
+        System.out.println("CONTENT: Token count: " + token_count+ " Doc Count: " + doc_count + " sum doc: " + sum_doc_count);
+
+
+    }
+
+
     public static void main(String[] args)  throws IOException {
 
 
@@ -394,6 +428,8 @@ public class ExampleStatsApp {
         statsApp.numSegments();
 
         statsApp.printTermVectorWithPosition(0, Collections.singleton("title"));
+
+        statsApp.reportCollectionStatistics();
     	}
 
 }

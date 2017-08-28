@@ -10,6 +10,9 @@ import java.io.IOException;
 
 /**
  * Created by leif on 13/08/2017.
+ * Averaged Inverse Document Frequency (AvIDF)
+ *   IDF = log (N) / df(q) ), where N is number of documents in the collection
+ *   then take the average over all q terms.
  */
 public class AvgIDFQPPredictor extends QPPredictor {
 
@@ -20,15 +23,12 @@ public class AvgIDFQPPredictor extends QPPredictor {
 
     public double scoreQuery(String qno, Query q) {
 
-        String qstr = q.toString();
         String[] terms = q.toString().split(" ");
 
-
-        int ql = terms.length;
         int qc = 0;
         double aidf = 0.0;
-        for (int ti=0; ti < ql; ti++){
-            String[] termtext = terms[ti].split(":");
+        for (String term : terms) {
+            String[] termtext = term.split(":");
             if (termtext.length > 1) {
                 // System.out.println(termtext[1]);
                 qc = qc + 1;
@@ -37,27 +37,6 @@ public class AvgIDFQPPredictor extends QPPredictor {
         }
 
         return aidf / qc;
-    }
-
-    public double getIDF(String termText) {
-
-        double idf = 1.0;
-        try {
-            Term termInstance = new Term("content", termText);
-            //long termFreq = reader.totalTermFreq(termInstance);
-            long docFreq = reader.docFreq(termInstance);
-            // System.out.println(docFreq);
-
-            long numDocs = reader.numDocs();
-            // System.out.println(numDocs);
-            idf = Math.log((numDocs+1.0) / (docFreq+1.0));
-        }
-        catch (IOException ioe){
-            System.out.println(" caught a " + ioe.getClass() +
-                    "\n with message: " + ioe.getMessage());
-        }
-
-        return idf;
     }
 
 }
