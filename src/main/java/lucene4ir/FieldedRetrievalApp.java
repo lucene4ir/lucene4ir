@@ -31,7 +31,6 @@ import java.util.Map;
  */
 public class FieldedRetrievalApp extends RetrievalApp {
     public Fields fl;
-    public Field fp;
 
     public FieldedRetrievalApp(String retrievalParamFile) {
         super(retrievalParamFile);
@@ -100,6 +99,8 @@ public class FieldedRetrievalApp extends RetrievalApp {
             else if(field.fieldBoost == 0.0f)
                 field.fieldBoost=1.0f;
         }
+        p.resultFile=fl.resultFile;
+        System.out.println("Fielded Results File: " + p.resultFile);
     }
 
     public static void main(String []args) {
@@ -134,4 +135,8 @@ class Field {
 class Fields {
     @XmlElement(name = "field")
     public List<Field> fields;
+    @XmlElement(name = "retrievalParamsFile")
+    public String retrievalParamsFile;
+    @XmlElement(name = "resultFile")
+    public String resultFile;
 }
