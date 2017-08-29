@@ -42,17 +42,17 @@ if model not in models:
     print "Available models are " + models_string
     sys.exit(1)
 
-print 'Writing param file to %s/params/%s.%s-%.2f.params' % (path_to_lucene,collection,model,param_setting)
+print 'Writing param file to %s/params/%s/trec_files/%s/%s-%.2f.params' % (path_to_lucene,collection,model,model,param_setting)
 
-filename = '%s/params/%s.%s-%.2f.params' % (path_to_lucene,collection,model,param_setting)
+filename = '%s/params/%s/%s-%.2f.params' % (path_to_lucene,collection,model,param_setting)
 file = open(filename, 'w')
 file.write('<?xml version="1.0" encoding="UTF-8" standalone="yes"?> \n\
 <retrievalParams> \n\
-<indexName>%s/index</indexName> \n\
+<indexName>%s/%sIndex</indexName> \n\
 <queryFile>%s/data/%s/%s</queryFile> \n\
 <maxResults>1000</maxResults> \n\
 <model>%s</model> \n\
 <%s>%.2f</%s> \n\
-<resultFile>%s/data/%s/%s.%s-%.2f.res</resultFile> \n\
-</retrievalParams>'% (path_to_lucene, path_to_lucene, collection, query_file, model, param, param_setting, param,path_to_lucene, collection, collection, model, param_setting))
+<resultFile>%s/data/%s/trec_files/%s/%s-%.2f.res</resultFile> \n\
+</retrievalParams>'% (path_to_lucene, collection, path_to_lucene, collection, query_file, model, param, param_setting, param,path_to_lucene, collection, model, model, param_setting))
 file.close()

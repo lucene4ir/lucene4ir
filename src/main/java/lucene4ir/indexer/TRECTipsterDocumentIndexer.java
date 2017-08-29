@@ -1,14 +1,12 @@
 package lucene4ir.indexer;
 
-import lucene4ir.LuceneConstants;
+import lucene4ir.Lucene4IRConstants;
 import org.apache.lucene.document.*;
 import org.jsoup.Jsoup;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.ListIterator;
 
 /**
  * Indexer for TIPSTER test collections relying on JSOUP.
@@ -43,16 +41,16 @@ public class TRECTipsterDocumentIndexer extends DocumentIndexer {
     }
 
     private void initFields() {
-        docnumField = new StringField(LuceneConstants.FIELD_DOCNUM, "", Field.Store.YES);
+        docnumField = new StringField(Lucene4IRConstants.FIELD_DOCNUM, "", Field.Store.YES);
         if(indexPositions){
-            titleField = new TermVectorEnabledTextField(LuceneConstants.FIELD_TITLE, "", Field.Store.YES);
-            textField = new TermVectorEnabledTextField(LuceneConstants.FIELD_CONTENT, "", Field.Store.YES);
-            allField = new TermVectorEnabledTextField(LuceneConstants.FIELD_ALL, "", Field.Store.YES);
+            titleField = new TermVectorEnabledTextField(Lucene4IRConstants.FIELD_TITLE, "", Field.Store.YES);
+            textField = new TermVectorEnabledTextField(Lucene4IRConstants.FIELD_CONTENT, "", Field.Store.YES);
+            allField = new TermVectorEnabledTextField(Lucene4IRConstants.FIELD_ALL, "", Field.Store.YES);
         }
         else {
-            titleField = new TextField(LuceneConstants.FIELD_TITLE, "", Field.Store.YES);
-            textField = new TextField(LuceneConstants.FIELD_CONTENT, "", Field.Store.YES);
-            allField = new TextField(LuceneConstants.FIELD_ALL, "", Field.Store.YES);
+            titleField = new TextField(Lucene4IRConstants.FIELD_TITLE, "", Field.Store.YES);
+            textField = new TextField(Lucene4IRConstants.FIELD_CONTENT, "", Field.Store.YES);
+            allField = new TextField(Lucene4IRConstants.FIELD_ALL, "", Field.Store.YES);
         }
     }
 

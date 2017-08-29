@@ -21,8 +21,6 @@ import lucene4ir.similarity.BM25Similarity;
 import lucene4ir.utils.TokenAnalyzerMaker;
 
 import javax.xml.bind.JAXB;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.*;
 
@@ -82,11 +80,13 @@ public class RetrievalApp {
                 colModel = new LMSimilarity.DefaultCollectionModel();
                 simfn = new LMDirichletSimilarity(colModel, p.mu);
                 break;
+
             case LMJ:
                 System.out.println("LM Jelinek Mercer Similarity Function");
                 colModel = new LMSimilarity.DefaultCollectionModel();
                 simfn = new LMJelinekMercerSimilarity(colModel, p.lam);
                 break;
+
             case PL2:
                 System.out.println("PL2 Similarity Function (?)");
                 BasicModel bm = new BasicModelP();
@@ -94,6 +94,7 @@ public class RetrievalApp {
                 Normalization nn = new NormalizationH2(p.c);
                 simfn = new DFRSimilarity(bm, ae, nn);
                 break;
+
             case DFR:
                 System.out.println("DFR Similarity Function with no after effect (?)");
                 BasicModel bmd = new BasicModelD();
@@ -101,9 +102,11 @@ public class RetrievalApp {
                 Normalization nh1 = new NormalizationH1();
                 simfn = new DFRSimilarity(bmd, aen, nh1);
                 break;
+
             default:
                 System.out.println("Default Similarity Function");
                 simfn = new BM25Similarity();
+
                 break;
         }
     }
@@ -117,6 +120,7 @@ public class RetrievalApp {
         which these apps can inherit from - and customize accordinging.
          */
 
+
         try {
             p = JAXB.unmarshal(new File(paramFile), RetrievalParams.class);
         } catch (Exception e){
@@ -129,12 +133,12 @@ public class RetrievalApp {
 
         if (p.maxResults==0.0) {p.maxResults=1000;}
         if (p.b < 0.0){ p.b = 0.75f;}
-        if (p.beta == 0.0){p.beta = 500f;}
-        if (p.k == 0.0){ p.k = 1.2f;}
-        if (p.delta==0.0){p.delta = 1.0f;}
-        if (p.lam==0.0){p.lam = 0.5f;}
-        if (p.mu==0.0){p.mu = 500f;}
-        if (p.c==0.0){p.c=10.0f;}
+        if (p.beta <= 0.0){p.beta = 500f;}
+        if (p.k <= 0.0){ p.k = 1.2f;}
+        if (p.delta<=0.0){p.delta = 1.0f;}
+        if (p.lam <= 0.0){p.lam = 0.5f;}
+        if (p.mu <= 0.0){p.mu = 500f;}
+        if (p.c <= 0.0){p.c=10.0f;}
         if (p.model == null){
             p.model = "def";
         }
@@ -155,19 +159,19 @@ public class RetrievalApp {
         System.out.println("Max Results: " + p.maxResults);
         System.out.println("b: " + p.b);
         System.out.println("k: " + p.k);
-        System.out.println("c: " + p.c);
         if (p.fieldsFile!=null){
             System.out.println("Fields File: " + p.fieldsFile);
         }
         if (p.qeFile!=null){
             System.out.println("QE File: " + p.qeFile);
         }
+
         if (p.tokenFilterFile != null){
             TokenAnalyzerMaker tam = new TokenAnalyzerMaker();
             analyzer = tam.createAnalyzer(p.tokenFilterFile);
         }
         else{
-            analyzer = LuceneConstants.ANALYZER;
+            analyzer = Lucene4IRConstants.ANALYZER;
         }
     }
 
@@ -227,7 +231,6 @@ public class RetrievalApp {
             try {
                 TopDocs results = searcher.search(query, p.maxResults);
                 hits = results.scoreDocs;
-                System.out.println(hits.length);
             }
             catch (IOException ioe){
                 System.out.println(" caught a " + ioe.getClass() +
@@ -250,7 +253,10 @@ public class RetrievalApp {
             selectSimilarityFunction(sim);
             searcher.setSimilarity(simfn);
 
-            parser = new QueryParser("all", analyzer);
+
+            parser = new QueryParser(Lucene4IRConstants.FIELD_ALL, analyzer);
+
+
         } catch (Exception e){
             System.out.println(" caught a " + e.getClass() +
                     "\n with message: " + e.getMessage());

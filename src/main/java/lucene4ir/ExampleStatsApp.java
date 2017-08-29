@@ -16,8 +16,11 @@ import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.index.*;
 import org.apache.lucene.index.memory.MemoryIndex;
 import org.apache.lucene.document.Document;
+import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.BytesRef;
+
+import org.apache.lucene.search.CollectionStatistics;
 
 /**
  * Created by leif on 21/08/2016.
@@ -43,7 +46,6 @@ public class ExampleStatsApp {
         try {
             IndexParams p = JAXB.unmarshal(new File(indexParamFile), IndexParams.class);
             indexName = p.indexName;
-            System.out.println("IndexName: " + indexName);
 
         } catch (Exception e) {
             System.out.println(" caught a " + e.getClass() +
@@ -330,6 +332,38 @@ public class ExampleStatsApp {
 	    	return fieldToTermVector;
     }
 
+
+    public void reportCollectionStatistics()throws IOException {
+
+        IndexSearcher searcher = new IndexSearcher(reader);
+
+        CollectionStatistics collectionStats = searcher.collectionStatistics(Lucene4IRConstants.FIELD_ALL);
+        long token_count = collectionStats.sumTotalTermFreq();
+        long doc_count = collectionStats.docCount();
+        long sum_doc_count = collectionStats.sumDocFreq();
+        long avg_doc_length = token_count / doc_count;
+
+        System.out.println("ALL: Token count: " + token_count+ " Doc Count: " + doc_count + " sum doc: " + sum_doc_count + " avg doc len: " + avg_doc_length);
+
+        collectionStats = searcher.collectionStatistics(Lucene4IRConstants.FIELD_TITLE);
+        token_count = collectionStats.sumTotalTermFreq();
+        doc_count = collectionStats.docCount();
+        sum_doc_count = collectionStats.sumDocFreq();
+
+        System.out.println("TITLE: Token count: " + token_count+ " Doc Count: " + doc_count + " sum doc: " + sum_doc_count);
+
+
+        collectionStats = searcher.collectionStatistics(Lucene4IRConstants.FIELD_CONTENT);
+        token_count = collectionStats.sumTotalTermFreq();
+        doc_count = collectionStats.docCount();
+        sum_doc_count = collectionStats.sumDocFreq();
+
+        System.out.println("CONTENT: Token count: " + token_count+ " Doc Count: " + doc_count + " sum doc: " + sum_doc_count);
+
+
+    }
+
+
     public static void main(String[] args)  throws IOException {
         String statsParamFile = "";
 
@@ -356,13 +390,15 @@ public class ExampleStatsApp {
         statsApp.termPostingsList("title","system");
         statsApp.fieldsList();
         statsApp.termsList("title");
+        statsApp.iterateThroughDocTermVector(1);
         statsApp.docLength(1);
         statsApp.numSegments();
 
-        statsApp.printTermVectorWithPosition(1, Collections.singleton("title"));
+        statsApp.printTermVectorWithPosition(0, Collections.singleton("title"));
 
-        statsApp.iterateThroughDocTermVector(1);
+        statsApp.reportCollectionStatistics();
     	}
+
 }
 
 class ExampleStatsParams {

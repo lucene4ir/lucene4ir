@@ -95,10 +95,12 @@ public class FieldedRetrievalApp extends RetrievalApp {
 
         for (Field field : fl.fields){
             if(field.fieldName.equals(null))
-                field.fieldName="all";
-            else if(field.fieldBoost == 0.0f)
-                field.fieldBoost=1.0f;
+                field.fieldName=Lucene4IRConstants.FIELD_ALL;
+            else if(field.fieldBoost <= 0.0f)
+                field.fieldBoost=0.0f;
         }
+
+        System.out.println("Fielded Results File: " + p.resultFile);
     }
 
     public static void main(String []args) {
@@ -131,4 +133,6 @@ class Field {
 class Fields {
     @XmlElement(name = "field")
     public List<Field> fields;
+    @XmlElement(name = "retrievalParamsFile")
+    public String retrievalParamsFile;
 }
