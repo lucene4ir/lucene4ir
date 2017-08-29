@@ -395,6 +395,30 @@ public class ExampleStatsApp {
     }
 
 
+    public void countFieldData() throws IOException {
+        int n = reader.maxDoc();
+        int nt = 0;
+        int nc = 0;
+
+        for (int i = 0; i < n; i++) {
+            Document doc = reader.document(i);
+
+            // the doc.get pulls out the values stored - ONLY if you store the fields
+            String title = doc.get(Lucene4IRConstants.FIELD_TITLE);
+            String content = doc.get(Lucene4IRConstants.FIELD_CONTENT);
+            if (title.length()>0){
+                nt++;
+            }
+            if (content.length()>0){
+                nc++;
+            }
+        }
+        System.out.println("Num Docs: " +n + " Docs with Title text: " + nt + " Docs with Contents text: "+ nc);
+
+
+    }
+
+
     public static void main(String[] args)  throws IOException {
 
 
@@ -430,6 +454,7 @@ public class ExampleStatsApp {
         statsApp.printTermVectorWithPosition(0, Collections.singleton("title"));
 
         statsApp.reportCollectionStatistics();
+        statsApp.countFieldData();
     	}
 
 }
