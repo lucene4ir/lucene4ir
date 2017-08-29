@@ -80,6 +80,8 @@ public class TRECAquaintDocumentIndexer extends DocumentIndexer {
     }
 
     public Document createTRECAQUAINTDocument(String docid, String pubdate, String source, String title, String content, String all){
+        doc.clear();
+
         docnumField.setStringValue(docid);
         titleField.setStringValue(title);
         allField.setStringValue(all);
@@ -153,7 +155,6 @@ public class TRECAquaintDocumentIndexer extends DocumentIndexer {
             source = "XIE";
 
         String all = title + " " + content + " " + source + " " + pubdate;
-        doc.clear();
         doc = createTRECAQUAINTDocument(docnum,pubdate,source,title,content,all);
         addDocumentToIndex(doc);
     }
