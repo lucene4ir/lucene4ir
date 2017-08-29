@@ -132,7 +132,7 @@ public class RetrievalApp {
         setSim(p.model);
 
         if (p.maxResults==0.0) {p.maxResults=1000;}
-        if (p.b <= 0.0){ p.b = 0.75f;}
+        if (p.b < 0.0){ p.b = 0.75f;}
         if (p.beta <= 0.0){p.beta = 500f;}
         if (p.k <= 0.0){ p.k = 1.2f;}
         if (p.delta<=0.0){p.delta = 1.0f;}
@@ -158,6 +158,7 @@ public class RetrievalApp {
         System.out.println("Model: " + p.model);
         System.out.println("Max Results: " + p.maxResults);
         System.out.println("b: " + p.b);
+        System.out.println("k: " + p.k);
         if (p.fieldsFile!=null){
             System.out.println("Fields File: " + p.fieldsFile);
         }
@@ -172,8 +173,6 @@ public class RetrievalApp {
         else{
             analyzer = Lucene4IRConstants.ANALYZER;
         }
-
-
     }
 
     public void processQueryFile(){
