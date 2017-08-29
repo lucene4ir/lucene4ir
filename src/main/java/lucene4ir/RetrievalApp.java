@@ -132,7 +132,7 @@ public class RetrievalApp {
         setSim(p.model);
 
         if (p.maxResults==0.0) {p.maxResults=1000;}
-        if (p.b <= 0.0){ p.b = 0.75f;}
+        if (p.b < 0.0){ p.b = 0.75f;}
         if (p.beta <= 0.0){p.beta = 500f;}
         if (p.k <= 0.0){ p.k = 1.2f;}
         if (p.delta<=0.0){p.delta = 1.0f;}
@@ -158,6 +158,7 @@ public class RetrievalApp {
         System.out.println("Model: " + p.model);
         System.out.println("Max Results: " + p.maxResults);
         System.out.println("b: " + p.b);
+        System.out.println("k: " + p.k);
         if (p.fieldsFile!=null){
             System.out.println("Fields File: " + p.fieldsFile);
         }
@@ -172,8 +173,6 @@ public class RetrievalApp {
         else{
             analyzer = Lucene4IRConstants.ANALYZER;
         }
-
-
     }
 
     public void processQueryFile(){
@@ -200,7 +199,7 @@ public class RetrievalApp {
                     for (int i=1; i<parts.length; i++)
                         queryTerms = queryTerms + " " + parts[i];
 
-                    ScoreDoc[] scored = runQuery(qno, queryTerms);
+                    ScoreDoc[] scored = runQuery(qno, queryTerms.trim());
 
                     int n = Math.min(p.maxResults, scored.length);
 
@@ -210,10 +209,8 @@ public class RetrievalApp {
                         fw.write(qno + " QO " + docno + " " + (i+1) + " " + scored[i].score + " " + p.runTag);
                         fw.write(System.lineSeparator());
                     }
-
                     line = br.readLine();
                 }
-
             } finally {
                 br.close();
                 fw.close();
@@ -232,15 +229,13 @@ public class RetrievalApp {
             Query query = parser.parse(QueryParser.escape(queryTerms));
 
             try {
-                TopDocs results = searcher.search(query, 1000);
+                TopDocs results = searcher.search(query, p.maxResults);
                 hits = results.scoreDocs;
             }
             catch (IOException ioe){
                 System.out.println(" caught a " + ioe.getClass() +
                         "\n with message: " + ioe.getMessage());
             }
-
-
         } catch (ParseException pe){
             System.out.println("Can't parse query");
         }
@@ -266,11 +261,9 @@ public class RetrievalApp {
             System.out.println(" caught a " + e.getClass() +
                     "\n with message: " + e.getMessage());
         }
-
     }
 
     public static void main(String []args) {
-
 
         String retrievalParamFile = "";
 
@@ -284,11 +277,8 @@ public class RetrievalApp {
 
         RetrievalApp retriever = new RetrievalApp(retrievalParamFile);
         retriever.processQueryFile();
-
     }
-
 }
-
 
 @XmlRootElement(name = "RetrievalParams")
 class RetrievalParams {
@@ -309,6 +299,3 @@ class RetrievalParams {
     public String fieldsFile;
     public String qeFile;
 }
-
-
-

@@ -35,6 +35,8 @@ public class FieldedRetrievalApp extends RetrievalApp {
     public FieldedRetrievalApp(String retrievalParamFile) {
         super(retrievalParamFile);
         this.readFieldedParamsFromFile(fieldsFile);
+        for (Field f : fl.fields)
+            System.out.println("Field: " + f.fieldName + " Boost: " + f.fieldBoost);
 
         try {
             reader = DirectoryReader.open(FSDirectory.open( new File(p.indexName).toPath()) );
@@ -43,7 +45,7 @@ public class FieldedRetrievalApp extends RetrievalApp {
             // create similarity function and parameter
             selectSimilarityFunction(sim);
             searcher.setSimilarity(simfn);
-            parser = new QueryParser("all",analyzer);
+//            parser = new QueryParser("all",analyzer);
 
 
         } catch (Exception e){
@@ -59,7 +61,6 @@ public class FieldedRetrievalApp extends RetrievalApp {
         Map<String, Float> boosts = new HashMap<>();
         int i = 0;
         for (Field f : fl.fields) {
-            System.out.println("Field: " + f.fieldName + " Boost: " + f.fieldBoost);
             fields[i] = f.fieldName;
             boosts.put(f.fieldName, f.fieldBoost);
             i++;
@@ -67,8 +68,6 @@ public class FieldedRetrievalApp extends RetrievalApp {
         try {
             MultiFieldQueryParser mfq = new MultiFieldQueryParser(fields, analyzer, boosts);
             Query q = mfq.parse(queryTerms);
-            System.out.println(queryTerms);
-            System.out.println(q.toString());
             try {
                 TopDocs results = searcher.search(q, p.maxResults);
                 hits = results.scoreDocs;
@@ -119,8 +118,6 @@ public class FieldedRetrievalApp extends RetrievalApp {
         retriever.processQueryFile();
     }
 }
-
-
 
 @XmlRootElement(name = "field")
 @XmlAccessorType(XmlAccessType.FIELD)
