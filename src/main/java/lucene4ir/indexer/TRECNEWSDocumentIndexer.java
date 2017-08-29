@@ -61,6 +61,8 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
     }
 
     public Document createNEWSDocument(String docid, String author, String title, String content, String all){
+        doc.clear();
+
         docnumField.setStringValue(docid);
         titleField.setStringValue(title);
         allField.setStringValue(all);
@@ -72,7 +74,6 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
         doc.add(titleField);
         doc.add(textField);
         doc.add(allField);
-//        System.out.println("Adding document: " + docid + " Title: " + title);
         return doc;
     }
 
@@ -110,7 +111,6 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
                         String author = xPath.compile(expression).evaluate(xmlDocument).trim();
 
                         String all = title + " " + content + " " + author;
-                        doc.clear();
                         createNEWSDocument(docid,author,title,content,all);
                         addDocumentToIndex(doc);
 

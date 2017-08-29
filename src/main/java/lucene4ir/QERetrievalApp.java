@@ -2,9 +2,7 @@ package lucene4ir;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.document.Document;
-import org.apache.lucene.index.DirectoryReader;
-import org.apache.lucene.index.IndexReader;
-import org.apache.lucene.index.Terms;
+import org.apache.lucene.index.*;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
@@ -81,6 +79,7 @@ public class QERetrievalApp extends RetrievalApp{
                     String docno = doc.get("docnum");
                     docList.add(docno);
                 }
+                extractTerms(docList);
             }
             catch (IOException ioe){
                 System.out.println(" caught a " + ioe.getClass() +
@@ -92,16 +91,35 @@ public class QERetrievalApp extends RetrievalApp{
         return hits;
     }
 
-    public void extractTerms(List<String> docList){
+    public List<Terms> extractTerms(List<String> docList){
+        List<Terms> tvl = new ArrayList<>();
         try {
             for (String docnum : docList) {
                 int docid = num2id.get(docnum);
                 Terms tv = reader.getTermVector(docid, "all");
+//                Term t = tv.iterator().postings()
+                tvl.add(tv);
             }
         } catch (Exception e){
             System.out.println(" caught a " + e.getClass() +
                     "\n with message: " + e.getMessage());
         }
+        return tvl;
+    }
+
+    public void sumDocScores(List<Terms> tvl){
+        try {
+            for (Terms t : tvl){
+                Term termInstance = new Term("content", t.toString());
+            }
+        } catch (Exception e){
+        System.out.println(" caught a " + e.getClass() +
+                "\n with message: " + e.getMessage());
+        }
+    }
+
+    public void getTopDocs(List<Terms> ttv){
+
     }
 
     public void  mapDocid() {
@@ -157,11 +175,11 @@ public class QERetrievalApp extends RetrievalApp{
 @XmlRootElement(name = "qe")
 @XmlAccessorType(XmlAccessType.FIELD)
 class QERetrievalParams {
-    @XmlElement(name = "QEMethod")
+    @XmlElement(name = "qeMethod")
     public String qeMethod;
-    @XmlElement(name = "NoDocs")
+    @XmlElement(name = "noDocs")
     public int noDocs;
-    @XmlElement(name = "NoTerms")
+    @XmlElement(name = "noTerms")
     public int noTerms;
     @XmlElement(name = "qeBeta")
     public float qeBeta;

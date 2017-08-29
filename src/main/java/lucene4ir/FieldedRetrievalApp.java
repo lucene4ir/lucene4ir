@@ -31,7 +31,6 @@ import java.util.Map;
  */
 public class FieldedRetrievalApp extends RetrievalApp {
     public Fields fl;
-    public Field fp;
 
     public FieldedRetrievalApp(String retrievalParamFile) {
         super(retrievalParamFile);
@@ -118,8 +117,6 @@ public class FieldedRetrievalApp extends RetrievalApp {
         retriever.processQueryFile();
     }
 }
-
-
 
 @XmlRootElement(name = "field")
 @XmlAccessorType(XmlAccessType.FIELD)
