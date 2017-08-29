@@ -26,7 +26,6 @@ import org.apache.lucene.search.CollectionStatistics;
  * Created by leif on 21/08/2016.
  */
 
-
 public class ExampleStatsApp {
 
     public String indexName;
@@ -41,9 +40,7 @@ public class ExampleStatsApp {
          */
         indexName = "";
         reader = null;
-
     }
-
 
     public void readExampleStatsParamsFromFile(String indexParamFile) {
         try {
@@ -55,10 +52,7 @@ public class ExampleStatsApp {
                     "\n with message: " + e.getMessage());
             System.exit(1);
         }
-
-
     }
-
 
     public void openReader() {
         try {
@@ -68,7 +62,6 @@ public class ExampleStatsApp {
             System.out.println(" caught a " + e.getClass() +
                     "\n with message: " + e.getMessage());
         }
-
     }
 
     public void docStats() {
@@ -86,18 +79,16 @@ public class ExampleStatsApp {
     // The top-level index reader contains a LeafReader for each segment
     // Fields and Terms are accessed through these LeafReaders
 
-
-     public void numSegments(){
+    public void numSegments(){
         // how do we get the number of segements
-         int segments = reader.leaves().size();
-         System.out.println("Number of Segments in Index: " + segments);
+        int segments = reader.leaves().size();
+        System.out.println("Number of Segments in Index: " + segments);
 
-         // you can use a writer to force merge - and then you will only
-         // have one segment
-         // the maximum number of documents in a lucene index is approx 2 millio
-         // you need to go solr or elastic search for bigger collections
-         // solr/es using sharding.
-
+        // you can use a writer to force merge - and then you will only
+        // have one segment
+        // the maximum number of documents in a lucene index is approx 2 millio
+        // you need to go solr or elastic search for bigger collections
+        // solr/es using sharding.
     }
 
     public void fieldsList()  throws IOException{
@@ -124,9 +115,7 @@ public class ExampleStatsApp {
         BytesRef term;
         while ((term = te.next()) != null) {
             System.out.println(term.utf8ToString() + " DF: " + te.docFreq() + " CF: " + te.totalTermFreq());
-
         }
-
     }
 
     public void docLength(int docid) throws IOException{
@@ -148,9 +137,7 @@ public class ExampleStatsApp {
             System.out.println("content: " + t.size());
         }
         System.out.println("Doc Length: " + tot);
-
     }
-
 
     public void termPostingsList(String field, String termText)  throws IOException {
         /*
@@ -159,64 +146,56 @@ public class ExampleStatsApp {
 
             To go through all term postings list for a term, you need to iterate over
             both the segements, and the leafreaders.
-           */
+        */
 
-
-            LeafReader leafReader = reader.leaves().get(0).reader();
-            Terms terms = leafReader.terms(field);
-            TermsEnum te = terms.iterator();
-            te.seekCeil(new BytesRef(termText));
-
-            PostingsEnum postings = te.postings(null);
-            int doc;
-            while ((doc = postings.nextDoc()) != PostingsEnum.NO_MORE_DOCS) {
-                System.out.println(doc);
-                // you can also iterate positions for each doc
-                int position;
-                int numPositions = postings.freq();
-                for (int i = 0; i < numPositions; i++) {
-                    int pos = postings.nextPosition();
-                    if (pos > 0){
-                        //Only prints out the positions if they are indexed
-                        System.out.println(pos );
-                    }
+        LeafReader leafReader = reader.leaves().get(0).reader();
+        Terms terms = leafReader.terms(field);
+        TermsEnum te = terms.iterator();
+        te.seekCeil(new BytesRef(termText));
+        PostingsEnum postings = te.postings(null);
+        int doc;
+        while ((doc = postings.nextDoc()) != PostingsEnum.NO_MORE_DOCS) {
+            System.out.println(doc);
+            // you can also iterate positions for each doc
+            int position;
+            int numPositions = postings.freq();
+            for (int i = 0; i < numPositions; i++) {
+                int pos = postings.nextPosition();
+                if (pos > 0){
+                    //Only prints out the positions if they are indexed
+                    System.out.println(pos);
                 }
             }
+        }
     }
-
 
     public void iterateThroughDocList()  throws IOException {
-            int n = reader.maxDoc();
-            if (n>10) {
-                n = 10;
-            }
-            for (int i = 0; i < n; i++) {
-                Document doc = reader.document(i);
-
-                // the doc.get pulls out the values stored - ONLY if you store the fields
-                String docnum = doc.get("docnum");
-                String title = doc.get("title");
-                System.out.println("docnum and title: " + docnum + " " + title);
-                //System.out.println(doc.get("content"));
-
-                iterateThroughDocTermVector(i);
-
-            }
+        int n = reader.maxDoc();
+        if (n>100) {
+            n = 100;
+        }
+        for (int i = 0; i < n; i++) {
+            Document doc = reader.document(i);
+            // the doc.get pulls out the values stored - ONLY if you store the fields
+            String docnum = doc.get("docnum");
+            String title = doc.get("title");
+            System.out.println("ID: " + i);
+            System.out.println("docnum and title: " + docnum + " " + title);
+            //System.out.println(doc.get("content"));
+            iterateThroughDocTermVector(i);
+        }
     }
-
 
     public void termStats(String termText)  throws IOException{
         /*
         How to get the term frequency and document frequency of a term
          */
-            Term termInstance = new Term("content", termText);
-            long termFreq = reader.totalTermFreq(termInstance);
-            long docFreq = reader.docFreq(termInstance);
+        Term termInstance = new Term("content", termText);
+        long termFreq = reader.totalTermFreq(termInstance);
+        long docFreq = reader.docFreq(termInstance);
 
-            System.out.println("Term: "+termText+", Term Freq. = "+termFreq+", Doc Freq. = "+docFreq);
-
+        System.out.println("Term: "+termText+", Term Freq. = "+termFreq+", Doc Freq. = "+docFreq);
     }
-
 
     public void buildTermVector(int docid) throws IOException {
         /*
@@ -248,9 +227,6 @@ public class ExampleStatsApp {
         }
     }
 
-
-
-
     public void iterateThroughDocTermVector(int docid)  throws IOException{
     /*
         How do we iterate through the term vector list?
@@ -266,42 +242,34 @@ public class ExampleStatsApp {
         So, How do we create this run time memory index.
 
      */
-            Terms t = reader.getTermVector(docid, "title");
+        Terms t = reader.getTermVector(docid, "title");
 
-            if ((t != null) && (t.size()>0)) {
-                TermsEnum te = t.iterator();
-                BytesRef term = null;
-
-               System.out.println(t.size());
-
-                PostingsEnum p = null;
-                while ((term = te.next()) != null) {
-                    System.out.println("BytesRef: " + term.utf8ToString());
-                    System.out.println("docFreq: " + te.docFreq());
-                    System.out.println("totalTermFreq: " + te.totalTermFreq());
-                    p = te.postings( p, PostingsEnum.ALL );
-                    //Print term positions
-                    while( p.nextDoc() != PostingsEnum.NO_MORE_DOCS ) {
-                        int freq = p.freq();
-                        for( int i = 0; i < freq; i++ ) {
-                            int pos = p.nextPosition();
-                            System.out.println("Term: " + term.utf8ToString() + " Pos: " + pos);
-                        }
+        if ((t != null) && (t.size()>0)) {
+            TermsEnum te = t.iterator();
+            BytesRef term = null;
+            System.out.println(t.size());
+            PostingsEnum p = null;
+            while ((term = te.next()) != null) {
+                System.out.println("BytesRef: " + term.utf8ToString());
+                System.out.println("docFreq: " + te.docFreq());
+                System.out.println("totalTermFreq: " + te.totalTermFreq());
+                p = te.postings( p, PostingsEnum.ALL );
+                //Print term positions
+                while( p.nextDoc() != PostingsEnum.NO_MORE_DOCS ) {
+                    int freq = p.freq();
+                    for( int i = 0; i < freq; i++ ) {
+                        int pos = p.nextPosition();
+                        System.out.println("Term: " + term.utf8ToString() + " Pos: " + pos);
                     }
-
                 }
-
             }
-
-
+        }
     }
-    
-    
 
-    	public void printTermVectorWithPosition(int docid, Set<String> fields) throws IOException {
-    		
+    public void printTermVectorWithPosition(int docid, Set<String> fields) throws IOException {
+
 	    	Map<String, Map<String, List<Integer>>> fieldToTermToPos =
-	    			this.buildTermVectorWithPosition(0, Collections.singleton("title"));
+	    			this.buildTermVectorWithPosition(docid, Collections.singleton("title"));
 	
 	    	System.out.println("docid:" + docid);
 	
@@ -312,13 +280,14 @@ public class ExampleStatsApp {
 	
 	    		for(String term : termToPos.keySet()) {
 	    			System.out.println("term:" + term + " freq:" + termToPos.get(term).size());
+                    System.out.println("term:" + term + " pos:" + termToPos.get(term));
 	    			StringBuilder posBuilder = new StringBuilder("positions:");
 	    			for(int pos : termToPos.get(term)) {
 	    				posBuilder.append(" ").append(pos);
 	    			}
 	    			posBuilder.toString();
 	    		}
-		}
+		    }
     	}
     
     	public Map<String, Map<String, List<Integer>>> buildTermVectorWithPosition(int docid, Set<String> fields) throws IOException {
@@ -396,8 +365,6 @@ public class ExampleStatsApp {
 
 
     public static void main(String[] args)  throws IOException {
-
-
         String statsParamFile = "";
 
         try {

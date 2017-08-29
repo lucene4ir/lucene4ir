@@ -199,7 +199,7 @@ public class RetrievalApp {
                     for (int i=1; i<parts.length; i++)
                         queryTerms = queryTerms + " " + parts[i];
 
-                    ScoreDoc[] scored = runQuery(qno, queryTerms);
+                    ScoreDoc[] scored = runQuery(qno, queryTerms.trim());
 
                     int n = Math.min(p.maxResults, scored.length);
 
@@ -209,10 +209,8 @@ public class RetrievalApp {
                         fw.write(qno + " QO " + docno + " " + (i+1) + " " + scored[i].score + " " + p.runTag);
                         fw.write(System.lineSeparator());
                     }
-
                     line = br.readLine();
                 }
-
             } finally {
                 br.close();
                 fw.close();
@@ -231,15 +229,13 @@ public class RetrievalApp {
             Query query = parser.parse(QueryParser.escape(queryTerms));
 
             try {
-                TopDocs results = searcher.search(query, 1000);
+                TopDocs results = searcher.search(query, p.maxResults);
                 hits = results.scoreDocs;
             }
             catch (IOException ioe){
                 System.out.println(" caught a " + ioe.getClass() +
                         "\n with message: " + ioe.getMessage());
             }
-
-
         } catch (ParseException pe){
             System.out.println("Can't parse query");
         }
@@ -265,11 +261,9 @@ public class RetrievalApp {
             System.out.println(" caught a " + e.getClass() +
                     "\n with message: " + e.getMessage());
         }
-
     }
 
     public static void main(String []args) {
-
 
         String retrievalParamFile = "";
 
@@ -283,11 +277,8 @@ public class RetrievalApp {
 
         RetrievalApp retriever = new RetrievalApp(retrievalParamFile);
         retriever.processQueryFile();
-
     }
-
 }
-
 
 @XmlRootElement(name = "RetrievalParams")
 class RetrievalParams {
@@ -308,6 +299,3 @@ class RetrievalParams {
     public String fieldsFile;
     public String qeFile;
 }
-
-
-

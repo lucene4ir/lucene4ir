@@ -62,6 +62,7 @@ public class TRECTipsterDocumentIndexer extends DocumentIndexer {
     }
 
     public Document createTipsterDocument(String docid, String title, String content, String all){
+        doc.clear();
 
         docnumField.setStringValue(docid);
         titleField.setStringValue(title);
@@ -79,7 +80,6 @@ public class TRECTipsterDocumentIndexer extends DocumentIndexer {
     public void indexDocumentsFromFile(String filename){
 
         String line = "";
-        //Document doc = new Document();
 
         try {
             BufferedReader br = new BufferedReader(new FileReader(filename));
@@ -108,45 +108,24 @@ public class TRECTipsterDocumentIndexer extends DocumentIndexer {
                         Elements docidElements = jsoupDoc.getElementsByTag("DOCNO");
                         if (docidElements!=null && docidElements.size()==1) {
                             docnum = docidElements.text();
-                            //Field docnumField = new StringField("docnum", docid, Field.Store.YES);
-                            //doc.add(docnumField);
                         }
-
-                        //StringBuilder title = new StringBuilder();
 
                         for (String tag : titleTags) {
                             Elements titleElements = jsoupDoc.select(tag);
                             if (titleElements!=null) {
-//                                ListIterator<Element> elIterator = contentElements.listIterator();
                                 System.out.println(titleElements.size() + " " + titleElements.text());
                                 title.append(" ").append(titleElements.text());
-//                                while (elIterator.hasNext())
-//                                    System.out.println(elIterator.next().text());
-                                    //title.append(" ").append(elIterator.next().text());
                             }
                         }
-                        //Field titleField = new TextField("title", title.toString().trim(), Field.Store.YES);
-                        //doc.add(titleField);
-
-                        //StringBuilder content = new StringBuilder();
 
                         for (String tag : contentTags) {
                             Elements contentElements = jsoupDoc.getElementsByTag(tag);
                             if (contentElements!=null) {
-//                                ListIterator<Element> elIterator = contentElements.listIterator();
                                     content.append(" ").append(contentElements.text());
-//                                while (elIterator.hasNext())
-//                                    content.append(" ").append(elIterator.next().text());
                             }
                         }
-                        //Field contentField = new TextField("content", content.toString().trim(), Field.Store.YES);
-                        //doc.add(contentField);
-
-                        //Field textField = new TextField("all", (title.toString().trim() + " " + content.toString().trim()), Field.Store.YES);
-                        //doc.add(textField);
 
                         String all = title.toString().trim() + " " + content.toString().trim();
-                        doc.clear();
                         createTipsterDocument(docnum.trim(), title.toString().trim(), content.toString().trim(), all);
                         addDocumentToIndex(doc);
 
@@ -154,7 +133,6 @@ public class TRECTipsterDocumentIndexer extends DocumentIndexer {
                         text = new StringBuilder();
                         content = new StringBuilder();
                         title = new StringBuilder();
-                        //doc = new Document();
                     }
 
                     line = br.readLine();
