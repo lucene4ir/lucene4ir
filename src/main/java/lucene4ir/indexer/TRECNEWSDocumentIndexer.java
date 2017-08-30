@@ -7,11 +7,16 @@ import org.apache.lucene.document.StringField;
 import org.apache.lucene.document.TextField;
 import java.io.BufferedReader;
 import java.io.FileReader;
+
+
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.*;
 import java.io.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathFactory;
 
 /**
@@ -102,7 +107,19 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
                         String docid = xPath.compile(expression).evaluate(xmlDocument).trim();
 
                         expression = "/DOC/HEAD";
-                        String title = xPath.compile(expression).evaluate(xmlDocument).trim();
+                        //String title = xPath.compile(expression).evaluate(xmlDocument).trim();
+                        String title = "";
+                        NodeList nodeList = (NodeList)xPath.compile(expression).evaluate(xmlDocument, XPathConstants.NODESET);
+                        for (int i = 0; i < nodeList.getLength(); i++) {
+                            Node currentNode = nodeList.item(i);
+                            if (currentNode.getNodeType() == Node.ELEMENT_NODE) {
+                                title = title + " " + currentNode.getFirstChild().getNodeValue();
+                            }
+                        }
+                        title = title.trim();
+
+                        //String title = xPath.compile(expression).evaluate(xmlDocument).trim();
+                        System.out.println(docid + " :" + title+ ":");
 
                         expression = "/DOC/TEXT";
                         String content = xPath.compile(expression).evaluate(xmlDocument).trim();
