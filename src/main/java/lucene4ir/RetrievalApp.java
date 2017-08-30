@@ -120,7 +120,6 @@ public class RetrievalApp {
         which these apps can inherit from - and customize accordinging.
          */
 
-
         try {
             p = JAXB.unmarshal(new File(paramFile), RetrievalParams.class);
         } catch (Exception e){
@@ -253,9 +252,7 @@ public class RetrievalApp {
             selectSimilarityFunction(sim);
             searcher.setSimilarity(simfn);
 
-
             parser = new QueryParser(Lucene4IRConstants.FIELD_ALL, analyzer);
-
 
         } catch (Exception e){
             System.out.println(" caught a " + e.getClass() +

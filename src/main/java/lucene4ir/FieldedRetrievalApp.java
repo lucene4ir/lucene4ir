@@ -55,7 +55,6 @@ public class FieldedRetrievalApp extends RetrievalApp {
     }
 
     public ScoreDoc[] runQuery(String qno, String queryTerms){
-        System.out.println("Fielded Scoring docs...");
         ScoreDoc[] hits = null;
         String[] fields = new String[fl.fields.size()];
         Map<String, Float> boosts = new HashMap<>();
@@ -68,10 +67,10 @@ public class FieldedRetrievalApp extends RetrievalApp {
         try {
             MultiFieldQueryParser mfq = new MultiFieldQueryParser(fields, analyzer, boosts);
             Query q = mfq.parse(queryTerms);
+            System.out.println(queryTerms);
             try {
                 TopDocs results = searcher.search(q, p.maxResults);
                 hits = results.scoreDocs;
-                System.out.println(results.totalHits);
             } catch (IOException ioe) {
                 System.out.println(" caught a " + ioe.getClass() +
                         "\n with message: " + ioe.getMessage());
