@@ -67,7 +67,7 @@ public class FieldedRetrievalApp extends RetrievalApp {
         try {
             MultiFieldQueryParser mfq = new MultiFieldQueryParser(fields, analyzer, boosts);
             Query q = mfq.parse(queryTerms);
-            System.out.println(queryTerms);
+            System.out.println(qno+ ": " + q.toString());
             try {
                 TopDocs results = searcher.search(q, p.maxResults);
                 hits = results.scoreDocs;
