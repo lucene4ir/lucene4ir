@@ -57,8 +57,8 @@ file.write('<?xml version="1.0" encoding="UTF-8" standalone="yes"?> \n\
 <%s>%.2f</%s> \n\
 <resultFile>%s/data/%s/bigram_files/%s/%s-%.2f-%s-%s.res</resultFile> \n\
 <tokenFilterFile>%s/params/news_token_filters.xml</tokenFilterFile> \n\
-<fieldsFile>%s/params/%s/bigram_files/%s-%.2f-%s-%s.fieldparams</fieldsFile> \n\
-</retrievalParams>'% (path_to_lucene, collection, path_to_lucene, collection, query_file, model, param, param_setting, param,path_to_lucene, collection, fmodel, fmodel, param_setting,title_boost,content_boost,path_to_lucene,path_to_lucene,collection,fmodel,param_setting,title_boost,content_boost))
+<fieldsFile>%s/params/%s/bigram_files/%s/%s-%.2f-%s-%s.fieldparams</fieldsFile> \n\
+</retrievalParams>'% (path_to_lucene, collection, path_to_lucene, collection, query_file, model, param, param_setting, param,path_to_lucene, collection, fmodel, fmodel, param_setting,title_boost,content_boost,path_to_lucene,path_to_lucene,collection,fmodel,fmodel,param_setting,title_boost,content_boost))
 file.close()
 
 

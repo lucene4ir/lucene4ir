@@ -44,7 +44,8 @@ if model not in models:
 
 print 'Writing param file to %s/params/%s/bigram_files/%s/%s-%.2f.params' % (path_to_lucene,collection,model,model,param_setting)
 
-filename = '%s/params/%s/bigram_files/%s/%s-%.2f.params' % (path_to_lucene,collection,model,model,param_setting)file = open(filename, 'w')
+filename = '%s/params/%s/bigram_files/%s/%s-%.2f.params' % (path_to_lucene,collection,model,model,param_setting)
+file = open(filename, 'w')
 file.write('<?xml version="1.0" encoding="UTF-8" standalone="yes"?> \n\
 <retrievalParams> \n\
 <indexName>%s/%sIndex</indexName> \n\
@@ -54,5 +55,5 @@ file.write('<?xml version="1.0" encoding="UTF-8" standalone="yes"?> \n\
 <%s>%.2f</%s> \n\
 <resultFile>%s/data/%s/bigram_files/%s/%s-%.2f.res</resultFile> \n\
 <tokenFilterFile>%s/params/news_token_filters.xml</tokenFilterFile> \n\
-</retrievalParams>'% (path_to_lucene, collection, path_to_lucene, collection, query_file, model, param, param_setting, param,path_to_lucene, collection, model, model, param_setting))
+</retrievalParams>'% (path_to_lucene, collection, path_to_lucene, collection, query_file, model, param, param_setting, param,path_to_lucene, collection, model, model, param_setting,path_to_lucene))
 file.close()
