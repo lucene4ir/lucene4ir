@@ -1,5 +1,6 @@
-package lucene4ir.predictor;
+package lucene4ir.predictor.pre;
 
+import lucene4ir.predictor.PreQPPredictor;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.search.Query;
 
@@ -8,7 +9,7 @@ import org.apache.lucene.search.Query;
  * Averaged Query Length (AvQL)
  * average number of characters - really just QL.
  */
-public class AvgQLQPPredictor extends QPPredictor {
+public class AvgQLQPPredictor extends PreQPPredictor {
 
     public AvgQLQPPredictor(IndexReader ir) {
         super(ir);
