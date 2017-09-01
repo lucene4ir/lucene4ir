@@ -4,15 +4,12 @@ import javax.xml.bind.JAXB;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
+import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.apache.lucene.index.*;
 import org.apache.lucene.index.memory.MemoryIndex;
 import org.apache.lucene.document.Document;
@@ -388,6 +385,63 @@ public class ExampleStatsApp {
     }
 
 
+    public void extractBigramsFromStoredText() throws IOException {
+
+        HashMap<String, Integer> hmap = new HashMap<String, Integer>();
+        int n = reader.maxDoc();
+
+        for (int i = 0; i < n; i++) {
+
+            Document doc = reader.document(i);
+            String all = doc.get(Lucene4IRConstants.FIELD_ALL);
+
+            //String[] words = all.split(" ");
+            //for(String w: words ){
+            //    System.out.println(w);
+            //}
+
+//        int n = words.length;
+            //      for (int i=1; i<n; i++){
+            //        System.out.println(words[i-1].toLowerCase().trim() + " " + words[i].toLowerCase().trim());
+            //   }
+
+            Analyzer a = new StandardAnalyzer();
+            TokenStream ts = a.tokenStream(null, all);
+            ts.reset();
+            String w1 = "";
+            String w2 = "";
+            while (ts.incrementToken()) {
+                w1 = w2;
+                w2 = ts.getAttribute(CharTermAttribute.class).toString();
+                if (w1 != "") {
+                    //System.out.println(w1 + " " + w2);
+
+                    String key = w1 + " " + w2;
+                    if (hmap.containsKey(key)==true) {
+                        int v = hmap.get(key);
+                        hmap.put(key,v+1);
+                    }
+                    else {
+                        hmap.put(key, 1);
+                    }
+
+                }
+            }
+        }
+
+        Set set = hmap.entrySet();
+        Iterator iterator = set.iterator();
+        while(iterator.hasNext()) {
+            Map.Entry me = (Map.Entry)iterator.next();
+            if ((int)me.getValue() > 2) {
+                System.out.print(me.getKey() + ": ");
+                System.out.println(me.getValue());
+            }
+        }
+
+    }
+
+
     public static void main(String[] args)  throws IOException {
         String statsParamFile = "";
 
@@ -422,6 +476,7 @@ public class ExampleStatsApp {
 
         statsApp.reportCollectionStatistics();
         statsApp.countFieldData();
+        statsApp.extractBigramsFromStoredText();
     	}
 
 }
