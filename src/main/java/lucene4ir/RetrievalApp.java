@@ -24,6 +24,10 @@ import javax.xml.bind.JAXB;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.*;
 
+import static lucene4ir.RetrievalApp.SimModel.BM25;
+import static lucene4ir.RetrievalApp.SimModel.LMD;
+import static lucene4ir.RetrievalApp.SimModel.PL2;
+
 public class RetrievalApp {
 
     public RetrievalParams p;
@@ -37,7 +41,7 @@ public class RetrievalApp {
     protected String fieldsFile;
     protected String qeFile;
 
-    private enum SimModel {
+    protected enum SimModel {
         DEF, BM25, BM25L, LMD, LMJ, PL2, TFIDF,
 	OKAPIBM25, SMARTBNNBNN, DFR
     }
@@ -156,8 +160,16 @@ public class RetrievalApp {
         System.out.println("Result File: " + p.resultFile);
         System.out.println("Model: " + p.model);
         System.out.println("Max Results: " + p.maxResults);
-        System.out.println("b: " + p.b);
-        System.out.println("k: " + p.k);
+        if (sim==BM25) {
+            System.out.println("b: " + p.b);
+            System.out.println("k: " + p.k);
+        }
+        else if (sim==PL2){
+            System.out.println("c: " + p.c);
+        }
+        else if (sim==LMD){
+            System.out.println("mu: " + p.mu);
+        }
         if (p.fieldsFile!=null){
             System.out.println("Fields File: " + p.fieldsFile);
         }
