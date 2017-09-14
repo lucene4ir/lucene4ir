@@ -82,7 +82,7 @@ public class TRECTipsterDocumentIndexer extends DocumentIndexer {
         String line = "";
 
         try {
-            BufferedReader br = new BufferedReader(new FileReader(filename));
+            BufferedReader br = openDocumentFile(filename);
             try {
 
                 line = br.readLine();

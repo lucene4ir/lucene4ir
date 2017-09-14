@@ -88,7 +88,7 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
         java.lang.StringBuilder text = new StringBuilder();
 
         try {
-            BufferedReader br = new BufferedReader(new FileReader(filename));
+            BufferedReader br = openDocumentFile(filename);
             try {
                 line = br.readLine();
                 while (line != null){

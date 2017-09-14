@@ -45,7 +45,7 @@ public class PubMedDocumentIndexer extends DocumentIndexer {
 
 
         try {
-            BufferedReader br = new BufferedReader(new FileReader(filename));
+            BufferedReader br = openDocumentFile(filename);
             try {
 
                 line = br.readLine();
