@@ -17,7 +17,7 @@ model_params={'BM25':'b','LMD':'mu','LMJ':'lam','PL2':'c'}
 
 if len(sys.argv) < 4:
     print "Not enough arguements provided. <optional-params>"
-    print "python lucene_model_trec_script_generator.py path_to_lucene query_file collection <model> <param_setting>"
+    print "python lucene_model_bigram_script_generator.py path_to_lucene query_file collection <model> <param_setting>"
     sys.exit(1)
 
 path_to_lucene=sys.argv[1]
@@ -42,18 +42,18 @@ if model not in models:
     print "Available models are " + models_string
     sys.exit(1)
 
-print 'Writing param file to %s/params/%s/trec_files/%s/%s-%.2f.params' % (path_to_lucene,collection,model,model,param_setting)
+print 'Writing param file to %s/params/%s/bigram_files/%s/%s-%.2f.params' % (path_to_lucene,collection,model,model,param_setting)
 
-filename = '%s/params/%s/trec_files/%s/%s-%.2f.params' % (path_to_lucene,collection,model,model,param_setting)
+filename = '%s/params/%s/bigram_files/%s/%s-%.2f.params' % (path_to_lucene,collection,model,model,param_setting)
 file = open(filename, 'w')
 file.write('<?xml version="1.0" encoding="UTF-8" standalone="yes"?> \n\
 <retrievalParams> \n\
 <indexName>%s/%sIndex</indexName> \n\
 <queryFile>%s/data/%s/%s</queryFile> \n\
-<maxResults>1000</maxResults> \n\
+<maxResults>100</maxResults> \n\
 <model>%s</model> \n\
 <%s>%.2f</%s> \n\
-<resultFile>%s/data/%s/trec_files/%s/%s-%.2f.res</resultFile> \n\
+<resultFile>%s/data/%s/bigram_files/%s/%s-%.2f.res</resultFile> \n\
 <tokenFilterFile>%s/params/news_token_filters.xml</tokenFilterFile> \n\
 </retrievalParams>'% (path_to_lucene, collection, path_to_lucene, collection, query_file, model, param, param_setting, param,path_to_lucene, collection, model, model, param_setting,path_to_lucene))
 file.close()

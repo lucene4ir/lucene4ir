@@ -24,6 +24,10 @@ import javax.xml.bind.JAXB;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.*;
 
+import static lucene4ir.RetrievalApp.SimModel.BM25;
+import static lucene4ir.RetrievalApp.SimModel.LMD;
+import static lucene4ir.RetrievalApp.SimModel.PL2;
+
 public class RetrievalApp {
 
     public RetrievalParams p;
@@ -37,7 +41,7 @@ public class RetrievalApp {
     protected String fieldsFile;
     protected String qeFile;
 
-    private enum SimModel {
+    protected enum SimModel {
         DEF, BM25, BM25L, LMD, LMJ, PL2, TFIDF,
 	OKAPIBM25, SMARTBNNBNN, DFR
     }
@@ -120,7 +124,6 @@ public class RetrievalApp {
         which these apps can inherit from - and customize accordinging.
          */
 
-
         try {
             p = JAXB.unmarshal(new File(paramFile), RetrievalParams.class);
         } catch (Exception e){
@@ -132,7 +135,7 @@ public class RetrievalApp {
         setSim(p.model);
 
         if (p.maxResults==0.0) {p.maxResults=1000;}
-        if (p.b <= 0.0){ p.b = 0.75f;}
+        if (p.b < 0.0){ p.b = 0.75f;}
         if (p.beta <= 0.0){p.beta = 500f;}
         if (p.k <= 0.0){ p.k = 1.2f;}
         if (p.delta<=0.0){p.delta = 1.0f;}
@@ -157,7 +160,16 @@ public class RetrievalApp {
         System.out.println("Result File: " + p.resultFile);
         System.out.println("Model: " + p.model);
         System.out.println("Max Results: " + p.maxResults);
-        System.out.println("b: " + p.b);
+        if (sim==BM25) {
+            System.out.println("b: " + p.b);
+            System.out.println("k: " + p.k);
+        }
+        else if (sim==PL2){
+            System.out.println("c: " + p.c);
+        }
+        else if (sim==LMD){
+            System.out.println("mu: " + p.mu);
+        }
         if (p.fieldsFile!=null){
             System.out.println("Fields File: " + p.fieldsFile);
         }
@@ -172,8 +184,6 @@ public class RetrievalApp {
         else{
             analyzer = Lucene4IRConstants.ANALYZER;
         }
-
-
     }
 
     public void processQueryFile(){
@@ -200,7 +210,7 @@ public class RetrievalApp {
                     for (int i=1; i<parts.length; i++)
                         queryTerms = queryTerms + " " + parts[i];
 
-                    ScoreDoc[] scored = runQuery(qno, queryTerms);
+                    ScoreDoc[] scored = runQuery(qno, queryTerms.trim());
 
                     int n = Math.min(p.maxResults, scored.length);
 
@@ -210,10 +220,8 @@ public class RetrievalApp {
                         fw.write(qno + " QO " + docno + " " + (i+1) + " " + scored[i].score + " " + p.runTag);
                         fw.write(System.lineSeparator());
                     }
-
                     line = br.readLine();
                 }
-
             } finally {
                 br.close();
                 fw.close();
@@ -232,15 +240,13 @@ public class RetrievalApp {
             Query query = parser.parse(QueryParser.escape(queryTerms));
 
             try {
-                TopDocs results = searcher.search(query, 1000);
+                TopDocs results = searcher.search(query, p.maxResults);
                 hits = results.scoreDocs;
             }
             catch (IOException ioe){
                 System.out.println(" caught a " + ioe.getClass() +
                         "\n with message: " + ioe.getMessage());
             }
-
-
         } catch (ParseException pe){
             System.out.println("Can't parse query");
         }
@@ -258,19 +264,15 @@ public class RetrievalApp {
             selectSimilarityFunction(sim);
             searcher.setSimilarity(simfn);
 
-
             parser = new QueryParser(Lucene4IRConstants.FIELD_ALL, analyzer);
-
 
         } catch (Exception e){
             System.out.println(" caught a " + e.getClass() +
                     "\n with message: " + e.getMessage());
         }
-
     }
 
     public static void main(String []args) {
-
 
         String retrievalParamFile = "";
 
@@ -284,11 +286,8 @@ public class RetrievalApp {
 
         RetrievalApp retriever = new RetrievalApp(retrievalParamFile);
         retriever.processQueryFile();
-
     }
-
 }
-
 
 @XmlRootElement(name = "RetrievalParams")
 class RetrievalParams {
@@ -309,6 +308,3 @@ class RetrievalParams {
     public String fieldsFile;
     public String qeFile;
 }
-
-
-

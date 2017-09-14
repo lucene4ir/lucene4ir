@@ -35,6 +35,8 @@ public class FieldedRetrievalApp extends RetrievalApp {
     public FieldedRetrievalApp(String retrievalParamFile) {
         super(retrievalParamFile);
         this.readFieldedParamsFromFile(fieldsFile);
+        for (Field f : fl.fields)
+            System.out.println("Field: " + f.fieldName + " Boost: " + f.fieldBoost);
 
         try {
             reader = DirectoryReader.open(FSDirectory.open( new File(p.indexName).toPath()) );
@@ -43,7 +45,7 @@ public class FieldedRetrievalApp extends RetrievalApp {
             // create similarity function and parameter
             selectSimilarityFunction(sim);
             searcher.setSimilarity(simfn);
-            parser = new QueryParser("all",analyzer);
+//            parser = new QueryParser("all",analyzer);
 
 
         } catch (Exception e){
@@ -53,13 +55,11 @@ public class FieldedRetrievalApp extends RetrievalApp {
     }
 
     public ScoreDoc[] runQuery(String qno, String queryTerms){
-        System.out.println("Fielded Scoring docs...");
         ScoreDoc[] hits = null;
         String[] fields = new String[fl.fields.size()];
         Map<String, Float> boosts = new HashMap<>();
         int i = 0;
         for (Field f : fl.fields) {
-            System.out.println("Field: " + f.fieldName + " Boost: " + f.fieldBoost);
             fields[i] = f.fieldName;
             boosts.put(f.fieldName, f.fieldBoost);
             i++;
@@ -67,12 +67,10 @@ public class FieldedRetrievalApp extends RetrievalApp {
         try {
             MultiFieldQueryParser mfq = new MultiFieldQueryParser(fields, analyzer, boosts);
             Query q = mfq.parse(queryTerms);
-            System.out.println(queryTerms);
-            System.out.println(q.toString());
+            System.out.println(qno+ ": " + q.toString());
             try {
                 TopDocs results = searcher.search(q, p.maxResults);
                 hits = results.scoreDocs;
-                System.out.println(results.totalHits);
             } catch (IOException ioe) {
                 System.out.println(" caught a " + ioe.getClass() +
                         "\n with message: " + ioe.getMessage());
@@ -95,11 +93,11 @@ public class FieldedRetrievalApp extends RetrievalApp {
 
         for (Field field : fl.fields){
             if(field.fieldName.equals(null))
-                field.fieldName="all";
-            else if(field.fieldBoost == 0.0f)
-                field.fieldBoost=1.0f;
+                field.fieldName=Lucene4IRConstants.FIELD_ALL;
+            else if(field.fieldBoost <= 0.0f)
+                field.fieldBoost=0.0f;
         }
-        p.resultFile=fl.resultFile;
+
         System.out.println("Fielded Results File: " + p.resultFile);
     }
 
@@ -120,8 +118,6 @@ public class FieldedRetrievalApp extends RetrievalApp {
     }
 }
 
-
-
 @XmlRootElement(name = "field")
 @XmlAccessorType(XmlAccessType.FIELD)
 class Field {
@@ -137,6 +133,4 @@ class Fields {
     public List<Field> fields;
     @XmlElement(name = "retrievalParamsFile")
     public String retrievalParamsFile;
-    @XmlElement(name = "resultFile")
-    public String resultFile;
 }
