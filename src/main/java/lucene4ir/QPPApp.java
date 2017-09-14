@@ -31,7 +31,8 @@ public class QPPApp {
 //    protected CollectionModel colModel;
 
     private QueryParser parser;
-    private List<QPPredictor> predictors;
+    private List<QPPredictor> prePredictors;
+    private List<QPPredictor> postPredictors;
 
     private void readParamsFromFile(String paramFile) {
         /*
@@ -58,7 +59,7 @@ public class QPPApp {
         System.out.println("Query File: " + p.queryFile);
         System.out.println("QP Prediction File: " + p.qppFile);
         System.out.println("QP Prediction Classes: ");
-        p.predictorClasses.forEach(p -> System.out.println("\t" + p));
+        p.prePredictorClasses.forEach(p -> System.out.println("\t" + p));
         if (p.fieldsFile != null) {
             System.out.println("Fields File: " + p.fieldsFile);
         }
@@ -119,7 +120,7 @@ public class QPPApp {
             Query query = parser.parse(QueryParser.escape(queryTerms));
             System.out.println(query.toString());
             double val;
-            for (QPPredictor predictor : predictors) {
+            for (QPPredictor predictor : prePredictors) {
                 val = predictor.scoreQuery(qno, query);
                 // System.out.println(val);
                 predictions.add(val);
@@ -142,14 +143,16 @@ public class QPPApp {
             searcher = new IndexSearcher(reader);
             parser = new QueryParser("content", analyzer);
 
-            predictors = new ArrayList<>();
-
-            for (String p : p.predictorClasses) {
+            prePredictors = new ArrayList<>();
+            for (String p : p.prePredictorClasses) {
                 QPPredictor c = (QPPredictor) Class.forName(p).getDeclaredConstructor(IndexReader.class).newInstance(reader);
-                predictors.add(c);
+                prePredictors.add(c);
             }
+
+            postPredictors = new ArrayList<>();
+
             System.out.print("Number of Predictors: ");
-            System.out.println(predictors.size());
+            System.out.println(prePredictors.size());
 
         } catch (Exception e) {
             System.out.println(" caught a " + e.getClass() +
@@ -186,7 +189,10 @@ class QPPParams {
     public String qppFile;
     @XmlElementWrapper
     @XmlElement(name = "predictor")
-    public List<String> predictorClasses;
+    public List<String> prePredictorClasses;
+    @XmlElementWrapper
+    @XmlElement(name = "predictor")
+    public List<String> postPredictorClasses;
     public String tokenFilterFile;
     public String fieldsFile;
 }
