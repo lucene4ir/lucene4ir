@@ -4,19 +4,65 @@
     <queryFile>data/cacm/title.query</queryFile>
     <qppFile>data/cacm/qp_predictions.res</qppFile>
     <tokenFilterFile>params/index/example_03.xml</tokenFilterFile>
-    <predictorClasses>
-        <predictor>lucene4ir.predictor.CharLenQPPredictor</predictor>
-        <predictor>lucene4ir.predictor.TermLenQPPredictor</predictor>
-        <predictor>lucene4ir.predictor.AvgQLQPPredictor</predictor>
-        <predictor>lucene4ir.predictor.AvgIDFQPPredictor</predictor>
-        <predictor>lucene4ir.predictor.MaxIDFQPPredictor</predictor>
-        <predictor>lucene4ir.predictor.StdDevIDFQPPredictor</predictor>
-        <predictor>lucene4ir.predictor.AvgICTFQPPredictor</predictor>
-        <predictor>lucene4ir.predictor.SCSQPPredictor</predictor>
-        <predictor>lucene4ir.predictor.SumSCQQPPredictor</predictor>
-        <predictor>lucene4ir.predictor.AvgSCQQPPredictor</predictor>
-        <predictor>lucene4ir.predictor.MaxSCQQPPredictor</predictor>
-        <predictor>lucene4ir.predictor.QSQPPredictor</predictor>
-    </predictorClasses>
+    <preQPP>
+        <!--<predictor>lucene4ir.predictor.pre.CharLenQPPredictor</predictor>-->
+        <!--<predictor>lucene4ir.predictor.pre.TermLenQPPredictor</predictor>-->
+        <!--<predictor>lucene4ir.predictor.pre.AvgQLQPPredictor</predictor>-->
+        <!--<predictor>lucene4ir.predictor.pre.AvgIDFQPPredictor</predictor>-->
+        <!--<predictor>lucene4ir.predictor.pre.MaxIDFQPPredictor</predictor>-->
+        <!--<predictor>lucene4ir.predictor.pre.StdDevIDFQPPredictor</predictor>-->
+        <!--<predictor>lucene4ir.predictor.pre.AvgICTFQPPredictor</predictor>-->
+        <!--<predictor>lucene4ir.predictor.pre.SCSQPPredictor</predictor>-->
+        <!--<predictor>lucene4ir.predictor.pre.SumSCQQPPredictor</predictor>-->
+        <!--<predictor>lucene4ir.predictor.pre.AvgSCQQPPredictor</predictor>-->
+        <!--<predictor>lucene4ir.predictor.pre.MaxSCQQPPredictor</predictor>-->
+        <!--<predictor>lucene4ir.predictor.pre.QSQPPredictor</predictor>-->
+    </preQPP>
+    <postQPP>
+        <predictor>
+            <reference>lucene4ir.predictor.post.WIGQPPredictor</reference>
+            <runFile>data/cacm/bm25_results.res</runFile>
+            <constructor>
+                <arg>
+                    <!-- k -->
+                    <reference>java.lang.Integer</reference>
+                    <value>10</value>
+                </arg>
+            </constructor>
+        </predictor>
+        <predictor>
+            <reference>lucene4ir.predictor.post.WEGQPPredictor</reference>
+            <runFile>data/cacm/bm25_results.res</runFile>
+            <constructor>
+                <arg>
+                    <!-- k -->
+                    <reference>java.lang.Integer</reference>
+                    <value>10</value>
+                </arg>
+            </constructor>
+        </predictor>
+        <predictor>
+            <reference>lucene4ir.predictor.post.NQCQPPredictor</reference>
+            <runFile>data/cacm/bm25_results.res</runFile>
+            <constructor>
+                <arg>
+                    <!-- k -->
+                    <reference>java.lang.Integer</reference>
+                    <value>10</value>
+                </arg>
+            </constructor>
+        </predictor>
+        <predictor>
+            <reference>lucene4ir.predictor.post.CSQPPredictor</reference>
+            <runFile>data/cacm/bm25_results.res</runFile>
+            <constructor>
+                <arg>
+                    <!-- lambda -->
+                    <reference>java.lang.Double</reference>
+                    <value>0.6</value>
+                </arg>
+            </constructor>
+        </predictor>
+    </postQPP>
     <runTag>Fred</runTag>
 </qppParams>
