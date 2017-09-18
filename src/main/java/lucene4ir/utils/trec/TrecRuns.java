@@ -25,7 +25,7 @@ public class TrecRuns implements Iterable<TrecRun> {
     public TrecRuns getTopic(String topic) {
         List<TrecRun> filter = new ArrayList<>();
         for (TrecRun run : results) {
-            if (run.getTopic() == topic) {
+            if (run.getTopic().equals(topic)) {
                 filter.add(run);
             }
         }
@@ -49,8 +49,8 @@ public class TrecRuns implements Iterable<TrecRun> {
             }
 
             String topic = runLine[0];
-            int q = Integer.parseInt(runLine[1]);
-            int docId = Integer.parseInt(runLine[2]);
+            String q = runLine[1];
+            String docId = runLine[2];
             int rank = Integer.parseInt(runLine[3]);
             double score = Double.parseDouble(runLine[4]);
             String runId = runLine[5];

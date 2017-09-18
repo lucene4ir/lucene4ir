@@ -6,13 +6,13 @@ package lucene4ir.utils.trec;
 public class TrecRun {
 
     private String topic;
-    private int q;
-    private int docId;
+    private String q;
+    private String docId;
     private int rank;
     private double score;
     private String runId;
 
-    public TrecRun(String topic, int q, int docId, int rank, double score, String runId) {
+    public TrecRun(String topic, String q, String docId, int rank, double score, String runId) {
         this.topic = topic;
         this.q = q;
         this.docId = docId;
@@ -25,11 +25,11 @@ public class TrecRun {
         return topic;
     }
 
-    public int getQ() {
+    public String getQ() {
         return q;
     }
 
-    public int getDocId() {
+    public String getDocId() {
         return docId;
     }
 

@@ -15,12 +15,10 @@ import java.util.List;
 public class WEGQPPredictor extends PostQPPredictor {
 
     private int k;
-    private TrecRuns run;
 
-    public WEGQPPredictor(IndexReader ir, TrecRuns run, int k) {
-        super(ir);
+    public WEGQPPredictor(IndexReader ir, TrecRuns run, Integer k) {
+        super(ir, run);
         this.k = k;
-        this.run = run;
     }
 
     private double sumScores(double queryLength, double d, double D) {
@@ -58,16 +56,16 @@ public class WEGQPPredictor extends PostQPPredictor {
     }
 
     @Override
-    public double scoreQuery(String qno, Query q, String topicId) {
+    public double scoreQuery(String qno, Query q) {
         double queryLength = q.toString().split(" ").length;
-        TrecRuns topic = run.getTopic(topicId);
+        TrecRuns topic = run.getTopic(qno);
         double D = calculateCnprf(k, topic);
         double totalScore = 0;
         for (int i = 0; i < k; i++) {
             double d = topic.get(i).getScore();
             totalScore += sumScores(queryLength, d, D);
         }
-        return (1 / k) * totalScore;
+        return (1 / (double) k) * totalScore;
     }
 
 }
