@@ -15,5 +15,5 @@ public abstract class PostQPPredictor {
         reader = ir;
     }
 
-    public abstract double scoreQuery(String qno, Query q);
+    public abstract double scoreQuery(String qno, Query q, String topicId);
 }
