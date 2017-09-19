@@ -5,18 +5,18 @@
     <qppFile>data/cacm/qp_predictions.res</qppFile>
     <tokenFilterFile>params/index/example_03.xml</tokenFilterFile>
     <preQPP>
-        <!--<predictor>lucene4ir.predictor.pre.CharLenQPPredictor</predictor>-->
-        <!--<predictor>lucene4ir.predictor.pre.TermLenQPPredictor</predictor>-->
-        <!--<predictor>lucene4ir.predictor.pre.AvgQLQPPredictor</predictor>-->
-        <!--<predictor>lucene4ir.predictor.pre.AvgIDFQPPredictor</predictor>-->
-        <!--<predictor>lucene4ir.predictor.pre.MaxIDFQPPredictor</predictor>-->
-        <!--<predictor>lucene4ir.predictor.pre.StdDevIDFQPPredictor</predictor>-->
-        <!--<predictor>lucene4ir.predictor.pre.AvgICTFQPPredictor</predictor>-->
-        <!--<predictor>lucene4ir.predictor.pre.SCSQPPredictor</predictor>-->
-        <!--<predictor>lucene4ir.predictor.pre.SumSCQQPPredictor</predictor>-->
-        <!--<predictor>lucene4ir.predictor.pre.AvgSCQQPPredictor</predictor>-->
-        <!--<predictor>lucene4ir.predictor.pre.MaxSCQQPPredictor</predictor>-->
-        <!--<predictor>lucene4ir.predictor.pre.QSQPPredictor</predictor>-->
+        <predictor>lucene4ir.predictor.pre.SumSCQQPPredictor</predictor>
+        <predictor>lucene4ir.predictor.pre.AvgSCQQPPredictor</predictor>
+        <predictor>lucene4ir.predictor.pre.MaxSCQQPPredictor</predictor>
+        <predictor>lucene4ir.predictor.pre.CharLenQPPredictor</predictor>
+        <predictor>lucene4ir.predictor.pre.TermLenQPPredictor</predictor>
+        <predictor>lucene4ir.predictor.pre.AvgQLQPPredictor</predictor>
+        <predictor>lucene4ir.predictor.pre.AvgIDFQPPredictor</predictor>
+        <predictor>lucene4ir.predictor.pre.MaxIDFQPPredictor</predictor>
+        <predictor>lucene4ir.predictor.pre.StdDevIDFQPPredictor</predictor>
+        <predictor>lucene4ir.predictor.pre.AvgICTFQPPredictor</predictor>
+        <predictor>lucene4ir.predictor.pre.SCSQPPredictor</predictor>
+        <predictor>lucene4ir.predictor.pre.QSQPPredictor</predictor>
     </preQPP>
     <postQPP>
         <predictor>
@@ -31,7 +31,7 @@
             </constructor>
         </predictor>
         <predictor>
-            <reference>lucene4ir.predictor.post.WEGQPPredictor</reference>
+            <reference>lucene4ir.predictor.post.NQCQPPredictor</reference>
             <runFile>data/cacm/bm25_results.res</runFile>
             <constructor>
                 <arg>
@@ -42,7 +42,7 @@
             </constructor>
         </predictor>
         <predictor>
-            <reference>lucene4ir.predictor.post.NQCQPPredictor</reference>
+            <reference>lucene4ir.predictor.post.WEGQPPredictor</reference>
             <runFile>data/cacm/bm25_results.res</runFile>
             <constructor>
                 <arg>

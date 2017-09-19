@@ -10,7 +10,6 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -151,17 +150,4 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
             System.exit(1);
         }
     }
-}
-
-@XmlRootElement(name = "DOC")
-class AP {
-    public String DOCNO;
-    public String FILEID;
-    public String FIRST;
-    public String SECOND;
-    public String HEAD;
-    public String NOTE;
-    public String BYLINE;
-    public String DATELINE;
-    public String TEXT;
 }
