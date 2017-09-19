@@ -108,7 +108,6 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
 
                     // Remove all escaped entities from the string.
                     docString = docString.replaceAll("&[a-zA-Z0-9]+;", "");
-                    System.out.println(docString);
                     org.w3c.dom.Document xmlDocument = builder.parse(new InputSource(new StringReader(docString)));
                     XPath xPath = XPathFactory.newInstance().newXPath();
 
