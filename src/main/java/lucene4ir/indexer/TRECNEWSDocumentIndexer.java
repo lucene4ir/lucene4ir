@@ -1,6 +1,7 @@
 package lucene4ir.indexer;
 
 import lucene4ir.Lucene4IRConstants;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.StringField;
@@ -99,7 +100,9 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
                 if (line.startsWith("</DOC>")) {
                     DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
                     DocumentBuilder builder = builderFactory.newDocumentBuilder();
-                    org.w3c.dom.Document xmlDocument = builder.parse(new InputSource(new StringReader(text.toString())));
+
+                    String unescapedText = StringEscapeUtils.unescapeXml(text.toString());
+                    org.w3c.dom.Document xmlDocument = builder.parse(new InputSource(new StringReader(unescapedText)));
                     XPath xPath = XPathFactory.newInstance().newXPath();
 
                     String expression = "/DOC/DOCNO";
