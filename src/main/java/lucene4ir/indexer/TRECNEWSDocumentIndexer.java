@@ -115,7 +115,7 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
                     String docid = xPath.compile(expression).evaluate(xmlDocument).trim();
 
                     // The title can either be a HEAD tag or a HL tag.
-                    expression = "/DOC/HEAD|/DOC/HL";
+                    expression = "/DOC/HEAD|/DOC/HL|/DOC/HEADLINE";
                     //String title = xPath.compile(expression).evaluate(xmlDocument).trim();
                     StringBuilder title = new StringBuilder();
                     NodeList nodeList = (NodeList) xPath.compile(expression).evaluate(xmlDocument, XPathConstants.NODESET);
