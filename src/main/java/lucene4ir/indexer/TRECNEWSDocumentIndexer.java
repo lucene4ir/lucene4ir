@@ -122,7 +122,9 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
                     for (int i = 0; i < nodeList.getLength(); i++) {
                         Node currentNode = nodeList.item(i);
                         if (currentNode.getNodeType() == Node.ELEMENT_NODE) {
-                            title.append(" ").append(currentNode.getFirstChild().getNodeValue());
+                            if (currentNode.getFirstChild() != null) {
+                                title.append(" ").append(currentNode.getFirstChild().getNodeValue());
+                            }
                         }
                     }
                     title = new StringBuilder(title.toString().trim());
