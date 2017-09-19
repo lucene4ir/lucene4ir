@@ -101,7 +101,7 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
                     DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
                     DocumentBuilder builder = builderFactory.newDocumentBuilder();
 
-                    String unescapedText = StringEscapeUtils.unescapeXml(text.toString());
+                    String unescapedText = StringEscapeUtils.unescapeHtml4(text.toString());
                     org.w3c.dom.Document xmlDocument = builder.parse(new InputSource(new StringReader(unescapedText)));
                     XPath xPath = XPathFactory.newInstance().newXPath();
 
