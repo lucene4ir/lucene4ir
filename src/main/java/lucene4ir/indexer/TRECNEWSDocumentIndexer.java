@@ -115,28 +115,24 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
                     String docid = xPath.compile(expression).evaluate(xmlDocument).trim();
 
                     // The title can either be a HEAD tag or a HL tag.
-                    expression = "/DOC/HEAD|/DOC/HL|/DOC/HEADLINE";
+                    expression = "/DOC/HEAD/descendant-or-self::*/text()|/DOC/HL/descendant-or-self::*/text()|/DOC/HEADLINE/descendant-or-self::*/text()";
                     //String title = xPath.compile(expression).evaluate(xmlDocument).trim();
                     StringBuilder title = new StringBuilder();
                     NodeList nodeList = (NodeList) xPath.compile(expression).evaluate(xmlDocument, XPathConstants.NODESET);
                     for (int i = 0; i < nodeList.getLength(); i++) {
                         Node currentNode = nodeList.item(i);
-                        if (currentNode.getNodeType() == Node.ELEMENT_NODE) {
-                            if (currentNode.getFirstChild() != null) {
-                                title.append(" ").append(currentNode.getFirstChild().getNodeValue());
-                            }
-                        }
+                        title.append(" ").append(currentNode.getNodeValue());
                     }
                     title = new StringBuilder(title.toString().trim());
 
                     //String title = xPath.compile(expression).evaluate(xmlDocument).trim();
                     System.out.println(docid + " :" + title + ":");
 
-                    expression = "/DOC/TEXT";
+                    expression = "/DOC/TEXT/descendant-or-self::*/text()";
                     String content = xPath.compile(expression).evaluate(xmlDocument).trim();
 
                     // Similar to title, the author field can be represented as multiple tags.
-                    expression = "/DOC/BYLINE|/DOC/SO";
+                    expression = "/DOC/BYLINE/descendant-or-self::*/text()|/DOC/SO/descendant-or-self::*/text()";
                     String author = xPath.compile(expression).evaluate(xmlDocument).trim();
 
                     String all = title + " " + content + " " + author;
