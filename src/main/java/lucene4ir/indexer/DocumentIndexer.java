@@ -48,19 +48,6 @@ public class DocumentIndexer {
     }
 
 
-
-    protected void finalize(){
-        try {
-            if (writer != null){
-                writer.close();
-            }
-        } catch (IOException e){
-            System.out.println(" caught a " + e.getClass() +
-                    "\n with message: " + e.getMessage());
-        }
-    }
-
-
     public void createWriter(String indexPath){
         /*
         The indexPath specifies where to create the index
@@ -78,8 +65,8 @@ public class DocumentIndexer {
             writer = new IndexWriter(dir, iwc);
 
         } catch (IOException e){
-            System.out.println(" caught a " + e.getClass() +
-                    "\n with message: " + e.getMessage());
+            e.printStackTrace();
+            System.exit(1);
         }
     }
 
@@ -87,8 +74,8 @@ public class DocumentIndexer {
         try {
             writer.addDocument(doc);
         } catch (IOException e){
-            System.out.println(" caught a " + e.getClass() +
-                    "\n with message: " + e.getMessage());
+            e.printStackTrace();
+            System.exit(1);
         }
     }
 
@@ -122,8 +109,8 @@ public class DocumentIndexer {
 
 
         } catch (Exception e){
-            System.out.println(" caught a " + e.getClass() +
-                "\n with message: " + e.getMessage());
+            e.printStackTrace();
+            System.exit(1);
         }
         return br;
     }
@@ -135,8 +122,8 @@ public class DocumentIndexer {
                 writer.close();
             }
         } catch (IOException e){
-            System.out.println(" caught a " + e.getClass() +
-                    "\n with message: " + e.getMessage());
+            e.printStackTrace();
+            System.exit(1);
         }
     }
 
