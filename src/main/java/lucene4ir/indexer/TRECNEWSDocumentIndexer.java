@@ -114,7 +114,8 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
                     String expression = "/DOC/DOCNO";
                     String docid = xPath.compile(expression).evaluate(xmlDocument).trim();
 
-                    expression = "/DOC/HEAD";
+                    // The title can either be a HEAD tag or a HL tag.
+                    expression = "/DOC/HEAD|/DOC/HL";
                     //String title = xPath.compile(expression).evaluate(xmlDocument).trim();
                     StringBuilder title = new StringBuilder();
                     NodeList nodeList = (NodeList) xPath.compile(expression).evaluate(xmlDocument, XPathConstants.NODESET);
@@ -134,7 +135,8 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
                     expression = "/DOC/TEXT";
                     String content = xPath.compile(expression).evaluate(xmlDocument).trim();
 
-                    expression = "/DOC/BYLINE";
+                    // Similar to title, the author field can be represented as multiple tags.
+                    expression = "/DOC/BYLINE|/DOC/SO";
                     String author = xPath.compile(expression).evaluate(xmlDocument).trim();
 
                     String all = title + " " + content + " " + author;
