@@ -244,11 +244,12 @@ public class RetrievalApp {
                 hits = results.scoreDocs;
             }
             catch (IOException ioe){
-                System.out.println(" caught a " + ioe.getClass() +
-                        "\n with message: " + ioe.getMessage());
+                ioe.printStackTrace();
+                System.exit(1);
             }
         } catch (ParseException pe){
-            System.out.println("Can't parse query");
+            pe.printStackTrace();
+            System.exit(1);
         }
         return hits;
     }

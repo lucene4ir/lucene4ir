@@ -142,8 +142,8 @@ public class TRECTipsterDocumentIndexer extends DocumentIndexer {
                 br.close();
             }
         } catch (Exception e){
-            System.out.println(" caught a " + e.getClass() +
-                    "\n with message: " + e.getMessage());
+            e.printStackTrace();
+            System.exit(1);
         }
     }
 }

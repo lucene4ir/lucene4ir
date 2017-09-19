@@ -1,6 +1,8 @@
-package lucene4ir.predictor;
+package lucene4ir.predictor.pre;
 
 
+import lucene4ir.predictor.PreQPPredictor;
+import lucene4ir.predictor.QPPredictor;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.search.Query;
@@ -14,7 +16,7 @@ import java.io.IOException;
  *   IDF = log (N) / df(q) ), where N is number of documents in the collection
  *   then take the average over all q terms.
  */
-public class AvgIDFQPPredictor extends QPPredictor {
+public class AvgIDFQPPredictor extends PreQPPredictor {
 
 
     public AvgIDFQPPredictor(IndexReader ir){

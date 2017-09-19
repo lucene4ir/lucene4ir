@@ -47,8 +47,8 @@ public class IndexerApp {
             for(DocumentModel value: DocumentModel.values()){
                 System.out.println("<indexType>"+value.name()+"</indexType>");
             }
-            docModel = DocumentModel.CACM;
-
+            e.printStackTrace();
+            System.exit(1);
         }
     }
 
@@ -125,8 +125,8 @@ public class IndexerApp {
                 br.close();
             }
         } catch (Exception e){
-            System.out.println(" caught a " + e.getClass() +
-                    "\n with message: " + e.getMessage());
+            e.printStackTrace();
+            System.exit(1);
         }
         return files;
     }
@@ -135,8 +135,7 @@ public class IndexerApp {
         try {
             p = JAXB.unmarshal(new File(indexParamFile), IndexParams.class);
         } catch (Exception e){
-            System.out.println(" caught a " + e.getClass() +
-                    "\n with message: " + e.getMessage());
+            e.printStackTrace();
             System.exit(1);
         }
 
@@ -171,8 +170,8 @@ public class IndexerApp {
 
 
         } catch (IOException e) {
-            System.out.println(" caught a " + e.getClass() +
-                    "\n with message: " + e.getMessage());
+            e.printStackTrace();
+            System.exit(1);
         }
 
 
@@ -188,8 +187,7 @@ public class IndexerApp {
         try {
             indexParamFile = args[0];
         } catch(Exception e){
-            System.out.println(" caught a " + e.getClass() +
-                    "\n with message: " + e.getMessage());
+            e.printStackTrace();
             System.exit(1);
         }
 
@@ -202,8 +200,8 @@ public class IndexerApp {
                 indexer.indexDocumentsFromFile(f);
             }
         } catch (Exception e){
-            System.out.println(" caught a " + e.getClass() +
-                    "\n with message: " + e.getMessage());
+            e.printStackTrace();
+            System.exit(1);
         }
         indexer.finished();
         System.out.println("Done building Index");
