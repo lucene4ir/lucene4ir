@@ -1,7 +1,6 @@
 package lucene4ir.indexer;
 
 import lucene4ir.Lucene4IRConstants;
-import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.StringField;
@@ -11,6 +10,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -86,8 +86,9 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
 
     public void indexDocumentsFromFile(String filename) {
 
-        String line = "";
+        String line;
         java.lang.StringBuilder text = new StringBuilder();
+
 
         try (BufferedReader br = openDocumentFile(filename)) {
             line = br.readLine();
@@ -98,11 +99,17 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
                 text.append(line).append("\n");
 
                 if (line.startsWith("</DOC>")) {
+
                     DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
                     DocumentBuilder builder = builderFactory.newDocumentBuilder();
 
-                    String unescapedText = StringEscapeUtils.unescapeHtml4(text.toString());
-                    org.w3c.dom.Document xmlDocument = builder.parse(new InputSource(new StringReader(unescapedText)));
+
+                    String docString = text.toString();
+
+                    // Remove all escaped entities from the string.
+                    docString = docString.replaceAll("&[a-zA-Z0-9]+;", "");
+                    System.out.println(docString);
+                    org.w3c.dom.Document xmlDocument = builder.parse(new InputSource(new StringReader(docString)));
                     XPath xPath = XPathFactory.newInstance().newXPath();
 
                     String expression = "/DOC/DOCNO";
@@ -137,10 +144,22 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
                 }
                 line = br.readLine();
             }
-
         } catch (IOException | SAXException | XPathExpressionException | ParserConfigurationException e) {
             e.printStackTrace();
             System.exit(1);
         }
     }
+}
+
+@XmlRootElement(name = "DOC")
+class AP {
+    public String DOCNO;
+    public String FILEID;
+    public String FIRST;
+    public String SECOND;
+    public String HEAD;
+    public String NOTE;
+    public String BYLINE;
+    public String DATELINE;
+    public String TEXT;
 }
