@@ -111,6 +111,10 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
                     // Remove P and ID attributes for FB94
                     docString = docString.replaceAll("P=[0-9]+", "");
                     docString = docString.replaceAll("ID=[-a-zA-Z0-9]+", "");
+                    // Remove some random tag for FBIS
+                    docString = docString.replaceAll("<3>", "");
+                    docString = docString.replaceAll("</3>", "");
+                    
                     org.w3c.dom.Document xmlDocument = builder.parse(new InputSource(new StringReader(docString)));
                     XPath xPath = XPathFactory.newInstance().newXPath();
 
