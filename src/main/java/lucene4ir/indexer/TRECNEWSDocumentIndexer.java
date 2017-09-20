@@ -108,8 +108,9 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
                     // Remove all escaped entities from the string.
                     docString = docString.replaceAll("&[a-zA-Z0-9]+;", "");
                     docString = docString.replaceAll("&", "");
-                    // Remove P attributes for FB94
+                    // Remove P and ID attributes for FB94
                     docString = docString.replaceAll("P=[0-9]+", "");
+                    docString = docString.replaceAll("ID=[-a-zA-Z0-9]+", "");
                     org.w3c.dom.Document xmlDocument = builder.parse(new InputSource(new StringReader(docString)));
                     XPath xPath = XPathFactory.newInstance().newXPath();
 
@@ -117,7 +118,7 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
                     String docid = xPath.compile(expression).evaluate(xmlDocument).trim();
 
                     // The title can either be a HEAD tag or a HL tag.
-                    expression = "/DOC/HEAD/descendant-or-self::*/text()|/DOC/HL/descendant-or-self::*/text()|/DOC/HEADLINE/descendant-or-self::*/text()|/DOC/DOCTITLE/descendant-or-self::*/text()";
+                    expression = "/DOC/HEAD/descendant-or-self::*/text()|/DOC/HL/descendant-or-self::*/text()|/DOC/HEADLINE/descendant-or-self::*/text()|/DOC/DOCTITLE/descendant-or-self::*/text()|/DOC/HT/descendant-or-self::*/text()";
                     //String title = xPath.compile(expression).evaluate(xmlDocument).trim();
                     StringBuilder title = new StringBuilder();
                     NodeList nodeList = (NodeList) xPath.compile(expression).evaluate(xmlDocument, XPathConstants.NODESET);
