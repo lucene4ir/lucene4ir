@@ -108,6 +108,8 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
                     // Remove all escaped entities from the string.
                     docString = docString.replaceAll("&[a-zA-Z0-9]+;", "");
                     docString = docString.replaceAll("&", "");
+                    // Remove P attributes for FB94
+                    docString = docString.replaceAll("P=[0-9]+", "");
                     org.w3c.dom.Document xmlDocument = builder.parse(new InputSource(new StringReader(docString)));
                     XPath xPath = XPathFactory.newInstance().newXPath();
 
