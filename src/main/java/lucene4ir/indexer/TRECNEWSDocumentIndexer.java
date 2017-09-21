@@ -136,15 +136,28 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
                     System.out.println(docid + " :" + title + ":");
 
                     expression = "/DOC/TEXT/descendant-or-self::*/text()";
-                    String content = xPath.compile(expression).evaluate(xmlDocument).trim();
+                    StringBuilder content = new StringBuilder();
+                    nodeList = (NodeList) xPath.compile(expression).evaluate(xmlDocument, XPathConstants.NODESET);
+                    for (int i = 0; i < nodeList.getLength(); i++) {
+                        Node currentNode = nodeList.item(i);
+                        content.append(" ").append(currentNode.getNodeValue());
+                    }
+                    content = new StringBuilder(content.toString().trim());
 
                     // Similar to title, the author field can be represented as multiple tags.
                     expression = "/DOC/BYLINE/descendant-or-self::*/text()|/DOC/SO/descendant-or-self::*/text()";
                     String author = xPath.compile(expression).evaluate(xmlDocument).trim();
 
                     expression = "/DOC/descendant-or-self::*/text()";
-                    String all = xPath.compile(expression).evaluate(xmlDocument).trim();
-                    createNEWSDocument(docid, author, title.toString(), content, all);
+                    StringBuilder all = new StringBuilder();
+                    nodeList = (NodeList) xPath.compile(expression).evaluate(xmlDocument, XPathConstants.NODESET);
+                    for (int i = 0; i < nodeList.getLength(); i++) {
+                        Node currentNode = nodeList.item(i);
+                        all.append(" ").append(currentNode.getNodeValue());
+                    }
+                    all = new StringBuilder(all.toString().trim());
+                    System.out.println(all);
+                    createNEWSDocument(docid, author, title.toString(), content.toString(), all.toString());
                     addDocumentToIndex(doc);
 
                     text = new StringBuilder();
