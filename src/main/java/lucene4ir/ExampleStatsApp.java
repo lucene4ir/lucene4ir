@@ -213,6 +213,19 @@ public class ExampleStatsApp {
         }
     }
 
+    public void iterateThroughDocListAll()  throws IOException {
+        int n = reader.maxDoc();
+        for (int i = 0; i < n; i++) {
+            Document doc = reader.document(i);
+            // the doc.get pulls out the values stored - ONLY if you store the fields
+            String docnum = doc.get("docnum");
+            String all = doc.get(Lucene4IRConstants.FIELD_ALL).trim();
+            if (all.length() == 0) {
+                System.out.println("docnum: " + docnum);
+            }
+        }
+    }
+
     public void termStats(String termText)  throws IOException{
         /*
         How to get the term frequency and document frequency of a term
@@ -376,17 +389,18 @@ public class ExampleStatsApp {
         token_count = collectionStats.sumTotalTermFreq();
         doc_count = collectionStats.docCount();
         sum_doc_count = collectionStats.sumDocFreq();
+        avg_doc_length = token_count / doc_count;
 
-        System.out.println("TITLE: Token count: " + token_count+ " Doc Count: " + doc_count + " sum doc: " + sum_doc_count);
+        System.out.println("TITLE: Token count: " + token_count+ " Doc Count: " + doc_count + " sum doc: " + sum_doc_count + " avg doc len: " + avg_doc_length);
 
 
         collectionStats = searcher.collectionStatistics(Lucene4IRConstants.FIELD_CONTENT);
         token_count = collectionStats.sumTotalTermFreq();
         doc_count = collectionStats.docCount();
         sum_doc_count = collectionStats.sumDocFreq();
+        avg_doc_length = token_count / doc_count;
 
-        System.out.println("CONTENT: Token count: " + token_count+ " Doc Count: " + doc_count + " sum doc: " + sum_doc_count);
-
+        System.out.println("CONTENT: Token count: " + token_count+ " Doc Count: " + doc_count + " sum doc: " + sum_doc_count + " avg doc len: " + avg_doc_length);
 
     }
 
@@ -490,17 +504,18 @@ public class ExampleStatsApp {
         statsApp.openReader();
         statsApp.docStats();
         statsApp.iterateThroughDocList();
-        statsApp.termStats("program");
-        statsApp.termStats("programs");
-        statsApp.termStats("system");
-        statsApp.termStats("systems");
-        statsApp.termStats("Evacuation");
-        statsApp.termPostingsList("title","system");
+        statsApp.reportCollectionStatistics();
+//        statsApp.termStats("program");
+//        statsApp.termStats("programs");
+//        statsApp.termStats("system");
+//        statsApp.termStats("systems");
+//        statsApp.termStats("Evacuation");
+//        statsApp.termPostingsList("title","system");
         //
         // statsApp.fieldsList();
         //statsApp.termsList("title");
         //statsApp.iterateThroughDocTermVector(1);
-        statsApp.docLength(1);
+//        statsApp.docLength(1);
         /*
         statsApp.numSegments();
 
@@ -511,14 +526,14 @@ public class ExampleStatsApp {
         statsApp.extractBigramsFromStoredText();
         */
 
-        statsApp.printTermVector(200);
+//        statsApp.printTermVector(200);
+//
+//        int doc_ids[] = new int[3];
+//        doc_ids[0]=200;
+//        doc_ids[1] =201;
+//        doc_ids[2] = 202;
 
-        int doc_ids[] = new int[3];
-        doc_ids[0]=200;
-        doc_ids[1] =201;
-        doc_ids[2] = 202;
-
-        statsApp.printTermVectors(doc_ids);
+//        statsApp.printTermVectors(doc_ids);
 
 
     	}

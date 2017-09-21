@@ -114,7 +114,7 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
                     // Remove some random tag for FBIS
                     docString = docString.replaceAll("<3>", "");
                     docString = docString.replaceAll("</3>", "");
-                    
+
                     org.w3c.dom.Document xmlDocument = builder.parse(new InputSource(new StringReader(docString)));
                     XPath xPath = XPathFactory.newInstance().newXPath();
 
@@ -142,7 +142,8 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
                     expression = "/DOC/BYLINE/descendant-or-self::*/text()|/DOC/SO/descendant-or-self::*/text()";
                     String author = xPath.compile(expression).evaluate(xmlDocument).trim();
 
-                    String all = title + " " + content + " " + author;
+                    expression = "/DOC/descendant-or-self::*/text()";
+                    String all = xPath.compile(expression).evaluate(xmlDocument).trim();
                     createNEWSDocument(docid, author, title.toString(), content, all);
                     addDocumentToIndex(doc);
 
