@@ -156,7 +156,6 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
                         all.append(" ").append(currentNode.getNodeValue());
                     }
                     all = new StringBuilder(all.toString().trim());
-                    System.out.println(all);
                     createNEWSDocument(docid, author, title.toString(), content.toString(), all.toString());
                     addDocumentToIndex(doc);
 
