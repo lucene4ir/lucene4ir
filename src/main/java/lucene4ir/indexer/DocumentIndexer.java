@@ -94,7 +94,8 @@ public class DocumentIndexer {
             }
             else
             {
-                if (filename.endsWith(".Z")) {
+                // For the weirdness that is TREC collections.
+                if (filename.endsWith(".Z") || filename.endsWith(".0Z") || filename.endsWith(".1Z") || filename.endsWith(".2Z")) {
                     InputStream fileStream = new FileInputStream(filename);
                     //InputStream zipStream = new ZCompressorInputStream(fileStream);
                     ZCompressorInputStream zipStream = new ZCompressorInputStream(fileStream);
