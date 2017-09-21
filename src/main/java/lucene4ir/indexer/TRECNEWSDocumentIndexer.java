@@ -108,37 +108,55 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
                     // Remove all escaped entities from the string.
                     docString = docString.replaceAll("&[a-zA-Z0-9]+;", "");
                     docString = docString.replaceAll("&", "");
+                    // Remove P and ID attributes for FB94
+                    docString = docString.replaceAll("P=[0-9]+", "");
+                    docString = docString.replaceAll("ID=[-a-zA-Z0-9]+", "");
+                    // Remove some random tag for FBIS
+                    docString = docString.replaceAll("<3>", "");
+                    docString = docString.replaceAll("</3>", "");
+
                     org.w3c.dom.Document xmlDocument = builder.parse(new InputSource(new StringReader(docString)));
                     XPath xPath = XPathFactory.newInstance().newXPath();
 
                     String expression = "/DOC/DOCNO";
                     String docid = xPath.compile(expression).evaluate(xmlDocument).trim();
 
-                    expression = "/DOC/HEAD";
+                    // The title can either be a HEAD tag or a HL tag.
+                    expression = "/DOC/HEAD/descendant-or-self::*/text()|/DOC/HL/descendant-or-self::*/text()|/DOC/HEADLINE/descendant-or-self::*/text()|/DOC/DOCTITLE/descendant-or-self::*/text()|/DOC/HT/descendant-or-self::*/text()";
                     //String title = xPath.compile(expression).evaluate(xmlDocument).trim();
                     StringBuilder title = new StringBuilder();
                     NodeList nodeList = (NodeList) xPath.compile(expression).evaluate(xmlDocument, XPathConstants.NODESET);
                     for (int i = 0; i < nodeList.getLength(); i++) {
                         Node currentNode = nodeList.item(i);
-                        if (currentNode.getNodeType() == Node.ELEMENT_NODE) {
-                            if (currentNode.getFirstChild() != null) {
-                                title.append(" ").append(currentNode.getFirstChild().getNodeValue());
-                            }
-                        }
+                        title.append(" ").append(currentNode.getNodeValue());
                     }
                     title = new StringBuilder(title.toString().trim());
 
                     //String title = xPath.compile(expression).evaluate(xmlDocument).trim();
                     System.out.println(docid + " :" + title + ":");
 
-                    expression = "/DOC/TEXT";
-                    String content = xPath.compile(expression).evaluate(xmlDocument).trim();
+                    expression = "/DOC/TEXT/descendant-or-self::*/text()";
+                    StringBuilder content = new StringBuilder();
+                    nodeList = (NodeList) xPath.compile(expression).evaluate(xmlDocument, XPathConstants.NODESET);
+                    for (int i = 0; i < nodeList.getLength(); i++) {
+                        Node currentNode = nodeList.item(i);
+                        content.append(" ").append(currentNode.getNodeValue());
+                    }
+                    content = new StringBuilder(content.toString().trim());
 
-                    expression = "/DOC/BYLINE";
+                    // Similar to title, the author field can be represented as multiple tags.
+                    expression = "/DOC/BYLINE/descendant-or-self::*/text()|/DOC/SO/descendant-or-self::*/text()";
                     String author = xPath.compile(expression).evaluate(xmlDocument).trim();
 
-                    String all = title + " " + content + " " + author;
-                    createNEWSDocument(docid, author, title.toString(), content, all);
+                    expression = "/DOC/descendant-or-self::*/text()";
+                    StringBuilder all = new StringBuilder();
+                    nodeList = (NodeList) xPath.compile(expression).evaluate(xmlDocument, XPathConstants.NODESET);
+                    for (int i = 0; i < nodeList.getLength(); i++) {
+                        Node currentNode = nodeList.item(i);
+                        all.append(" ").append(currentNode.getNodeValue());
+                    }
+                    all = new StringBuilder(all.toString().trim());
+                    createNEWSDocument(docid, author, title.toString(), content.toString(), all.toString());
                     addDocumentToIndex(doc);
 
                     text = new StringBuilder();
