@@ -31,7 +31,14 @@ public class WIGQPPredictor extends PostQPPredictor {
         TrecRuns topic = run.getTopic(qno);
         double D = topic.get(topic.size() - 1).getScore();
         double totalScore = 0;
-        for (int i = 0; i < k; i++) {
+
+        // Handle the case that the query retrieves less than k documents.
+        int thisK = k;
+        if (topic.size() < k) {
+            thisK = topic.size();
+        }
+
+        for (int i = 0; i < thisK; i++) {
             double d = topic.get(i).getScore();
             totalScore += sumScores(queryLength, d, D);
         }

@@ -60,10 +60,16 @@ public class NQCQPPredictor extends PostQPPredictor {
     public double scoreQuery(String qno, Query q) {
         TrecRuns topic = run.getTopic(qno);
 
+        // Handle the case that the query retrieves less than k documents.
+        int thisK = k;
+        if (topic.size() < k) {
+            thisK = topic.size();
+        }
+
         // Estimate D using the last score of the run.
         double D = topic.get(topic.size() - 1).getScore();
 
-        return 1 / D * Math.sqrt(sumScores((double) k, topic));
+        return 1 / D * Math.sqrt(sumScores((double) thisK, topic));
 
     }
 }
