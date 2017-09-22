@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.*;
 
+import lucene4ir.utils.LanguageModel;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
@@ -38,6 +39,19 @@ public class ExampleStatsApp {
         indexName = "";
         reader = null;
     }
+
+    public void printTermVector(int doc_id){
+        LanguageModel lm = new LanguageModel(reader, doc_id);
+        lm.printTermVector();
+
+    }
+
+    public void printTermVectors(int[] doc_ids){
+        LanguageModel lm = new LanguageModel(reader, doc_ids);
+        lm.printTermVector();
+
+    }
+
 
     public void readExampleStatsParamsFromFile(String indexParamFile) {
         try {
@@ -121,11 +135,27 @@ public class ExampleStatsApp {
          */
 
         Terms t = reader.getTermVector(docid, "title");
+        System.out.println("title Length: " + t.getSumDocFreq());
 
         long tot = 0;
+
         if ((t != null) && (t.size()>0)) {
             tot = tot + t.size();
             System.out.println("title: " + t.size());
+
+            TermsEnum te = t.iterator();
+            BytesRef term = null;
+
+            System.out.println(t.size());
+
+            while ((term = te.next()) != null) {
+                System.out.println("terms: " + term.utf8ToString());
+
+
+            }
+
+
+
         }
 
         t = reader.getTermVector(docid, "content");
@@ -180,6 +210,19 @@ public class ExampleStatsApp {
             System.out.println("docnum and title: " + docnum + " " + title);
             //System.out.println(doc.get("content"));
             iterateThroughDocTermVector(i);
+        }
+    }
+
+    public void iterateThroughDocListAll()  throws IOException {
+        int n = reader.maxDoc();
+        for (int i = 0; i < n; i++) {
+            Document doc = reader.document(i);
+            // the doc.get pulls out the values stored - ONLY if you store the fields
+            String docnum = doc.get("docnum");
+            String all = doc.get(Lucene4IRConstants.FIELD_ALL).trim();
+            if (all.length() == 0) {
+                System.out.println("docnum: " + docnum);
+            }
         }
     }
 
@@ -346,17 +389,18 @@ public class ExampleStatsApp {
         token_count = collectionStats.sumTotalTermFreq();
         doc_count = collectionStats.docCount();
         sum_doc_count = collectionStats.sumDocFreq();
+        avg_doc_length = token_count / doc_count;
 
-        System.out.println("TITLE: Token count: " + token_count+ " Doc Count: " + doc_count + " sum doc: " + sum_doc_count);
+        System.out.println("TITLE: Token count: " + token_count+ " Doc Count: " + doc_count + " sum doc: " + sum_doc_count + " avg doc len: " + avg_doc_length);
 
 
         collectionStats = searcher.collectionStatistics(Lucene4IRConstants.FIELD_CONTENT);
         token_count = collectionStats.sumTotalTermFreq();
         doc_count = collectionStats.docCount();
         sum_doc_count = collectionStats.sumDocFreq();
+        avg_doc_length = token_count / doc_count;
 
-        System.out.println("CONTENT: Token count: " + token_count+ " Doc Count: " + doc_count + " sum doc: " + sum_doc_count);
-
+        System.out.println("CONTENT: Token count: " + token_count+ " Doc Count: " + doc_count + " sum doc: " + sum_doc_count + " avg doc len: " + avg_doc_length);
 
     }
 
@@ -460,16 +504,19 @@ public class ExampleStatsApp {
         statsApp.openReader();
         statsApp.docStats();
         statsApp.iterateThroughDocList();
-        statsApp.termStats("program");
-        statsApp.termStats("programs");
-        statsApp.termStats("system");
-        statsApp.termStats("systems");
-        statsApp.termStats("Evacuation");
-        statsApp.termPostingsList("title","system");
-        statsApp.fieldsList();
-        statsApp.termsList("title");
-        statsApp.iterateThroughDocTermVector(1);
-        statsApp.docLength(1);
+        statsApp.reportCollectionStatistics();
+//        statsApp.termStats("program");
+//        statsApp.termStats("programs");
+//        statsApp.termStats("system");
+//        statsApp.termStats("systems");
+//        statsApp.termStats("Evacuation");
+//        statsApp.termPostingsList("title","system");
+        //
+        // statsApp.fieldsList();
+        //statsApp.termsList("title");
+        //statsApp.iterateThroughDocTermVector(1);
+//        statsApp.docLength(1);
+        /*
         statsApp.numSegments();
 
         statsApp.printTermVectorWithPosition(0, Collections.singleton("title"));
@@ -477,6 +524,18 @@ public class ExampleStatsApp {
         statsApp.reportCollectionStatistics();
         statsApp.countFieldData();
         statsApp.extractBigramsFromStoredText();
+        */
+
+//        statsApp.printTermVector(200);
+//
+//        int doc_ids[] = new int[3];
+//        doc_ids[0]=200;
+//        doc_ids[1] =201;
+//        doc_ids[2] = 202;
+
+//        statsApp.printTermVectors(doc_ids);
+
+
     	}
 
 }

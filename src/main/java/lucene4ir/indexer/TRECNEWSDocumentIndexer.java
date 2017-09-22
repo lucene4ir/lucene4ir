@@ -5,19 +5,21 @@ import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.StringField;
 import org.apache.lucene.document.TextField;
-import java.io.BufferedReader;
-import java.io.FileReader;
-
-
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.*;
-import java.io.*;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.StringReader;
 
 /**
  * Created by leif on 30/08/2016.
@@ -33,7 +35,7 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
     private Field allField;
     private Document doc;
 
-    public TRECNEWSDocumentIndexer(String indexPath, String tokenFilterFile, boolean positional){
+    public TRECNEWSDocumentIndexer(String indexPath, String tokenFilterFile, boolean positional) {
         super(indexPath, tokenFilterFile, positional);
 
         doc = new Document();
@@ -43,13 +45,12 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
 
     private void initFields() {
         docnumField = new StringField(Lucene4IRConstants.FIELD_DOCNUM, "", Field.Store.YES);
-        if(indexPositions){
+        if (indexPositions) {
             titleField = new TermVectorEnabledTextField(Lucene4IRConstants.FIELD_TITLE, "", Field.Store.YES);
             textField = new TermVectorEnabledTextField(Lucene4IRConstants.FIELD_CONTENT, "", Field.Store.YES);
             allField = new TermVectorEnabledTextField(Lucene4IRConstants.FIELD_ALL, "", Field.Store.YES);
             authorField = new TermVectorEnabledTextField(Lucene4IRConstants.FIELD_AUTHOR, "", Field.Store.YES);
-        }
-        else {
+        } else {
             titleField = new TextField(Lucene4IRConstants.FIELD_TITLE, "", Field.Store.YES);
             textField = new TextField(Lucene4IRConstants.FIELD_CONTENT, "", Field.Store.YES);
             allField = new TextField(Lucene4IRConstants.FIELD_ALL, "", Field.Store.YES);
@@ -65,7 +66,7 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
         doc.add(authorField);
     }
 
-    public Document createNEWSDocument(String docid, String author, String title, String content, String all){
+    public Document createNEWSDocument(String docid, String author, String title, String content, String all) {
         doc.clear();
 
         docnumField.setStringValue(docid);
@@ -82,66 +83,89 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
         return doc;
     }
 
-    public void indexDocumentsFromFile(String filename){
+    public void indexDocumentsFromFile(String filename) {
 
-        String line = "";
+        String line;
         java.lang.StringBuilder text = new StringBuilder();
 
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(filename));
-            try {
-                line = br.readLine();
-                while (line != null){
-                    if (line.startsWith("<DOC>")) {
-                        text = new StringBuilder();
-                    }
-                    text.append(line + "\n");
 
-                    if (line.startsWith("</DOC>")){
-                        DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
-                        DocumentBuilder builder =  builderFactory.newDocumentBuilder();
-                        org.w3c.dom.Document xmlDocument = builder.parse(new InputSource(new StringReader(text.toString())));
-                        XPath xPath =  XPathFactory.newInstance().newXPath();
-
-                        String expression = "/DOC/DOCNO";
-                        String docid = xPath.compile(expression).evaluate(xmlDocument).trim();
-
-                        expression = "/DOC/HEAD";
-                        //String title = xPath.compile(expression).evaluate(xmlDocument).trim();
-                        String title = "";
-                        NodeList nodeList = (NodeList)xPath.compile(expression).evaluate(xmlDocument, XPathConstants.NODESET);
-                        for (int i = 0; i < nodeList.getLength(); i++) {
-                            Node currentNode = nodeList.item(i);
-                            if (currentNode.getNodeType() == Node.ELEMENT_NODE) {
-                                title = title + " " + currentNode.getFirstChild().getNodeValue();
-                            }
-                        }
-                        title = title.trim();
-
-                        //String title = xPath.compile(expression).evaluate(xmlDocument).trim();
-                        System.out.println(docid + " :" + title+ ":");
-
-                        expression = "/DOC/TEXT";
-                        String content = xPath.compile(expression).evaluate(xmlDocument).trim();
-
-                        expression = "/DOC/BYLINE";
-                        String author = xPath.compile(expression).evaluate(xmlDocument).trim();
-
-                        String all = title + " " + content + " " + author;
-                        createNEWSDocument(docid,author,title,content,all);
-                        addDocumentToIndex(doc);
-
-                        text = new StringBuilder();
-                    }
-                    line = br.readLine();
+        try (BufferedReader br = openDocumentFile(filename)) {
+            line = br.readLine();
+            while (line != null) {
+                if (line.startsWith("<DOC>")) {
+                    text = new StringBuilder();
                 }
+                text.append(line).append("\n");
 
-            } finally {
-                br.close();
+                if (line.startsWith("</DOC>")) {
+
+                    DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
+                    DocumentBuilder builder = builderFactory.newDocumentBuilder();
+
+
+                    String docString = text.toString();
+
+                    // Remove all escaped entities from the string.
+                    docString = docString.replaceAll("&[a-zA-Z0-9]+;", "");
+                    docString = docString.replaceAll("&", "");
+                    // Remove P and ID attributes for FB94
+                    docString = docString.replaceAll("P=[0-9]+", "");
+                    docString = docString.replaceAll("ID=[-a-zA-Z0-9]+", "");
+                    // Remove some random tag for FBIS
+                    docString = docString.replaceAll("<3>", "");
+                    docString = docString.replaceAll("</3>", "");
+
+                    org.w3c.dom.Document xmlDocument = builder.parse(new InputSource(new StringReader(docString)));
+                    XPath xPath = XPathFactory.newInstance().newXPath();
+
+                    String expression = "/DOC/DOCNO";
+                    String docid = xPath.compile(expression).evaluate(xmlDocument).trim();
+
+                    // The title can either be a HEAD tag or a HL tag.
+                    expression = "/DOC/HEAD/descendant-or-self::*/text()|/DOC/HL/descendant-or-self::*/text()|/DOC/HEADLINE/descendant-or-self::*/text()|/DOC/DOCTITLE/descendant-or-self::*/text()|/DOC/HT/descendant-or-self::*/text()";
+                    //String title = xPath.compile(expression).evaluate(xmlDocument).trim();
+                    StringBuilder title = new StringBuilder();
+                    NodeList nodeList = (NodeList) xPath.compile(expression).evaluate(xmlDocument, XPathConstants.NODESET);
+                    for (int i = 0; i < nodeList.getLength(); i++) {
+                        Node currentNode = nodeList.item(i);
+                        title.append(" ").append(currentNode.getNodeValue());
+                    }
+                    title = new StringBuilder(title.toString().trim());
+
+                    //String title = xPath.compile(expression).evaluate(xmlDocument).trim();
+                    System.out.println(docid + " :" + title + ":");
+
+                    expression = "/DOC/TEXT/descendant-or-self::*/text()";
+                    StringBuilder content = new StringBuilder();
+                    nodeList = (NodeList) xPath.compile(expression).evaluate(xmlDocument, XPathConstants.NODESET);
+                    for (int i = 0; i < nodeList.getLength(); i++) {
+                        Node currentNode = nodeList.item(i);
+                        content.append(" ").append(currentNode.getNodeValue());
+                    }
+                    content = new StringBuilder(content.toString().trim());
+
+                    // Similar to title, the author field can be represented as multiple tags.
+                    expression = "/DOC/BYLINE/descendant-or-self::*/text()|/DOC/SO/descendant-or-self::*/text()";
+                    String author = xPath.compile(expression).evaluate(xmlDocument).trim();
+
+                    expression = "/DOC/descendant-or-self::*/text()";
+                    StringBuilder all = new StringBuilder();
+                    nodeList = (NodeList) xPath.compile(expression).evaluate(xmlDocument, XPathConstants.NODESET);
+                    for (int i = 0; i < nodeList.getLength(); i++) {
+                        Node currentNode = nodeList.item(i);
+                        all.append(" ").append(currentNode.getNodeValue());
+                    }
+                    all = new StringBuilder(all.toString().trim());
+                    createNEWSDocument(docid, author, title.toString(), content.toString(), all.toString());
+                    addDocumentToIndex(doc);
+
+                    text = new StringBuilder();
+                }
+                line = br.readLine();
             }
-        } catch (Exception e){
-            System.out.println(" caught a " + e.getClass() +
-                    "\n with message: " + e.getMessage());
+        } catch (IOException | SAXException | XPathExpressionException | ParserConfigurationException e) {
+            e.printStackTrace();
+            System.exit(1);
         }
     }
 }

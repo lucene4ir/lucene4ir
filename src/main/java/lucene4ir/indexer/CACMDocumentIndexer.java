@@ -78,9 +78,8 @@ public class CACMDocumentIndexer extends DocumentIndexer {
 
 
     public void indexDocumentsFromFile(String filename){
-
         try {
-            BufferedReader br = new BufferedReader(new FileReader(filename));
+            BufferedReader br = openDocumentFile(filename);
             try {
 
                 String[] fields= new String[5];
@@ -96,17 +95,10 @@ public class CACMDocumentIndexer extends DocumentIndexer {
 
                     if (line.startsWith(".I")){
                         // if there is an existing document, create doc, and add to index
-                        if (fields[0] != ""){
+                        if (!fields[0].equals("")){
                             doc.clear();
                             doc = createCacmDocument(fields[0],fields[1],fields[2],fields[3],fields[4]);
                             addDocumentToIndex(doc);
-
-                            /*
-                            System.out.println("Title: " + fields[1]);
-                            System.out.println("Authors: " + fields[2]);
-                            System.out.println("Abstract: " + fields[3]);
-                            System.out.println("Pub Date: " + fields[4]);
-                            */
                         }
 
                         // reset fields
@@ -152,7 +144,7 @@ public class CACMDocumentIndexer extends DocumentIndexer {
                     }
                     line = br.readLine();
                 }
-                if (fields[0] != ""){
+                if (!fields[0].equals("")){
                     doc = createCacmDocument(fields[0],fields[1],fields[2],fields[3],fields[4]);
                     addDocumentToIndex(doc);
                 }
