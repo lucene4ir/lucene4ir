@@ -15,6 +15,10 @@ public class QSQPPredictor extends PreQPPredictor {
         super(ir);
     }
 
+    public String name() {
+        return "QueryScope";
+    }
+
     @Override
     public double scoreQuery(String qno, Query q) {
         // Number of documents containing at least one of the query terms.

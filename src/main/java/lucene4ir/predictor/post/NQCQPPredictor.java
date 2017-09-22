@@ -18,6 +18,10 @@ public class NQCQPPredictor extends PostQPPredictor {
         this.k = k;
     }
 
+    public String name() {
+        return "NQC";
+    }
+
     private double calculateMu(double k, TrecRuns topic) {
         double score = 0.0;
 

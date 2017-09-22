@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by leif on 13/08/2017.
  */
-public abstract class PostQPPredictor {
+public abstract class PostQPPredictor extends QPPredictor {
 
     protected IndexReader reader;
     public String field = "content";
@@ -19,7 +19,7 @@ public abstract class PostQPPredictor {
 
 
     public PostQPPredictor(IndexReader ir, TrecRuns run) {
-        this.reader = ir;
+        super(ir);
         this.run = run;
     }
 

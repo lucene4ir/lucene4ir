@@ -25,6 +25,10 @@ public class CSQPPredictor extends PostQPPredictor {
         this.lambda = lambda;
     }
 
+    public String name() {
+        return "ClarityScore";
+    }
+
     @Override
     public double scoreQuery(String qno, Query q) {
         TrecRuns topic = run.getTopic(qno);

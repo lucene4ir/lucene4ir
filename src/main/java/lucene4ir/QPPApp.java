@@ -67,7 +67,7 @@ public class QPPApp {
 
         System.out.println("Pre-retrieval QP Prediction Classes: ");
         p.preQPP.forEach(p -> System.out.println("\t" + p));
-        System.out.println("Pre-retrieval QP Prediction Classes: ");
+        System.out.println("Post-retrieval QP Prediction Classes: ");
         p.postQPP.forEach(p -> System.out.println("\t" + p.reference));
 
         if (p.fieldsFile != null) {
@@ -96,6 +96,17 @@ public class QPPApp {
             File file = new File(p.qppFile);
 
             try (BufferedReader br = new BufferedReader(new FileReader(p.queryFile)); FileWriter fw = new FileWriter(file)) {
+                StringBuilder headers = new StringBuilder();
+                headers.append("Topic ");
+                for (PreQPPredictor prePredictor : prePredictors) {
+                    headers.append(prePredictor.name()).append(" ");
+                }
+                for (PostQPPredictor postPredictor : postPredictors) {
+                    headers.append(postPredictor.name()).append(" ");
+                }
+                headers.append("\n");
+                fw.write(headers.toString());
+
                 String line = br.readLine();
                 while (line != null) {
 

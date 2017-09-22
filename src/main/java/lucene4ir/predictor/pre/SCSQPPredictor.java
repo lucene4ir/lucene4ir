@@ -16,6 +16,10 @@ public class SCSQPPredictor extends AvgICTFQPPredictor {
         super(ir);
     }
 
+    public String name() {
+        return "SimplifiedClarityScore";
+    }
+
     @Override
     public double scoreQuery(String qno, Query q) {
         double m = q.toString().split(" ").length;

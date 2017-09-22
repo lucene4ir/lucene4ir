@@ -24,6 +24,10 @@ public class AvgICTFQPPredictor extends PreQPPredictor {
         }
     }
 
+    public String name() {
+        return "AvgICTF";
+    }
+
     @Override
     public double scoreQuery(String qno, Query q) {
         String[] termTuples = q.toString().split(" ");

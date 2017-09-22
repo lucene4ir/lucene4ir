@@ -13,6 +13,10 @@ public class AvgSCQQPPredictor extends SumSCQQPPredictor {
         super(ir);
     }
 
+    public String name() {
+        return "AvgSCQ";
+    }
+
     @Override
     public double scoreQuery(String qno, Query q) {
         double m = q.toString().split(" ").length;

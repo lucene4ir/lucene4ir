@@ -15,6 +15,10 @@ public class MaxIDFQPPredictor extends PreQPPredictor {
         super(ir);
     }
 
+    public String name() {
+        return "";
+    }
+
     @Override
     public double scoreQuery(String qno, Query q) {
         String[] terms = q.toString().split(" ");

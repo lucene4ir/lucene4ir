@@ -17,6 +17,10 @@ public class WIGQPPredictor extends PostQPPredictor {
         this.k = k;
     }
 
+    public String name() {
+        return "WIG";
+    }
+
     private double sumScores(double queryLength, double d, double D) {
         return (1 / Math.sqrt(queryLength)) * (d - D);
     }
