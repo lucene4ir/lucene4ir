@@ -70,7 +70,7 @@ public class CSQPPredictor extends PostQPPredictor {
             String[] parts = term.split(":");
             if (parts.length == 2) {
                 // TODO something is wrong here...
-                p1[i] = lm.getDirichletTermProb(parts[1], 50);
+                p1[i] = lm.getJMTermProb(parts[1], lambda);
                 p2[i] = lm.getCollectionTermProb(parts[1]);
 //                System.out.println("----------");
 //                System.out.println(p1[i]);

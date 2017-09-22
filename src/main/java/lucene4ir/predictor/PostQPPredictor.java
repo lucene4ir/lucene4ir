@@ -13,7 +13,6 @@ import java.util.List;
  */
 public abstract class PostQPPredictor extends QPPredictor {
 
-    protected IndexReader reader;
     public String field = "content";
     protected TrecRuns run;
 
