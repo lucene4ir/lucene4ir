@@ -16,7 +16,7 @@ public class MaxIDFQPPredictor extends PreQPPredictor {
     }
 
     public String name() {
-        return "";
+        return "MaxIDF";
     }
 
     @Override

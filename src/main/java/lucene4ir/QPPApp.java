@@ -15,7 +15,6 @@ import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.store.FSDirectory;
 
-import javax.print.Doc;
 import javax.xml.bind.JAXB;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
@@ -96,16 +95,19 @@ public class QPPApp {
             File file = new File(p.qppFile);
 
             try (BufferedReader br = new BufferedReader(new FileReader(p.queryFile)); FileWriter fw = new FileWriter(file)) {
-                StringBuilder headers = new StringBuilder();
-                headers.append("Topic ");
+                String[] headers = new String[1 + prePredictors.size() + postPredictors.size()];
+                int j = 1;
+                headers[0] = "Topic";
                 for (PreQPPredictor prePredictor : prePredictors) {
-                    headers.append(prePredictor.name()).append(" ");
+                    headers[j] = prePredictor.name();
+                    j++;
                 }
                 for (PostQPPredictor postPredictor : postPredictors) {
-                    headers.append(postPredictor.name()).append(" ");
+                    headers[j] = postPredictor.name();
+                    j++;
                 }
-                headers.append("\n");
-                fw.write(headers.toString());
+                String header = String.join(" ", headers) + "\n";
+                fw.write(header);
 
                 String line = br.readLine();
                 while (line != null) {
