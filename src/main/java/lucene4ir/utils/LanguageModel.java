@@ -134,7 +134,9 @@ public class LanguageModel {
 
         try {
             Terms t = reader.getTermVector(doc_id, field);
-
+            if (t == null) {
+                 return 1;
+            }
             return t.getSumDocFreq();
         } catch (IOException e) {
             return 1;
