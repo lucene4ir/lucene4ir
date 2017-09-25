@@ -43,7 +43,7 @@ public class WIGQPPredictor extends PostQPPredictor {
             totalScore += sumScores(queryLength, d, D);
         }
 
-        return (1 / (double) k) * totalScore;
+        return (1.0 / k) * totalScore;
     }
 
 }

@@ -69,7 +69,7 @@ public class NQCQPPredictor extends PostQPPredictor {
         // Estimate D using the last score of the run.
         double D = topic.get(topic.size() - 1).getScore();
 
-        return 1 / D * Math.sqrt(sumScores((double) thisK, topic));
+        return 1.0 / D * Math.sqrt(sumScores((double) thisK, topic));
 
     }
 }
