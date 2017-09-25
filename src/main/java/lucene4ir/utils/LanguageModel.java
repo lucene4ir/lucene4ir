@@ -127,20 +127,19 @@ public class LanguageModel {
 
 
     protected void updateTermCountMap(int doc_id, double weight) {
-
         try {
             Terms t = reader.getTermVector(doc_id, field);
-
             if ((t != null) && (t.size() > 0)) {
                 TermsEnum te = t.iterator();
                 BytesRef term = null;
                 PostingsEnum p = null;
                 while ((term = te.next()) != null) {
-                    if (termcounts.containsKey(term)) {
-                        double v = termcounts.get(term);
-                        termcounts.put(term.utf8ToString(), v + (te.totalTermFreq() * weight));
+                    String termText = term.utf8ToString();
+                    if (termcounts.containsKey(termText)) {
+                        double v = termcounts.get(termText);
+                        termcounts.put(termText, v + (te.totalTermFreq() * weight));
                     } else {
-                        termcounts.put(term.utf8ToString(), (te.totalTermFreq() * weight));
+                        termcounts.put(termText, (te.totalTermFreq() * weight));
                     }
                     doc_len = doc_len +  (te.totalTermFreq() * weight);
 
@@ -177,7 +176,7 @@ public class LanguageModel {
             double cprob = getCollectionTermProb(termText);
             double jmprob = getJMTermProb(termText, 0.5);
             double dirprob = getDirichletTermProb(termText, 100);
-            //System.out.println(m.getKey() + " " + m.getValue() + " " + prob + " " + cprob + " " + jmprob + " " + dirprob);
+            System.out.println(m.getKey() + " " + m.getValue() + " " + prob + " " + cprob + " " + jmprob + " " + dirprob);
             tprob = tprob + prob;
 
         }

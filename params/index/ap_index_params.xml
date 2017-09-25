@@ -3,5 +3,6 @@
     <indexName>apindex</indexName>
     <fileList>data/ap_file_list</fileList>
     <indexType>trecnews</indexType>
-    <tokenFilterFile>params/index/example_03.xml</tokenFilterFile>
+    <tokenFilterFile>params/index/example_05.xml</tokenFilterFile>
+    <recordPositions>true</recordPositions>
 </indexParams>
