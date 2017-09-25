@@ -22,7 +22,7 @@ public class LanguageModel {
     CollectionStatistics collectionStats;
     public String field = Lucene4IRConstants.FIELD_ALL;
     public int[] doc_ids;
-    public long doc_len;
+    public double doc_len;
     public HashMap<String, Double> termcounts = new HashMap<>();
     public long token_count;
 
@@ -31,7 +31,7 @@ public class LanguageModel {
         searcher = new IndexSearcher(reader);
         doc_ids = new int[1];
         doc_ids[0] = doc_id;
-        doc_len = getDocLength(doc_id);
+        doc_len = 0.0;
         updateTermCountMap(doc_id, 1.0);
         try {
             collectionStats = searcher.collectionStatistics(field);
@@ -47,13 +47,11 @@ public class LanguageModel {
         searcher = new IndexSearcher(reader);
         this.doc_ids = doc_ids;
         int size = doc_ids.length;
-        doc_len = 0;
+        doc_len = 0.0;
         for (int i = 0; i < size; i++) {
-            doc_len = doc_len + getDocLength(doc_ids[i]);
+            System.out.println("doc id: " +  doc_ids[i]);
             updateTermCountMap(doc_ids[i], 1.0);
-            //System.out.println(doc_ids[i]);
         }
-        //doc_len = getDocLength( doc_id );
 
         try {
             collectionStats = searcher.collectionStatistics(field);
@@ -71,13 +69,11 @@ public class LanguageModel {
         searcher = new IndexSearcher(reader);
         this.doc_ids = doc_ids;
         int size = doc_ids.length;
-        doc_len = 0;
+        doc_len = 0.0;
         for (int i = 0; i < size; i++) {
-            doc_len = doc_len + getDocLength(doc_ids[i]);
             updateTermCountMap(doc_ids[i], weights[i]);
-            //System.out.println(doc_ids[i]);
         }
-        //doc_len = getDocLength( doc_id );
+
 
         try {
             collectionStats = searcher.collectionStatistics(field);
@@ -130,37 +126,23 @@ public class LanguageModel {
     }
 
 
-    protected long getDocLength(int doc_id) {
-
-        try {
-            Terms t = reader.getTermVector(doc_id, field);
-            if (t == null) {
-                 return 1;
-            }
-            return t.getSumDocFreq();
-        } catch (IOException e) {
-            return 1;
-        }
-    }
-
-    ;
-
     protected void updateTermCountMap(int doc_id, double weight) {
-
         try {
             Terms t = reader.getTermVector(doc_id, field);
-
             if ((t != null) && (t.size() > 0)) {
                 TermsEnum te = t.iterator();
                 BytesRef term = null;
                 PostingsEnum p = null;
                 while ((term = te.next()) != null) {
-                    if (termcounts.containsKey(term)) {
-                        double v = termcounts.get(term);
-                        termcounts.put(term.utf8ToString(), v + (te.totalTermFreq() * weight));
+                    String termText = term.utf8ToString();
+                    if (termcounts.containsKey(termText)) {
+                        double v = termcounts.get(termText);
+                        termcounts.put(termText, v + (te.totalTermFreq() * weight));
                     } else {
-                        termcounts.put(term.utf8ToString(), (te.totalTermFreq() * weight));
+                        termcounts.put(termText, (te.totalTermFreq() * weight));
                     }
+                    doc_len = doc_len +  (te.totalTermFreq() * weight);
+
                     p = te.postings(p, PostingsEnum.ALL);
                 }
             }
@@ -182,14 +164,23 @@ public class LanguageModel {
 
 
     public void printTermVector() {
+        double tprob = 0.0;
+        double tcount = 0.0;
+
         for (Map.Entry m : termcounts.entrySet()) {
             String termText = (String) m.getKey();
+            double count = getDocumentTermCount(termText);
+            tcount = tcount + count;
+
             double prob = getDocumentTermProb(termText);
             double cprob = getCollectionTermProb(termText);
             double jmprob = getJMTermProb(termText, 0.5);
             double dirprob = getDirichletTermProb(termText, 100);
             System.out.println(m.getKey() + " " + m.getValue() + " " + prob + " " + cprob + " " + jmprob + " " + dirprob);
+            tprob = tprob + prob;
+
         }
+        System.out.println("Total prob mass: " + tprob + " total term count:" + tcount + " Doc size:" + doc_len);
 
     }
 

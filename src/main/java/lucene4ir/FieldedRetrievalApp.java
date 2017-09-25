@@ -28,12 +28,19 @@ import java.util.Map;
 
 /**
  * Created by colin on 17/07/2017.
+ * Implements fielded querying. Fields and boosts can be set.
  */
 public class FieldedRetrievalApp extends RetrievalApp {
     public Fields fl;
 
+    /**
+     * Instantiates Fielded Retrieval.
+     * Supers the RetrievalApp to set up all the retrieval variables.
+     * @param retrievalParamFile
+     */
     public FieldedRetrievalApp(String retrievalParamFile) {
         super(retrievalParamFile);
+        System.out.println("Fielded Querying");
         this.readFieldedParamsFromFile(fieldsFile);
         for (Field f : fl.fields)
             System.out.println("Field: " + f.fieldName + " Boost: " + f.fieldBoost);
@@ -45,8 +52,6 @@ public class FieldedRetrievalApp extends RetrievalApp {
             // create similarity function and parameter
             selectSimilarityFunction(sim);
             searcher.setSimilarity(simfn);
-//            parser = new QueryParser("all",analyzer);
-
 
         } catch (Exception e){
             System.out.println(" caught a " + e.getClass() +
@@ -54,6 +59,12 @@ public class FieldedRetrievalApp extends RetrievalApp {
         }
     }
 
+    /**
+     * Performs scoring on the query provided.
+     * @param qno
+     * @param queryTerms
+     * @return
+     */
     public ScoreDoc[] runQuery(String qno, String queryTerms){
         ScoreDoc[] hits = null;
         String[] fields = new String[fl.fields.size()];
@@ -81,6 +92,11 @@ public class FieldedRetrievalApp extends RetrievalApp {
         return hits;
     }
 
+    /**
+     * Reads the additional parameters required for fielded retrieval.
+     * Fields and boosts are read here.
+     * @param paramFile
+     */
     public void readFieldedParamsFromFile(String paramFile){
 
         try {
@@ -96,11 +112,16 @@ public class FieldedRetrievalApp extends RetrievalApp {
                 field.fieldName=Lucene4IRConstants.FIELD_ALL;
             else if(field.fieldBoost <= 0.0f)
                 field.fieldBoost=0.0f;
+            System.out.println("Field " +field.fieldName + " Boost: " + field.fieldBoost);
         }
 
         System.out.println("Fielded Results File: " + p.resultFile);
     }
 
+    /**
+     * Runs fielded retrieval from the parameter file specified.
+     * @param args
+     */
     public static void main(String []args) {
 
         String retrievalParamFile = "";
