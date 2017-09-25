@@ -69,20 +69,16 @@ public class CSQPPredictor extends PostQPPredictor {
 
             String[] parts = term.split(":");
             if (parts.length == 2) {
-                // TODO something is wrong here...
                 p1[i] = lm.getJMTermProb(parts[1], lambda);
                 p2[i] = lm.getCollectionTermProb(parts[1]);
-//                System.out.println("----------");
-//                System.out.println(p1[i]);
-//                System.out.println(p2[i]);
                 i++;
             }
         }
 
-        double p1Sum = Arrays.stream(p1).sum();
-        double p2Sum = Arrays.stream(p2).sum();
-
-        System.out.println(String.format("p1: %f, p2: %f, sum: %f", p1Sum, p2Sum, p1Sum + p2Sum));
+//        double p1Sum = Arrays.stream(p1).sum();
+//        double p2Sum = Arrays.stream(p2).sum();
+//
+//        System.out.println(String.format("p1: %f, p2: %f, sum: %f", p1Sum, p2Sum, p1Sum + p2Sum));
 
         // Clarity Score is the KL divergence between the query language model and the collection language model.
         return KLDivergence.calculate(p1, p2);
