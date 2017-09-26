@@ -8,7 +8,9 @@ import org.apache.lucene.util.BytesRef;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by leif on 14/09/2017.
@@ -48,7 +50,6 @@ public class LanguageModel {
         this.doc_ids = doc_ids;
         doc_len = 0.0;
         for (int doc_id : doc_ids) {
-            System.out.println("doc id: " + doc_id);
             updateTermCountMap(doc_id, 1.0);
         }
 
@@ -155,6 +156,31 @@ public class LanguageModel {
         return (getDocumentTermCount(termText) + mu * getCollectionTermProb(termText)) / (doc_len + mu);
     }
 
+    public static LanguageModel collectionLanguageModel(IndexReader ir) {
+        int[] docIds = new int[ir.numDocs()];
+        for (int i = 0; i < ir.numDocs(); i++) {
+            docIds[i] = i;
+        }
+        return new LanguageModel(ir, docIds);
+    }
+
+    public double KLDivergence(double lambda) {
+        // Grab the vocabulary by using the collection language model.
+        Set<String> terms = collectionLanguageModel(reader).termCounts.keySet();
+
+        double klDiv = 0.0;
+        for (String term : terms) {
+            if (!termCounts.containsKey(term)) {
+                continue;
+            }
+            double px = getJMTermProb(term, lambda);
+            double qx = getCollectionTermProb(term);
+
+            klDiv += px * Math.log(px / qx);
+        }
+
+        return klDiv;
+    }
 
     public void printTermVector() {
         double tProb = 0.0;
