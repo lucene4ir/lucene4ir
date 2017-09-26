@@ -8,9 +8,7 @@ import org.apache.lucene.util.BytesRef;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by leif on 14/09/2017.
@@ -104,6 +102,7 @@ public class LanguageModel {
         }
     }
 
+    @SuppressWarnings("WeakerAccess")
     public double getCollectionTermProb(String termText) {
         double prob = 0.0;
         try {
@@ -134,7 +133,7 @@ public class LanguageModel {
                     } else {
                         termCounts.put(termText, (te.totalTermFreq() * weight));
                     }
-                    doc_len = doc_len +  (te.totalTermFreq() * weight);
+                    doc_len = doc_len + (te.totalTermFreq() * weight);
 
                     p = te.postings(p, PostingsEnum.ALL);
                 }
@@ -147,6 +146,7 @@ public class LanguageModel {
     }
 
 
+    @SuppressWarnings("WeakerAccess")
     public double getJMTermProb(String termText, double lambda) {
         return (lambda * getDocumentTermProb(termText)) + (1 - lambda) * getCollectionTermProb(termText);
     }
@@ -156,17 +156,11 @@ public class LanguageModel {
         return (getDocumentTermCount(termText) + mu * getCollectionTermProb(termText)) / (doc_len + mu);
     }
 
-    public static LanguageModel collectionLanguageModel(IndexReader ir) {
-        int[] docIds = new int[ir.numDocs()];
-        for (int i = 0; i < ir.numDocs(); i++) {
-            docIds[i] = i;
-        }
-        return new LanguageModel(ir, docIds);
-    }
-
     public double KLDivergence(double lambda) {
-        // Grab the vocabulary by using the collection language model.
-        Set<String> terms = collectionLanguageModel(reader).termCounts.keySet();
+        // Grab the vocabulary.
+        TermsSet terms = TermsSet.getInstance(reader);
+
+        System.out.println(terms.size());
 
         double klDiv = 0.0;
         for (String term : terms) {
