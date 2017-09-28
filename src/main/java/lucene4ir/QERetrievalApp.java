@@ -111,8 +111,8 @@ public class QERetrievalApp extends RetrievalApp{
                     Query oq = parser.parse(QueryParser.escape(oldQueryString));
                     Query nq = parser.parse(QueryParser.escape(qString.trim()));
 
-                    BoostQuery obq = new BoostQuery(oq,(1-qeBeta));
-                    BoostQuery nbq = new BoostQuery(nq,(qeBeta));
+                    BoostQuery obq = new BoostQuery(oq,(qeBeta));
+                    BoostQuery nbq = new BoostQuery(nq,(1-qeBeta));
                     BooleanClause obc=new BooleanClause(obq,BooleanClause.Occur.SHOULD);
                     BooleanClause nbc=new BooleanClause(nbq,BooleanClause.Occur.SHOULD);
                     BooleanQuery.Builder bqb = new BooleanQuery.Builder();
