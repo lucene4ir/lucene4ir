@@ -8,5 +8,5 @@
     <runTag>bm-roc</runTag>
     <resultFile>data/cacm/BM25-0.75-Roc.res</resultFile>
     <qeFile>params/qe.xml</qeFile>
-    <tokenFilterFile>params/index/ap_token_filters.xml</tokenFilterFile>
+    <tokenFilterFile>params/index/example_05.xml</tokenFilterFile>
 </retrievalParams>

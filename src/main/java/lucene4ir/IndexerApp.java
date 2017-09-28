@@ -33,7 +33,6 @@ public class IndexerApp {
 
     private DocumentModel docModel;
 
-
     public IndexerApp(){
         System.out.println("Indexer");
     }
@@ -51,8 +50,6 @@ public class IndexerApp {
             System.exit(1);
         }
     }
-
-
 
     public void selectDocumentParser(DocumentModel dm){
         docModel = dm;

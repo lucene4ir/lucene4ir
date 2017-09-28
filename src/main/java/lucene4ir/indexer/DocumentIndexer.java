@@ -3,6 +3,7 @@ package lucene4ir.indexer;
 import lucene4ir.Lucene4IRConstants;
 import lucene4ir.utils.TokenAnalyzerMaker;
 import org.apache.commons.compress.compressors.z.ZCompressorInputStream;
+
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexWriter;
@@ -13,10 +14,6 @@ import org.apache.lucene.store.FSDirectory;
 import java.io.*;
 import java.nio.file.Paths;
 import java.util.zip.GZIPInputStream;
-import java.util.zip.ZipInputStream;
-
-
-
 
 /**
  * Created by leifos on 21/08/2016.

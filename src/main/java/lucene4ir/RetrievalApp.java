@@ -123,7 +123,7 @@ public class RetrievalApp {
         Actually, it would probably be neater to create a ParameterFile class
         which these apps can inherit from - and customize accordinging.
          */
-
+        System.out.println("Reading parameters...");
         try {
             p = JAXB.unmarshal(new File(paramFile), RetrievalParams.class);
         } catch (Exception e){
@@ -152,8 +152,8 @@ public class RetrievalApp {
         if (p.resultFile == null){
             p.resultFile = p.runTag+"_results.res";
         }
-
         fieldsFile = p.fieldsFile;
+        qeFile=p.qeFile;
 
         System.out.println("Path to index: " + p.indexName);
         System.out.println("Query File: " + p.queryFile);
@@ -195,6 +195,7 @@ public class RetrievalApp {
         Q2 hello hello
         Q3 hello etc
          */
+        System.out.println("Processing Query File...");
         try {
             BufferedReader br = new BufferedReader(new FileReader(p.queryFile));
             File file = new File(p.resultFile);
@@ -256,6 +257,7 @@ public class RetrievalApp {
 
     public RetrievalApp(String retrievalParamFile){
         System.out.println("Retrieval App");
+        System.out.println("Param File: " + retrievalParamFile);
         readParamsFromFile(retrievalParamFile);
         try {
             reader = DirectoryReader.open(FSDirectory.open( new File(p.indexName).toPath()) );

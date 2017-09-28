@@ -99,7 +99,7 @@ public class QERetrievalApp extends RetrievalApp{
                     String qString = "";
                     int numterms = 0;
                     int i =0;
-                    while(i < terms.size() && numterms<feedbackTerms){
+                    while(i <= terms.size() && numterms<=feedbackTerms){
                         String rankedTerm = rankedTerms.get(i).trim();
                         if (!oldTerms.contains(rankedTerm)) {
                             qString += rankedTerm + " ";
