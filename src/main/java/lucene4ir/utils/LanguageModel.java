@@ -160,8 +160,6 @@ public class LanguageModel {
         // Grab the vocabulary.
         TermsSet terms = TermsSet.getInstance(reader);
 
-        System.out.println(terms.size());
-
         double klDiv = 0.0;
         for (String term : terms) {
             if (!termCounts.containsKey(term)) {
