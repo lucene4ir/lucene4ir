@@ -13,11 +13,12 @@ public class TermLenQPPredictor extends PreQPPredictor {
         super(ir);
     }
 
+    public String name() {
+        return "TermLength";
+    }
+
     public double scoreQuery(String qno, Query q) {
-
-
         String[] terms = q.toString().split(" ");
-
         return terms.length;
     }
 

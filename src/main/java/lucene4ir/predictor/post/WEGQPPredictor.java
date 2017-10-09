@@ -21,8 +21,16 @@ public class WEGQPPredictor extends PostQPPredictor {
         this.k = k;
     }
 
+    public String name() {
+        return "WEG";
+    }
+
     private double sumScores(double queryLength, double d, double D) {
-        return (1 / Math.sqrt(queryLength)) * d - D;
+        double score = (1 / Math.sqrt(queryLength)) * d - D;
+        if (score == Double.NEGATIVE_INFINITY || score == Double.POSITIVE_INFINITY) {
+            score = 0;
+        }
+        return score;
     }
 
 
@@ -59,13 +67,24 @@ public class WEGQPPredictor extends PostQPPredictor {
     public double scoreQuery(String qno, Query q) {
         double queryLength = q.toString().split(" ").length;
         TrecRuns topic = run.getTopic(qno);
-        double D = calculateCnprf(k, topic);
+
+        // Handle the case that the query retrieves less than k documents.
+        int thisK = k;
+        if (topic.size() < k) {
+            thisK = topic.size();
+        }
+
+        if (thisK < 1) {
+            thisK = 1;
+        }
+
+        double D = calculateCnprf(thisK, topic);
         double totalScore = 0;
-        for (int i = 0; i < k; i++) {
+        for (int i = 0; i < thisK; i++) {
             double d = topic.get(i).getScore();
             totalScore += sumScores(queryLength, d, D);
         }
-        return (1 / (double) k) * totalScore;
+        return (1.0 / thisK) * totalScore;
     }
 
 }

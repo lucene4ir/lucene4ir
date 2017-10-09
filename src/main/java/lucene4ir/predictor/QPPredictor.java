@@ -19,4 +19,6 @@ public abstract class QPPredictor {
     }
 
     public abstract double scoreQuery(String qno, Query q);
+
+    public abstract String name();
 }

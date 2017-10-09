@@ -23,6 +23,10 @@ public class AvgIDFQPPredictor extends PreQPPredictor {
         super(ir);
     }
 
+    public String name() {
+        return "AvgIDF";
+    }
+
     public double scoreQuery(String qno, Query q) {
 
         String[] terms = q.toString().split(" ");

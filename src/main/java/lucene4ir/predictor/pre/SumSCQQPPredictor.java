@@ -21,6 +21,10 @@ public class SumSCQQPPredictor extends PreQPPredictor {
         docCount = reader.numDocs() + 1;
     }
 
+    public String name() {
+        return "SumSCQ";
+    }
+
     double calculateSCQ(String term) throws IOException {
         double tf = getTF(term);
         double df = getDF(term);

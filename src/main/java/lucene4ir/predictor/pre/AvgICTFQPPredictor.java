@@ -2,6 +2,7 @@ package lucene4ir.predictor.pre;
 
 import lucene4ir.predictor.PreQPPredictor;
 import org.apache.lucene.index.IndexReader;
+import org.apache.lucene.index.Term;
 import org.apache.lucene.search.Query;
 
 import java.io.IOException;
@@ -24,6 +25,10 @@ public class AvgICTFQPPredictor extends PreQPPredictor {
         }
     }
 
+    public String name() {
+        return "AvgICTF";
+    }
+
     @Override
     public double scoreQuery(String qno, Query q) {
         String[] termTuples = q.toString().split(" ");
@@ -35,7 +40,7 @@ public class AvgICTFQPPredictor extends PreQPPredictor {
             if (terms.length == 2) {
                 String term = terms[1];
                 try {
-                    double tf = getTF(term);
+                    double tf = reader.totalTermFreq(new Term("all", term));
                     sumICF += log2(termCount) - log2(1 + tf);
                 } catch (IOException e) {
                     e.printStackTrace();

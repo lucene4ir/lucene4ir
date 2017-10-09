@@ -14,6 +14,10 @@ public class CharLenQPPredictor extends PreQPPredictor {
         super(ir);
     }
 
+    public String name() {
+        return "CharLength";
+    }
+
     public double scoreQuery(String qno, Query q) {
 
         String qstr = q.toString();
