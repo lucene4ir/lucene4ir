@@ -26,8 +26,8 @@ public class PubMedDocumentIndexer extends DocumentIndexer {
     public DocumentBuilder builder;
     public XPath xPath;
 
-    public PubMedDocumentIndexer(String indexPath, String tokenFilterFile, Boolean positional){
-        super(indexPath, tokenFilterFile, positional);
+    public PubMedDocumentIndexer(String indexPath, String tokenFilterFile, Boolean positional, Boolean imputing){
+        super(indexPath, tokenFilterFile, positional, imputing);
         builderFactory = DocumentBuilderFactory.newInstance();
         try {
             builder = builderFactory.newDocumentBuilder();
