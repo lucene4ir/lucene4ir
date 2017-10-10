@@ -10,6 +10,7 @@ import java.io.FileReader;
  * Created by leif on 21/08/2016.
  * Edited by kojayboy on 16/08/2017.
  */
+
 public class CACMDocumentIndexer extends DocumentIndexer {
 
     private Field docnumField;
@@ -20,8 +21,8 @@ public class CACMDocumentIndexer extends DocumentIndexer {
     private Field allField;
     private Document doc;
 
-    public CACMDocumentIndexer(String indexPath, String tokenFilterFile, boolean positional){
-        super(indexPath, tokenFilterFile,positional);
+    public CACMDocumentIndexer(String indexPath, String tokenFilterFile, boolean positional, boolean imputing){
+        super(indexPath, tokenFilterFile,positional,imputing);
 
         // Reusable document object to reduce GC overhead
         doc = new Document();
@@ -60,8 +61,24 @@ public class CACMDocumentIndexer extends DocumentIndexer {
     public Document createCacmDocument(String docid, String title, String author, String content, String pubdate){
 
         docnumField.setStringValue(docid);
+        if(title.isEmpty() && !content.isEmpty()) {
+            System.out.println("Imputing Title for " + docid);
+            int str_len = 35;
+            if (content.length()<str_len)
+                str_len=content.length();
+            String[] terms = content.substring(0,str_len).split(" ");
+            for(int i = 0; i<(terms.length-1); i++){
+                title+=terms[i] + " ";
+            }
+            System.out.println("New Title: " + title);
+        }
         titleField.setStringValue(title);
         authorField.setStringValue(author);
+        if(content.isEmpty() && !title.isEmpty()) {
+            System.out.println("Imputing Content for " + docid);
+            content=title;
+            System.out.println("New Content: " + content);
+        }
         textField.setStringValue(content);
         pubdateField.setStringValue(pubdate);
         allField.setStringValue(title + " " + author + " " +  content);
