@@ -1,4 +1,4 @@
-package lucene4ir.predictor;
+package lucene4ir.predictor.pre;
 
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.search.Query;
@@ -11,6 +11,10 @@ public class AvgSCQQPPredictor extends SumSCQQPPredictor {
 
     public AvgSCQQPPredictor(IndexReader ir) {
         super(ir);
+    }
+
+    public String name() {
+        return "AvgSCQ";
     }
 
     @Override

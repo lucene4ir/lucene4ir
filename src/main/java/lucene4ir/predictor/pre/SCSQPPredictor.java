@@ -1,4 +1,4 @@
-package lucene4ir.predictor;
+package lucene4ir.predictor.pre;
 
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.search.Query;
@@ -14,6 +14,10 @@ public class SCSQPPredictor extends AvgICTFQPPredictor {
 
     public SCSQPPredictor(IndexReader ir) {
         super(ir);
+    }
+
+    public String name() {
+        return "SimplifiedClarityScore";
     }
 
     @Override

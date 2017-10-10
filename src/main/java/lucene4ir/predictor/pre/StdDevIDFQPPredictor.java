@@ -1,5 +1,6 @@
-package lucene4ir.predictor;
+package lucene4ir.predictor.pre;
 
+import lucene4ir.predictor.PreQPPredictor;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.search.Query;
 
@@ -10,7 +11,7 @@ import java.util.List;
  * Created by Harry Scells on 28/8/17.
  * Standard Deviation of IDF (DevIDF)
  */
-public class StdDevIDFQPPredictor extends QPPredictor {
+public class StdDevIDFQPPredictor extends PreQPPredictor {
 
     public StdDevIDFQPPredictor(IndexReader ir) {
         super(ir);
@@ -20,6 +21,10 @@ public class StdDevIDFQPPredictor extends QPPredictor {
         double scoresSum = scores.stream().reduce(Double::sum).orElse(0.0);
         double scoresSumMinusAverage = scoresSum - mean;
         return scoresSumMinusAverage * scoresSumMinusAverage / (scores.size() - 1);
+    }
+
+    public String name() {
+        return "StdDevIDF";
     }
 
     @Override

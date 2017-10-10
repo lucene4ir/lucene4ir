@@ -5,6 +5,14 @@
     </tokenFilter>
     <tokenFilter>
         <name>stop</name>
+        <param>
+            <key>words</key>
+            <value>data/stopwords.txt</value>
+        </param>
+        <param>
+            <key>format</key>
+            <value>wordset</value>
+        </param>
     </tokenFilter>
     <tokenFilter>
         <name>patternreplace</name>

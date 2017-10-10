@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<retrievalParams>
+    <indexName>cacmindex</indexName>
+    <queryFile>data/cacm/title.query</queryFile>
+    <maxResults>1000</maxResults>
+    <model>bm25</model>
+    <b>0.75</b>
+    <runTag>bm-roc</runTag>
+    <resultFile>data/cacm/BM25-0.75-Roc.res</resultFile>
+    <qeFile>params/qe.xml</qeFile>
+    <tokenFilterFile>params/index/example_05.xml</tokenFilterFile>
+</retrievalParams>

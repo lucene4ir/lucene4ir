@@ -4,13 +4,20 @@ import javax.xml.bind.JAXB;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
+
 import lucene4ir.indexer.*;
+import org.apache.lucene.index.DirectoryReader;
+import org.apache.lucene.store.FSDirectory;
+import org.apache.lucene.index.*;
 
 /**
  *
  * Created by leif on 21/08/2016.
+ *
  */
 
 public class IndexerApp {
@@ -26,7 +33,6 @@ public class IndexerApp {
 
     private DocumentModel docModel;
 
-
     public IndexerApp(){
         System.out.println("Indexer");
     }
@@ -40,12 +46,10 @@ public class IndexerApp {
             for(DocumentModel value: DocumentModel.values()){
                 System.out.println("<indexType>"+value.name()+"</indexType>");
             }
-            docModel = DocumentModel.CACM;
-
+            e.printStackTrace();
+            System.exit(1);
         }
     }
-
-
 
     public void selectDocumentParser(DocumentModel dm){
         docModel = dm;
@@ -53,7 +57,6 @@ public class IndexerApp {
         switch(dm){
             case CACM:
                 System.out.println("CACM Document Parser");
-                System.out.println("Positional: " + p.recordPositions);
                 di = new CACMDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions);
                 break;
 
@@ -67,22 +70,22 @@ public class IndexerApp {
 
             case TRECNEWS:
                 System.out.println("TRECNEWS");
-                di = new TRECNEWSDocumentIndexer(p.indexName, p.tokenFilterFile,p.recordPositions);
+                di = new TRECNEWSDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions);
                 break;
 
             case TRECTIPSTER:
                 System.out.println("TRECTIPSTER");
-                di = new TRECTipsterDocumentIndexer(p.indexName, p.tokenFilterFile,p.recordPositions);
+                di = new TRECTipsterDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions);
                 break;
 
             case TRECAQUAINT:
                 System.out.println("TRECAQUAINT");
-                di = new TRECAquaintDocumentIndexer(p.indexName, p.tokenFilterFile,p.recordPositions);
+                di = new TRECAquaintDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions);
                 break;
 
             case PUBMED:
                 System.out.println("PUBMED");
-                di = new PubMedDocumentIndexer(p.indexName, p.tokenFilterFile,p.recordPositions);
+                di = new PubMedDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions);
                 break;
 
 
@@ -119,8 +122,8 @@ public class IndexerApp {
                 br.close();
             }
         } catch (Exception e){
-            System.out.println(" caught a " + e.getClass() +
-                    "\n with message: " + e.getMessage());
+            e.printStackTrace();
+            System.exit(1);
         }
         return files;
     }
@@ -129,17 +132,17 @@ public class IndexerApp {
         try {
             p = JAXB.unmarshal(new File(indexParamFile), IndexParams.class);
         } catch (Exception e){
-            System.out.println(" caught a " + e.getClass() +
-                    "\n with message: " + e.getMessage());
+            e.printStackTrace();
             System.exit(1);
         }
 
         if(p.recordPositions==null)
             p.recordPositions=false;
 
+        System.out.println("Index type: " + p.indexType);
         System.out.println("Path to index: " + p.indexName);
-        System.out.println("File List: " + p.fileList);
-        System.out.println("Index Type: " + p.indexType);
+        System.out.println("List of files to index: " + p.fileList);
+        System.out.println("Record positions in index: " + p.recordPositions);
 
     }
 
@@ -156,6 +159,19 @@ public class IndexerApp {
 
     public void finished(){
         di.finished();
+
+        try {
+            IndexReader reader = DirectoryReader.open(FSDirectory.open(Paths.get(p.indexName)));
+            long numDocs = reader.numDocs();
+            System.out.println("Number of docs indexed: " + numDocs);
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+
+
     }
 
 
@@ -168,8 +184,7 @@ public class IndexerApp {
         try {
             indexParamFile = args[0];
         } catch(Exception e){
-            System.out.println(" caught a " + e.getClass() +
-                    "\n with message: " + e.getMessage());
+            e.printStackTrace();
             System.exit(1);
         }
 
@@ -182,11 +197,14 @@ public class IndexerApp {
                 indexer.indexDocumentsFromFile(f);
             }
         } catch (Exception e){
-            System.out.println(" caught a " + e.getClass() +
-                    "\n with message: " + e.getMessage());
+            e.printStackTrace();
+            System.exit(1);
         }
         indexer.finished();
         System.out.println("Done building Index");
+
+
+
     }
 
 }
@@ -196,7 +214,7 @@ class IndexParams {
     public String indexName;
     public String fileList;
     public String indexType; /** trecWeb, trecNews, trec678, cacm **/
-    public Boolean compressed;
+    //public Boolean compressed;
     public String tokenFilterFile;
     public Boolean recordPositions;
 

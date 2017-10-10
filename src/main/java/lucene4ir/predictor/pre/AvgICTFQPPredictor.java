@@ -1,6 +1,8 @@
-package lucene4ir.predictor;
+package lucene4ir.predictor.pre;
 
+import lucene4ir.predictor.PreQPPredictor;
 import org.apache.lucene.index.IndexReader;
+import org.apache.lucene.index.Term;
 import org.apache.lucene.search.Query;
 
 import java.io.IOException;
@@ -10,7 +12,7 @@ import java.io.IOException;
  * Averaged Inverse Collection Term Frequency (AvICTF)
  * ICF = log(term_count / tf(q) )
  */
-public class AvgICTFQPPredictor extends QPPredictor {
+public class AvgICTFQPPredictor extends PreQPPredictor {
 
     private double termCount;
 
@@ -21,6 +23,10 @@ public class AvgICTFQPPredictor extends QPPredictor {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public String name() {
+        return "AvgICTF";
     }
 
     @Override
@@ -34,7 +40,7 @@ public class AvgICTFQPPredictor extends QPPredictor {
             if (terms.length == 2) {
                 String term = terms[1];
                 try {
-                    double tf = getTF(term);
+                    double tf = reader.totalTermFreq(new Term("all", term));
                     sumICF += log2(termCount) - log2(1 + tf);
                 } catch (IOException e) {
                     e.printStackTrace();

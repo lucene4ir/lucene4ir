@@ -1,5 +1,6 @@
-package lucene4ir.predictor;
+package lucene4ir.predictor.pre;
 
+import lucene4ir.predictor.PreQPPredictor;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.search.Query;
 
@@ -11,13 +12,17 @@ import java.io.IOException;
  * sum over all t in q:
  * (1 +ln( cf(t))) * (1+N/df(t) )
  */
-public class SumSCQQPPredictor extends QPPredictor {
+public class SumSCQQPPredictor extends PreQPPredictor {
 
     private double docCount;
 
     public SumSCQQPPredictor(IndexReader ir) {
         super(ir);
         docCount = reader.numDocs() + 1;
+    }
+
+    public String name() {
+        return "SumSCQ";
     }
 
     double calculateSCQ(String term) throws IOException {

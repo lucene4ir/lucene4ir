@@ -1,17 +1,22 @@
-package lucene4ir.predictor;
+package lucene4ir.predictor.pre;
 
+import lucene4ir.predictor.PreQPPredictor;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.search.Query;
 
 /**
  * Created by Harry Scells on 28/8/17.
- *   Maximum Inverse Document Frequency (MaxIDF)
- *   Take max of the IDF
+ * Maximum Inverse Document Frequency (MaxIDF)
+ * Take max of the IDF
  */
-public class MaxIDFQPPredictor extends QPPredictor {
+public class MaxIDFQPPredictor extends PreQPPredictor {
 
     public MaxIDFQPPredictor(IndexReader ir) {
         super(ir);
+    }
+
+    public String name() {
+        return "MaxIDF";
     }
 
     @Override

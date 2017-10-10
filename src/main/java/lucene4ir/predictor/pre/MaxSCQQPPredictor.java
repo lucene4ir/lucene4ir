@@ -1,4 +1,4 @@
-package lucene4ir.predictor;
+package lucene4ir.predictor.pre;
 
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.search.Query;
@@ -13,6 +13,10 @@ public class MaxSCQQPPredictor extends SumSCQQPPredictor {
 
     public MaxSCQQPPredictor(IndexReader ir) {
         super(ir);
+    }
+
+    public String name() {
+        return "MaxSCQ";
     }
 
     @Override

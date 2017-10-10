@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<qe>
+    <qeMethod>rocchio</qeMethod>
+    <noTerms>5</noTerms>
+    <noDocs>10</noDocs>
+    <qeAlpha>0.5</qeAlpha>
+    <qeBeta>0.75</qeBeta>
+</qe>
