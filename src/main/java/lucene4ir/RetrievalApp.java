@@ -28,6 +28,10 @@ import static lucene4ir.RetrievalApp.SimModel.BM25;
 import static lucene4ir.RetrievalApp.SimModel.LMD;
 import static lucene4ir.RetrievalApp.SimModel.PL2;
 
+
+/**
+ * Central App for performing retrieval in Lucene.
+ */
 public class RetrievalApp {
 
     public RetrievalParams p;
@@ -40,14 +44,16 @@ public class RetrievalApp {
     protected CollectionModel colModel;
     protected String fieldsFile;
     protected String qeFile;
-
+    protected SimModel sim;
     protected enum SimModel {
         DEF, BM25, BM25L, LMD, LMJ, PL2, TFIDF,
 	OKAPIBM25, SMARTBNNBNN, DFR
     }
 
-    protected SimModel sim;
-
+    /**
+     * Sets the similarity function for use in retrieval.
+     * @param val String value of the similarity model to use.
+     */
     private void setSim(String val){
         try {
             sim = SimModel.valueOf(p.model.toUpperCase());
@@ -61,6 +67,10 @@ public class RetrievalApp {
         }
     }
 
+    /**
+     * Function to instantiate the appropriate similarity function for retrieval.
+     * @param sim :- the Similarity function to use
+     */
     public void selectSimilarityFunction(SimModel sim){
         colModel = null;
         switch(sim){
@@ -68,17 +78,22 @@ public class RetrievalApp {
                 System.out.println("OKAPI BM25 Similarity Function");
                 simfn = new OKAPIBM25Similarity(1.2f, 0.75f);
                 break;
+
             case SMARTBNNBNN:
                 System.out.println("SMART bnn.bnn Similarity Function");
                 simfn = new SMARTBNNBNNSimilarity();
+                break;
+
             case BM25:
                 System.out.println("BM25 Similarity Function");
                 simfn = new BM25Similarity(p.k, p.b);
                 break;
+
             case BM25L:
                 System.out.println("BM25L Similarity Function");
                 simfn = new BM25LSimilarity(p.k, p.b, p.delta);
                 break;
+
             case LMD:
                 System.out.println("LM Dirichlet Similarity Function");
                 colModel = new LMSimilarity.DefaultCollectionModel();
@@ -115,6 +130,11 @@ public class RetrievalApp {
         }
     }
 
+    /**
+     * Reads in the parameters from the specified file.
+     * Uses unmarshalling to assign parameters to the RetrievalParams class.
+     * @param paramFile:- path to param file.
+     */
     public void readParamsFromFile(String paramFile){
         /*
         Reads in the xml formatting parameter file
@@ -186,6 +206,12 @@ public class RetrievalApp {
         }
     }
 
+    /**
+     * Processes the query file.
+     * Iterates thru each line (assuming each line is a query)
+     * and issues the query to the index specified using the similarity
+     * model specified in the param file.
+     */
     public void processQueryFile(){
         /*
         Assumes the query file contains a qno followed by the query terms.
@@ -233,6 +259,13 @@ public class RetrievalApp {
         }
     }
 
+    /**
+     * Scores the document using the similarity model specified.
+     * Only returns the top maxResuls documents.
+     * @param qno :- The query number
+     * @param queryTerms :- the raw query terms from the query file.
+     * @return :- returns the top maxResults docs.
+     */
     public ScoreDoc[] runQuery(String qno, String queryTerms){
         ScoreDoc[] hits = null;
 
@@ -255,6 +288,11 @@ public class RetrievalApp {
         return hits;
     }
 
+    /**
+     * Constructor to build the retrievalapp by reading in the param
+     * file and setting up the appropriate helpers.
+     * @param retrievalParamFile :- path to retriel parameter file.
+     */
     public RetrievalApp(String retrievalParamFile){
         System.out.println("Retrieval App");
         System.out.println("Param File: " + retrievalParamFile);
@@ -275,6 +313,11 @@ public class RetrievalApp {
         }
     }
 
+
+    /**
+     * Main run method.
+     * @param args
+     */
     public static void main(String []args) {
 
         String retrievalParamFile = "";
@@ -292,6 +335,9 @@ public class RetrievalApp {
     }
 }
 
+/**
+ * Class for unmarshalling, contains all the required parameters for retrieval.
+ */
 @XmlRootElement(name = "RetrievalParams")
 class RetrievalParams {
     public String indexName;
