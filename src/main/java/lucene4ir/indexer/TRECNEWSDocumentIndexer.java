@@ -71,7 +71,7 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
         doc.clear();
 
         docnumField.setStringValue(docid);
-        if(title.isEmpty() && !content.isEmpty()) {
+        if(title.isEmpty() && !content.isEmpty() && imputeTitles) {
             System.out.println("Imputing Title for " + docid);
             int str_len = 35;
             if (content.length()<str_len)
@@ -84,11 +84,6 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
         }
         titleField.setStringValue(title);
         allField.setStringValue(all);
-        if(content.isEmpty() && !title.isEmpty()) {
-            System.out.println("Imputing Content for " + docid);
-            content=title;
-            System.out.println("New Content: " + content);
-        }
         textField.setStringValue(content);
         authorField.setStringValue(author);
 
