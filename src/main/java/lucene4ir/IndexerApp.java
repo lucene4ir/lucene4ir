@@ -28,7 +28,7 @@ public class IndexerApp {
 
 
     private enum DocumentModel {
-        CACM, CLUEWEB, TRECNEWS, TRECAQUAINT, TRECTIPSTER, PUBMED
+        CACM, CLUEWEB, TRECNEWS, TRECAQUAINT, TRECWEB, TRECTIPSTER, PUBMED
     }
 
     private DocumentModel docModel;
@@ -81,6 +81,11 @@ public class IndexerApp {
             case TRECAQUAINT:
                 System.out.println("TRECAQUAINT");
                 di = new TRECAquaintDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions);
+                break;
+
+            case TRECWEB:
+                System.out.println("TRECWeb");
+                di = new TRECWebDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions);
                 break;
 
             case PUBMED:
