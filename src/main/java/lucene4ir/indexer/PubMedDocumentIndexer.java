@@ -26,8 +26,8 @@ public class PubMedDocumentIndexer extends DocumentIndexer {
     public DocumentBuilder builder;
     public XPath xPath;
 
-    public PubMedDocumentIndexer(String indexPath, String tokenFilterFile, Boolean positional, Boolean imputing){
-        super(indexPath, tokenFilterFile, positional, imputing);
+    public PubMedDocumentIndexer(String indexPath, String tokenFilterFile, Boolean positional){
+        super(indexPath, tokenFilterFile, positional);
         builderFactory = DocumentBuilderFactory.newInstance();
         try {
             builder = builderFactory.newDocumentBuilder();
@@ -149,7 +149,12 @@ public class PubMedDocumentIndexer extends DocumentIndexer {
     }
 
     public void addTextFieldToDoc(Document doc, String fieldname, String fielddata){
-        Field field = new TextField(fieldname, fielddata, Field.Store.YES);
+        Field field;
+        if (indexPositions) {
+            field = new TermVectorEnabledTextField(fieldname, fielddata, Field.Store.YES);
+        } else {
+            field = new TextField(fieldname, fielddata, Field.Store.YES);
+        }
         doc.add(field);
     }
 

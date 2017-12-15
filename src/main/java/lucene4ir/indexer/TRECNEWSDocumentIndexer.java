@@ -26,7 +26,6 @@ import java.io.StringReader;
  * Modified by Yashar on 31/08/2016
  * Edited by kojayboy on 16/08/2017.
  */
-
 public class TRECNEWSDocumentIndexer extends DocumentIndexer {
 
     private Field docnumField;
@@ -36,8 +35,8 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
     private Field allField;
     private Document doc;
 
-    public TRECNEWSDocumentIndexer(String indexPath, String tokenFilterFile, boolean positional, boolean imputing) {
-        super(indexPath, tokenFilterFile, positional, imputing);
+    public TRECNEWSDocumentIndexer(String indexPath, String tokenFilterFile, boolean positional) {
+        super(indexPath, tokenFilterFile, positional);
 
         doc = new Document();
         initFields();
@@ -71,17 +70,6 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
         doc.clear();
 
         docnumField.setStringValue(docid);
-        if(title.isEmpty() && !content.isEmpty() && imputeTitles) {
-            System.out.println("Imputing Title for " + docid);
-            int str_len = 35;
-            if (content.length()<str_len)
-                str_len=content.length();
-            String[] terms = content.substring(0,str_len).split(" ");
-            for(int i = 0; i<(terms.length-1); i++){
-                title+=terms[i] + " ";
-            }
-            System.out.println("New Title: " + title);
-        }
         titleField.setStringValue(title);
         allField.setStringValue(all);
         textField.setStringValue(content);
@@ -99,6 +87,7 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
 
         String line;
         java.lang.StringBuilder text = new StringBuilder();
+
 
         try (BufferedReader br = openDocumentFile(filename)) {
             line = br.readLine();
