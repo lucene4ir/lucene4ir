@@ -28,7 +28,7 @@ public class IndexerApp {
 
 
     private enum DocumentModel {
-        CACM, CLUEWEB, TRECNEWS, TRECAQUAINT, TRECTIPSTER, PUBMED
+        CACM, CLUEWEB, TRECNEWS, TRECAQUAINT, TRECWEB, TRECTIPSTER, PUBMED
     }
 
     private DocumentModel docModel;
@@ -57,7 +57,7 @@ public class IndexerApp {
         switch(dm){
             case CACM:
                 System.out.println("CACM Document Parser");
-                di = new CACMDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions, p.imputeTitles);
+                di = new CACMDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions);
                 break;
 
             case CLUEWEB:
@@ -70,22 +70,27 @@ public class IndexerApp {
 
             case TRECNEWS:
                 System.out.println("TRECNEWS");
-                di = new TRECNEWSDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions, p.imputeTitles);
+                di = new TRECNEWSDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions);
                 break;
 
             case TRECTIPSTER:
                 System.out.println("TRECTIPSTER");
-                di = new TRECTipsterDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions, p.imputeTitles);
+                di = new TRECTipsterDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions);
                 break;
 
             case TRECAQUAINT:
                 System.out.println("TRECAQUAINT");
-                di = new TRECAquaintDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions, p.imputeTitles);
+                di = new TRECAquaintDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions);
+                break;
+
+            case TRECWEB:
+                System.out.println("TRECWeb");
+                di = new TRECWebDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions);
                 break;
 
             case PUBMED:
                 System.out.println("PUBMED");
-                di = new PubMedDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions, p.imputeTitles);
+                di = new PubMedDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions);
                 break;
 
 
@@ -139,14 +144,10 @@ public class IndexerApp {
         if(p.recordPositions==null)
             p.recordPositions=false;
 
-        if(p.imputeTitles==null)
-            p.imputeTitles=false;
-
         System.out.println("Index type: " + p.indexType);
         System.out.println("Path to index: " + p.indexName);
         System.out.println("List of files to index: " + p.fileList);
         System.out.println("Record positions in index: " + p.recordPositions);
-        System.out.println("Impute titles: " + p.imputeTitles);
 
     }
 
@@ -221,7 +222,6 @@ class IndexParams {
     //public Boolean compressed;
     public String tokenFilterFile;
     public Boolean recordPositions;
-    public Boolean imputeTitles;
 
 }
 
