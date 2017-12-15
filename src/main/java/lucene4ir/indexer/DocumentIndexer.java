@@ -27,17 +27,15 @@ import java.util.zip.GZIPInputStream;
 public class DocumentIndexer {
 
     protected boolean indexPositions;
-    protected boolean imputeTitles;
     public IndexWriter writer;
     public Analyzer analyzer;
 
     public DocumentIndexer(){};
 
-    public DocumentIndexer(String indexPath, String tokenFilterFile, boolean positional, boolean imputing){
+    public DocumentIndexer(String indexPath, String tokenFilterFile, boolean positional){
         writer = null;
         analyzer = Lucene4IRConstants.ANALYZER;
         indexPositions=positional;
-        imputeTitles=imputing;
 
         if (tokenFilterFile != null){
             TokenAnalyzerMaker tam = new TokenAnalyzerMaker();
