@@ -13,6 +13,7 @@ public class Lucene4IRConstants {
     public static final String FIELD_TITLE = "title";
     public static final String FIELD_AUTHOR = "author";
     public static final String FIELD_URL = "url";
+    public static final String FIELD_DOCHDR = "dochdr";
     public static final String FIELD_DOCNUM = "docnum";
     public static final String FIELD_PUBDATE = "pubdate";
     public static final String FIELD_SOURCE = "source";

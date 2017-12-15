@@ -49,14 +49,14 @@ public class TRECWebDocumentIndexer extends DocumentIndexer {
             textField = new TermVectorEnabledTextField(Lucene4IRConstants.FIELD_CONTENT, "", Field.Store.YES);
             allField = new TermVectorEnabledTextField(Lucene4IRConstants.FIELD_ALL, "", Field.Store.YES);
             urlField = new TermVectorEnabledTextField(Lucene4IRConstants.FIELD_URL, "", Field.Store.YES);
-            dochdrField = new TermVectorEnabledTextField(Lucene4IRConstants.FIELD_URL, "", Field.Store.YES);
+            dochdrField = new TermVectorEnabledTextField(Lucene4IRConstants.FIELD_DOCHDR, "", Field.Store.YES);
         }
         else {
             titleField = new TextField(Lucene4IRConstants.FIELD_TITLE, "", Field.Store.YES);
             textField = new TextField(Lucene4IRConstants.FIELD_CONTENT, "", Field.Store.YES);
             allField = new TextField(Lucene4IRConstants.FIELD_ALL, "", Field.Store.YES);
             urlField = new TextField(Lucene4IRConstants.FIELD_URL, "", Field.Store.YES);
-            dochdrField = new TextField(Lucene4IRConstants.FIELD_URL, "", Field.Store.YES);
+            dochdrField = new TextField(Lucene4IRConstants.FIELD_DOCHDR, "", Field.Store.YES);
         }
     }
 
