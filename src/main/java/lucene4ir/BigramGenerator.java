@@ -113,7 +113,9 @@ public class BigramGenerator {
         BytesRef term;
         int i = 1;
         String output="";
+        System.out.println("term " + i);
         while ((term = te.next()) != null) {
+            System.out.println(term.utf8ToString());
             if (term.utf8ToString().split(" ").length > 1 && te.totalTermFreq() > p.cutoff) {
                 System.out.println(term.utf8ToString() + " DF: " + te.docFreq() + " CF: " + te.totalTermFreq());
                 output = output + i + " " + term.utf8ToString() + " " + te.docFreq() + " " + te.totalTermFreq() + "\n";
@@ -142,10 +144,10 @@ public class BigramGenerator {
         bigramGenerator.readBigramGeneratorParamsFromFile(statsParamFile);
 
         bigramGenerator.openReader();
-        //bigramGenerator.termsList();
-        bigramGenerator.extractBigramsFromStoredText();
-        bigramGenerator.pruneBigrams();
-        bigramGenerator.outputBigrams();
+        bigramGenerator.termsList();
+	// bigramGenerator.extractBigramsFromStoredText();
+	// bigramGenerator.pruneBigrams();
+	//        bigramGenerator.outputBigrams();
     }
 
 
