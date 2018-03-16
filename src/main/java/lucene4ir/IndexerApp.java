@@ -144,10 +144,14 @@ public class IndexerApp {
         if(p.recordPositions==null)
             p.recordPositions=false;
 
+        if(p.imputeTitles==null)
+            p.imputeTitles=false;
+
         System.out.println("Index type: " + p.indexType);
         System.out.println("Path to index: " + p.indexName);
         System.out.println("List of files to index: " + p.fileList);
         System.out.println("Record positions in index: " + p.recordPositions);
+        System.out.println("Impute titles: " + p.imputeTitles);
 
     }
 
