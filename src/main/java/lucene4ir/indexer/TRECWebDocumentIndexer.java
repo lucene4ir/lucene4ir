@@ -1,15 +1,19 @@
 package lucene4ir.indexer;
 
+import lucene4ir.Lucene4IRConstants;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.StringField;
+
 import org.apache.lucene.document.TextField;
 import org.jsoup.Jsoup;
-import org.jsoup.nodes.BooleanAttribute;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.*;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.ListIterator;
 import java.util.zip.GZIPInputStream;
 
@@ -18,6 +22,16 @@ import java.util.zip.GZIPInputStream;
  *
  * Created by kojayboy 28/07/2017.
  */
+
+// TODO:- Extract and store anchor text in a field.
+// TODO:- Create Files of Docid -> URL
+// TODO:- Impute titles.
+
+    //parse through each html doc, find anchors, output : source_doc_id, url, and anchor text
+    //then make a map, {doc_id, url}
+    //then convert the anchor text file, to source_doc_id, to_doc_id, anchortext
+//    then you can group all the to_doc_id's together, to get all the anchor text for one doc
+
 public class TRECWebDocumentIndexer extends DocumentIndexer {
 
     private static String [] contentTags = {
@@ -26,9 +40,69 @@ public class TRECWebDocumentIndexer extends DocumentIndexer {
     private static String [] titleTags = {
             "title"
     };
+    private final static Pattern IdPat = Pattern.compile("(.+)$");
 
-    public TRECWebDocumentIndexer(String indexPath, String tokenFilterFile, boolean pos){
-        super(indexPath, tokenFilterFile, pos);
+    private final static Pattern
+            scriptPat = Pattern.compile("<script(.*?)</script>", Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL),
+            anchorPat = Pattern.compile("<a ([^>]*)href=[\"']?([^> '\"]+)([^>]*)>(.*?)</a>", Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL),
+            relUrlPat = Pattern.compile("^/"),
+            absUrlPat = Pattern.compile("^[a-z]+://"),
+            nofollowPat = Pattern.compile("rel=[\"']?nofollow", Pattern.CASE_INSENSITIVE); // ignore links with rel="nofollow"
+    private final static String noIndexHTML = "/$|/index\\.[a-z][a-z][a-z][a-z]?$";
+
+    private Field docnumField;
+    private Field titleField;
+    private Field textField;
+    private Field hdrField;
+    private Field allField;
+    private Document doc;
+
+    public TRECWebDocumentIndexer(String indexPath, String tokenFilterFile, boolean positional, boolean imputing) {
+        super(indexPath, tokenFilterFile, positional, imputing);
+
+        doc = new Document();
+        initFields();
+        initNEWSDoc();
+    }
+
+    private void initFields() {
+        docnumField = new StringField(Lucene4IRConstants.FIELD_DOCNUM, "", Field.Store.YES);
+        if (indexPositions) {
+            titleField = new TermVectorEnabledTextField(Lucene4IRConstants.FIELD_TITLE, "", Field.Store.YES);
+            textField = new TermVectorEnabledTextField(Lucene4IRConstants.FIELD_CONTENT, "", Field.Store.YES);
+            allField = new TermVectorEnabledTextField(Lucene4IRConstants.FIELD_ALL, "", Field.Store.YES);
+            hdrField = new TermVectorEnabledTextField(Lucene4IRConstants.FIELD_HDR, "", Field.Store.YES);
+        } else {
+            titleField = new TextField(Lucene4IRConstants.FIELD_TITLE, "", Field.Store.YES);
+            textField = new TextField(Lucene4IRConstants.FIELD_CONTENT, "", Field.Store.YES);
+            allField = new TextField(Lucene4IRConstants.FIELD_ALL, "", Field.Store.YES);
+            hdrField = new TextField(Lucene4IRConstants.FIELD_HDR, "", Field.Store.YES);
+        }
+    }
+
+    private void initNEWSDoc() {
+        doc.add(docnumField);
+        doc.add(titleField);
+        doc.add(textField);
+        doc.add(allField);
+        doc.add(hdrField);
+    }
+
+    public Document createWEBDocument(String docid, String hdr, String title, String content, String all) {
+        doc.clear();
+
+        docnumField.setStringValue(docid);
+        titleField.setStringValue(title);
+        allField.setStringValue(all);
+        textField.setStringValue(content);
+        hdrField.setStringValue(hdr);
+
+        doc.add(docnumField);
+        doc.add(hdrField);
+        doc.add(titleField);
+        doc.add(textField);
+        doc.add(allField);
+        return doc;
     }
 
     public void indexDocumentsFromFile(String filename){
@@ -58,10 +132,19 @@ public class TRECWebDocumentIndexer extends DocumentIndexer {
 
                     if (line.startsWith("</DOC>")){
 
-                        org.jsoup.nodes.Document jsoupDoc = Jsoup.parse(text.toString());
+                        String docString = text.toString();
+
+                        // Remove all escaped entities from the string.
+                        docString = docString.replaceAll("&[a-zA-Z0-9]+;", "");
+                        docString = docString.replaceAll("&", "");
+
+                        StringBuilder all = new StringBuilder();
+                        String docno="";
+
+                        org.jsoup.nodes.Document jsoupDoc = Jsoup.parse(docString);
                         Elements docnoElements = jsoupDoc.getElementsByTag("DOCNO");
                         if (docnoElements!=null && docnoElements.size()==1) {
-                            String docno = docnoElements.text();
+                            docno = docnoElements.text();
                             Field docnoField = new StringField("docno", docno, Field.Store.YES);
                             doc.add(docnoField);
                         }
@@ -80,7 +163,7 @@ public class TRECWebDocumentIndexer extends DocumentIndexer {
                             ListIterator<Element> elIterator = contentElements.listIterator();
                             while (elIterator.hasNext())
                                 content.append(" ").append(elIterator.next().text());
-                            Field contentField = new StringField("all", Jsoup.parse(content.toString()).text(), Field.Store.YES);
+                            Field contentField = new StringField("content", Jsoup.parse(content.toString()).text(), Field.Store.YES);
                             doc.add(contentField);
                         }
 
@@ -93,8 +176,12 @@ public class TRECWebDocumentIndexer extends DocumentIndexer {
                             Field titleField = new StringField("title", title.toString(), Field.Store.YES);
                             doc.add(titleField);
                         }
+
+                        all.append(title.toString() + " " + dochdr.toString() + " " + content.toString());
+                        createWEBDocument(docno,dochdr.toString(),title.toString(),content.toString(), all.toString());
+
                         addDocumentToIndex(doc);
-                        System.out.println(doc.toString());
+
                         text = new StringBuilder();
                         doc = new Document();
                     }
@@ -111,35 +198,3 @@ public class TRECWebDocumentIndexer extends DocumentIndexer {
         }
     }
 }
-
-//                        StringBuilder title = new StringBuilder();
-//
-//                        for (String tag : titleTags) {
-//                            Elements contentElements = jsoupDoc.getElementsByTag(tag);
-//                            if (contentElements!=null) {
-//                                ListIterator<Element> elIterator = contentElements.listIterator();
-//                                while (elIterator.hasNext())
-//                                    title.append(" ").append(elIterator.next().text());
-//                            }
-//                        }
-//                        Field titleField = new TextField("title", title.toString().trim(), Field.Store.YES);
-////                        System.out.println(titleField.name() + ":\n" + titleField.stringValue());
-//                        doc.add(titleField);
-//
-//                        StringBuilder content = new StringBuilder();
-//
-//                        for (String tag : contentTags) {
-//                            Elements contentElements = jsoupDoc.getElementsByTag(tag);
-//                            if (contentElements!=null) {
-//                                ListIterator<Element> elIterator = contentElements.listIterator();
-//                                while (elIterator.hasNext())
-//                                content.append(" ").append(elIterator.next().text());
-//                            }
-//                        }
-//                        Field contentField = new TextField("content", content.toString().trim(), Field.Store.YES);
-////                        System.out.println(contentField.name() + ":\n" + contentField.stringValue());
-//                        doc.add(contentField);
-//
-//                        Field textField = new TextField("all", (title.toString().trim() + " " + content.toString().trim()), Field.Store.YES);
-////                        System.out.println(textField.name() + ":\n" + textField.stringValue());
-//                        doc.add(textField);
