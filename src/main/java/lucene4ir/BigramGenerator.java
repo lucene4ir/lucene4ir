@@ -225,6 +225,7 @@ public class BigramGenerator {
         System.out.println("Total Bigrams: " + btotal);
         System.out.println("Total Unigrams: " + ttotal);
 
+
         set = hmap.entrySet();
         iterator = set.iterator();
         while(iterator.hasNext()) {
@@ -237,6 +238,7 @@ public class BigramGenerator {
             String[] terms =  bigram.split(" ");
             //System.out.println(terms[0] + " " + terms[1]);
 
+
             long v1 = 1;
             long v2 = 1;
 
@@ -248,6 +250,7 @@ public class BigramGenerator {
 
             }
 
+
             double pi = (double)( (v1 +1.0) / (ttotal +1.0));
             double pj = (double)( (v2+1.0) / (ttotal +1.0));
 
@@ -256,6 +259,9 @@ public class BigramGenerator {
 
             me.setValue(pwmi);
         }
+
+
+
         try{
             PrintWriter writer = new PrintWriter(p.outFile, "UTF-8");
 
@@ -270,8 +276,20 @@ public class BigramGenerator {
         } catch (IOException e) {
             // do something
         }
+
+
+
+
+
+
+
     }
+
+
+
 };
+
+
 
 class BigramGeneratorParams {
     public String indexName;
