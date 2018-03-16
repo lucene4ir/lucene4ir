@@ -28,7 +28,7 @@ public class IndexerApp {
 
 
     private enum DocumentModel {
-        CACM, CLUEWEB, TRECNEWS, TRECNEWSF, TRECAQUAINT, TRECTIPSTER, PUBMED
+        CACM, CLUEWEB, TRECNEWS, TRECNEWSF, TRECAQUAINT,TRECAQUAINTF, TRECTIPSTER, PUBMED
     }
 
     private DocumentModel docModel;
@@ -86,6 +86,11 @@ public class IndexerApp {
             case TRECAQUAINT:
                 System.out.println("TRECAQUAINT");
                 di = new TRECAquaintDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions, p.imputeTitles);
+                break;
+
+            case TRECAQUAINTF:
+                System.out.println("TRECAQUAINTF");
+                di = new TRECAquaintFieldedDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions, p.imputeTitles);
                 break;
 
             case PUBMED:
@@ -174,19 +179,13 @@ public class IndexerApp {
             long numDocs = reader.numDocs();
             System.out.println("Number of docs indexed: " + numDocs);
 
-
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(1);
         }
-
-
     }
 
-
-
     public static void main(String []args) {
-
 
         String indexParamFile = "";
 
@@ -211,11 +210,7 @@ public class IndexerApp {
         }
         indexer.finished();
         System.out.println("Done building Index");
-
-
-
     }
-
 }
 
 
