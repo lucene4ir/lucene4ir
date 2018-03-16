@@ -15,6 +15,7 @@ import java.io.FileReader;
  * Edited by kojayboy on 16/08/2017.
  *
  * TODO: Titles not being read correctly by JSoup
+ * TODO: Impute titles.
  */
 public class TRECTipsterDocumentIndexer extends DocumentIndexer {
 
@@ -32,8 +33,8 @@ public class TRECTipsterDocumentIndexer extends DocumentIndexer {
     private Field allField;
     private Document doc;
 
-    public TRECTipsterDocumentIndexer(String indexPath, String tokenFilterFile, boolean positional){
-        super(indexPath, tokenFilterFile, positional);
+    public TRECTipsterDocumentIndexer(String indexPath, String tokenFilterFile, boolean positional, boolean imputing){
+        super(indexPath, tokenFilterFile, positional, imputing);
 
         doc = new Document();
         initFields();
@@ -65,8 +66,24 @@ public class TRECTipsterDocumentIndexer extends DocumentIndexer {
         doc.clear();
 
         docnumField.setStringValue(docid);
+        if(title.isEmpty() && !content.isEmpty()) {
+            System.out.println("Imputing Title for " + docid);
+            int str_len = 35;
+            if (content.length()<str_len)
+                str_len=content.length();
+            String[] terms = content.substring(0,str_len).split(" ");
+            for(int i = 0; i<(terms.length-1); i++){
+                title+=terms[i] + " ";
+            }
+            System.out.println("New Title: " + title);
+        }
         titleField.setStringValue(title);
         allField.setStringValue(all);
+        if(content.isEmpty() && !title.isEmpty()) {
+            System.out.println("Imputing Content for " + docid);
+            content=title;
+            System.out.println("New Content: " + content);
+        }
         textField.setStringValue(content);
 
         doc.add(docnumField);
