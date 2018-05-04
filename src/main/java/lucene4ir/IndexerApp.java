@@ -207,11 +207,11 @@ public class IndexerApp {
 
         try {
             ArrayList<String> files = indexer.readFileListFromFile();
-//            for (String f : files) { // Removed for TESTING
-                String f= files.get(0); // REMOVE FOR PRODUCTION
+            for (String f : files) { // Removed for TESTING
+//                String f= files.get(0); // REMOVE FOR PRODUCTION
                 System.out.println("About to Index Files in: " +  f);
                 indexer.indexDocumentsFromFile(f);
-//            }
+            }
         } catch (Exception e){
             e.printStackTrace();
             System.exit(1);

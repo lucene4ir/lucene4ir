@@ -1,9 +1,6 @@
 package lucene4ir.indexer;
 
 import lucene4ir.Lucene4IRConstants;
-import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
-import org.apache.commons.compress.archivers.tar.TarArchiveInputStream;
-import org.apache.commons.compress.compressors.gzip.GzipCompressorInputStream;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.StringField;
@@ -117,9 +114,7 @@ public class TRECCCDocumentIndexer extends DocumentIndexer {
 
 
                         org.jsoup.nodes.Document jsoupDoc = Jsoup.parse(docString);
-                        for (Element element : jsoupDoc.getAllElements()) {
-                            System.out.println(element.tag());
-                        }
+
                         String docid="";
                         Elements docidElements = jsoupDoc.getElementsByTag("doc-id");
                         if (docidElements!=null && docidElements.size()==1) {
@@ -127,7 +122,6 @@ public class TRECCCDocumentIndexer extends DocumentIndexer {
                             docid = docidstr.substring((docidstr.indexOf("\"")+1),docidstr.lastIndexOf("\""));
                             Field docidField = new StringField("docid", docid, Field.Store.YES);
                             doc.add(docidField);
-                            System.out.println(docid);
                         }
 
                         String author="";
@@ -146,7 +140,6 @@ public class TRECCCDocumentIndexer extends DocumentIndexer {
                                 title.append(" ").append(elIterator.next().text());
                             Field titleField = new StringField("title", title.toString().trim(), Field.Store.YES);
                             doc.add(titleField);
-                            System.out.println(title.toString().trim());
                         }
 
                         StringBuilder content = new StringBuilder();
@@ -157,12 +150,12 @@ public class TRECCCDocumentIndexer extends DocumentIndexer {
                                 String txt = elIterator.next().toString();
                                 if (txt.startsWith("<block class=\"full_text\"> "))
                                     content.append(txt.replaceAll("<p>","").replaceAll("</p>","\n").replaceAll("<block class=\"full_text\"> ","").replaceAll("</block>", "").trim()).append(" ");
-                                    System.out.println();
                             }
                             Field contentField = new StringField("content", Jsoup.parse(content.toString()).text(), Field.Store.YES);
                             doc.add(contentField);
                         }
 
+//                        System.out.println("Indexing Doc: " + docid + " " + title);
                         all.append(title.toString() + " " + content.toString());
                         createCCDocument(docid,  author,  title.toString(),  content.toString(),  all.toString());
 
