@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 import lucene4ir.indexer.*;
@@ -28,7 +29,7 @@ public class IndexerApp {
 
 
     private enum DocumentModel {
-        CACM, CLUEWEB, TRECNEWS, TRECNEWSF, TRECAQUAINT, TRECTIPSTER, PUBMED
+        CACM, CLUEWEB, TRECNEWS, TRECCC, TRECNEWSF, TRECAQUAINT, TRECTIPSTER, PUBMED
     }
 
     private DocumentModel docModel;
@@ -71,6 +72,11 @@ public class IndexerApp {
             case TRECNEWS:
                 System.out.println("TRECNEWS");
                 di = new TRECNEWSDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions, p.imputeTitles);
+                break;
+
+            case TRECCC:
+                System.out.println("TRECCC");
+                di = new TRECCCDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions, p.imputeTitles);
                 break;
 
             case TRECNEWSF:
@@ -201,10 +207,11 @@ public class IndexerApp {
 
         try {
             ArrayList<String> files = indexer.readFileListFromFile();
-            for (String f : files) {
+//            for (String f : files) { // Removed for TESTING
+                String f= files.get(0); // REMOVE FOR PRODUCTION
                 System.out.println("About to Index Files in: " +  f);
                 indexer.indexDocumentsFromFile(f);
-            }
+//            }
         } catch (Exception e){
             e.printStackTrace();
             System.exit(1);

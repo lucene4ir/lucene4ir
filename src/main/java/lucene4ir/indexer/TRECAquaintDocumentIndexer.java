@@ -96,7 +96,6 @@ public class TRECAquaintDocumentIndexer extends DocumentIndexer {
         doc.add(titleField);
         doc.add(textField);
         doc.add(allField);
-        System.out.println("Adding document: " + docid + " Title: " + title);
         return doc;
     }
 

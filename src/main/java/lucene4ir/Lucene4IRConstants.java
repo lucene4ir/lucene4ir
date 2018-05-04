@@ -22,6 +22,7 @@ public class Lucene4IRConstants {
     public static final String FIELD_T2C1 = "t2c1";
     public static final String FIELD_T4C1 = "t4c1";
     public static final String FIELD_T8C1 = "t8c1";
+    public static final String FIELD_T16C1 = "t16c1";
     public static final String FIELD_T1C0 = "t1c0";
     public static final String FIELD_T1C2 = "t1c2";
     public static final String FIELD_T1C4 = "t1c4";

@@ -45,6 +45,7 @@ public class TRECNEWSFieldedDocumentIndexer extends DocumentIndexer {
     private Field t1c0Field;
     private Field t1c2Field;
     private Field t1c4Field;
+    private Field t16c1Field;
     private Field t1c8Field;
     private Document doc;
 
@@ -68,6 +69,7 @@ public class TRECNEWSFieldedDocumentIndexer extends DocumentIndexer {
             t2c1Field = new TermVectorEnabledTextField(Lucene4IRConstants.FIELD_T2C1, "", Field.Store.YES);
             t4c1Field = new TermVectorEnabledTextField(Lucene4IRConstants.FIELD_T4C1, "", Field.Store.YES);
             t8c1Field = new TermVectorEnabledTextField(Lucene4IRConstants.FIELD_T8C1, "", Field.Store.YES);
+            t16c1Field = new TermVectorEnabledTextField(Lucene4IRConstants.FIELD_T16C1, "", Field.Store.YES);
             t1c0Field = new TermVectorEnabledTextField(Lucene4IRConstants.FIELD_T1C0, "", Field.Store.YES);
             t1c2Field = new TermVectorEnabledTextField(Lucene4IRConstants.FIELD_T1C2, "", Field.Store.YES);
             t1c4Field = new TermVectorEnabledTextField(Lucene4IRConstants.FIELD_T1C4, "", Field.Store.YES);
@@ -82,6 +84,7 @@ public class TRECNEWSFieldedDocumentIndexer extends DocumentIndexer {
             t2c1Field = new TextField(Lucene4IRConstants.FIELD_T2C1, "", Field.Store.YES);
             t4c1Field = new TextField(Lucene4IRConstants.FIELD_T4C1, "", Field.Store.YES);
             t8c1Field = new TextField(Lucene4IRConstants.FIELD_T8C1, "", Field.Store.YES);
+            t16c1Field = new TextField(Lucene4IRConstants.FIELD_T16C1, "", Field.Store.YES);
             t1c0Field = new TextField(Lucene4IRConstants.FIELD_T1C0, "", Field.Store.YES);
             t1c2Field = new TextField(Lucene4IRConstants.FIELD_T1C2, "", Field.Store.YES);
             t1c4Field = new TextField(Lucene4IRConstants.FIELD_T1C4, "", Field.Store.YES);
@@ -100,10 +103,12 @@ public class TRECNEWSFieldedDocumentIndexer extends DocumentIndexer {
         doc.add(t2c1Field);
         doc.add(t4c1Field);
         doc.add(t8c1Field);
+        doc.add(t16c1Field);
         doc.add(t1c0Field);
         doc.add(t1c2Field);
         doc.add(t1c4Field);
         doc.add(t1c8Field);
+
     }
 
     public Document createNEWSFieldedDocument(String docid, String author, String title, String content, String all) {
@@ -131,6 +136,7 @@ public class TRECNEWSFieldedDocumentIndexer extends DocumentIndexer {
         t2c1Field.setStringValue(title + " " + title + " " + content);
         t4c1Field.setStringValue(title + " " + title + " " + title + " " + title + " " + content);
         t8c1Field.setStringValue(title + " " + title + " " + title + " " + title + " " + title + " " + title + " " + title + " " + title + " " + content);
+        t16c1Field.setStringValue(title + " " + title + " " + title + " " + title + " " + title + " " + title + " " + title + " " + title + " " + title + " " + title + " " + title + " " + title + " " + title + " " + title + " " + title + " " + title + " " + content);
         t1c0Field.setStringValue(title);
         t1c2Field.setStringValue(title + " " + content + " " + content);
         t1c4Field.setStringValue(title + " " + content + " " + content + " " + content + " " + content);
@@ -146,6 +152,7 @@ public class TRECNEWSFieldedDocumentIndexer extends DocumentIndexer {
         doc.add(t2c1Field);
         doc.add(t4c1Field);
         doc.add(t8c1Field);
+        doc.add(t16c1Field);
         doc.add(t1c0Field);
         doc.add(t1c2Field);
         doc.add(t1c4Field);
