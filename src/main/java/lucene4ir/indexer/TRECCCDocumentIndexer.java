@@ -159,6 +159,8 @@ public class TRECCCDocumentIndexer extends DocumentIndexer {
                         all.append(title.toString() + " " + content.toString());
                         createCCDocument(docid,  author,  title.toString(),  content.toString(),  all.toString());
 
+                        addDocumentToIndex(doc);
+
                         text = new StringBuilder();
                         doc = new Document();
                     }
