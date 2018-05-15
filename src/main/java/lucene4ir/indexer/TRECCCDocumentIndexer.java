@@ -89,9 +89,8 @@ public class TRECCCDocumentIndexer extends DocumentIndexer {
     public void indexDocumentsFromFile(String filename) {
 
         try {
-            String line = "";
+            String line;
             StringBuilder text = new StringBuilder();
-            Document doc = new Document();
 
             BufferedReader br = openDocumentFile(filename);
 
@@ -109,9 +108,6 @@ public class TRECCCDocumentIndexer extends DocumentIndexer {
                         // Remove all escaped entities from the string.
                         docString = docString.replaceAll("&[a-zA-Z0-9]+;", "");
                         docString = docString.replaceAll("&", "");
-
-                        StringBuilder all = new StringBuilder();
-
 
                         org.jsoup.nodes.Document jsoupDoc = Jsoup.parse(docString);
 
@@ -155,14 +151,13 @@ public class TRECCCDocumentIndexer extends DocumentIndexer {
                             doc.add(contentField);
                         }
 
-//                        System.out.println("Indexing Doc: " + docid + " " + title);
-                        all.append(title.toString() + " " + content.toString());
+                        System.out.println("Indexing Doc: " + docid + " " + title);
+                        StringBuilder all = new StringBuilder(title.toString() + " " + content.toString());
                         createCCDocument(docid,  author,  title.toString(),  content.toString(),  all.toString());
 
                         addDocumentToIndex(doc);
 
                         text = new StringBuilder();
-                        doc = new Document();
                     }
                     line = br.readLine();
                 }
