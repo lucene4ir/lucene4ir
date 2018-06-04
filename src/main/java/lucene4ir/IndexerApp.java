@@ -17,6 +17,7 @@ import org.apache.lucene.index.*;
 /**
  *
  * Created by leif on 21/08/2016.
+ * Edited by kojayboy on 02/03/2017
  *
  */
 
@@ -28,7 +29,7 @@ public class IndexerApp {
 
 
     private enum DocumentModel {
-        CACM, CLUEWEB, TRECNEWS, TRECAQUAINT, TRECWEB, TRECTIPSTER, PUBMED
+        CACM, CLUEWEB, TRECNEWS, TRECCC, TRECAQUAINT, TRECWEB, TRECTIPSTER, PUBMED
     }
 
     private DocumentModel docModel;
@@ -71,6 +72,11 @@ public class IndexerApp {
             case TRECNEWS:
                 System.out.println("TRECNEWS");
                 di = new TRECNEWSDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions);
+                break;
+
+            case TRECCC:
+                System.out.println("TRECCC");
+                di = new TRECCCDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions);
                 break;
 
             case TRECTIPSTER:
