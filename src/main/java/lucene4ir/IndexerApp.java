@@ -7,7 +7,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 
 import lucene4ir.indexer.*;
@@ -18,6 +17,7 @@ import org.apache.lucene.index.*;
 /**
  *
  * Created by leif on 21/08/2016.
+ * Edited by kojayboy on 02/03/2017
  *
  */
 
