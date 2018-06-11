@@ -25,7 +25,6 @@ import java.util.zip.GZIPInputStream;
 
 // TODO:- Extract and store anchor text in a field.
 // TODO:- Create Files of Docid -> URL
-// TODO:- Impute titles.
 
     //parse through each html doc, find anchors, output : source_doc_id, url, and anchor text
     //then make a map, {doc_id, url}

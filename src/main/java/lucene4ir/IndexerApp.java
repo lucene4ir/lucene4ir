@@ -72,6 +72,7 @@ public class IndexerApp {
             case TRECNEWS:
                 System.out.println("TRECNEWS");
                 di = new TRECNEWSDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions, p.imputeTitles);
+<<<<<<< HEAD
                 break;
 
             case TRECCC:
@@ -82,6 +83,8 @@ public class IndexerApp {
             case TRECNEWSF:
                 System.out.println("TRECNEWSF");
                 di = new TRECNEWSFieldedDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions, p.imputeTitles);
+=======
+>>>>>>> master
                 break;
 
             case TRECTIPSTER:
