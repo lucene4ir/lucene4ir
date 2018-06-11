@@ -71,7 +71,6 @@ public class TRECWebDocumentIndexer extends DocumentIndexer {
 
     public Document createTRECWebDocument(String docid, String url, String dochdr, String title, String content, String all){
         doc.clear();
-
         docnumField.setStringValue(docid);
         titleField.setStringValue(title);
         allField.setStringValue(all);
@@ -161,10 +160,9 @@ public class TRECWebDocumentIndexer extends DocumentIndexer {
                         }
 
                         String all = title + " " + content + " " + dochdr + " " + url;
-                        doc = createTRECWebDocument(docnum,url,dochdr,title,content,all);
-                        text = new StringBuilder();
+                        createTRECWebDocument(docnum,url,dochdr,title,content,all);
                         addDocumentToIndex(doc);
-                        System.out.println("Final");
+                        text = new StringBuilder();
                     }
                     line = br.readLine();
                 }
