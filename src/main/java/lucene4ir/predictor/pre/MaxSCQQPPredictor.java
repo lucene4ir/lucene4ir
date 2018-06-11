@@ -15,6 +15,10 @@ public class MaxSCQQPPredictor extends SumSCQQPPredictor {
         super(ir);
     }
 
+    public String name() {
+        return "MaxSCQ";
+    }
+
     @Override
     public double scoreQuery(String qno, Query q) {
         String[] termTuples = q.toString().split(" ");

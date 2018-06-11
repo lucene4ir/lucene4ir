@@ -15,7 +15,6 @@ import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.store.FSDirectory;
 
-import javax.print.Doc;
 import javax.xml.bind.JAXB;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
@@ -67,7 +66,7 @@ public class QPPApp {
 
         System.out.println("Pre-retrieval QP Prediction Classes: ");
         p.preQPP.forEach(p -> System.out.println("\t" + p));
-        System.out.println("Pre-retrieval QP Prediction Classes: ");
+        System.out.println("Post-retrieval QP Prediction Classes: ");
         p.postQPP.forEach(p -> System.out.println("\t" + p.reference));
 
         if (p.fieldsFile != null) {
@@ -96,6 +95,20 @@ public class QPPApp {
             File file = new File(p.qppFile);
 
             try (BufferedReader br = new BufferedReader(new FileReader(p.queryFile)); FileWriter fw = new FileWriter(file)) {
+                String[] headers = new String[1 + prePredictors.size() + postPredictors.size()];
+                int j = 1;
+                headers[0] = "Topic";
+                for (PreQPPredictor prePredictor : prePredictors) {
+                    headers[j] = prePredictor.name();
+                    j++;
+                }
+                for (PostQPPredictor postPredictor : postPredictors) {
+                    headers[j] = postPredictor.name();
+                    j++;
+                }
+                String header = String.join(" ", headers) + "\n";
+                fw.write(header);
+
                 String line = br.readLine();
                 while (line != null) {
 

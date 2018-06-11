@@ -23,6 +23,10 @@ public class StdDevIDFQPPredictor extends PreQPPredictor {
         return scoresSumMinusAverage * scoresSumMinusAverage / (scores.size() - 1);
     }
 
+    public String name() {
+        return "StdDevIDF";
+    }
+
     @Override
     public double scoreQuery(String qno, Query q) {
         String[] terms = q.toString().split(" ");

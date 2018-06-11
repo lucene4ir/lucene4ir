@@ -149,7 +149,12 @@ public class PubMedDocumentIndexer extends DocumentIndexer {
     }
 
     public void addTextFieldToDoc(Document doc, String fieldname, String fielddata){
-        Field field = new TextField(fieldname, fielddata, Field.Store.YES);
+        Field field;
+        if (indexPositions) {
+            field = new TermVectorEnabledTextField(fieldname, fielddata, Field.Store.YES);
+        } else {
+            field = new TextField(fieldname, fielddata, Field.Store.YES);
+        }
         doc.add(field);
     }
 

@@ -105,9 +105,6 @@ public class BigramGenerator {
         LeafReader leafReader = reader.leaves().get(0).reader();
         Terms terms = leafReader.terms(p.field);
 
-//
-//        // The Terms object gives us some stats for this term within the segment
-//        System.out.println("Number of docs with this term:" + terms.getDocCount());
         System.out.println("Extracting Terms... \n Total terms: " + terms.size());
         TermsEnum te = terms.iterator();
         BytesRef term;
@@ -123,12 +120,8 @@ public class BigramGenerator {
         Files.write(Paths.get(p.outFile), output.getBytes());
     }
 
-
     public static void main(String[] args)  throws IOException {
-
-
         String statsParamFile = "";
-
         try {
             statsParamFile = args[0];
         } catch (Exception e) {
@@ -174,9 +167,6 @@ public class BigramGenerator {
                     } else {
                         hmap.put(key, 1);
                     }
-
-
-
                 }
                 if (tmap.containsKey(w1)==true){
                     int w = tmap.get(w1);
@@ -185,10 +175,8 @@ public class BigramGenerator {
                 else {
                     tmap.put(w1,1);
                 }
-
             }
         }
-
     }
 
     public void pruneBigrams(){
@@ -203,66 +191,65 @@ public class BigramGenerator {
         }
     }
 
-
-    public void outputBigrams(){
+    public void outputBigrams() {
         long btotal = 0;
         long ttotal = 0;
 
         Set set = hmap.entrySet();
         Iterator iterator = set.iterator();
-        while(iterator.hasNext()) {
-            Map.Entry me = (Map.Entry)iterator.next();
-            btotal = btotal + (int)me.getValue();
+        while (iterator.hasNext()) {
+            Map.Entry me = (Map.Entry) iterator.next();
+            btotal = btotal + (int) me.getValue();
         }
 
         set = tmap.entrySet();
         iterator = set.iterator();
-        while(iterator.hasNext()) {
-            Map.Entry me = (Map.Entry)iterator.next();
-            ttotal = ttotal + (int)me.getValue();
+        while (iterator.hasNext()) {
+            Map.Entry me = (Map.Entry) iterator.next();
+            ttotal = ttotal + (int) me.getValue();
         }
 
         System.out.println("Total Bigrams: " + btotal);
         System.out.println("Total Unigrams: " + ttotal);
 
+
         set = hmap.entrySet();
         iterator = set.iterator();
-        while(iterator.hasNext()) {
-            Map.Entry me = (Map.Entry)iterator.next();
+        while (iterator.hasNext()) {
+            Map.Entry me = (Map.Entry) iterator.next();
 
-            double pij = (double)(((int)me.getValue() +1.0) / (btotal+1.0));
+            double pij = (double) (((int) me.getValue() + 1.0) / (btotal + 1.0));
 
-            String bigram = (String)me.getKey();
+            String bigram = (String) me.getKey();
 
-            String[] terms =  bigram.split(" ");
-            //System.out.println(terms[0] + " " + terms[1]);
+            String[] terms = bigram.split(" ");
 
             long v1 = 1;
             long v2 = 1;
 
-            if (tmap.containsKey(terms[0]) == true ){
-               v1 = (long)tmap.get(terms[0]);
+            if (tmap.containsKey(terms[0]) == true) {
+                v1 = (long) tmap.get(terms[0]);
             }
-            if (tmap.containsKey(terms[1])==true){
-                v2 = (long)tmap.get(terms[1]);
+            if (tmap.containsKey(terms[1]) == true) {
+                v2 = (long) tmap.get(terms[1]);
 
             }
 
-            double pi = (double)( (v1 +1.0) / (ttotal +1.0));
-            double pj = (double)( (v2+1.0) / (ttotal +1.0));
+            double pi = (double) ((v1 + 1.0) / (ttotal + 1.0));
+            double pj = (double) ((v2 + 1.0) / (ttotal + 1.0));
 
-            double pwmi = Math.log(pij / (pi*pj));
+            double pwmi = Math.log(pij / (pi * pj));
             //System.out.println(v1 + " " + v2  + " " + pij + " " + pi + " " + pj + " " + pwmi);
 
             me.setValue(pwmi);
         }
-        try{
+        try {
             PrintWriter writer = new PrintWriter(p.outFile, "UTF-8");
 
             set = hmap.entrySet();
             iterator = set.iterator();
-            while(iterator.hasNext()) {
-                Map.Entry me = (Map.Entry)iterator.next();
+            while (iterator.hasNext()) {
+                Map.Entry me = (Map.Entry) iterator.next();
                 writer.println(me.getKey() + " " + me.getValue());
             }
 
@@ -270,8 +257,6 @@ public class BigramGenerator {
         } catch (IOException e) {
             // do something
         }
-    }
-};
 
 class BigramGeneratorParams {
     public String indexName;

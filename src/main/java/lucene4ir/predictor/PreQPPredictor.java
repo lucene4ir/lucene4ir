@@ -58,15 +58,3 @@ public abstract class PreQPPredictor extends QPPredictor {
         return termCount;
     }
 }
-
-
-/*
-
-
-• Query Scope (QS) [71].
-  = -log (Nq )/ (doc_count)
-  where doc_count is the number of docs containing at least one query term
-  need to retrieve the set
-  (could be approximated with longest postings list)
- */
-

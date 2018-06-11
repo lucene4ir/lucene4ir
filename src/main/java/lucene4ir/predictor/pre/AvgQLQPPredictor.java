@@ -15,6 +15,10 @@ public class AvgQLQPPredictor extends PreQPPredictor {
         super(ir);
     }
 
+    public String name() {
+        return "AvgQueryLength";
+    }
+
     @Override
     public double scoreQuery(String qno, Query q) {
         return q.toString().length();

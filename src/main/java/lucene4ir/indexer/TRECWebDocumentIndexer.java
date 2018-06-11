@@ -4,7 +4,6 @@ import lucene4ir.Lucene4IRConstants;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.StringField;
-
 import org.apache.lucene.document.TextField;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
@@ -33,82 +32,84 @@ import java.util.zip.GZIPInputStream;
 
 public class TRECWebDocumentIndexer extends DocumentIndexer {
 
+    private Field docnumField;
+    private Field titleField;
+    private Field textField;
+    private Field allField;
+    private Field urlField;
+    private Field dochdrField;
+    private Document doc;
+
     private static String [] contentTags = {
             "HTML"
     };
     private static String [] titleTags = {
             "title"
     };
-    private final static Pattern IdPat = Pattern.compile("(.+)$");
 
-    private final static Pattern
-            scriptPat = Pattern.compile("<script(.*?)</script>", Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL),
-            anchorPat = Pattern.compile("<a ([^>]*)href=[\"']?([^> '\"]+)([^>]*)>(.*?)</a>", Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL),
-            relUrlPat = Pattern.compile("^/"),
-            absUrlPat = Pattern.compile("^[a-z]+://"),
-            nofollowPat = Pattern.compile("rel=[\"']?nofollow", Pattern.CASE_INSENSITIVE); // ignore links with rel="nofollow"
-    private final static String noIndexHTML = "/$|/index\\.[a-z][a-z][a-z][a-z]?$";
-
-    private Field docnumField;
-    private Field titleField;
-    private Field textField;
-    private Field hdrField;
-    private Field allField;
-    private Document doc;
-
-    public TRECWebDocumentIndexer(String indexPath, String tokenFilterFile, boolean positional, boolean imputing) {
-        super(indexPath, tokenFilterFile, positional, imputing);
-
+    public TRECWebDocumentIndexer(String indexPath, String tokenFilterFile, boolean pos, boolean imputing){
+        super(indexPath, tokenFilterFile, pos, imputing);
         doc = new Document();
         initFields();
-        initNEWSDoc();
+        initWebDoc();
     }
 
     private void initFields() {
         docnumField = new StringField(Lucene4IRConstants.FIELD_DOCNUM, "", Field.Store.YES);
-        if (indexPositions) {
+        if(indexPositions){
             titleField = new TermVectorEnabledTextField(Lucene4IRConstants.FIELD_TITLE, "", Field.Store.YES);
             textField = new TermVectorEnabledTextField(Lucene4IRConstants.FIELD_CONTENT, "", Field.Store.YES);
             allField = new TermVectorEnabledTextField(Lucene4IRConstants.FIELD_ALL, "", Field.Store.YES);
-            hdrField = new TermVectorEnabledTextField(Lucene4IRConstants.FIELD_HDR, "", Field.Store.YES);
-        } else {
+            urlField = new TermVectorEnabledTextField(Lucene4IRConstants.FIELD_URL, "", Field.Store.YES);
+            dochdrField = new TermVectorEnabledTextField(Lucene4IRConstants.FIELD_DOCHDR, "", Field.Store.YES);
+        }
+        else {
             titleField = new TextField(Lucene4IRConstants.FIELD_TITLE, "", Field.Store.YES);
             textField = new TextField(Lucene4IRConstants.FIELD_CONTENT, "", Field.Store.YES);
             allField = new TextField(Lucene4IRConstants.FIELD_ALL, "", Field.Store.YES);
-            hdrField = new TextField(Lucene4IRConstants.FIELD_HDR, "", Field.Store.YES);
+            urlField = new TextField(Lucene4IRConstants.FIELD_URL, "", Field.Store.YES);
+            dochdrField = new TextField(Lucene4IRConstants.FIELD_DOCHDR, "", Field.Store.YES);
         }
     }
 
-    private void initNEWSDoc() {
+    private void initWebDoc() {
         doc.add(docnumField);
         doc.add(titleField);
         doc.add(textField);
+        doc.add(urlField);
+        doc.add(dochdrField);
         doc.add(allField);
-        doc.add(hdrField);
     }
 
-    public Document createWEBDocument(String docid, String hdr, String title, String content, String all) {
+    public Document createTRECWebDocument(String docid, String url, String dochdr, String title, String content, String all){
         doc.clear();
-
         docnumField.setStringValue(docid);
         titleField.setStringValue(title);
         allField.setStringValue(all);
         textField.setStringValue(content);
-        hdrField.setStringValue(hdr);
+        urlField.setStringValue(url);
+        dochdrField.setStringValue(dochdr);
 
         doc.add(docnumField);
-        doc.add(hdrField);
+        doc.add(urlField);
         doc.add(titleField);
         doc.add(textField);
+        doc.add(dochdrField);
         doc.add(allField);
+        System.out.println("Adding page: "+ url + " #"  + docid + " Title: " + title);
         return doc;
     }
 
     public void indexDocumentsFromFile(String filename){
 
+        String docnum="";
+        String title="";
+        String content="";
+        String dochdr="";
+        String url="";
+
         String line = "";
         StringBuilder text = new StringBuilder();
-        Document doc = new Document();
 
         try {
             BufferedReader br;
@@ -131,60 +132,50 @@ public class TRECWebDocumentIndexer extends DocumentIndexer {
 
                     if (line.startsWith("</DOC>")){
 
-                        String docString = text.toString();
-
-                        // Remove all escaped entities from the string.
-                        docString = docString.replaceAll("&[a-zA-Z0-9]+;", "");
-                        docString = docString.replaceAll("&", "");
-
-                        StringBuilder all = new StringBuilder();
-                        String docno="";
-
-                        org.jsoup.nodes.Document jsoupDoc = Jsoup.parse(docString);
+                        System.out.println("Docnum");
+                        org.jsoup.nodes.Document jsoupDoc = Jsoup.parse(text.toString());
                         Elements docnoElements = jsoupDoc.getElementsByTag("DOCNO");
                         if (docnoElements!=null && docnoElements.size()==1) {
-                            docno = docnoElements.text();
-                            Field docnoField = new StringField("docno", docno, Field.Store.YES);
-                            doc.add(docnoField);
+                            String docno = docnoElements.text();
+                            docnum=docno;
                         }
-                        StringBuilder dochdr = new StringBuilder();
+
+                        System.out.println("DocHdr");
+                        StringBuilder dochdrBuilder = new StringBuilder();
                         Elements dochdrElements = jsoupDoc.getElementsByTag("DOCHDR");
                         if (dochdrElements!=null) {
                             ListIterator<Element> elIterator = dochdrElements.listIterator();
                             while (elIterator.hasNext())
-                                dochdr.append(" ").append(elIterator.next().text());
-                            Field dochdrField = new StringField("dochdr", dochdr.toString(), Field.Store.YES);
-                            doc.add(dochdrField);
+                                dochdrBuilder.append(" ").append(elIterator.next().text());
+                            dochdr=dochdrBuilder.toString();
+                            url=dochdrBuilder.toString().split(" ")[1];
                         }
-                        StringBuilder content = new StringBuilder();
+
+                        System.out.println("Content");
+                        StringBuilder contentBuilder = new StringBuilder();
                         Elements contentElements = jsoupDoc.getElementsByTag("HTML");
                         if (contentElements!=null) {
                             ListIterator<Element> elIterator = contentElements.listIterator();
                             while (elIterator.hasNext())
-                                content.append(" ").append(elIterator.next().text());
-                            Field contentField = new StringField("content", Jsoup.parse(content.toString()).text(), Field.Store.YES);
-                            doc.add(contentField);
+                                contentBuilder.append(" ").append(elIterator.next().text());
+                            content=contentBuilder.toString();
                         }
 
-                        StringBuilder title = new StringBuilder();
+                        System.out.println("Title");
+                        StringBuilder titleBuilder = new StringBuilder();
                         Elements titleElements = jsoupDoc.getElementsByTag("TITLE");
                         if (titleElements!=null) {
                             ListIterator<Element> elIterator = titleElements.listIterator();
                             while (elIterator.hasNext())
-                                title.append(" ").append(elIterator.next().text());
-                            Field titleField = new StringField("title", title.toString(), Field.Store.YES);
-                            doc.add(titleField);
+                                titleBuilder.append(" ").append(elIterator.next().text());
+                            title=titleBuilder.toString();
                         }
 
-                        all.append(title.toString() + " " + dochdr.toString() + " " + content.toString());
-                        createWEBDocument(docno,dochdr.toString(),title.toString(),content.toString(), all.toString());
-
+                        String all = title + " " + content + " " + dochdr + " " + url;
+                        createTRECWebDocument(docnum,url,dochdr,title,content,all);
                         addDocumentToIndex(doc);
-
                         text = new StringBuilder();
-                        doc = new Document();
                     }
-
                     line = br.readLine();
                 }
 
