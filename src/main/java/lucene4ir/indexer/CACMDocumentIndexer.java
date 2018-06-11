@@ -11,10 +11,6 @@ import java.io.FileReader;
  * Edited by kojayboy on 16/08/2017.
  */
 
-<<<<<<< HEAD
-=======
-//TODO:- impute titles.
->>>>>>> master
 public class CACMDocumentIndexer extends DocumentIndexer {
 
     private Field docnumField;

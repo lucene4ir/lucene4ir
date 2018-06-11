@@ -71,11 +71,7 @@ public class TRECNEWSDocumentIndexer extends DocumentIndexer {
         doc.clear();
 
         docnumField.setStringValue(docid);
-<<<<<<< HEAD
         if(title.isEmpty() && !content.isEmpty() && imputeTitles) {
-=======
-        if(title.isEmpty() && !content.isEmpty()) {
->>>>>>> master
             System.out.println("Imputing Title for " + docid);
             int str_len = 35;
             if (content.length()<str_len)
