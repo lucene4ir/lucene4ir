@@ -124,7 +124,6 @@ public class WARCDocumentIndexer extends DocumentIndexer {
 
                 while (line != null){
                     if (line.startsWith("WARC/1.0") && !inDoc) { //Begin Recording text for new doc.
-                        System.out.println(true);
                         inDoc=true;
                         text = new StringBuilder();
                         text.append(line + "\n");
@@ -132,7 +131,6 @@ public class WARCDocumentIndexer extends DocumentIndexer {
                     }
 
                     else if (line.startsWith("WARC-Type: warcinfo") && inDoc) { // WARC info block, ignore
-                        System.out.println(false);
                         inDoc=false;
                         text = new StringBuilder();
                     }
@@ -150,7 +148,6 @@ public class WARCDocumentIndexer extends DocumentIndexer {
                     }
 
                     else if (line.startsWith("WARC/1.0") && inDoc) { // Signifies the end of a doc
-                        System.out.println(false);
                         inDoc=false; // set flag to not recording.
 
                         // Deal with the raw text here. Locate the page title from the <head>
@@ -176,7 +173,6 @@ public class WARCDocumentIndexer extends DocumentIndexer {
                                 contentBuilder.append(" ").append(elIterator.next().text());
                             content=Jsoup.parse(contentBuilder.toString()).text();
                         }
-                        System.out.println(Jsoup.parse(content).text());
 
                         String all = title + " " + content + " " + url;
                         createWARCDocument(docnum,url,dochdr,title,content,all);
