@@ -29,7 +29,7 @@ public class IndexerApp {
 
 
     private enum DocumentModel {
-        CACM, CLUEWEB, TRECNEWS, TRECCC, TRECNEWSF, TRECAQUAINT, TRECWEB, TRECTIPSTER, PUBMED
+        CACM, WARC, TRECNEWS, TRECCC, TRECNEWSF, TRECAQUAINT, TRECWEB, TRECTIPSTER, PUBMED
     }
 
     private DocumentModel docModel;
@@ -61,12 +61,9 @@ public class IndexerApp {
                 di = new CACMDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions, p.imputeTitles);
                 break;
 
-            case CLUEWEB:
-                System.out.println("CLUEWEB Document Parser");
-                // TBA
-                System.out.println("To be Implemented");
-                // di = new CLUEWEBDocumentIndexer(p.indexName);
-                System.exit(1);
+            case WARC:
+                System.out.println("WARC Document Parser");
+                di = new WARCDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions, p.imputeTitles);
                 break;
 
             case TRECNEWS:
@@ -111,9 +108,6 @@ public class IndexerApp {
                 break;
         }
     }
-
-
-
 
     public ArrayList<String> readFileListFromFile(){
         /*
