@@ -114,7 +114,7 @@ public class BigramGenerator {
         int i = 1;
         String output="";
         while ((term = te.next()) != null) {
-            if (term.utf8ToString().split(" ").length > 1 && te.totalTermFreq() > p.cutoff && !term.utf8ToString().contains("___")) {
+            if (term.utf8ToString().split(" ").length > 0 && te.totalTermFreq() > p.cutoff && !term.utf8ToString().contains("___")) {
                 System.out.println(term.utf8ToString() + " DF: " + te.docFreq() + " CF: " + te.totalTermFreq());
                 output = output + i + " " + term.utf8ToString() + " " + te.docFreq() + " " + te.totalTermFreq() + "\n";
                 i++;
