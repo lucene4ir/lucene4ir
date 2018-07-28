@@ -1,5 +1,7 @@
 package lucene4ir;
 
+import lucene4ir.similarity.*;
+import lucene4ir.similarity.BM25Similarity;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.DirectoryReader;
@@ -14,19 +16,13 @@ import org.apache.lucene.search.similarities.*;
 import org.apache.lucene.search.similarities.LMSimilarity.CollectionModel;
 import org.apache.lucene.store.FSDirectory;
 
-import lucene4ir.similarity.SMARTBNNBNNSimilarity;
-import lucene4ir.similarity.OKAPIBM25Similarity;
-import lucene4ir.similarity.BM25LSimilarity;
-import lucene4ir.similarity.BM25Similarity;
 import lucene4ir.utils.TokenAnalyzerMaker;
 
 import javax.xml.bind.JAXB;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.*;
 
-import static lucene4ir.RetrievalApp.SimModel.BM25;
-import static lucene4ir.RetrievalApp.SimModel.LMD;
-import static lucene4ir.RetrievalApp.SimModel.PL2;
+import static lucene4ir.RetrievalApp.SimModel.*;
 
 
 /**
@@ -46,7 +42,7 @@ public class RetrievalApp {
     protected String qeFile;
     protected SimModel sim;
     protected enum SimModel {
-        DEF, BM25, BM25L, LMD, LMJ, PL2, TFIDF,
+        DEF, BM25, BM25L, LMD, LMJ, PL2, TFIDF, RAWTFIDF,
 	OKAPIBM25, SMARTBNNBNN, DFR
     }
 
@@ -107,7 +103,7 @@ public class RetrievalApp {
                 break;
 
             case PL2:
-                System.out.println("PL2 Similarity Function (?)");
+                System.out.println("PL2 Similarity Function");
                 BasicModel bm = new BasicModelP();
                 AfterEffect ae = new AfterEffectL();
                 Normalization nn = new NormalizationH2(p.c);
@@ -122,9 +118,19 @@ public class RetrievalApp {
                 simfn = new DFRSimilarity(bmd, aen, nh1);
                 break;
 
+            case TFIDF:
+                System.out.println("TF.IDF Similarity Function");
+                simfn = new ClassicSimilarity();
+                break;
+
+            case RAWTFIDF:
+                System.out.println("Raw TF.IDF Similarity Function");
+                simfn = new RawTFIDFSimilarity();
+                break;
+
             default:
-                System.out.println("Default Similarity Function");
-                simfn = new BM25Similarity();
+                System.out.println("Default TFIDF Similarity Function");
+                simfn = new ClassicSimilarity();
 
                 break;
         }
