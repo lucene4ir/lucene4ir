@@ -43,7 +43,7 @@ public class RetrievalApp {
     protected SimModel sim;
     protected enum SimModel {
         DEF, BM25, BM25L, LMD, LMJ, PL2, TFIDF, RAWTFIDF,
-	OKAPIBM25, SMARTBNNBNN, DFR
+	OKAPIBM25, SMARTBNNBNN, DFR, DFIA, DFIB, DFIC, DPH
     }
 
     /**
@@ -111,12 +111,37 @@ public class RetrievalApp {
                 break;
 
             case DFR:
-                System.out.println("DFR Similarity Function with no after effect (?)");
+                System.out.println("DFR Similarity Function with no after effect");
                 BasicModel bmd = new BasicModelD();
                 AfterEffect aen = new AfterEffect.NoAfterEffect();
                 Normalization nh1 = new NormalizationH1();
                 simfn = new DFRSimilarity(bmd, aen, nh1);
                 break;
+
+            case DPH:
+                System.out.println("DPH Similarity Fucntion");
+                BasicModel bmg = new BasicModelG();
+                AfterEffect ael = new AfterEffectL();
+                Normalization non = new Normalization.NoNormalization();
+                simfn = new DFRSimilarity(bmg, ael, non);
+                break;
+
+            case DFIA:
+                System.out.println("DFIA Independence Saturated");
+                simfn=new DFISimilarity(new IndependenceSaturated());
+                break;
+
+            case DFIB:
+                System.out.println("DFIA Independence ChiSquared");
+                simfn=new DFISimilarity(new IndependenceChiSquared());
+                break;
+
+            case DFIC:
+                System.out.println("DFIA Independence Standardized");
+                simfn=new DFISimilarity(new IndependenceStandardized());
+                break;
+
+
 
             case TFIDF:
                 System.out.println("TF.IDF Similarity Function");
