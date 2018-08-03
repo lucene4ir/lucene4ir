@@ -120,10 +120,7 @@ public class RetrievalApp {
 
             case DPH:
                 System.out.println("DPH Similarity Fucntion");
-                BasicModel bmg = new BasicModelG();
-                AfterEffect ael = new AfterEffectL();
-                Normalization non = new Normalization.NoNormalization();
-                simfn = new DFRSimilarity(bmg, ael, non);
+                simfn = new DPHSimilarity();
                 break;
 
             case DFIA:
@@ -132,16 +129,14 @@ public class RetrievalApp {
                 break;
 
             case DFIB:
-                System.out.println("DFIA Independence ChiSquared");
+                System.out.println("DFIB Independence ChiSquared");
                 simfn=new DFISimilarity(new IndependenceChiSquared());
                 break;
 
             case DFIC:
-                System.out.println("DFIA Independence Standardized");
+                System.out.println("DFIC Independence Standardized");
                 simfn=new DFISimilarity(new IndependenceStandardized());
                 break;
-
-
 
             case TFIDF:
                 System.out.println("TF.IDF Similarity Function");
