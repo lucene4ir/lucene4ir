@@ -120,7 +120,7 @@ public class RetrievalApp {
 
             case DPH:
                 System.out.println("DPH Similarity Fucntion");
-                simfn = new DPHSimilarity();
+                simfn = new DPH();
                 break;
 
             case DFIA:
