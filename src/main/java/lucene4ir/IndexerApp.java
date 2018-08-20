@@ -29,7 +29,7 @@ public class IndexerApp {
 
 
     private enum DocumentModel {
-        CACM, WARC, TRECNEWS, TRECCC, TRECNEWSF, TRECAQUAINT, TRECWEB, TRECTIPSTER, PUBMED
+        CACM, WARC, TRECNEWS, TRECCC, TRECCCF, TRECNEWSF, TRECAQUAINT,TRECAQUAINTF, TRECWEB, TRECWEBF, TRECTIPSTER, PUBMED
     }
 
     private DocumentModel docModel;
@@ -71,14 +71,19 @@ public class IndexerApp {
                 di = new TRECNEWSDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions, p.imputeTitles);
                 break;
 
+            case TRECNEWSF:
+                System.out.println("TRECNEWSF");
+                di = new TRECNEWSFieldedDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions, p.imputeTitles);
+                break;
+
             case TRECCC:
                 System.out.println("TRECCC");
                 di = new TRECCCDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions, p.imputeTitles);
                 break;
 
-            case TRECNEWSF:
-                System.out.println("TRECNEWSF");
-                di = new TRECNEWSFieldedDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions, p.imputeTitles);
+            case TRECCCF:
+                System.out.println("TRECCCF");
+                di = new TRECCCFieldedDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions, p.imputeTitles);
                 break;
 
             case TRECTIPSTER:
@@ -91,16 +96,25 @@ public class IndexerApp {
                 di = new TRECAquaintDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions, p.imputeTitles);
                 break;
 
+            case TRECAQUAINTF:
+                System.out.println("TRECAQUAINTF");
+                di = new TRECAquaintFieldedDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions, p.imputeTitles);
+                break;
+
             case TRECWEB:
                 System.out.println("TRECWeb");
                 di = new TRECWebDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions,p.imputeTitles);
+                break;
+
+            case TRECWEBF:
+                System.out.println("TRECWebF");
+                di = new TRECWebFieldedDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions,p.imputeTitles);
                 break;
 
             case PUBMED:
                 System.out.println("PUBMED");
                 di = new PubMedDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions, p.imputeTitles);
                 break;
-
 
             default:
                 System.out.println("Default Document Parser");
