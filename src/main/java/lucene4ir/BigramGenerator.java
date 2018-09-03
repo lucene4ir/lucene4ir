@@ -152,7 +152,6 @@ public class BigramGenerator {
     public void extractBigramsFromStoredText() throws IOException {
 
         int n = reader.maxDoc();
-
         for (int i = 0; i < n; i++) {
 
             Document doc = reader.document(i);
