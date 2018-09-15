@@ -63,13 +63,13 @@ public class OutputLengths {
                 Integer aw = ((aw = all.split(" ").length) != null) ? aw : 0;
                 Long at = ((at = allterms.size()) != null) ? at : 0;
 
-                Integer cc = ((cc = all.length()) != null) ? cc : 0;
-                Integer cw = ((cw = all.split(" ").length) != null) ? cw : 0;
-                Long ct = ((ct = allterms.size()) != null) ? ct : 0;
+                Integer cc = ((cc = content.length()) != null) ? cc : 0;
+                Integer cw = ((cw = content.split(" ").length) != null) ? cw : 0;
+                Long ct = ((ct = conterms.size()) != null) ? ct : 0;
 
-                Integer tc = ((tc = all.length()) != null) ? tc : 0;
-                Integer tw = ((tw = all.split(" ").length) != null) ? tw : 0;
-                Long tt = ((tt = allterms.size()) != null) ? tt : 0;
+                Integer tc = ((tc = title.length()) != null) ? tc : 0;
+                Integer tw = ((tw = title.split(" ").length) != null) ? tw : 0;
+                Long tt = ((tt = titterms.size()) != null) ? tt : 0;
 
                 String output=docno + " " + ac + " " + aw + " " + at + " " + cc + " " + cw + " " + ct + " " + tc + " " + tw + " " + tt;
 //                System.out.println(i + " " + output);
