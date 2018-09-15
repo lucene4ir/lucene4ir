@@ -9,6 +9,8 @@ import javax.xml.bind.JAXB;
 import java.io.*;
 import java.nio.file.Paths;
 
+import static net.sf.extjwnl.dictionary.morph.Util.split;
+
 /**
  * Created by colin on 31/08/2017.
  */
@@ -43,15 +45,20 @@ public class OutputLengths {
         FileOutputStream fos = new FileOutputStream(fout);
 
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
+        n=1; // COMMENT OUT FOR PRODUCTION!!!
         for (int i = 0; i < n; i++) {
             Document doc = reader.document(i);
-            if (doc != null) {
+            Terms allterms = reader.getTermVector(i, Lucene4IRConstants.FIELD_ALL);
+            Terms conterms = reader.getTermVector(i, Lucene4IRConstants.FIELD_CONTENT);
+            Terms titterms = reader.getTermVector(i, Lucene4IRConstants.FIELD_TITLE);
+            if (doc != null && allterms != null) {
                 String docno = doc.get(Lucene4IRConstants.FIELD_DOCNUM);
                 String all = doc.get(Lucene4IRConstants.FIELD_ALL);
+                String content = doc.get(Lucene4IRConstants.FIELD_CONTENT);
                 String title = doc.get(Lucene4IRConstants.FIELD_TITLE);
-                System.out.println(i + " " + docno + " " + all.length() + " " + title.length() );
-                long tot=all.length();
-                bw.write(docno + " " + tot + " " + title.length());
+//                System.out.println(i + " " + docno + " " + all.split(" ").length + " " + allterms.size() + " " + content.split(" ").length + " " + conterms.size() + " " + title.split(" ").length + " " + titterms.size() );
+//                long tot=all.length();
+                bw.write(docno + " " + all.length() + " " + all.split(" ").length + " " + allterms.size() + " " + content.length() + " " + content.split(" ").length + " " + conterms.size() + " " + title.length() + " " + title.split(" ").length + " " + titterms.size() );
                 bw.newLine();
             }
         }
