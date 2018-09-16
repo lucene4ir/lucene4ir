@@ -61,11 +61,23 @@ public class OutputLengths {
 //                int ac = all.length();
                 int ac = (Integer) all.length() != null ? all.length() : 0;
                 int aw = ((Integer) all.split(" ").length != null) ? all.split(" ").length : 0;
-                long at = ((Long) allterms.size()) != null ? allterms.size() : 0L;
-
+                long at = 0L;
+                try{
+                    at=allterms.size();
+                }
+                catch (NullPointerException e){
+                    at=0;
+                }
                 int cc = (Integer) content.length() != null ? content.length() : 0;
                 int cw = ((Integer) content.split(" ").length != null) ? content.split(" ").length : 0;
-                long ct = ((Long) conterms.size()) != null ? conterms.size() : 0L;
+                long ct =  0L;
+
+                try {
+                    ct = conterms.size();
+                }
+                catch (NullPointerException e ){
+
+                }
 
                 int tc = (Integer) title.length() != null ? title.length() : 0;
                 int tw = ((Integer) title.split(" ").length != null) ? title.split(" ").length : 0;
