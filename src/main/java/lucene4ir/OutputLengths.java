@@ -59,17 +59,17 @@ public class OutputLengths {
                 String title = doc.get(Lucene4IRConstants.FIELD_TITLE);
 
 //                int ac = all.length();
-                Integer ac = ((ac = all.length()) != null) ? ac : 0;
-                Integer aw = ((aw = all.split(" ").length) != null) ? aw : 0;
-                Long at = ((at = allterms.size()) != null) ? at : 0;
+                Integer ac = (Integer) all.length() != null ? all.length() : 0;
+                Integer aw = ((Integer) all.split(" ").length != null) ? all.split(" ").length : 0;
+                Long at = ((Long) allterms.size()) != null ? allterms.size() : 0;
 
-                Integer cc = ((cc = content.length()) != null) ? cc : 0;
-                Integer cw = ((cw = content.split(" ").length) != null) ? cw : 0;
-                Long ct = ((ct = conterms.size()) != null) ? ct : 0;
+                Integer cc = (Integer) content.length() != null ? content.length() : 0;
+                Integer cw = ((Integer) content.split(" ").length != null) ? content.split(" ").length : 0;
+                Long ct = ((Long) conterms.size()) != null ? conterms.size() : 0;
 
-                Integer tc = ((tc = title.length()) != null) ? tc : 0;
-                Integer tw = ((tw = title.split(" ").length) != null) ? tw : 0;
-                Long tt = ((tt = titterms.size()) != null) ? tt : 0;
+                Integer tc = (Integer) title.length() != null ? title.length() : 0;
+                Integer tw = ((Integer) title.split(" ").length != null) ? title.split(" ").length : 0;
+                Long tt = ((Long) titterms.size()) != null ? titterms.size() : 0;
 
                 String output=docno + " " + ac + " " + aw + " " + at + " " + cc + " " + cw + " " + ct + " " + tc + " " + tw + " " + tt;
 //                System.out.println(i + " " + output);
