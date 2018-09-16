@@ -69,8 +69,13 @@ public class OutputLengths {
 
                 int tc = (Integer) title.length() != null ? title.length() : 0;
                 int tw = ((Integer) title.split(" ").length != null) ? title.split(" ").length : 0;
-                System.out.println(((Long) titterms.size()) != null ? titterms.size() : 0L);
-                long tt = ((Long) titterms.size()) != null ? titterms.size() : 0L;
+                long tt = 0L;
+                try {
+                    tt = titterms.size();
+                }
+                catch( NullPointerException e){
+                    tt = 0;
+                }
 
                 // WARNING: Really poor coding practice ahead but I am drunk AF and its 1:15am on a Saturday less than 2 weeks before my thesis is due so fuck you.
 //                int tc = title.length();
