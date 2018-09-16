@@ -59,26 +59,26 @@ public class OutputLengths {
                 String title = doc.get(Lucene4IRConstants.FIELD_TITLE);
 
 //                int ac = all.length();
-                Integer ac = (Integer) all.length() != null ? all.length() : 0;
-                Integer aw = ((Integer) all.split(" ").length != null) ? all.split(" ").length : 0;
-                Long at = ((Long) allterms.size()) != null ? allterms.size() : 0;
+                int ac = (Integer) all.length() != null ? all.length() : 0;
+                int aw = ((Integer) all.split(" ").length != null) ? all.split(" ").length : 0;
+                long at = ((Long) allterms.size()) != null ? allterms.size() : 0;
 
-                Integer cc = (Integer) content.length() != null ? content.length() : 0;
-                Integer cw = ((Integer) content.split(" ").length != null) ? content.split(" ").length : 0;
-                Long ct = ((Long) conterms.size()) != null ? conterms.size() : 0;
+                int cc = (Integer) content.length() != null ? content.length() : 0;
+                int cw = ((Integer) content.split(" ").length != null) ? content.split(" ").length : 0;
+                long ct = ((Long) conterms.size()) != null ? conterms.size() : 0;
 
-//                Integer tc = (Integer) title.length() != null ? title.length() : 0;
-//                Integer tw = ((Integer) title.split(" ").length != null) ? title.split(" ").length : 0;
-//                Long tt = ((Long) titterms.size()) != null ? titterms.size() : 0;
+                int tc = (Integer) title.length() != null ? title.length() : 0;
+                int tw = ((Integer) title.split(" ").length != null) ? title.split(" ").length : 0;
+                long tt = ((Long) titterms.size()) != null ? titterms.size() : 0;
 
-                int tc = title.length();
-                tc = (Integer)  tc == null ? 0 : tc;
-
-                int tw = title.split(" ").length;
-                tw = (Integer)  tc == null ? 0 : tc;
-
-                long tt = titterms.size();
-                tt = (Long) tt == null ? 0 : tc;
+//                int tc = title.length();
+//                tc = (Integer)  tc == null ? 0 : tc;
+//
+//                int tw = title.split(" ").length;
+//                tw = (Integer)  tc == null ? 0 : tc;
+//
+//                long tt = titterms.size();
+//                tt = (Long) tt == null ? 0 : tc;
 
 
                 String output=docno + " " + ac + " " + aw + " " + at + " " + cc + " " + cw + " " + ct + " " + tc + " " + tw + " " + tt;
