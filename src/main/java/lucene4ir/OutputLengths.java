@@ -61,16 +61,17 @@ public class OutputLengths {
 //                int ac = all.length();
                 int ac = (Integer) all.length() != null ? all.length() : 0;
                 int aw = ((Integer) all.split(" ").length != null) ? all.split(" ").length : 0;
-                long at = ((Long) allterms.size()) != null ? allterms.size() : 0;
+                long at = ((Long) allterms.size()) != null ? allterms.size() : 0L;
 
                 int cc = (Integer) content.length() != null ? content.length() : 0;
                 int cw = ((Integer) content.split(" ").length != null) ? content.split(" ").length : 0;
-                long ct = ((Long) conterms.size()) != null ? conterms.size() : 0;
+                long ct = ((Long) conterms.size()) != null ? conterms.size() : 0L;
 
                 int tc = (Integer) title.length() != null ? title.length() : 0;
                 int tw = ((Integer) title.split(" ").length != null) ? title.split(" ").length : 0;
-                long tt = ((Long) titterms.size()) != null ? titterms.size() : 0;
+                long tt = ((Long) titterms.size()) != null ? titterms.size() : 0L;
 
+                // WARNING: Really poor coding practice ahead but I am drunk AF and its 1:15am on a Saturday less than 2 weeks before my thesis is due so fuck you.
 //                int tc = title.length();
 //                tc = (Integer)  tc == null ? 0 : tc;
 //
