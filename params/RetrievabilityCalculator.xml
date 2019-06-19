@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RetrievabilityCalculatorParams>
+
+    <!--Inputs-->
+    <!-- The Index to Read From-->
+    <indexName>CommonCorePorter2017</indexName>
+    <!--Output-->
+    <gramsOutputPath>out</gramsOutputPath>
+
+    <!--Other Criteria-->
+    <biCutoff>20</biCutoff>
+    <uniCutoff>5</uniCutoff>
+    <maxResults>100</maxResults>
+    <model>bm25</model>
+    <b>0.25</b>
+    <k>0.75</k>
+</RetrievabilityCalculatorParams>
