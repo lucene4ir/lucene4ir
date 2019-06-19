@@ -1,5 +1,12 @@
 package lucene4ir;
 
+
+import lucene4ir.AbdulazizClasses.CrossDirectoryClass;
+import lucene4ir.indexer.*;
+import org.apache.lucene.index.DirectoryReader;
+import org.apache.lucene.index.IndexReader;
+import org.apache.lucene.store.FSDirectory;
+
 import javax.xml.bind.JAXB;
 import java.io.BufferedReader;
 import java.io.File;
@@ -8,28 +15,23 @@ import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
-
-import lucene4ir.indexer.*;
-import org.apache.lucene.index.DirectoryReader;
-import org.apache.lucene.store.FSDirectory;
-import org.apache.lucene.index.*;
-
 /**
  *
  * Created by leif on 21/08/2016.
  * Edited by kojayboy on 02/03/2017
- *
+ * Edited by Abdulaziz on 18/06/2019
  */
 
 public class IndexerApp {
 
     public IndexParams p;
 
-    public DocumentIndexer di;
+    public lucene4ir.indexer.DocumentIndexer di;
+
 
 
     private enum DocumentModel {
-        CACM, CLUEWEB, TRECNEWS, TRECCC, TRECAQUAINT, TRECWEB, TRECTIPSTER, PUBMED
+        CACM, CLUEWEB, TRECNEWS, TRECCC, TRECAQUAINT, TRECWEB, TRECTIPSTER, PUBMED , COMMONCORE
     }
 
     private DocumentModel docModel;
@@ -39,6 +41,7 @@ public class IndexerApp {
     }
 
     private void setDocParser(String val){
+
         try {
             docModel = DocumentModel.valueOf(p.indexType.toUpperCase());
         } catch (Exception e){
@@ -75,6 +78,7 @@ public class IndexerApp {
                 break;
 
             case TRECCC:
+
                 System.out.println("TRECCC");
                 di = new TRECCCDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions);
                 break;
@@ -98,7 +102,10 @@ public class IndexerApp {
                 System.out.println("PUBMED");
                 di = new PubMedDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions);
                 break;
-
+            case COMMONCORE:
+                System.out.println("COMMON CORE");
+                di = new main.java.lucene4ir.indexer.CommonCoreDocumentIndexer(p.indexName, p.tokenFilterFile, p.recordPositions);
+                break;
 
             default:
                 System.out.println("Default Document Parser");
@@ -119,7 +126,13 @@ public class IndexerApp {
         String filename = p.fileList;
 
         ArrayList<String> files = new ArrayList<String>();
+        File aFile;
+        CrossDirectoryClass cd = new CrossDirectoryClass(filename);
 
+        aFile = new File(filename);
+        if (aFile.isDirectory())
+          files =  cd.crossDirectory();
+        else
         try {
             BufferedReader br = new BufferedReader(new FileReader(filename));
             try {
@@ -169,7 +182,13 @@ public class IndexerApp {
     }
 
     public void finished(){
+        try {
+            di.writer.forceMerge(1);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         di.finished();
+
 
         try {
             IndexReader reader = DirectoryReader.open(FSDirectory.open(Paths.get(p.indexName)));
@@ -184,8 +203,6 @@ public class IndexerApp {
 
 
     }
-
-
 
     public static void main(String []args) {
 
@@ -213,7 +230,6 @@ public class IndexerApp {
         }
         indexer.finished();
         System.out.println("Done building Index");
-
 
 
     }
