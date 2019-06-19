@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<retrievalParams>
+    <!-- The Directory Of the Index. You may put it without Source Directory Index/ -->
+    <indexName>CommonCoreIndex</indexName>
+    <!-- Query File Name. You may put it without Source Directory Queries/ -->
+    <queryFile>CommonCoreParsedTopics.txt</queryFile>
+    <!-- qrel File Name. You may put it without Source Directory Qrels -->
+    <qrelFile>307-690.qrels</qrelFile>
+    <!-- Maximum Limit of Results -->
+    <maxResults>1000</maxResults>
+    <!-- ModelType Results -->
+    <model>BM25</model>
+    <!-- Variable Ranges Here -->
+    <bRange>0:0.5:1</bRange>
+    <kRange>0:0.5:1</kRange>
+    <muRange>0:1000:2000</muRange>
+	<cRange>0:0.5:1</cRange>
+    <!-- End Of Variable Ranges -->
+    <!-- Dynamic Tag Based on Experiment Name (Leave Empty) -->
+    <resultFile></resultFile>
+    <!-- Token Filter File Name. You may put it without Source Directory TokenFilters/ -->
+    <tokenFilterFile>porter_params.xml</tokenFilterFile>
+    <runTag>Fred</runTag>
+</retrievalParams>
