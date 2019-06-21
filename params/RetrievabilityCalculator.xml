@@ -3,15 +3,21 @@
 
     <!--Inputs-->
     <!-- The Index to Read From-->
-    <indexName>CommonCorePorter2017</indexName>
+    <indexName>ShingleIndex</indexName>
     <!--Output-->
     <gramsOutputPath>out</gramsOutputPath>
 
     <!--Other Criteria-->
     <biCutoff>20</biCutoff>
     <uniCutoff>5</uniCutoff>
+
+    <!--Other RetrievalApp Params -->
+    <queryFile>out/shortBigram.txt</queryFile>
     <maxResults>100</maxResults>
     <model>bm25</model>
     <b>0.25</b>
     <k>0.75</k>
+    <resultFile>out/Results.res</resultFile>
+    <tokenFilterFile>params/index/example_03.xml</tokenFilterFile>
+    <runTag>Fred</runTag>
 </RetrievabilityCalculatorParams>
