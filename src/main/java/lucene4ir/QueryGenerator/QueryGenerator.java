@@ -105,7 +105,7 @@ public class QueryGenerator {
            1- calculate the weight for each input Bigrams in the Term Vector
         */
         Map.Entry currentItem;
-        double pi , pj , pij , currentWeight ;
+        double pi , pj , pij , currentWeight , log2 ;
         long v1 , v2 , currentFreq  , biGramSize , uniGramSize;
         Iterator it;
         queryInfo currentQryInfo ;
@@ -116,22 +116,22 @@ public class QueryGenerator {
         biGramSize = biGramMap.size();
         uniGramSize = uniGramMap.size();
 
+         log2 = Math.log10(2);
         while (it.hasNext()) {
             currentItem = (Map.Entry) it.next();
             currentGram = currentItem.getKey().toString();
             currentQryInfo = (queryInfo) currentItem.getValue();
             currentFreq = currentQryInfo.collFreq;
             // Bigram Score
-            pij = (double) ((currentFreq + 1) / (biGramSize + 1));
+            pij = (double) ((currentFreq + 1.0) / (biGramSize + 1));
             String[] terms = currentGram.split(" ");
-            v1 = 1;
-            v2 = 1;
 
             v1 = getUnigramFrequency(terms[0]);
             v2 = getUnigramFrequency(terms[1]);
             pi = (double) ((v1 + 1.0) / (uniGramSize + 1));
             pj = (double) ((v2 + 1.0) / (uniGramSize + 1));
-            currentQryInfo.weight = Math.log(pij / (pi * pj));
+            currentQryInfo.weight = Math.log10(pij / (pi * pj)) / log2 ;
+
             System.out.println("Added Query " + currentGram + " to QueryList");
         } // End while
     }
