@@ -237,7 +237,7 @@ public class QueryGenerator {
     static
     public class QueryGeneratorParams {
 
-        public String indexName , gramsOutputPath  ;
+        public String indexName , gramsOutputPath ,resultFile , queryFile;
         public int uniCutoff , biCutoff  ;
         // public float b , k;
     }
