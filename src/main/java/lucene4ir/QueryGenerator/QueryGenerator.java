@@ -92,6 +92,13 @@ public class QueryGenerator {
         }
     };
 
+    private long getUnigramFrequency (String term)
+    {
+        long result = 1; // Default 1
+        if (uniGramMap.containsKey(term))
+            result = uniGramMap.get(term).collFreq;
+        return result;
+    }
     private void calculateScores()
     {
        /* This Function is Used To do the following :
@@ -119,11 +126,9 @@ public class QueryGenerator {
             String[] terms = currentGram.split(" ");
             v1 = 1;
             v2 = 1;
-            if (uniGramMap.containsKey(terms[0]))
-                v1 =  uniGramMap.get(terms[0]).collFreq;
-            if (uniGramMap.containsKey(terms[1]))
-                v2 =  uniGramMap.get(terms[1]).collFreq;
 
+            v1 = getUnigramFrequency(terms[0]);
+            v2 = getUnigramFrequency(terms[1]);
             pi = (double) ((v1 + 1.0) / (uniGramSize + 1));
             pj = (double) ((v2 + 1.0) / (uniGramSize + 1));
             currentQryInfo.weight = Math.log(pij / (pi * pj));
@@ -136,7 +141,8 @@ public class QueryGenerator {
         String shortOutFile ,
                 longOutFile  ,
                 outputPrefix = "" ,
-                line , qry;
+                line , qry , terms[];
+        long t1Ctr , t2Ctr;
         int qryID = 1;
 
         queryInfo qryinfo = new queryInfo();
@@ -178,14 +184,25 @@ public class QueryGenerator {
             qryinfo = (queryInfo) item.getValue();
             line = qryID++ + " " + qry ;
             prShort.write(line + "\n");
-            line += " " + qryinfo.collFreq + " " + qryinfo.weight + "\n";
+            if (gramSize == 1)
+                line += " " + qryinfo.collFreq + " " + qryinfo.weight + "\n";
+            else
+            {
+                terms = qry.split("",2);
+                line += String.format(" %d %d %d %f\n" ,
+                        getUnigramFrequency(terms[0]) ,
+                        getUnigramFrequency(terms[1]) ,
+                        qryinfo.collFreq ,
+                        qryinfo.weight
+                        );
+            }
             prLong.write(line);
             System.out.print(line);
         }
         prShort.close();
         prLong.close();
     }
-    private void generateQueries  ()
+    public void generateQueries  ()
     {
         // Reading Parameters from Retrievability Counter XML File
 
@@ -218,7 +235,7 @@ public class QueryGenerator {
 
     @XmlRootElement(name = "QueryGeneratorParams")
     static
-    class QueryGeneratorParams {
+    public class QueryGeneratorParams {
 
         public String indexName , gramsOutputPath  ;
         public int uniCutoff , biCutoff  ;
