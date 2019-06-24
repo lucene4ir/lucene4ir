@@ -20,6 +20,7 @@ public class QueryGenerator {
     private ArrayList<Long> uniFrequencies;
     private int  qryID = 1 ;
     private long currentFreq;
+    private PrintWriter  prShort , prLong;
 
     // Constructor Method
     public QueryGenerator (String inputParameterFile) {
@@ -139,12 +140,6 @@ public class QueryGenerator {
 
         it = inputShingle.qryMap.entrySet().iterator();
 
-        // Initialize Output
-        shortOutFile = String.format("%s/shortGram.txt", p.outputPath);
-        longOutFile = String.format("%s/longGram.txt", p.outputPath);
-        PrintWriter prShort = new PrintWriter(shortOutFile);
-        PrintWriter prLong = new PrintWriter(longOutFile);
-
         // Write GramMap Header on Screen
         gramSize = inputShingle.gramSize;
         line = String.format("\n\n\n%sGrams\n---------\n" , getPrefix(inputShingle.gramSize));
@@ -185,8 +180,6 @@ public class QueryGenerator {
             prLong.write(line);
             System.out.print(line);
         } // End While
-        prLong.close();
-        prShort.close();
     }
     private double getScore(int gramSize , Map.Entry currentItem)
     {
@@ -217,12 +210,21 @@ public class QueryGenerator {
     }
     public void main()
     {
+        String shortOutFile,longOutFile;
         // Reading Parameters from Retrievability Counter XML File
         try {
             readParamsFromFile();
             readFilterBigrams();
+            // Initialize Output
+            shortOutFile = String.format("%s/shortGrams.txt", p.outputPath);
+            longOutFile = String.format("%s/longGrams.txt", p.outputPath);
+            prShort = new PrintWriter(shortOutFile);
+            prLong = new PrintWriter(longOutFile);
+
             for (ShingleInfo sh:shingles)
                 iterateGrams(sh);
+            prShort.close();
+            prLong.close();
         }
         catch (Exception ex)
         {
