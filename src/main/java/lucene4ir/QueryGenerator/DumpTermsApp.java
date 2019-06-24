@@ -1,4 +1,4 @@
-package lucene4ir.QueryGenerator;
+package lucene4ir.BiGramGenerator;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
@@ -15,7 +15,10 @@ import javax.xml.bind.JAXB;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by leif on 21/08/2016.
@@ -54,13 +57,11 @@ public class DumpTermsApp {
         try {
             reader = DirectoryReader.open(FSDirectory.open(Paths.get(indexName)));
 
-
         } catch (IOException e) {
             System.out.println(" caught a " + e.getClass() +
                     "\n with message: " + e.getMessage());
         }
     }
-
 
     public void numSegments(){
         // how do we get the number of segements
@@ -96,42 +97,38 @@ public class DumpTermsApp {
     }
 
     public void getGramList(
-            String allField ,
-            ArrayList<QueryGenerator.ShingleInfo> shingles
+            String field ,
+            HashMap<String, BiGramGenerator.queryInfo> biGramMap ,
+            int biCutoff ,
+            HashMap<String, BiGramGenerator.queryInfo> uniGramMap
             ) throws IOException {
 
 
         LeafReader leafReader = reader.leaves().get(0).reader();
         String currentTerm;
         long currentFreq;
-        int currentGramSize;
-        QueryGenerator.queryInfo currentQryInfo;
+        BiGramGenerator.queryInfo currentQryInfo;
 
-        Terms terms = leafReader.terms(allField);
+        Terms terms = leafReader.terms(field);
         TermsEnum te = terms.iterator();
         BytesRef term;
 
+
         while ((term = te.next()) != null) {
             currentTerm = term.utf8ToString().trim();
-            if (!currentTerm.contains("_")) {
-
+            if (!currentTerm.contains("_"))
+            {
+                currentQryInfo =  new BiGramGenerator("").new queryInfo();
                 currentFreq = te.totalTermFreq();
-                currentGramSize = currentTerm.length() - currentTerm.replaceAll(" ", "").length() + 1;
+                currentQryInfo.collFreq = currentFreq;
+                if (currentTerm.contains(" ") && currentFreq >= biCutoff)
+                    biGramMap.put(currentTerm,currentQryInfo);
+                else if (!currentTerm.contains(" "))
+                    uniGramMap.put(currentTerm,currentQryInfo);
+            }
 
-                for (QueryGenerator.ShingleInfo sh : shingles) {
-                    if (sh.gramSize == currentGramSize ) {
-                        if (currentFreq >= sh.cutoff)
-                        {
-                            currentQryInfo = new QueryGenerator("").new queryInfo();
-                            currentQryInfo.collFreq = currentFreq;
-                            sh.qryMap.put(currentTerm, currentQryInfo);
-                        }
-                        break;
-                    } // End IF
-                } // End For
-            } // End IF
-        } // End While
-    } // End Function
+        }
+    }
 
     public void termStats(String termText)  throws IOException{
         /*
@@ -185,17 +182,7 @@ public class DumpTermsApp {
 
             Document doc = reader.document(i);
             String all = doc.get(lucene4ir.Lucene4IRConstants.FIELD_ALL);
-
-            //String[] words = all.split(" ");
-            //for(String w: words ){
-            //    System.out.println(w);
-            //}
-
-//        int n = words.length;
-            //      for (int i=1; i<n; i++){
-            //        System.out.println(words[i-1].toLowerCase().trim() + " " + words[i].toLowerCase().trim());
-            //   }
-
+            
             Analyzer a = new StandardAnalyzer();
             TokenStream ts = a.tokenStream(null, all);
             ts.reset();
@@ -231,8 +218,7 @@ public class DumpTermsApp {
         }
 
     }
-
-
+    
     public static void main(String[] args)  throws IOException {
         String statsParamFile = "";
 
