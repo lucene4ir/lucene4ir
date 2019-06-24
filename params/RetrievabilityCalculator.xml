@@ -5,11 +5,35 @@
     <!-- The Index to Read From-->
     <indexName>ShingleIndex</indexName>
     <!--Output-->
-    <gramsOutputPath>out</gramsOutputPath>
+    <outputPath>out</outputPath>
 
     <!--Other Criteria-->
+    <shingleParams>
+       <!-- <name>shingles</name>-->
+        <param>
+            <gramSize>1</gramSize>
+            <cutoff>5</cutoff>
+        </param>
+        <param>
+            <gramSize>2</gramSize>
+            <cutoff>20</cutoff>
+        </param>
+        <param>
+            <gramSize>3</gramSize>
+            <cutoff>70</cutoff>
+        </param>
+    </shingleParams>
+
+    <defaultCutoff>20</defaultCutoff>
+
     <biCutoff>20</biCutoff>
     <uniCutoff>5</uniCutoff>
+
+    <!-- Available Cost Functions
+     Gravity = g
+     Cumulative = c
+     -->
+    <costFunction>c</costFunction>
 
     <!--Other RetrievalApp Params -->
     <queryFile>out/shortBigram.txt</queryFile>
