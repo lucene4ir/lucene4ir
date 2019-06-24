@@ -15,10 +15,7 @@ import javax.xml.bind.JAXB;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by leif on 21/08/2016.
@@ -99,44 +96,42 @@ public class DumpTermsApp {
     }
 
     public void getGramList(
-            String field ,
-            HashMap<String, QueryGenerator.queryInfo> biGramMap ,
-            int biCutoff ,
-            HashMap<String, QueryGenerator.queryInfo> uniGramMap ,
-            int uniCutoff
+            String allField ,
+            ArrayList<QueryGenerator.ShingleInfo> shingles
             ) throws IOException {
 
 
         LeafReader leafReader = reader.leaves().get(0).reader();
         String currentTerm;
         long currentFreq;
+        int currentGramSize;
         QueryGenerator.queryInfo currentQryInfo;
 
-        Terms terms = leafReader.terms(field);
+        Terms terms = leafReader.terms(allField);
         TermsEnum te = terms.iterator();
         BytesRef term;
 
-
         while ((term = te.next()) != null) {
             currentTerm = term.utf8ToString().trim();
-            if (!currentTerm.contains("_"))
-            {
-                currentQryInfo =  new QueryGenerator("").new queryInfo();
-                currentFreq = te.totalTermFreq();
-                currentQryInfo.collFreq = currentFreq;
-                if (currentTerm.contains(" ") && currentFreq >= biCutoff)
-                    biGramMap.put(currentTerm,currentQryInfo);
-                else if (!currentTerm.contains(" ") && currentFreq >= uniCutoff)
-                {
-                    if ( currentTerm.toLowerCase().compareTo("668,200,000".toLowerCase()) == 0 )
-                        currentFreq = currentFreq;
-                    currentQryInfo.weight = currentFreq;
-                    uniGramMap.put(currentTerm,currentQryInfo);
-                }
-            }
+            if (!currentTerm.contains("_")) {
 
-        }
-    }
+                currentFreq = te.totalTermFreq();
+                currentGramSize = currentTerm.length() - currentTerm.replaceAll(" ", "").length() + 1;
+
+                for (QueryGenerator.ShingleInfo sh : shingles) {
+                    if (sh.gramSize == currentGramSize ) {
+                        if (currentFreq >= sh.cutoff)
+                        {
+                            currentQryInfo = new QueryGenerator("").new queryInfo();
+                            currentQryInfo.collFreq = currentFreq;
+                            sh.qryMap.put(currentTerm, currentQryInfo);
+                        }
+                        break;
+                    } // End IF
+                } // End For
+            } // End IF
+        } // End While
+    } // End Function
 
     public void termStats(String termText)  throws IOException{
         /*
