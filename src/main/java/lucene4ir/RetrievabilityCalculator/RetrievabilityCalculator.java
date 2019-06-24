@@ -1,6 +1,6 @@
 package lucene4ir.RetrievabilityCalculator;
 
-import lucene4ir.QueryGenerator.DumpTermsApp;
+import lucene4ir.BiGramGenerator.DumpTermsApp;
 import lucene4ir.RetrievalApp;
 
 import javax.xml.bind.JAXB;
@@ -25,7 +25,6 @@ public class RetrievabilityCalculator {
 
 
     private String sourceParameterFile;
-    private final String docIDField = "docnum";
     private HashMap<Integer, Double> docMap , qryMap;
     private double totalWeights;
 
@@ -46,18 +45,20 @@ public class RetrievabilityCalculator {
     private void readParamsFromFile() {
         System.out.println("Reading Param File");
         try {
-            p = JAXB.unmarshal(new File(sourceParameterFile), RetrievabilityCalculator.RetrievabilityCalculatorParams.class );
+            p = JAXB.unmarshal(new File(sourceParameterFile), RetrievabilityCalculatorParams.class );
             if (p.indexName.toString().isEmpty())
                 displayMsg ("IndexName Parameter is Missing");
             System.out.println("Index: " + p.indexName);
-            if (p.outputPath.toString().isEmpty())
+            if (p.retFile.toString().isEmpty())
                 displayMsg ("Query Output Path Parameter is Missing");
-            if (p.resultFile.toString().isEmpty())
+            if (p.resFile.toString().isEmpty())
                 displayMsg ("Result File Parameter is Missing");
             if (p.queryFile.toString().isEmpty())
                 displayMsg ("Query File Parameter is Missing");
-            if (p.maxResults < 1)
-                displayMsg ("Max Results Parameter is Missing");
+            if (p.b < 1)
+                p.b = 0;
+            if (p.c < 1)
+                p.c = 0;
 
         } catch (Exception e) {
             System.out.println(" caught a " + e.getClass() +
@@ -80,7 +81,7 @@ public class RetrievabilityCalculator {
 
         N = docMap.size() - 1;
         i = 1;
-        PrintWriter pr = new PrintWriter(p.outputPath + "/RetrievabilityList.txt");
+        PrintWriter pr = new PrintWriter(p.retFile);
         while (it.hasNext()) {
             item = (Map.Entry) it.next();
             r = (double) item.getValue();
@@ -97,27 +98,21 @@ public class RetrievabilityCalculator {
         G = numerator / (++N * denominator);
         line = "The G Coefficient = " + G;
         System.out.println(line);
-        pr.print(line);
         pr.close();
     }
 
-    private double costFunction (char costFunction , int rank )
+    private double costFunction (int rank )
     {
         double result = 0;
-        if (costFunction == 'c')
-            result = 1;
-        else
-            result = 1.0 / Math.pow(rank,p.maxResults);
-
+        if (rank <= p.c)
+            result = 1.0 / Math.pow(rank,p.b);
         return result;
     }
     private double calculateR (int qryID , int rank)
     {
-        char costFunction;
-        double result = 0 , weight;
+        double result  , weight;
         weight = qryMap.get(qryID);
-        costFunction =  p.costFunction.toLowerCase().charAt(0);
-        result = weight * costFunction(costFunction,rank);
+        result = weight * costFunction(rank);
         return result;
     }
 
@@ -132,7 +127,6 @@ public class RetrievabilityCalculator {
         double r ;
 
         BufferedReader br = new BufferedReader(new FileReader(retrievalResultFile));
-
         line = br.readLine();
         while (line != null) {
             parts = line.split(" ", 5);
@@ -165,7 +159,10 @@ public class RetrievabilityCalculator {
         br.close();
     }
     private void initDocumentMap() throws Exception {
+
         // Initialize Document Hash MAP (docid , docCounter = 0)
+
+        final String docIDField = "docnum";
         DumpTermsApp dump = new DumpTermsApp();
         dump.indexName = p.indexName;
         dump.openReader();
@@ -178,15 +175,16 @@ public class RetrievabilityCalculator {
 
     public void main() {
 
+        String RetrievalParamsFile = "params/retrieval_params.xml";
         // Mystro Method that coordinate the process
         try {
             readParamsFromFile();
-            RetrievalApp re = new RetrievalApp(sourceParameterFile);
+            RetrievalApp re = new RetrievalApp(RetrievalParamsFile);
             re.processQueryFile();
             initDocumentMap();
-            initQueryMap(p.queryFile.replace("short","long"));
-            readRetrievalResults(p.resultFile);
-            displayResults(p.outputPath + "/RetrievabilityScores.txt");
+            initQueryMap(p.queryFile);
+            readRetrievalResults(p.resFile);
+            displayResults(p.retFile);
         } catch (Exception e) {
             System.out.println(" caught a " + e.getClass() +
                     "\n with message: " + e.getMessage());
@@ -203,8 +201,8 @@ public class RetrievabilityCalculator {
     @XmlRootElement(name = "RetrievabilityCalculatorParams")
     static
     public class RetrievabilityCalculatorParams {
-        public String indexName , outputPath,resultFile , queryFile , costFunction;
-        public int maxResults;
+        public String indexName , retFile ,resFile , queryFile ;
+        public int   b , c;
     }
 }
 
