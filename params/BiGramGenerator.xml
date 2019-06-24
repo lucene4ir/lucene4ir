@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RetrievabilityCalculatorParams>
+
+    <!--Inputs-->
+    <!-- The Index to Read From-->
+    <indexName>ShingleIndex</indexName>
+    <!--Output-->
+    <outFilePath>out</outFilePath>
+
+    <!--Other Criteria-->
+    <cutoff>20</cutoff>
+
+</RetrievabilityCalculatorParams>

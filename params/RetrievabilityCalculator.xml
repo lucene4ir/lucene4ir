@@ -4,44 +4,17 @@
     <!--Inputs-->
     <!-- The Index to Read From-->
     <indexName>ShingleIndex</indexName>
-    <!--Output-->
-    <outputPath>out</outputPath>
 
-    <!--Other Criteria-->
-    <shingleParams>
-       <!-- <name>shingles</name>-->
-        <param>
-            <gramSize>1</gramSize>
-            <cutoff>5</cutoff>
-        </param>
-        <param>
-            <gramSize>2</gramSize>
-            <cutoff>20</cutoff>
-        </param>
-        <param>
-            <gramSize>3</gramSize>
-            <cutoff>70</cutoff>
-        </param>
-    </shingleParams>
-
-    <defaultCutoff>20</defaultCutoff>
-
-    <biCutoff>20</biCutoff>
-    <uniCutoff>5</uniCutoff>
-
-    <!-- Available Cost Functions
-     Gravity = g
-     Cumulative = c
-     -->
-    <costFunction>c</costFunction>
+    <!--output File-->
+    <!--DocID - r-->
+    <retFile>out/RetrievabilityCalculatorList.txt</retFile>
 
     <!--Other RetrievalApp Params -->
-    <queryFile>out/shortBigram.txt</queryFile>
-    <maxResults>100</maxResults>
-    <model>bm25</model>
-    <b>0.25</b>
-    <k>0.75</k>
-    <resultFile>out/Results.res</resultFile>
-    <tokenFilterFile>params/index/example_03.xml</tokenFilterFile>
-    <runTag>Fred</runTag>
+    <queryFile>out/longBigram.txt</queryFile>
+    <resFile>out/Results.res</resFile>
+
+   <!-- Cost Function Params-->
+    <b>3</b>
+    <c>50</c>
+
 </RetrievabilityCalculatorParams>
