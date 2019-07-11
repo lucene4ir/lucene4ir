@@ -1,7 +1,7 @@
 package lucene4ir;
 
 
-import lucene4ir.AbdulazizClasses.CrossDirectoryClass;
+import lucene4ir.utils.CrossDirectoryClass;
 import lucene4ir.indexer.*;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
