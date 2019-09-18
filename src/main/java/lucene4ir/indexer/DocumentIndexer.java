@@ -8,6 +8,8 @@ import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
+import org.apache.lucene.index.IndexWriterConfig.OpenMode;
+import org.apache.lucene.search.similarities.Similarity;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
@@ -29,12 +31,14 @@ public class DocumentIndexer {
     protected boolean indexPositions;
     public IndexWriter writer;
     public Analyzer analyzer;
+    public Similarity similarity;
 
     public DocumentIndexer(){};
 
     public DocumentIndexer(String indexPath, String tokenFilterFile, boolean positional){
         writer = null;
         analyzer = Lucene4IRConstants.ANALYZER;
+        this.similarity = similarity;
         indexPositions=positional;
 
         if (tokenFilterFile != null){
@@ -50,16 +54,16 @@ public class DocumentIndexer {
         The indexPath specifies where to create the index
          */
 
-        // I am can imagine that there are lots of ways to create indexers -
+        // I can imagine that there are lots of ways to create indexers -
         // We could add in some parameters to customize its creation
 
         try {
             Directory dir = FSDirectory.open(Paths.get(indexPath));
             System.out.println("Indexing to directory '" + indexPath + "'...");
 
-            IndexWriterConfig iwc = new IndexWriterConfig(analyzer);
+            IndexWriterConfig iwc = new IndexWriterConfig(analyzer, similarity);
             iwc.setOpenMode(IndexWriterConfig.OpenMode.CREATE);
-            writer = new IndexWriter(dir, iwc);
+            IndexWriter writer = new IndexWriter(dir, iwc);
 
         } catch (IOException e){
             e.printStackTrace();
